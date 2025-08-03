@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bot, MessageSquare, Database, Loader2, CheckCircle, XCircle, Play, Zap } from 'lucide-react';
+import { Bot, Loader2, CheckCircle, XCircle, Play, Zap, Construction } from 'lucide-react';
 
 interface DemoState {
   loading: boolean;
@@ -17,36 +17,17 @@ const LiveDemo: React.FC = () => {
 
   const API_BASE_URL = 'https://vectorshift-n8n-ventures.onrender.com';
 
-  const handleWorkflowTest = async (workflowType: 'ai' | 'file' | 'api') => {
+  const handleDemoTest = async () => {
     setDemoState({ loading: true, response: null, error: null });
 
     try {
-      let endpoint = '';
-      let data = {};
+      const data = { 
+        userMessage: aiMessage,
+        timestamp: new Date().toISOString(),
+        source: 'website-demo'
+      };
 
-      switch (workflowType) {
-        case 'ai':
-          endpoint = '/webhook/ai-chat';
-          data = { userMessage: aiMessage };
-          break;
-        case 'file':
-          endpoint = '/webhook/file-operations';
-          data = { 
-            operation: 'test',
-            filename: 'demo-test.txt',
-            content: 'This is a test file operation from the live demo.'
-          };
-          break;
-        case 'api':
-          endpoint = '/webhook/api-integration';
-          data = { 
-            test: true,
-            message: 'Testing API integration from live demo'
-          };
-          break;
-      }
-
-      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}/webhook/ai-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +62,6 @@ const LiveDemo: React.FC = () => {
           status: 'success',
           message: 'Automation executed successfully',
           note: 'Response was empty, but workflow completed',
-          workflowType: workflowType,
           timestamp: new Date().toISOString()
         };
       }
@@ -111,33 +91,23 @@ const LiveDemo: React.FC = () => {
     return 'Ready to test';
   };
 
-  const automationCards = [
-    {
-      type: 'ai' as const,
-      title: 'AI Chat Automation',
-      description: 'Test our AI-powered chat system with custom messages',
-      icon: Bot,
-      color: 'from-cyan-500 to-blue-500'
-    },
-    {
-      type: 'file' as const,
-      title: 'File Operations',
-      description: 'Test automated file processing and management',
-      icon: Database,
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      type: 'api' as const,
-      title: 'API Integration',
-      description: 'Test external API connections and data processing',
-      icon: MessageSquare,
-      color: 'from-purple-500 to-pink-500'
-    }
-  ];
-
   return (
     <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
       <div className="container mx-auto px-6">
+        {/* Under Development Banner */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-3">
+              <Construction className="w-6 h-6 text-yellow-400" />
+              <h3 className="text-lg font-mono font-semibold text-yellow-400">Under Development</h3>
+            </div>
+            <p className="text-gray-300 font-mono text-sm">
+              This demo is currently being developed. The automation workflow is being built and will be available soon. 
+              You can still test the API connection and see the response structure.
+            </p>
+          </div>
+        </div>
+
         <div className="text-center mb-16">
           <h2 className="text-3xl font-mono font-bold mb-4">
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -145,7 +115,7 @@ const LiveDemo: React.FC = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-            Test our automation workflows in real-time. See how our solutions can transform your field service operations.
+            Test our AI automation workflow in real-time. See how our solutions can transform your field service operations.
           </p>
         </div>
 
@@ -178,11 +148,20 @@ const LiveDemo: React.FC = () => {
           </div>
         </div>
 
-        {/* AI Chat Demo */}
+        {/* Single Demo Interface */}
         <div className="max-w-2xl mx-auto mb-12">
-          <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
-            <h3 className="text-lg font-mono font-semibold text-white mb-4">AI Chat Demo</h3>
-            <div className="space-y-4">
+          <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Bot className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-mono font-semibold text-white mb-2">AI Automation Demo</h3>
+              <p className="text-gray-400 font-mono">
+                Test our AI-powered automation workflow with custom messages
+              </p>
+            </div>
+            
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                   Test Message
@@ -191,24 +170,25 @@ const LiveDemo: React.FC = () => {
                   type="text"
                   value={aiMessage}
                   onChange={(e) => setAiMessage(e.target.value)}
-                  className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                  className="w-full p-4 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                   placeholder="Enter a test message for AI processing..."
                 />
               </div>
+              
               <button
-                onClick={() => handleWorkflowTest('ai')}
+                onClick={handleDemoTest}
                 disabled={demoState.loading}
-                className="w-full font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 rounded-lg text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {demoState.loading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Testing AI Chat...
+                  <div className="flex items-center justify-center gap-3">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Testing AI Automation...
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center gap-2">
-                    <Bot className="w-4 h-4" />
-                    Test AI Chat
+                  <div className="flex items-center justify-center gap-3">
+                    <Play className="w-5 h-5" />
+                    Test AI Automation
                   </div>
                 )}
               </button>
@@ -216,52 +196,22 @@ const LiveDemo: React.FC = () => {
           </div>
         </div>
 
-        {/* Automation Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {automationCards.map((card) => (
-            <div key={card.type} className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-              <div className={`w-12 h-12 bg-gradient-to-r ${card.color} rounded-lg flex items-center justify-center mb-4`}>
-                <card.icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-mono font-semibold mb-3">{card.title}</h3>
-              <p className="text-gray-400 font-mono mb-6">{card.description}</p>
-              <button
-                onClick={() => handleWorkflowTest(card.type)}
-                disabled={demoState.loading}
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-lg text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full"
-              >
-                {demoState.loading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Testing...
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center gap-2">
-                    <Play className="w-4 h-4" />
-                    Test Automation
-                  </div>
-                )}
-              </button>
-            </div>
-          ))}
-        </div>
-
         {/* Info Panel */}
-        <div className="max-w-4xl mx-auto mt-12">
+        <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-6">
             <h3 className="text-lg font-mono font-semibold text-white mb-4">How It Works</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm font-mono">
               <div>
-                <h4 className="text-cyan-400 font-semibold mb-2">1. Select Automation</h4>
-                <p className="text-gray-400">Choose from our three main automation workflows to test.</p>
+                <h4 className="text-cyan-400 font-semibold mb-2">1. Enter Message</h4>
+                <p className="text-gray-400">Type a custom message to test our AI automation.</p>
               </div>
               <div>
                 <h4 className="text-cyan-400 font-semibold mb-2">2. Send Request</h4>
-                <p className="text-gray-400">The demo sends a test request to our automation platform.</p>
+                <p className="text-gray-400">The demo sends your message to our automation platform.</p>
               </div>
               <div>
                 <h4 className="text-cyan-400 font-semibold mb-2">3. View Results</h4>
-                <p className="text-gray-400">See real-time responses and data processing results.</p>
+                <p className="text-gray-400">See real-time AI responses and processing results.</p>
               </div>
             </div>
           </div>
