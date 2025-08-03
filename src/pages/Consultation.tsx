@@ -38,14 +38,14 @@ const Consultation: React.FC = () => {
 
   const consultationTypes = [
     {
-      title: "Comprehensive AI Package",
-      duration: "60 minutes + Deliverables",
-      description: "Complete consultation with custom proposal, demo agent, and phone caller agent",
+      title: "Comprehensive Demo Package",
+      duration: "60 minutes + Demo Deliverables",
+      description: "Complete demo with custom proposal, demo agent, and phone caller agent",
       features: [
-        "Detailed business analysis & custom proposal",
+        "Detailed business analysis & custom demo proposal",
         "AI demo agent with research knowledge of your business",
-        "Phone caller agent for customer inquiries",
-        "Implementation roadmap"
+        "Phone caller demo agent for customer inquiries",
+        "Complete demo implementation roadmap"
       ],
       price: "Free",
       recommended: true
@@ -57,7 +57,7 @@ const Consultation: React.FC = () => {
       features: [
         "Business needs assessment",
         "Automation opportunities review",
-        "Next steps planning"
+        "Demo package planning"
       ],
       price: "Free"
     },
@@ -68,7 +68,7 @@ const Consultation: React.FC = () => {
       features: [
         "Process analysis",
         "Custom automation roadmap",
-        "ROI projections"
+        "Demo strategy planning"
       ],
       price: "Free"
     }
@@ -82,30 +82,30 @@ const Consultation: React.FC = () => {
             <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-8" />
             <h1 className="text-4xl font-mono font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Consultation Request Submitted!
+                Demo Request Submitted!
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Thank you for your interest! We'll begin researching your business and industry to create your customized AI solutions.
+              Thank you for your interest! We'll begin researching your business and industry to create your customized demo package.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
                 <FileText className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2">Custom Proposal</h3>
-                <p className="text-sm text-gray-400 font-mono">Detailed analysis and automation strategy for your business</p>
+                <h3 className="text-lg font-mono font-semibold mb-2">Custom Demo Proposal</h3>
+                <p className="text-sm text-gray-400 font-mono">Detailed analysis and automation strategy demo for your business</p>
               </div>
               
               <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
                 <Bot className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
                 <h3 className="text-lg font-mono font-semibold mb-2">Demo Agent</h3>
-                <p className="text-sm text-gray-400 font-mono">AI agent with extensive knowledge of your business and industry</p>
+                <p className="text-sm text-gray-400 font-mono">AI demo agent with extensive knowledge of your business and industry</p>
               </div>
               
               <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
                 <PhoneCall className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2">Phone Agent</h3>
-                <p className="text-sm text-gray-400 font-mono">Automated phone system to handle customer inquiries</p>
+                <h3 className="text-lg font-mono font-semibold mb-2">Demo Phone Agent</h3>
+                <p className="text-sm text-gray-400 font-mono">Automated phone demo system to showcase customer inquiry handling</p>
               </div>
             </div>
 
@@ -118,7 +118,7 @@ const Consultation: React.FC = () => {
                 </li>
                 <li className="flex items-center">
                   <FileText className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Create a comprehensive proposal with automation strategies
+                  Create a comprehensive demo proposal with automation strategies
                 </li>
                 <li className="flex items-center">
                   <Bot className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
@@ -126,11 +126,11 @@ const Consultation: React.FC = () => {
                 </li>
                 <li className="flex items-center">
                   <PhoneCall className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Configure a phone caller agent for customer interactions
+                  Configure a demo phone caller agent for customer interactions
                 </li>
                 <li className="flex items-center">
                   <Calendar className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Schedule your consultation to review everything together
+                  Schedule your demo session to test everything together
                 </li>
               </ul>
             </div>
@@ -149,17 +149,17 @@ const Consultation: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your AI Automation Package
+                Request Your Demo Package
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Receive a custom proposal, demo agent with research knowledge, and phone caller agent tailored to your business needs.
+              Get a complete demo package including custom proposal, demo agent with research knowledge, and phone caller agent - all built specifically for your business to test and evaluate.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <FileText className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Custom Proposal</span>
+                <span className="font-mono text-sm">Custom Demo Proposal</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Brain className="w-8 h-8 text-cyan-400 mr-3" />
@@ -167,7 +167,7 @@ const Consultation: React.FC = () => {
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <PhoneCall className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Phone Caller Agent</span>
+                <span className="font-mono text-sm">Demo Phone Agent</span>
               </div>
             </div>
           </div>
@@ -179,10 +179,10 @@ const Consultation: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Package</span>
+              Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Demo Package</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              All packages include comprehensive research and custom AI solutions for your business.
+              All demo packages include comprehensive research and custom AI solutions built specifically for your business to test.
             </p>
           </div>
           
@@ -237,7 +237,7 @@ const Consultation: React.FC = () => {
                 </span>
               </h2>
               <p className="text-gray-400 font-mono">
-                The more details you provide, the better we can research and customize your AI solutions.
+                The more details you provide, the better we can research and customize your demo package.
               </p>
             </div>
 
@@ -424,14 +424,14 @@ const Consultation: React.FC = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Package Type</label>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Demo Package Type</label>
                     <select
                       name="consultationType"
                       value={formData.consultationType}
                       onChange={handleInputChange}
                       className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
-                      <option value="comprehensive">Comprehensive AI Package (Recommended)</option>
+                      <option value="comprehensive">Comprehensive Demo Package (Recommended)</option>
                       <option value="discovery">Discovery Call</option>
                       <option value="strategy">Strategy Session</option>
                     </select>
@@ -501,7 +501,7 @@ const Consultation: React.FC = () => {
                   type="submit"
                   className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
                 >
-                  Request Your AI Automation Package
+                  Request Your Demo Package
                 </button>
                 <p className="text-sm text-gray-400 font-mono mt-4">
                   We'll begin researching your business immediately after submission

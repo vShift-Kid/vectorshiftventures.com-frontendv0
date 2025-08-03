@@ -15,18 +15,18 @@ const Home: React.FC = () => {
                 id="hero-heading"
                 className="font-mono text-5xl font-bold mb-6 leading-tight"
               >
-                Get Your Complete
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> AI Automation Package</span>
+                Get a Complete
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> AI Demo Package</span>
               </h1>
             </div>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Receive a custom proposal, demo agent with extensive research knowledge of your business, and phone caller agent - all tailored specifically to your industry and needs.
+              Request a demo and receive a custom business proposal, demo agent with extensive research knowledge, and phone caller agent - all built specifically for your business to test and evaluate.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-3">
                 <FileText className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Custom Proposal</span>
+                <span className="font-mono text-sm">Custom Demo Proposal</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-3">
                 <Brain className="w-6 h-6 text-cyan-400 mr-2" />
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-3">
                 <PhoneCall className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Phone Caller Agent</span>
+                <span className="font-mono text-sm">Demo Phone Agent</span>
               </div>
             </div>
             
@@ -42,9 +42,9 @@ const Home: React.FC = () => {
               <Link
                 to="/consultation"
                 className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
-                aria-label="Get your complete AI automation package"
+                aria-label="Request your complete demo package"
               >
-                Get Your AI Package
+                Request Demo Package
               </Link>
               <Link
                 to="/services"
@@ -58,15 +58,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Main Package Features */}
+      {/* Demo Package Features */}
       <section className="py-20 bg-[#0A0B1E]" aria-labelledby="package-heading">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="package-heading" className="text-3xl font-mono font-bold mb-4">
-              Your Complete <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Automation Package</span>
+              Your Complete <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Demo Package</span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto font-mono">
-              Every client receives this comprehensive package with extensive research and custom development for their specific business and industry.
+              When you request a demo, we create a complete AI automation package with extensive research and custom development specifically for your business to test and evaluate.
             </p>
           </div>
           
@@ -74,11 +74,11 @@ const Home: React.FC = () => {
             <article className="relative p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-400 shadow-lg shadow-cyan-500/20" role="listitem">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
-                  Included
+                  Demo Included
                 </span>
               </div>
               <FileText className="w-12 h-12 text-cyan-400 mb-4" aria-hidden="true" />
-              <h3 className="text-xl font-mono font-semibold mb-3">Custom Business Proposal</h3>
+              <h3 className="text-xl font-mono font-semibold mb-3">Custom Demo Proposal</h3>
               <p className="text-gray-400 font-mono mb-4">Comprehensive analysis and tailored automation strategy based on extensive research of your business and industry.</p>
               <ul className="text-sm text-gray-300 font-mono space-y-1">
                 <li>• In-depth business research</li>
@@ -91,34 +91,34 @@ const Home: React.FC = () => {
             <article className="relative p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-400 shadow-lg shadow-cyan-500/20" role="listitem">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
-                  Included
+                  Demo Included
                 </span>
               </div>
               <Brain className="w-12 h-12 text-cyan-400 mb-4" aria-hidden="true" />
-              <h3 className="text-xl font-mono font-semibold mb-3">Demo Agent with Research Knowledge</h3>
-              <p className="text-gray-400 font-mono mb-4">AI agent trained extensively on your business specifics, industry trends, and customer interaction scenarios.</p>
+              <h3 className="text-xl font-mono font-semibold mb-3">Research-Based Demo Agent</h3>
+              <p className="text-gray-400 font-mono mb-4">AI demo agent trained extensively on your business specifics, industry trends, and customer interaction scenarios.</p>
               <ul className="text-sm text-gray-300 font-mono space-y-1">
                 <li>• Business-specific knowledge base</li>
                 <li>• Industry expertise integration</li>
                 <li>• Product/service deep knowledge</li>
-                <li>• Real-time learning capabilities</li>
+                <li>• Interactive demo capabilities</li>
               </ul>
             </article>
             
             <article className="relative p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-400 shadow-lg shadow-cyan-500/20" role="listitem">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
-                  Included
+                  Demo Included
                 </span>
               </div>
               <PhoneCall className="w-12 h-12 text-cyan-400 mb-4" aria-hidden="true" />
-              <h3 className="text-xl font-mono font-semibold mb-3">Phone Caller Agent</h3>
-              <p className="text-gray-400 font-mono mb-4">Automated phone system that handles customer inquiries with your business expertise and professional responses.</p>
+              <h3 className="text-xl font-mono font-semibold mb-3">Demo Phone Agent</h3>
+              <p className="text-gray-400 font-mono mb-4">Automated phone demo system that showcases how AI can handle customer inquiries with your business expertise.</p>
               <ul className="text-sm text-gray-300 font-mono space-y-1">
-                <li>• Natural voice synthesis</li>
+                <li>• Natural voice synthesis demo</li>
                 <li>• Business-specific responses</li>
-                <li>• Appointment scheduling</li>
-                <li>• Lead qualification & routing</li>
+                <li>• Demo appointment scheduling</li>
+                <li>• Lead qualification showcase</li>
               </ul>
             </article>
           </div>
@@ -130,19 +130,19 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="process-heading" className="text-3xl font-mono font-bold mb-4">
-              Research-Based
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Development Process</span>
+              Demo Development
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Process</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              We conduct extensive research on your business and industry to create truly customized AI solutions.
+              We conduct extensive research on your business and industry to create a truly customized demo package for you to test.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
             {[
               { icon: Search, title: "Business Research", description: "Deep dive into your company and market" },
               { icon: Database, title: "Industry Analysis", description: "Research trends and best practices" },
-              { icon: Brain, title: "AI Development", description: "Build custom agents with your knowledge" },
-              { icon: Network, title: "Integration", description: "Deploy and connect all systems" }
+              { icon: Brain, title: "Demo Development", description: "Build custom demo agents with your knowledge" },
+              { icon: Network, title: "Demo Delivery", description: "Provide complete demo package for testing" }
             ].map((step, index) => (
               <article 
                 key={index} 
@@ -161,16 +161,16 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Additional Automation Services */}
-      <section className="py-20 bg-[#0A0B1E]" aria-labelledby="additional-services-heading">
+      {/* Our Automation Services */}
+      <section className="py-20 bg-[#0A0B1E]" aria-labelledby="services-heading">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 id="additional-services-heading" className="text-3xl font-mono font-bold mb-4">
-              Additional
+            <h2 id="services-heading" className="text-3xl font-mono font-bold mb-4">
+              Our
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Automation Services</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Expand your automation with additional services, all built with the same research-based approach.
+              After testing our demo package, implement these production-ready automation services for your business.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
@@ -198,30 +198,30 @@ const Home: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]" aria-labelledby="cta-heading">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 id="cta-heading" className="text-3xl font-mono font-bold mb-6">Ready for Your Complete AI Automation Package?</h2>
+            <h2 id="cta-heading" className="text-3xl font-mono font-bold mb-6">Ready to Test Our AI Automation?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Get your custom proposal, demo agent with research knowledge, and phone caller agent - all backed by extensive research of your business and industry.
+              Request your complete demo package - custom proposal, demo agent with research knowledge, and phone caller agent - all built specifically for your business to test.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link
                 to="/consultation"
                 className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
-                aria-label="Get your complete AI automation package today"
+                aria-label="Request your complete demo package today"
               >
-                Get Your AI Package
+                Request Demo Package
               </Link>
               <Link
                 to="/services"
                 className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
                 aria-label="Learn more about our services"
               >
-                Learn More
+                View All Services
               </Link>
             </div>
             
             <p className="text-sm text-cyan-400 font-mono">
-              ✓ Free consultation ✓ Custom research ✓ Complete AI package ✓ Industry expertise
+              ✓ Free demo package ✓ Custom research ✓ Complete testing environment ✓ Industry expertise
             </p>
           </div>
         </div>

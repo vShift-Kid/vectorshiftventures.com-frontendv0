@@ -6,47 +6,47 @@ const Services: React.FC = () => {
   const mainServices = [
     {
       icon: FileText,
-      title: "Custom Business Proposal",
-      description: "Comprehensive analysis and tailored automation strategy for your business",
+      title: "Custom Demo Proposal",
+      description: "Comprehensive analysis and tailored automation strategy demo for your business",
       features: [
         "In-depth business and industry research",
-        "Custom automation roadmap",
-        "ROI projections and cost analysis",
-        "Implementation timeline",
-        "Competitive analysis",
-        "Risk assessment and mitigation"
+        "Custom automation roadmap demonstration",
+        "ROI projections and cost analysis demo",
+        "Implementation timeline showcase",
+        "Competitive analysis overview",
+        "Risk assessment and mitigation demo"
       ],
-      benefits: ["Data-driven strategy", "Clear implementation path", "Measurable outcomes"],
+      benefits: ["Test data-driven strategy", "See clear implementation path", "Evaluate measurable outcomes"],
       highlighted: true
     },
     {
       icon: Brain,
-      title: "Demo Agent with Research Knowledge",
-      description: "AI agent trained extensively on your business, industry, and market specifics",
+      title: "Research-Based Demo Agent",
+      description: "AI demo agent trained extensively on your business, industry, and market specifics for testing",
       features: [
-        "Business-specific knowledge base",
-        "Industry expertise and trends",
-        "Product/service deep knowledge",
-        "Customer interaction scenarios",
-        "Real-time learning capabilities",
-        "Multi-channel integration"
+        "Business-specific knowledge base demo",
+        "Industry expertise and trends showcase",
+        "Product/service deep knowledge demo",
+        "Customer interaction scenario testing",
+        "Real-time learning capabilities demo",
+        "Multi-channel integration showcase"
       ],
-      benefits: ["Intelligent customer interactions", "Consistent brand messaging", "24/7 availability"],
+      benefits: ["Test intelligent interactions", "Experience consistent messaging", "Try 24/7 availability"],
       highlighted: true
     },
     {
       icon: PhoneCall,
-      title: "Phone Caller Agent",
-      description: "Automated phone system that handles customer inquiries with business expertise",
+      title: "Demo Phone Caller Agent",
+      description: "Automated phone demo system that showcases how AI can handle customer inquiries with business expertise",
       features: [
-        "Natural voice synthesis",
-        "Business-specific responses",
-        "Call routing and escalation",
-        "Appointment scheduling",
-        "Lead qualification",
-        "Call analytics and reporting"
+        "Natural voice synthesis demonstration",
+        "Business-specific responses showcase",
+        "Call routing and escalation demo",
+        "Appointment scheduling demonstration",
+        "Lead qualification showcase",
+        "Call analytics and reporting demo"
       ],
-      benefits: ["Never miss a call", "Professional customer service", "Increased lead capture"],
+      benefits: ["Test call handling", "Experience professional service", "See lead capture in action"],
       highlighted: true
     }
   ];
@@ -115,25 +115,25 @@ const Services: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Comprehensive AI Automation Solutions
+                Test Our AI Automation with a Complete Demo Package
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Get a complete AI automation package including custom proposal, demo agent with research knowledge, and phone caller agent - all tailored to your business.
+              Request a demo and get a complete AI automation package including custom proposal, demo agent with research knowledge, and phone caller agent - all built specifically for your business to test and evaluate.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Search className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Research-Based</span>
+                <span className="font-mono text-sm">Research-Based Demo</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Brain className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">AI-Powered</span>
+                <span className="font-mono text-sm">AI-Powered Testing</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Zap className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Business-Specific</span>
+                <span className="font-mono text-sm">Business-Specific Demo</span>
               </div>
             </div>
             
@@ -141,7 +141,7 @@ const Services: React.FC = () => {
               to="/consultation"
               className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all inline-block"
             >
-              Get Your AI Package
+              Request Demo Package
             </Link>
           </div>
         </div>
@@ -152,10 +152,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Your Complete <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Automation Package</span>
+              Your Complete <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Demo Package</span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto font-mono">
-              Every client receives this comprehensive package: detailed research and proposal, custom demo agent, and phone caller agent - all specifically designed for your business.
+              When you request a demo, we create this comprehensive package with extensive research and custom development specifically for your business to test and evaluate.
             </p>
           </div>
 
@@ -165,7 +165,7 @@ const Services: React.FC = () => {
                 {service.highlighted && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
-                      Included
+                      Demo Included
                     </span>
                   </div>
                 )}
@@ -209,10 +209,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Research & Development Process</span>
+              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Demo Development Process</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              We conduct extensive research on your business and industry to create truly customized AI solutions.
+              We conduct extensive research on your business and industry to create truly customized demo packages for you to test.
             </p>
           </div>
 
@@ -232,14 +232,14 @@ const Services: React.FC = () => {
               },
               {
                 step: "3",
-                title: "AI Development",
-                description: "Build custom agents with your specific business knowledge",
+                title: "Demo Development",
+                description: "Build custom demo agents with your specific business knowledge",
                 icon: Brain
               },
               {
                 step: "4",
-                title: "Integration & Delivery",
-                description: "Deploy and integrate all systems with your operations",
+                title: "Demo Delivery",
+                description: "Provide complete demo package for testing and evaluation",
                 icon: Network
               }
             ].map((step, index) => (
@@ -261,10 +261,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Additional <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Services</span>
+              Production <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Services</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Expand your automation with these additional services, all customized with the same research-based approach.
+              After testing our demo package, implement these production-ready automation services for your business.
             </p>
           </div>
 
@@ -333,9 +333,9 @@ const Services: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-mono font-bold mb-6">Ready for Your Custom AI Automation Package?</h2>
+            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Test Our AI Automation?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Get your comprehensive proposal, demo agent, and phone caller agent - all backed by extensive research of your business and industry.
+              Request your complete demo package - custom proposal, demo agent with research knowledge, and phone caller agent - all built specifically for your business to test and evaluate.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -343,7 +343,7 @@ const Services: React.FC = () => {
                 to="/consultation"
                 className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
               >
-                Get Your AI Package
+                Request Demo Package
               </Link>
               <Link
                 to="/demo"
@@ -354,7 +354,7 @@ const Services: React.FC = () => {
             </div>
             
             <p className="text-sm text-cyan-400 font-mono mt-6">
-              ✓ Free consultation ✓ Custom research ✓ Complete AI package
+              ✓ Free demo package ✓ Custom research ✓ Complete testing environment ✓ Industry expertise
             </p>
           </div>
         </div>
