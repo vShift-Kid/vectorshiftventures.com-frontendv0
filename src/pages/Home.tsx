@@ -13,7 +13,7 @@ const Home: React.FC = () => {
             <div className="overflow-hidden">
               <h1 
                 id="hero-heading"
-                className="font-mono text-5xl font-bold mb-6 leading-tight typewriter"
+                className="font-mono text-5xl font-bold mb-6 leading-tight"
               >
                 Streamline Your Business with
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> AI-Powered </span>
