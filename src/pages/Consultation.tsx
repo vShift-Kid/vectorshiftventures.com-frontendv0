@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe } from 'lucide-react';
+import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe, Upload, Target, DollarSign } from 'lucide-react';
 
 const Consultation: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
+    // Company Information
+    companyName: '',
     industry: '',
-    businessSize: '',
+    companyWebsite: '',
+    companySize: '',
+    
+    // Contact Information
+    contactName: '',
+    contactEmail: '',
+    contactPhone: '',
+    contactRole: '',
+    
+    // Business Needs & Goals
+    businessDescription: '',
     currentChallenges: '',
     automationGoals: '',
-    businessDescription: '',
-    targetAudience: '',
-    keyProducts: '',
+    timeline: '',
+    budgetRange: '',
+    
+    // Additional
+    consultationType: 'strategy',
     preferredDate: '',
     preferredTime: '',
-    consultationType: 'comprehensive',
     additionalInfo: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -29,10 +39,17 @@ const Consultation: React.FC = () => {
     });
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setUploadedFiles(Array.from(e.target.files));
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the form data to your backend
     console.log('Consultation request:', formData);
+    console.log('Uploaded files:', uploadedFiles);
     setIsSubmitted(true);
   };
 
@@ -86,26 +103,26 @@ const Consultation: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Thank you for your interest! We'll begin researching your business and industry to create your customized consultation plan.
+              Thank you! We'll use your comprehensive business information to train custom demo and phone agents specifically for your company.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
-                <FileText className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2">Custom Strategy Proposal</h3>
-                <p className="text-sm text-gray-400 font-mono">Comprehensive analysis and automation strategy for your business</p>
-              </div>
-              
-              <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
                 <Bot className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2">Consultation Agent</h3>
-                <p className="text-sm text-gray-400 font-mono">AI consultation agent to provide insights and answer questions</p>
+                <h3 className="text-lg font-mono font-semibold mb-2">Trained Demo Agent</h3>
+                <p className="text-sm text-gray-400 font-mono">AI agent trained on your business, industry, and specific challenges</p>
               </div>
               
               <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
                 <PhoneCall className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2">Consultation Phone Agent</h3>
-                <p className="text-sm text-gray-400 font-mono">Automated phone consultation system for customer interactions</p>
+                <h3 className="text-lg font-mono font-semibold mb-2">Trained Phone Agent</h3>
+                <p className="text-sm text-gray-400 font-mono">Phone system trained on your company information and processes</p>
+              </div>
+              
+              <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-6">
+                <FileText className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+                <h3 className="text-lg font-mono font-semibold mb-2">Custom Strategy</h3>
+                <p className="text-sm text-gray-400 font-mono">Tailored automation proposal based on your specific needs</p>
               </div>
             </div>
 
@@ -114,23 +131,23 @@ const Consultation: React.FC = () => {
               <ul className="text-left space-y-3 text-gray-300 font-mono">
                 <li className="flex items-center">
                   <Search className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  We conduct extensive research on your business and industry
+                  We analyze your business information and industry data
                 </li>
                 <li className="flex items-center">
-                  <FileText className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Create a comprehensive strategy proposal with automation strategies
+                  <Brain className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
+                  Train AI agents with your company-specific knowledge
                 </li>
                 <li className="flex items-center">
                   <Bot className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Build a consultation agent with knowledge specific to your business
+                  Create demo agent that understands your business challenges
                 </li>
                 <li className="flex items-center">
                   <PhoneCall className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Configure a consultation phone caller agent for customer interactions
+                  Configure phone agent with your company information
                 </li>
                 <li className="flex items-center">
                   <Calendar className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Schedule your consultation session to test everything together
+                  Schedule consultation to present your custom solution
                 </li>
               </ul>
             </div>
@@ -149,25 +166,25 @@ const Consultation: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Schedule Your Free Consultation
+                Consultation Capture Demo
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Let's discuss how our AI automation solutions can transform your business operations and drive growth.
+              Provide comprehensive information about your business to receive a custom automation solution with trained AI agents.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <MessageSquare className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Lead Generation</span>
-              </div>
-              <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Bot className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Custom Chatbots</span>
+                <span className="font-mono text-sm">Trained Demo Agent</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <Globe className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Social Media Automation</span>
+                <PhoneCall className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Trained Phone Agent</span>
+              </div>
+              <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <FileText className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Custom Solution</span>
               </div>
             </div>
           </div>
@@ -182,7 +199,7 @@ const Consultation: React.FC = () => {
               Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Consultation Package</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              All consultation packages include comprehensive research and custom AI solutions built specifically for your business to test.
+              All consultation packages include trained AI agents based on your comprehensive business information.
             </p>
           </div>
           
@@ -226,88 +243,44 @@ const Consultation: React.FC = () => {
         </div>
       </section>
 
-      {/* Enhanced Booking Form */}
+      {/* Comprehensive Form */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-mono font-bold mb-4">
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Tell Us About Your Business
+                  Provide Comprehensive Business Information
                 </span>
               </h2>
               <p className="text-gray-400 font-mono">
-                The more details you provide, the better we can research and customize your consultation plan.
+                This information will be used to train your custom demo and phone agents with knowledge specific to your business.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Contact Information */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <User className="w-6 h-6 text-cyan-400 mr-3" />
-                  Contact Information
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Full Name *</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Email *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Company *</label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Business Information */}
+              {/* Company Information */}
               <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
                 <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
                   <Building className="w-6 h-6 text-cyan-400 mr-3" />
-                  Business Information
+                  Company Information
                 </h3>
                 
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono text-gray-300 mb-2">Company Name *</label>
+                      <input
+                        type="text"
+                        name="companyName"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Enter company name"
+                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                      />
+                    </div>
+                    
                     <div>
                       <label className="block text-sm font-mono text-gray-300 mb-2">Industry *</label>
                       <select
@@ -317,39 +290,125 @@ const Consultation: React.FC = () => {
                         required
                         className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">Select Industry</option>
-                        <option value="field-service">Field Service</option>
-                        <option value="hvac">HVAC</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="landscaping">Landscaping</option>
-                        <option value="cleaning">Cleaning Services</option>
-                        <option value="pest-control">Pest Control</option>
-                        <option value="roofing">Roofing</option>
-                        <option value="security">Security Services</option>
-                        <option value="maintenance">Maintenance</option>
+                        <option value="">Select industry</option>
+                        <option value="technology">Technology/SaaS</option>
+                        <option value="ecommerce">E-commerce/Retail</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Financial Services</option>
+                        <option value="real-estate">Real Estate</option>
+                        <option value="professional-services">Professional Services</option>
+                        <option value="education">Education</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="marketing">Marketing/Advertising</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="construction">Construction</option>
                         <option value="other">Other</option>
                       </select>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono text-gray-300 mb-2">Company Website</label>
+                      <input
+                        type="url"
+                        name="companyWebsite"
+                        value={formData.companyWebsite}
+                        onChange={handleInputChange}
+                        placeholder="https://yourcompany.com"
+                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                      />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-mono text-gray-300 mb-2">Company Size</label>
                       <select
-                        name="businessSize"
-                        value={formData.businessSize}
+                        name="companySize"
+                        value={formData.companySize}
                         onChange={handleInputChange}
                         className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">Select Size</option>
-                        <option value="1-5">1-5 employees</option>
-                        <option value="6-20">6-20 employees</option>
-                        <option value="21-50">21-50 employees</option>
-                        <option value="51-100">51-100 employees</option>
-                        <option value="100+">100+ employees</option>
+                        <option value="">Select company size</option>
+                        <option value="1-10">1-10 employees</option>
+                        <option value="11-50">11-50 employees</option>
+                        <option value="51-200">51-200 employees</option>
+                        <option value="201-1000">201-1,000 employees</option>
+                        <option value="1000+">1,000+ employees</option>
                       </select>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Contact Information */}
+              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
+                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
+                  <User className="w-6 h-6 text-cyan-400 mr-3" />
+                  Contact Information
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Name *</label>
+                    <input
+                      type="text"
+                      name="contactName"
+                      value={formData.contactName}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Your full name"
+                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                    />
+                  </div>
                   
+                  <div>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Email *</label>
+                    <input
+                      type="email"
+                      name="contactEmail"
+                      value={formData.contactEmail}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="your.email@company.com"
+                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Phone</label>
+                    <input
+                      type="tel"
+                      name="contactPhone"
+                      value={formData.contactPhone}
+                      onChange={handleInputChange}
+                      placeholder="+1 (555) 123-4567"
+                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Your Role</label>
+                    <input
+                      type="text"
+                      name="contactRole"
+                      value={formData.contactRole}
+                      onChange={handleInputChange}
+                      placeholder="e.g., Operations Manager, CEO, etc."
+                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Business Needs & Goals */}
+              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
+                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
+                  <Target className="w-6 h-6 text-cyan-400 mr-3" />
+                  Business Needs & Goals
+                </h3>
+                
+                <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-mono text-gray-300 mb-2">Business Description *</label>
                     <textarea
@@ -357,46 +416,12 @@ const Consultation: React.FC = () => {
                       value={formData.businessDescription}
                       onChange={handleInputChange}
                       required
-                      rows={3}
-                      placeholder="Describe what your business does, your services, and target market..."
+                      rows={4}
+                      placeholder="Describe your business operations and current processes..."
                       className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                     />
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Key Products/Services</label>
-                    <textarea
-                      name="keyProducts"
-                      value={formData.keyProducts}
-                      onChange={handleInputChange}
-                      rows={2}
-                      placeholder="List your main products or services..."
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Target Audience</label>
-                    <textarea
-                      name="targetAudience"
-                      value={formData.targetAudience}
-                      onChange={handleInputChange}
-                      rows={2}
-                      placeholder="Describe your ideal customers and target market..."
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Automation Needs */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Bot className="w-6 h-6 text-cyan-400 mr-3" />
-                  Automation Needs
-                </h3>
-                
-                <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-mono text-gray-300 mb-2">Current Challenges *</label>
                     <textarea
@@ -404,8 +429,8 @@ const Consultation: React.FC = () => {
                       value={formData.currentChallenges}
                       onChange={handleInputChange}
                       required
-                      rows={3}
-                      placeholder="What business challenges are you facing? (e.g., customer support, lead generation, scheduling, etc.)"
+                      rows={4}
+                      placeholder="What challenges are you facing with current processes?"
                       className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                     />
                   </div>
@@ -417,14 +442,107 @@ const Consultation: React.FC = () => {
                       value={formData.automationGoals}
                       onChange={handleInputChange}
                       required
-                      rows={3}
-                      placeholder="What would you like to automate? What outcomes are you hoping to achieve?"
+                      rows={4}
+                      placeholder="What do you want to achieve with automation?"
                       className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
                     />
                   </div>
                   
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono text-gray-300 mb-2">Timeline</label>
+                      <select
+                        name="timeline"
+                        value={formData.timeline}
+                        onChange={handleInputChange}
+                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select timeline</option>
+                        <option value="immediate">Immediate (within 1 month)</option>
+                        <option value="short-term">Short-term (1-3 months)</option>
+                        <option value="medium-term">Medium-term (3-6 months)</option>
+                        <option value="long-term">Long-term (6+ months)</option>
+                        <option value="exploring">Just exploring options</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-mono text-gray-300 mb-2">Budget Range</label>
+                      <select
+                        name="budgetRange"
+                        value={formData.budgetRange}
+                        onChange={handleInputChange}
+                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select budget range</option>
+                        <option value="under-5k">Under $5,000</option>
+                        <option value="5k-15k">$5,000 - $15,000</option>
+                        <option value="15k-50k">$15,000 - $50,000</option>
+                        <option value="50k-100k">$50,000 - $100,000</option>
+                        <option value="100k+">$100,000+</option>
+                        <option value="not-sure">Not sure yet</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Documents */}
+              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
+                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
+                  <Upload className="w-6 h-6 text-cyan-400 mr-3" />
+                  Additional Documents
+                </h3>
+                
+                <div>
+                  <label className="block text-sm font-mono text-gray-300 mb-2">
+                    Upload relevant documents (PDF, Word, Excel, etc.)
+                  </label>
+                  <div className="border-2 border-dashed border-cyan-500/30 rounded-lg p-6 text-center hover:border-cyan-500/50 transition-colors">
+                    <Upload className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+                    <input
+                      type="file"
+                      multiple
+                      accept=".pdf,.doc,.docx,.xls,.xlsx,.txt"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                      id="file-upload"
+                    />
+                    <label 
+                      htmlFor="file-upload"
+                      className="cursor-pointer font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                      Choose Files
+                    </label>
+                    <p className="text-sm text-gray-400 font-mono mt-2">
+                      Drag and drop files here or click to browse
+                    </p>
+                    {uploadedFiles.length > 0 && (
+                      <div className="mt-4 text-left">
+                        <p className="text-sm font-mono text-gray-300 mb-2">Uploaded files:</p>
+                        <ul className="space-y-1">
+                          {uploadedFiles.map((file, index) => (
+                            <li key={index} className="text-sm font-mono text-cyan-400">
+                              • {file.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Consultation Type & Scheduling */}
+              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
+                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
+                  <Calendar className="w-6 h-6 text-cyan-400 mr-3" />
+                  Consultation Preferences
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Consultation Package Type</label>
+                    <label className="block text-sm font-mono text-gray-300 mb-2">Consultation Type</label>
                     <select
                       name="consultationType"
                       value={formData.consultationType}
@@ -436,17 +554,7 @@ const Consultation: React.FC = () => {
                       <option value="technical">Technical Planning</option>
                     </select>
                   </div>
-                </div>
-              </div>
-
-              {/* Scheduling */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Calendar className="w-6 h-6 text-cyan-400 mr-3" />
-                  Preferred Scheduling
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
                   <div>
                     <label className="block text-sm font-mono text-gray-300 mb-2">Preferred Date</label>
                     <input
@@ -501,10 +609,10 @@ const Consultation: React.FC = () => {
                   type="submit"
                   className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
                 >
-                  Request Your Consultation Package
+                  Submit Consultation Request
                 </button>
                 <p className="text-sm text-gray-400 font-mono mt-4">
-                  We'll begin researching your business immediately after submission
+                  We'll use this information to train your custom AI agents and prepare your consultation
                 </p>
               </div>
             </form>
