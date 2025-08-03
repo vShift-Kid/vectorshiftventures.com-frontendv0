@@ -23,7 +23,7 @@ const Navigation: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <OptimizedImage 
-              src="/src/VsVLogo.png" 
+              src="/VsVLogo.png" 
               alt="Vector Shift Ventures LLC" 
               className="h-10 w-10" 
               lazy={false}
