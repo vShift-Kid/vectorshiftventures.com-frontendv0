@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
+import Chatbot from './components/Chatbot';
 import Home from './pages/Home';
 import Demo from './pages/Demo';
 import Services from './pages/Services';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/consultation" element={<Consultation />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        <Chatbot />
       </div>
     </Router>
   );
