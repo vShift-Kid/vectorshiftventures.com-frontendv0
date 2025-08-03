@@ -1,48 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, FileText, PhoneCall, Brain, Search } from 'lucide-react';
 import LiveDemo from '../components/LiveDemo';
 
 const Demo: React.FC = () => {
-  const capabilities = [
+  const demoPackage = [
     {
-      icon: Bot,
-      title: "AI Chat Automation",
-      description: "Intelligent customer support agents that handle inquiries 24/7",
-      features: ["Natural language processing", "Multi-language support", "Integration with CRM systems"]
+      icon: FileText,
+      title: "Custom Demo Proposal",
+      description: "Comprehensive analysis and tailored automation strategy demo for your business",
+      features: [
+        "In-depth business and industry research",
+        "Custom automation roadmap demonstration", 
+        "ROI projections and cost analysis demo",
+        "Implementation timeline showcase"
+      ]
     },
     {
-      icon: MessageSquare,
-      title: "Lead Generation Systems",
-      description: "Automated lead capture and qualification workflows",
-      features: ["Web form automation", "Lead scoring", "CRM integration", "Follow-up sequences"]
+      icon: Brain,
+      title: "Research-Based Demo Agent",
+      description: "AI demo agent trained extensively on your business specifics for testing",
+      features: [
+        "Business-specific knowledge base demo",
+        "Industry expertise integration showcase",
+        "Product/service deep knowledge demo", 
+        "Interactive demo capabilities"
+      ]
     },
     {
-      icon: Database,
-      title: "Data Processing & CRM",
-      description: "Streamlined data management and customer relationship automation",
-      features: ["Data validation", "Automated data entry", "Report generation", "Real-time sync"]
-    },
-    {
-      icon: CircuitBoard,
-      title: "Workflow Automation",
-      description: "Custom automation solutions for field service operations",
-      features: ["Scheduling automation", "Resource allocation", "Dispatch optimization", "Performance tracking"]
+      icon: PhoneCall,
+      title: "Demo Phone Caller Agent", 
+      description: "Automated phone demo system showcasing AI customer inquiry handling",
+      features: [
+        "Natural voice synthesis demonstration",
+        "Business-specific responses showcase",
+        "Demo appointment scheduling",
+        "Lead qualification showcase"
+      ]
     }
   ];
 
-  const caseStudies = [
+  const demoProcess = [
     {
-      title: "Field Service Company A",
-      industry: "HVAC Services",
-      results: ["40% reduction in response time", "25% increase in customer satisfaction", "30% improvement in scheduling efficiency"],
-      description: "Implemented automated scheduling and dispatch system with AI-powered route optimization."
+      step: "1",
+      title: "Business Research",
+      description: "Deep dive into your company, services, and target market",
+      icon: Search
     },
     {
-      title: "Maintenance Services B",
-      industry: "Facility Management",
-      results: ["50% faster lead processing", "35% increase in conversion rate", "Automated 80% of routine tasks"],
-      description: "Deployed comprehensive lead generation and customer management automation."
+      step: "2", 
+      title: "Industry Analysis",
+      description: "Research industry trends, competitors, and best practices",
+      icon: Database
+    },
+    {
+      step: "3",
+      title: "Demo Development", 
+      description: "Build custom demo agents with your specific business knowledge",
+      icon: Brain
+    },
+    {
+      step: "4",
+      title: "Demo Delivery",
+      description: "Provide complete demo package for testing and evaluation",
+      icon: Network
     }
   ];
 
@@ -55,55 +76,65 @@ const Demo: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Capabilities & Portfolio
+                Request Your Complete Demo Package
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Explore our proven automation solutions and see how we've transformed field service businesses.
+              Get a comprehensive demo package including custom business proposal, demo agent with extensive research knowledge, and phone caller agent - all built specifically for your business to test and evaluate.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Link
-                to="/consultation"
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
-              >
-                Schedule Demo
-              </Link>
-              <Link
-                to="/contact"
-                className="font-mono border border-cyan-500/30 px-8 py-3 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
-              >
-                Get Custom Quote
-              </Link>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+              <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <FileText className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Custom Demo Proposal</span>
+              </div>
+              <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <Brain className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Research-Based Demo Agent</span>
+              </div>
+              <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <PhoneCall className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Demo Phone Agent</span>
+              </div>
             </div>
+            
+            <Link
+              to="/consultation"
+              className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all inline-block"
+            >
+              Request Demo Package
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Live Demo Section */}
-      <LiveDemo />
-
-      {/* Capabilities Section */}
+      {/* Demo Package Details */}
       <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Core Capabilities</span>
+              Your Complete <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Demo Package</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Specialized automation solutions designed specifically for field service B2B optimization.
+            <p className="text-gray-400 max-w-3xl mx-auto font-mono">
+              When you request a demo, we create this comprehensive package with extensive research and custom development specifically for your business to test and evaluate.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {capabilities.map((capability, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                <capability.icon className="w-16 h-16 text-cyan-400 mb-6" />
-                <h3 className="text-2xl font-mono font-semibold mb-4">{capability.title}</h3>
-                <p className="text-gray-400 font-mono mb-6">{capability.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {demoPackage.map((item, index) => (
+              <div key={index} className="relative p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-400 shadow-lg shadow-cyan-500/20">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
+                    Demo Included
+                  </span>
+                </div>
+                <item.icon className="w-12 h-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-mono font-semibold mb-3">{item.title}</h3>
+                <p className="text-gray-400 font-mono mb-4">{item.description}</p>
                 <ul className="space-y-2">
-                  {capability.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-gray-300 font-mono">
-                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  {item.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start text-sm text-gray-300 font-mono">
+                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -114,64 +145,76 @@ const Demo: React.FC = () => {
         </div>
       </section>
 
-      {/* Case Studies Section */}
+      {/* Demo Development Process */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Success Stories
-              </span>
+              Demo Development <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Process</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Real results from field service businesses we've transformed with automation.
+              We conduct extensive research on your business and industry to create truly customized demo packages for you to test.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {caseStudies.map((study, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-mono font-semibold">{study.title}</h3>
-                  <span className="text-sm text-cyan-400 font-mono">{study.industry}</span>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {demoProcess.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-mono font-bold text-white">{step.step}</span>
                 </div>
-                <p className="text-gray-400 font-mono mb-6">{study.description}</p>
-                <div className="space-y-2">
-                  {study.results.map((result, resultIndex) => (
-                    <div key={resultIndex} className="flex items-center text-gray-300 font-mono">
-                      <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
-                      {result}
-                    </div>
-                  ))}
-                </div>
+                <step.icon className="w-8 h-8 text-cyan-400 mx-auto mb-4" />
+                <h3 className="text-lg font-mono font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-400 font-mono text-sm">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Interactive Demo */}
+      <section className="py-20 bg-[#0A0B1E]">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-mono font-bold mb-4">
+              Try Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Interactive Demo</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
+              Experience a sample of our AI automation capabilities with this interactive demonstration.
+            </p>
+          </div>
+          
+          <LiveDemo />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-mono font-bold mb-6">Ready to See Your Business Transformed?</h2>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Test Our AI Automation?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Let's discuss your specific needs and create a custom automation solution for your field service business.
+              Request your complete demo package - custom proposal, demo agent with research knowledge, and phone caller agent - all built specifically for your business to test.
             </p>
-            <div className="flex gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link
                 to="/consultation"
                 className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
               >
-                Book Free Consultation
+                Request Demo Package
               </Link>
               <Link
-                to="/contact"
+                to="/services"
                 className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
               >
-                Get Custom Demo
+                View All Services
               </Link>
             </div>
+            
+            <p className="text-sm text-cyan-400 font-mono">
+              ✓ Free demo package ✓ Custom research ✓ Complete testing environment ✓ Industry expertise
+            </p>
           </div>
         </div>
       </section>
