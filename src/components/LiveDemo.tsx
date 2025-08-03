@@ -88,26 +88,22 @@ const LiveDemo: React.FC = () => {
     setDemoState({ loading: true, response: null, error: null });
 
     try {
-      // Create FormData for file upload
-      const formData = new FormData();
-      
-      // Add all consultation data
-      Object.entries(consultationData).forEach(([key, value]) => {
-        if (key === 'uploadedFile' && value) {
-          formData.append('file', value);
-        } else if (key !== 'uploadedFile') {
-          formData.append(key, value);
-        }
-      });
-
-      // Add metadata
-      formData.append('timestamp', new Date().toISOString());
-      formData.append('source', 'website-consultation-demo');
-      formData.append('formType', 'consultation-capture');
+      // Prepare consultation data for JSON submission
+      const { uploadedFile, ...dataWithoutFile } = consultationData;
+      const data = {
+        ...dataWithoutFile,
+        uploadedFileName: uploadedFile ? uploadedFile.name : null,
+        timestamp: new Date().toISOString(),
+        source: 'website-consultation-demo',
+        formType: 'consultation-capture'
+      };
 
       const response = await fetch(`${API_BASE_URL}/webhook/consultation-capture`, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
