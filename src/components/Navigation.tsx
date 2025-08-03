@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +22,13 @@ const Navigation: React.FC = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="https://i.imgur.com/YourLogoURL.png" alt="Vector Shift Ventures LLC" className="h-10" />
+            <OptimizedImage 
+              src="/src/VsVLogo.png" 
+              alt="Vector Shift Ventures LLC" 
+              className="h-10 w-10" 
+              lazy={false}
+              placeholder="#0A0B1E"
+            />
             <Link to="/" className="text-xl font-mono font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Vector Shift Ventures
             </Link>
@@ -54,6 +61,7 @@ const Navigation: React.FC = () => {
           <button
             className="md:hidden text-gray-300 hover:text-cyan-400"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
