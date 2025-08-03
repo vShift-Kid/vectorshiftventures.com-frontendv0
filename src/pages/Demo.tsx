@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle } from 'lucide-react';
+import LiveDemo from '../components/LiveDemo';
 
 const Demo: React.FC = () => {
   const capabilities = [
@@ -77,6 +78,9 @@ const Demo: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Live Demo Section */}
+      <LiveDemo />
 
       {/* Capabilities Section */}
       <section className="py-20 bg-[#0A0B1E]">
