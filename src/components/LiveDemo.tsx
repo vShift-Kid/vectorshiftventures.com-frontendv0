@@ -15,7 +15,7 @@ const LiveDemo: React.FC = () => {
   });
   const [aiMessage, setAiMessage] = useState('How can AI automation help my field service business?');
 
-  const N8N_BASE_URL = 'https://vectorshift-n8n-ventures.onrender.com';
+  const API_BASE_URL = 'https://vectorshift-n8n-ventures.onrender.com';
 
   const handleWorkflowTest = async (workflowType: 'ai' | 'file' | 'api') => {
     setDemoState({ loading: true, response: null, error: null });
@@ -46,7 +46,7 @@ const LiveDemo: React.FC = () => {
           break;
       }
 
-      const response = await fetch(`${N8N_BASE_URL}${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const LiveDemo: React.FC = () => {
         // Handle empty response
         result = {
           status: 'success',
-          message: 'Workflow executed successfully',
+          message: 'Automation executed successfully',
           note: 'Response was empty, but workflow completed',
           workflowType: workflowType,
           timestamp: new Date().toISOString()
@@ -111,7 +111,7 @@ const LiveDemo: React.FC = () => {
     return 'Ready to test';
   };
 
-  const workflowCards = [
+  const automationCards = [
     {
       type: 'ai' as const,
       title: 'AI Chat Automation',
@@ -216,9 +216,9 @@ const LiveDemo: React.FC = () => {
           </div>
         </div>
 
-        {/* Workflow Cards */}
+        {/* Automation Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {workflowCards.map((card) => (
+          {automationCards.map((card) => (
             <div key={card.type} className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
               <div className={`w-12 h-12 bg-gradient-to-r ${card.color} rounded-lg flex items-center justify-center mb-4`}>
                 <card.icon className="w-6 h-6 text-white" />
@@ -238,7 +238,7 @@ const LiveDemo: React.FC = () => {
                 ) : (
                   <div className="flex items-center justify-center gap-2">
                     <Play className="w-4 h-4" />
-                    Test Workflow
+                    Test Automation
                   </div>
                 )}
               </button>
@@ -252,12 +252,12 @@ const LiveDemo: React.FC = () => {
             <h3 className="text-lg font-mono font-semibold text-white mb-4">How It Works</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm font-mono">
               <div>
-                <h4 className="text-cyan-400 font-semibold mb-2">1. Select Workflow</h4>
+                <h4 className="text-cyan-400 font-semibold mb-2">1. Select Automation</h4>
                 <p className="text-gray-400">Choose from our three main automation workflows to test.</p>
               </div>
               <div>
                 <h4 className="text-cyan-400 font-semibold mb-2">2. Send Request</h4>
-                <p className="text-gray-400">The demo sends a test request to our n8n automation platform.</p>
+                <p className="text-gray-400">The demo sends a test request to our automation platform.</p>
               </div>
               <div>
                 <h4 className="text-cyan-400 font-semibold mb-2">3. View Results</h4>
