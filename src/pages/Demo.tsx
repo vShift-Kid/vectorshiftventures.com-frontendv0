@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star } from 'lucide-react';
 
 interface ContactData {
   name: string;
@@ -51,55 +51,55 @@ const Demo: React.FC = () => {
 
   const valuePropositions: ValueProposition[] = [
     {
-      title: "Strategic Implementation Blueprint",
-      description: "Custom roadmap with step-by-step automation strategy for your specific business challenges",
+      title: "Strategic Automation Blueprint",
+      description: "Comprehensive roadmap with step-by-step automation strategy for your specific business challenges",
       icon: FileText,
       value: "Free Strategic Plan"
     },
     {
-      title: "AI-Powered Custom Chatbot",
-      description: "Intelligent chatbot trained specifically on your business data and processes",
-      icon: Bot,
-      value: "Free Custom Bot"
+      title: "Lead Generation Analysis",
+      description: "Custom lead generation strategy and automation recommendations for your industry",
+      icon: Users,
+      value: "Free Lead Strategy"
     },
     {
-      title: "Personal Phone Consultation",
-      description: "Direct call from our automation expert to discuss your implementation strategy",
-      icon: Phone,
-      value: "Free Expert Call"
+      title: "Customer Service Optimization",
+      description: "AI-powered customer service automation strategy with voice caller recommendations",
+      icon: MessageSquare,
+      value: "Free Service Plan"
     },
     {
-      title: "ROI & Impact Analysis",
-      description: "Detailed analysis of potential savings, efficiency gains, and competitive advantages",
-      icon: Calculator,
-      value: "Free Analysis"
+      title: "Social Media & Reputation Plan",
+      description: "Social media management and online reputation automation strategy",
+      icon: SocialIcon,
+      value: "Free Social Strategy"
     }
   ];
 
-  const capabilities = [
+  const services = [
     {
-      icon: Brain,
-      title: "AI-Powered Problem Solving",
-      description: "Intelligent automation solutions that understand and solve your specific business challenges",
-      features: ["Custom AI training on your data", "Intelligent process optimization", "Predictive analytics", "Smart decision automation"]
+      icon: Users,
+      title: "Lead Generation Systems",
+      description: "Automated lead capture, qualification, and nurturing workflows",
+      features: ["Web form automation", "Lead scoring", "CRM integration", "Follow-up sequences", "Conversion optimization"]
     },
     {
       icon: Bot,
-      title: "Custom Chatbot Development",
-      description: "Tailored AI chatbots that speak your business language and handle your specific use cases",
-      features: ["Trained on your business data", "Industry-specific responses", "Integration with your systems", "24/7 intelligent support"]
+      title: "AI Chatbots & Voice Callers",
+      description: "Intelligent chatbots and voice callers trained on your customer data",
+      features: ["Custom AI training", "24/7 customer support", "Voice synthesis", "Multi-language support", "Integration with your systems"]
     },
     {
-      icon: Phone,
-      title: "Personal Automation Consultation",
-      description: "Direct expert guidance through phone calls to ensure successful implementation",
-      features: ["One-on-one strategy sessions", "Implementation guidance", "Ongoing support calls", "Expert troubleshooting"]
+      icon: MessageSquare,
+      title: "Customer Service Automation",
+      description: "Complete customer service automation with AI-powered responses",
+      features: ["Ticket automation", "Response templates", "Customer satisfaction tracking", "Escalation management", "Knowledge base integration"]
     },
     {
-      icon: CircuitBoard,
-      title: "Strategic Implementation",
-      description: "Comprehensive automation strategy with clear roadmap and measurable outcomes",
-      features: ["Custom implementation plan", "Phase-by-phase rollout", "Success metrics tracking", "Continuous optimization"]
+      icon: SocialIcon,
+      title: "Social Media & Reputation Management",
+      description: "Automated social media posting and online reputation monitoring",
+      features: ["Content scheduling", "Reputation monitoring", "Review management", "Social listening", "Brand sentiment analysis"]
     }
   ];
 
@@ -107,14 +107,14 @@ const Demo: React.FC = () => {
     {
       title: "Field Service Company A",
       industry: "HVAC Services",
-      results: ["40% reduction in response time", "25% increase in customer satisfaction", "30% improvement in scheduling efficiency"],
-      description: "Implemented strategic automation blueprint with custom AI chatbot and phone consultation support."
+      results: ["40% increase in lead conversion", "25% improvement in customer satisfaction", "30% reduction in response time"],
+      description: "Implemented strategic automation blueprint with lead generation and customer service automation."
     },
     {
-      title: "Maintenance Services B",
-      industry: "Facility Management",
-      results: ["50% faster lead processing", "35% increase in conversion rate", "Automated 80% of routine tasks"],
-      description: "Deployed comprehensive automation strategy with custom chatbot and expert phone guidance."
+      title: "E-commerce Business B",
+      industry: "Online Retail",
+      results: ["50% faster lead processing", "35% increase in sales", "Automated 80% of customer inquiries"],
+      description: "Deployed comprehensive automation strategy with chatbots and social media management."
     }
   ];
 
@@ -211,7 +211,7 @@ const Demo: React.FC = () => {
               <h2 className="text-3xl font-mono font-bold mb-6">Ready to Implement Your Strategic Blueprint?</h2>
               <p className="text-gray-400 mb-8 font-mono">
                 Based on your {contactData.industry} business challenges, we've created a comprehensive automation strategy. 
-                Let's discuss your custom implementation plan and get your AI chatbot trained.
+                We'll contact you via your preferred method to discuss implementation.
               </p>
               <div className="flex gap-4 justify-center">
                 <Link
@@ -247,7 +247,8 @@ const Demo: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Tell us about your business challenges and receive a comprehensive strategic blueprint with custom AI chatbot training and personal phone consultation.
+              Tell us about your business challenges and receive a comprehensive strategic blueprint for lead generation, 
+              customer service automation, and social media management.
             </p>
           </div>
         </div>
@@ -264,7 +265,7 @@ const Demo: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-mono font-semibold text-white mb-2">Unlock Your Strategic Blueprint</h3>
                 <p className="text-gray-400 font-mono">
-                  Get instant access to your custom automation strategy and AI solutions
+                  Get instant access to your custom automation strategy and implementation plan
                 </p>
               </div>
               
@@ -323,6 +324,7 @@ const Demo: React.FC = () => {
                   >
                     <option value="">Select your industry</option>
                     <option value="field-service">Field Service</option>
+                    <option value="e-commerce">E-commerce</option>
                     <option value="construction">Construction</option>
                     <option value="maintenance">Maintenance & Repair</option>
                     <option value="utilities">Utilities</option>
@@ -330,6 +332,7 @@ const Demo: React.FC = () => {
                     <option value="manufacturing">Manufacturing</option>
                     <option value="logistics">Logistics & Transportation</option>
                     <option value="healthcare">Healthcare</option>
+                    <option value="real-estate">Real Estate</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -360,7 +363,7 @@ const Demo: React.FC = () => {
                   >
                     <option value="email">Email</option>
                     <option value="phone">Phone Call</option>
-                    <option value="chatbot">AI Chatbot</option>
+                    <option value="text">Text Message</option>
                   </select>
                 </div>
 
@@ -401,7 +404,7 @@ const Demo: React.FC = () => {
               What's Included in Your <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Strategic Blueprint</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Comprehensive automation strategy with custom AI solutions and expert guidance.
+              Comprehensive automation strategy with lead generation, customer service, and social media management.
             </p>
           </div>
           
@@ -417,26 +420,26 @@ const Demo: React.FC = () => {
         </div>
       </section>
 
-      {/* Capabilities Section */}
+      {/* Services Section */}
       <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Strategic Approach</span>
+              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Services</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              We don't just automate - we solve your specific business challenges with intelligent solutions.
+              We provide comprehensive automation solutions to transform your business operations.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {capabilities.map((capability, index) => (
+            {services.map((service, index) => (
               <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                <capability.icon className="w-16 h-16 text-cyan-400 mb-6" />
-                <h3 className="text-2xl font-mono font-semibold mb-4">{capability.title}</h3>
-                <p className="text-gray-400 font-mono mb-6">{capability.description}</p>
+                <service.icon className="w-16 h-16 text-cyan-400 mb-6" />
+                <h3 className="text-2xl font-mono font-semibold mb-4">{service.title}</h3>
+                <p className="text-gray-400 font-mono mb-6">{service.description}</p>
                 <ul className="space-y-2">
-                  {capability.features.map((feature, featureIndex) => (
+                  {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-gray-300 font-mono">
                       <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
                       {feature}
@@ -455,7 +458,7 @@ const Demo: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Strategic Success Stories
+                Success Stories
               </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
@@ -489,9 +492,10 @@ const Demo: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Solve Your Business Challenges?</h2>
+            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Transform Your Business?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Get your strategic automation blueprint and discover how AI-powered solutions can transform your business operations.
+              Get your strategic automation blueprint and discover how our services can revolutionize your lead generation, 
+              customer service, and social media management.
             </p>
             <div className="flex gap-4 justify-center">
               <button
