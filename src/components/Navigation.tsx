@@ -29,8 +29,18 @@ const Navigation: React.FC = () => {
               lazy={false}
               placeholder="#0A0B1E"
             />
-            <Link to="/" className="text-xl font-mono font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Vector Shift Ventures
+            <Link to="/" className="flex items-center">
+              <span className="text-lg font-mono font-medium text-gray-400">
+                Vectorshift
+              </span>
+              <div className="relative ml-1">
+                <span className="text-xl italic font-serif bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  Ventures
+                </span>
+                <span className="absolute -top-2 -right-2 text-xs font-mono font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  AA
+                </span>
+              </div>
             </Link>
           </div>
 
