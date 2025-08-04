@@ -1,120 +1,99 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, CheckCircle, Zap, Users, BarChart3, Globe, Brain, Search, PhoneCall } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, CheckCircle, Zap, Users, BarChart3, Globe, Brain, Search, PhoneCall, MessageSquare as SocialIcon } from 'lucide-react';
 
 const Services: React.FC = () => {
   const mainServices = [
     {
-      icon: MessageSquare,
-      title: "Lead Generation Systems",
-      description: "Automated lead capture, qualification, and nurturing workflows to maximize your sales pipeline",
+      icon: SocialIcon,
+      title: "Online Reputation Management",
+      description: "Comprehensive digital presence optimization and brand reputation enhancement",
       features: [
-        "Web form automation and optimization",
-        "Lead scoring and qualification algorithms",
-        "CRM integration and data sync",
+        "Website performance optimization",
+        "Social media management",
+        "Review monitoring & response",
+        "Brand sentiment analysis",
+        "Digital footprint management",
+        "Reputation crisis management"
+      ],
+      benefits: ["Improve online visibility by 60%", "Enhance brand trust and credibility", "Protect and strengthen reputation"]
+    },
+    {
+      icon: Users,
+      title: "Lead Generation & CRM",
+      description: "End-to-end lead capture, qualification, and customer relationship management",
+      features: [
+        "Lead scoring & qualification",
+        "CRM system integration",
         "Automated follow-up sequences",
-        "Conversion tracking and analytics",
+        "Conversion funnel optimization",
+        "Customer lifecycle management",
         "Multi-channel lead capture"
       ],
       benefits: ["Increase lead quality by 40%", "Reduce manual follow-up by 70%", "Improve conversion rates"]
     },
     {
-      icon: Globe,
-      title: "Social Media Management",
-      description: "AI-powered content creation and social media automation to boost your online presence",
-      features: [
-        "Automated content creation and scheduling",
-        "Multi-platform posting and management",
-        "Engagement monitoring and response",
-        "Analytics and performance tracking",
-        "Hashtag research and optimization",
-        "Community management automation"
-      ],
-      benefits: ["Save 20+ hours per week", "Increase engagement by 60%", "Consistent brand presence"]
-    },
-    {
       icon: Bot,
-      title: "Custom Chatbots",
-      description: "Intelligent conversational AI for customer support, sales, and lead qualification",
+      title: "Custom AI Chatbots",
+      description: "Intelligent conversational AI trained specifically on your business data and processes",
       features: [
-        "Natural language processing and understanding",
-        "Multi-language support capabilities",
-        "Integration with existing systems",
-        "Custom response training and optimization",
-        "24/7 customer support automation",
-        "Advanced conversation flow design"
+        "Custom AI training",
+        "24/7 customer engagement",
+        "Multi-channel deployment",
+        "Business process integration",
+        "Continuous learning & improvement",
+        "Natural language processing"
       ],
       benefits: ["Reduce support costs by 60%", "Improve response time by 80%", "24/7 availability"]
     },
     {
-      icon: Database,
-      title: "CRM Automation",
-      description: "Streamlined customer relationship management and data processing automation",
-      features: [
-        "Automated data entry and validation",
-        "Contact management and segmentation",
-        "Pipeline automation and tracking",
-        "Report generation and analytics",
-        "Integration with multiple platforms",
-        "Custom workflow automation"
-      ],
-      benefits: ["Eliminate data entry errors", "Save 15+ hours per week", "Real-time insights"]
-    },
-    {
-      icon: Users,
-      title: "Customer Support Automation",
-      description: "24/7 AI-powered customer service and support ticket management",
-      features: [
-        "Automated ticket routing and prioritization",
-        "AI-powered response suggestions",
-        "Knowledge base integration",
-        "Escalation management",
-        "Customer satisfaction tracking",
-        "Multi-channel support integration"
-      ],
-      benefits: ["Faster resolution times", "Improved customer satisfaction", "Reduced support costs"]
-    },
-    {
       icon: BarChart3,
-      title: "Analytics & Reporting",
-      description: "Automated data analysis and business intelligence reporting systems",
+      title: "Data Analysis & Insights",
+      description: "Advanced analytics and actionable business intelligence from your operational data",
       features: [
-        "Real-time dashboard creation",
-        "Automated report generation",
-        "Data visualization and insights",
-        "Performance metrics tracking",
-        "Predictive analytics capabilities",
-        "Custom KPI monitoring"
+        "Performance analytics",
+        "Predictive insights",
+        "Business intelligence dashboards",
+        "ROI tracking & optimization",
+        "Strategic decision support",
+        "Real-time reporting"
       ],
       benefits: ["Data-driven decisions", "Time-saving automation", "Performance insights"]
     },
     {
       icon: CircuitBoard,
-      title: "Workflow Automation",
-      description: "Custom process automation for operational efficiency and productivity",
+      title: "Workflow Integrations",
+      description: "Seamless automation and integration across your existing business systems and processes",
       features: [
-        "Business process mapping and optimization",
-        "Automated task routing and assignment",
-        "Notification and alert systems",
-        "Performance tracking and monitoring",
-        "Integration with existing tools",
-        "Custom workflow design"
+        "System integration",
+        "Process automation",
+        "API connectivity",
+        "Workflow optimization",
+        "Scalable architecture",
+        "Legacy system modernization"
       ],
       benefits: ["Increase efficiency by 50%", "Reduce manual errors", "Streamline operations"]
+    }
+  ];
+
+  const testimonials = [
+    {
+      title: "Professional Services Firm",
+      industry: "Legal Services",
+      results: ["45% increase in lead quality", "30% improvement in online reputation", "Automated 70% of client inquiries"],
+      description: "Implemented comprehensive digital presence optimization with lead generation automation and custom AI chatbots."
     },
     {
-      icon: Network,
-      title: "Integration Services",
-      description: "Seamless integration with existing business systems and third-party tools",
-      features: [
-        "API development and integration",
-        "Third-party platform connections",
-        "Legacy system modernization",
-        "Data migration and synchronization",
-        "Custom connector development",
-        "System optimization and maintenance"
-      ],
-      benefits: ["Unified system ecosystem", "Improved data flow", "Enhanced productivity"]
+      title: "E-commerce Business",
+      industry: "Online Retail",
+      results: ["50% faster lead processing", "40% increase in conversion rates", "25% reduction in customer service costs"],
+      description: "Deployed end-to-end automation strategy with CRM integration, data analytics, and workflow optimization."
+    },
+    {
+      title: "Healthcare Practice",
+      industry: "Medical Services",
+      results: ["35% improvement in patient engagement", "Automated 80% of appointment scheduling", "Enhanced online reputation management"],
+      description: "Integrated custom AI solutions with workflow automation and comprehensive digital presence management."
     }
   ];
 
@@ -209,6 +188,45 @@ const Services: React.FC = () => {
                       <li key={benefitIndex} className="flex items-center text-sm text-green-300 font-mono">
                         <Zap className="w-3 h-3 text-green-400 mr-2 flex-shrink-0" />
                         {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-mono font-bold mb-4">
+              Success <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Stories</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
+              See how our comprehensive automation solutions have transformed businesses across different industries.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+                <div className="mb-6">
+                  <h3 className="text-xl font-mono font-semibold mb-2">{testimonial.title}</h3>
+                  <p className="text-cyan-400 font-mono text-sm">{testimonial.industry}</p>
+                </div>
+                
+                <p className="text-gray-400 font-mono mb-6 text-sm">{testimonial.description}</p>
+                
+                <div>
+                  <h4 className="font-mono font-semibold text-green-400 mb-3">Results:</h4>
+                  <ul className="space-y-2">
+                    {testimonial.results.map((result, resultIndex) => (
+                      <li key={resultIndex} className="flex items-start text-sm text-green-300 font-mono">
+                        <CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                        {result}
                       </li>
                     ))}
                   </ul>
