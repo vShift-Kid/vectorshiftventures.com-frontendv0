@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe, Upload, Target, DollarSign } from 'lucide-react';
+import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe, Target, DollarSign } from 'lucide-react';
 
 const Consultation: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +30,6 @@ const Consultation: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -39,17 +38,10 @@ const Consultation: React.FC = () => {
     });
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setUploadedFiles(Array.from(e.target.files));
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the form data to your backend
     console.log('Consultation request:', formData);
-    console.log('Uploaded files:', uploadedFiles);
     setIsSubmitted(true);
   };
 
@@ -483,52 +475,6 @@ const Consultation: React.FC = () => {
                         <option value="not-sure">Not sure yet</option>
                       </select>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Documents */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Upload className="w-6 h-6 text-cyan-400 mr-3" />
-                  Additional Documents
-                </h3>
-                
-                <div>
-                  <label className="block text-sm font-mono text-gray-300 mb-2">
-                    Upload relevant documents (PDF, Word, Excel, etc.)
-                  </label>
-                  <div className="border-2 border-dashed border-cyan-500/30 rounded-lg p-6 text-center hover:border-cyan-500/50 transition-colors">
-                    <Upload className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-                    <input
-                      type="file"
-                      multiple
-                      accept=".pdf,.doc,.docx,.xls,.xlsx,.txt"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                      id="file-upload"
-                    />
-                    <label 
-                      htmlFor="file-upload"
-                      className="cursor-pointer font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
-                    >
-                      Choose Files
-                    </label>
-                    <p className="text-sm text-gray-400 font-mono mt-2">
-                      Drag and drop files here or click to browse
-                    </p>
-                    {uploadedFiles.length > 0 && (
-                      <div className="mt-4 text-left">
-                        <p className="text-sm font-mono text-gray-300 mb-2">Uploaded files:</p>
-                        <ul className="space-y-1">
-                          {uploadedFiles.map((file, index) => (
-                            <li key={index} className="text-sm font-mono text-cyan-400">
-                              • {file.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>

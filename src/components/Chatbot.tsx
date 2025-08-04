@@ -13,7 +13,7 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm your AI assistant. How can I help you learn more about our field service automation solutions?",
+      text: "Hi! I'm KennyAI, your business automation guide. I can help you understand our services and direct you to the right resources. What would you like to know about Vectorshift Ventures?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -68,31 +68,57 @@ const Chatbot: React.FC = () => {
   const generateBotResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
-    if (input.includes('service') || input.includes('automation')) {
-      return "We specialize in field service automation including AI chat agents, lead generation, CRM integration, and workflow optimization. What specific area interests you?";
+    // Business services and capabilities
+    if (input.includes('service') || input.includes('what do you do') || input.includes('offer')) {
+      return "We specialize in business automation solutions including lead generation systems, AI chatbots, customer service automation, and social media management. Our goal is to help businesses streamline operations and grow efficiently. Would you like to learn more about any specific service?";
     }
     
-    if (input.includes('price') || input.includes('cost') || input.includes('quote')) {
-      return "Our consultations are completely free! We offer custom pricing based on your specific needs. Would you like to schedule a consultation to discuss your requirements?";
+    if (input.includes('lead generation') || input.includes('leads')) {
+      return "Our lead generation systems help businesses capture and nurture potential customers automatically. We can help you identify opportunities in your market and create systems to convert them. Check out our Services page for more details!";
     }
     
-    if (input.includes('consultation') || input.includes('meet') || input.includes('demo')) {
-      return "Great! You can book a free consultation through our website. We offer discovery calls, strategy sessions, and custom demos. Would you like me to guide you to our consultation page?";
+    if (input.includes('chatbot') || input.includes('ai chat') || input.includes('bot')) {
+      return "We create custom AI chatbots that can handle customer inquiries, qualify leads, and provide 24/7 support. These are trained specifically on your business information. Visit our Demo page to see how this works!";
     }
     
-    if (input.includes('contact') || input.includes('email') || input.includes('phone')) {
-      return "You can reach us at contact@vectorshiftventures.com or call +1 (555) 123-4567. We also have a contact form on our website for detailed inquiries.";
+    if (input.includes('customer service') || input.includes('support')) {
+      return "Our customer service automation includes AI chatbots and voice callers that can handle common inquiries, reducing response times and improving customer satisfaction. This frees up your team to focus on complex issues.";
     }
     
-    if (input.includes('field service') || input.includes('hvac') || input.includes('plumbing')) {
-      return "We work with various field service industries including HVAC, plumbing, electrical, maintenance, and more. Our solutions are tailored to optimize scheduling, dispatch, and customer management.";
+    if (input.includes('social media') || input.includes('reputation')) {
+      return "We help businesses manage their online presence and reputation through automated social media management and monitoring systems. This ensures consistent brand messaging and quick response to customer feedback.";
     }
     
-    if (input.includes('ai') || input.includes('chat') || input.includes('bot')) {
-      return "Our AI chat automation can handle customer inquiries 24/7, reduce response times by 80%, and integrate seamlessly with your existing systems. It's perfect for field service businesses!";
+    // Pricing and consultation
+    if (input.includes('price') || input.includes('cost') || input.includes('quote') || input.includes('how much')) {
+      return "We offer free consultations to understand your specific needs and provide custom solutions. Pricing varies based on your requirements and the complexity of the automation needed. Would you like to book a consultation?";
     }
     
-    return "I'd be happy to help you learn more about our field service automation solutions. You can ask me about our services, pricing, consultation options, or specific automation features.";
+    if (input.includes('consultation') || input.includes('meet') || input.includes('demo') || input.includes('talk')) {
+      return "Great! We offer free consultations where we'll analyze your business needs and create a custom automation strategy. You can book a consultation through our Consultation page, or try our Demo page to see our process in action!";
+    }
+    
+    // Contact information
+    if (input.includes('contact') || input.includes('email') || input.includes('phone') || input.includes('reach')) {
+      return "You can reach us through our Contact page, or book a consultation directly. We're here to help you understand how automation can benefit your business!";
+    }
+    
+    // Industry-specific
+    if (input.includes('industry') || input.includes('business type') || input.includes('sector')) {
+      return "We work with businesses across various industries - from e-commerce and professional services to healthcare and manufacturing. Our solutions are customized to your specific business needs and challenges.";
+    }
+    
+    // Technical questions (vague responses)
+    if (input.includes('how do you') || input.includes('technology') || input.includes('build') || input.includes('create')) {
+      return "We use advanced automation technologies and AI to create custom solutions for each business. The specific approach depends on your unique needs and goals. Would you like to discuss your requirements in a consultation?";
+    }
+    
+    if (input.includes('time') || input.includes('duration') || input.includes('how long')) {
+      return "Implementation timelines vary based on the complexity of your automation needs. We'll provide a detailed timeline during our consultation after understanding your specific requirements.";
+    }
+    
+    // Default response
+    return "I'm here to help you understand how Vectorshift Ventures can automate and grow your business! You can ask me about our services, book a consultation, or learn more about specific automation solutions. What interests you most?";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -126,8 +152,8 @@ const Chatbot: React.FC = () => {
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-mono font-semibold text-white">AI Assistant</h3>
-                <p className="text-xs text-cyan-400 font-mono">Field Service Automation Expert</p>
+                <h3 className="font-mono font-semibold text-white">KennyAI</h3>
+                <p className="text-xs text-cyan-400 font-mono">Business Automation Guide</p>
               </div>
             </div>
             <button
@@ -194,7 +220,7 @@ const Chatbot: React.FC = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask about our services..."
+                placeholder="Ask KennyAI about our services..."
                 className="flex-1 p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-cyan-400"
                 disabled={isTyping}
               />
