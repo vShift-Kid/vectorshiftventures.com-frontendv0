@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star, Upload, AlertTriangle } from 'lucide-react';
 
 interface ContactData {
   name: string;
@@ -9,6 +9,7 @@ interface ContactData {
   industry: string;
   preferredContact: string;
   businessChallenge: string;
+  uploadedFiles: File[];
 }
 
 interface ValueProposition {
@@ -25,17 +26,64 @@ const Demo: React.FC = () => {
     company: '',
     industry: '',
     preferredContact: 'email',
-    businessChallenge: ''
+    businessChallenge: '',
+    uploadedFiles: []
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
 
   const handleInputChange = (field: keyof ContactData, value: string) => {
     setContactData(prev => ({
       ...prev,
       [field]: value
     }));
+  };
+
+  const handleFileUpload = (files: FileList | null) => {
+    if (!files) return;
+    
+    const newFiles = Array.from(files);
+    const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);
+    const maxSize = 10 * 1024 * 1024; // 10MB limit
+    
+    if (totalSize > maxSize) {
+      alert('Total file size exceeds 10MB limit. Please select smaller files.');
+      return;
+    }
+    
+    setContactData(prev => ({
+      ...prev,
+      uploadedFiles: [...prev.uploadedFiles, ...newFiles]
+    }));
+  };
+
+  const removeFile = (index: number) => {
+    setContactData(prev => ({
+      ...prev,
+      uploadedFiles: prev.uploadedFiles.filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -365,6 +413,81 @@ const Demo: React.FC = () => {
                     <option value="phone">Phone Call</option>
                     <option value="text">Text Message</option>
                   </select>
+                </div>
+
+                {/* File Upload Section */}
+                <div>
+                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                    Upload Supporting Documentation (Optional)
+                  </label>
+                  <div
+                    className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                      dragActive 
+                        ? 'border-cyan-400 bg-cyan-500/10' 
+                        : 'border-cyan-500/30 hover:border-cyan-500/50'
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
+                    <Upload className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                    <p className="text-gray-300 font-mono mb-2">
+                      Drag and drop files here, or{' '}
+                      <label className="text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                        browse files
+                        <input
+                          type="file"
+                          multiple
+                          className="hidden"
+                          onChange={(e) => handleFileUpload(e.target.files)}
+                          accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif"
+                        />
+                      </label>
+                    </p>
+                    <p className="text-sm text-gray-400 font-mono">
+                      Maximum 10MB total • PDF, DOC, TXT, Images accepted
+                    </p>
+                  </div>
+
+                  {/* Security Disclaimer */}
+                  <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                    <div className="flex items-start">
+                      <AlertTriangle className="w-5 h-5 text-yellow-400 mr-2 mt-0.5 flex-shrink-0" />
+                      <div className="text-sm text-yellow-300 font-mono">
+                        <strong>Security Notice:</strong> Please do not upload proprietary data, trade secrets, 
+                        or any information that should not be publicly accessible. While we take security seriously, 
+                        we cannot be responsible for the content you upload. Only share non-sensitive, general business information.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Uploaded Files List */}
+                  {contactData.uploadedFiles.length > 0 && (
+                    <div className="mt-4">
+                      <h4 className="text-sm font-mono font-medium text-gray-300 mb-2">Uploaded Files:</h4>
+                      <div className="space-y-2">
+                        {contactData.uploadedFiles.map((file, index) => (
+                          <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded">
+                            <div className="flex items-center">
+                              <FileText className="w-4 h-4 text-cyan-400 mr-2" />
+                              <span className="text-sm text-gray-300 font-mono">{file.name}</span>
+                              <span className="text-xs text-gray-400 ml-2">
+                                ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFile(index)}
+                              className="text-red-400 hover:text-red-300 text-sm"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <button
