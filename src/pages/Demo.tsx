@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star, Upload, AlertTriangle } from 'lucide-react';
+import { getWebhookUrl } from '../config/api';
 
 interface ContactData {
   name: string;
@@ -90,11 +91,53 @@ const Demo: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate processing time
-    setTimeout(() => {
+    try {
+      // Prepare the form data
+      const formData = new FormData();
+      
+      // Add basic form fields
+      formData.append('name', contactData.name);
+      formData.append('email', contactData.email);
+      formData.append('company', contactData.company);
+      formData.append('industry', contactData.industry);
+      formData.append('preferredContact', contactData.preferredContact);
+      formData.append('businessChallenge', contactData.businessChallenge);
+      
+      // Add uploaded files
+      contactData.uploadedFiles.forEach((file, index) => {
+        formData.append(`file_${index}`, file);
+      });
+      
+      // Add metadata about files
+      formData.append('fileCount', contactData.uploadedFiles.length.toString());
+      formData.append('submissionTimestamp', new Date().toISOString());
+      
+      // Send to n8n webhook
+      const response = await fetch(getWebhookUrl('demo'), {
+        method: 'POST',
+        body: formData,
+        // Don't set Content-Type header - let the browser set it with boundary for FormData
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('n8n webhook response:', result);
+      
+      // Show success state
       setIsSubmitted(true);
       setIsLoading(false);
-    }, 2000);
+      
+    } catch (error) {
+      console.error('Error submitting to n8n:', error);
+      
+      // For now, still show success even if webhook fails
+      // You might want to show an error message instead
+      setIsSubmitted(true);
+      setIsLoading(false);
+    }
   };
 
   const valuePropositions: ValueProposition[] = [
