@@ -148,64 +148,76 @@ const Demo: React.FC = () => {
       value: "Free Strategic Plan"
     },
     {
-      title: "Lead Generation Analysis",
-      description: "Custom lead generation strategy and automation recommendations for your industry",
+      title: "Digital Presence Analysis",
+      description: "Complete assessment of your online reputation and digital footprint optimization opportunities",
+      icon: SocialIcon,
+      value: "Free Digital Audit"
+    },
+    {
+      title: "Lead Generation Strategy",
+      description: "Custom lead capture and CRM optimization strategy for your industry and target market",
       icon: Users,
       value: "Free Lead Strategy"
     },
     {
-      title: "Customer Service Optimization",
-      description: "AI-powered customer service automation strategy with voice caller recommendations",
-      icon: MessageSquare,
-      value: "Free Service Plan"
-    },
-    {
-      title: "Social Media & Reputation Plan",
-      description: "Social media management and online reputation automation strategy",
-      icon: SocialIcon,
-      value: "Free Social Strategy"
+      title: "AI Implementation Roadmap",
+      description: "Custom chatbot and data analysis implementation plan tailored to your business processes",
+      icon: Brain,
+      value: "Free AI Roadmap"
     }
   ];
 
   const services = [
     {
+      icon: SocialIcon,
+      title: "Online Reputation Management",
+      description: "Comprehensive digital presence optimization and brand reputation enhancement",
+      features: ["Website performance optimization", "Social media management", "Review monitoring & response", "Brand sentiment analysis", "Digital footprint management"]
+    },
+    {
       icon: Users,
-      title: "Lead Generation Systems",
-      description: "Automated lead capture, qualification, and nurturing workflows",
-      features: ["Web form automation", "Lead scoring", "CRM integration", "Follow-up sequences", "Conversion optimization"]
+      title: "Lead Generation & CRM",
+      description: "End-to-end lead capture, qualification, and customer relationship management",
+      features: ["Lead scoring & qualification", "CRM system integration", "Automated follow-up sequences", "Conversion funnel optimization", "Customer lifecycle management"]
     },
     {
       icon: Bot,
-      title: "AI Chatbots & Voice Callers",
-      description: "Intelligent chatbots and voice callers trained on your customer data",
-      features: ["Custom AI training", "24/7 customer support", "Voice synthesis", "Multi-language support", "Integration with your systems"]
+      title: "Custom AI Chatbots",
+      description: "Intelligent conversational AI trained specifically on your business data and processes",
+      features: ["Custom AI training", "24/7 customer engagement", "Multi-channel deployment", "Business process integration", "Continuous learning & improvement"]
     },
     {
-      icon: MessageSquare,
-      title: "Customer Service Automation",
-      description: "Complete customer service automation with AI-powered responses",
-      features: ["Ticket automation", "Response templates", "Customer satisfaction tracking", "Escalation management", "Knowledge base integration"]
+      icon: BarChart3,
+      title: "Data Analysis & Insights",
+      description: "Advanced analytics and actionable business intelligence from your operational data",
+      features: ["Performance analytics", "Predictive insights", "Business intelligence dashboards", "ROI tracking & optimization", "Strategic decision support"]
     },
     {
-      icon: SocialIcon,
-      title: "Social Media & Reputation Management",
-      description: "Automated social media posting and online reputation monitoring",
-      features: ["Content scheduling", "Reputation monitoring", "Review management", "Social listening", "Brand sentiment analysis"]
+      icon: CircuitBoard,
+      title: "Workflow Integrations",
+      description: "Seamless automation and integration across your existing business systems and processes",
+      features: ["System integration", "Process automation", "API connectivity", "Workflow optimization", "Scalable architecture"]
     }
   ];
 
   const caseStudies = [
     {
-      title: "Field Service Company A",
-      industry: "HVAC Services",
-      results: ["40% increase in lead conversion", "25% improvement in customer satisfaction", "30% reduction in response time"],
-      description: "Implemented strategic automation blueprint with lead generation and customer service automation."
+      title: "Professional Services Firm",
+      industry: "Legal Services",
+      results: ["45% increase in lead quality", "30% improvement in online reputation", "Automated 70% of client inquiries"],
+      description: "Implemented comprehensive digital presence optimization with lead generation automation and custom AI chatbots."
     },
     {
-      title: "E-commerce Business B",
+      title: "E-commerce Business",
       industry: "Online Retail",
-      results: ["50% faster lead processing", "35% increase in sales", "Automated 80% of customer inquiries"],
-      description: "Deployed comprehensive automation strategy with chatbots and social media management."
+      results: ["50% faster lead processing", "40% increase in conversion rates", "25% reduction in customer service costs"],
+      description: "Deployed end-to-end automation strategy with CRM integration, data analytics, and workflow optimization."
+    },
+    {
+      title: "Healthcare Practice",
+      industry: "Medical Services",
+      results: ["35% improvement in patient engagement", "Automated 80% of appointment scheduling", "Enhanced online reputation management"],
+      description: "Integrated custom AI solutions with workflow automation and comprehensive digital presence management."
     }
   ];
 
