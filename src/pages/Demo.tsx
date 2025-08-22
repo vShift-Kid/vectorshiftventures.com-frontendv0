@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, Gift, Bot, Globe } from 'lucide-react';
-import VoiceAssistant from '../components/VoiceAssistant';
 
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -416,7 +415,7 @@ const Demo: React.FC = () => {
       </section>
 
       {/* Voice Assistant */}
-      <VoiceAssistant />
+      {/* The VoiceAssistant component is now globally available */}
     </div>
   );
 };
