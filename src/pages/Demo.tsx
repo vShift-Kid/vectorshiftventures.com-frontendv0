@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star, Upload, AlertTriangle, Mic } from 'lucide-react';
 import { getWebhookUrl } from '../config/api';
 import VoiceAssistant from '../components/VoiceAssistant';
+import CustomDemoForm from '../components/CustomDemoForm';
 
 interface ContactData {
   name: string;
@@ -616,6 +617,13 @@ const Demo: React.FC = () => {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Custom Demo Request Section */}
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
+        <div className="container mx-auto px-6">
+          <CustomDemoForm />
         </div>
       </section>
 
