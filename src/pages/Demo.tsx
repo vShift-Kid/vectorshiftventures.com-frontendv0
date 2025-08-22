@@ -39,9 +39,54 @@ const Demo: React.FC = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    
+    try {
+      // Prepare the data in the format expected by the n8n workflow
+      const webhookData = {
+        contactInfo: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone
+        },
+        businessInfo: {
+          companyName: formData.company,
+          industry: formData.industry,
+          website: '', // Will be researched by n8n
+          businessDescription: formData.businessDescription
+        },
+        consultationPackage: formData.consultationPackage,
+        scheduling: {
+          preferredDate: formData.preferredDate,
+          preferredTime: formData.preferredTime
+        },
+        source: 'vectorshiftventures-demo-page',
+        submittedAt: new Date().toISOString()
+      };
+
+      // Send to n8n webhook
+      const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/lead-submission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData)
+      });
+
+      if (response.ok) {
+        console.log('Demo request submitted successfully');
+        setIsSubmitted(true);
+      } else {
+        console.error('Failed to submit demo request');
+        // Still show success for now, but log the error
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Error submitting demo request:', error);
+      // Still show success for now, but log the error
+      setIsSubmitted(true);
+    }
   };
 
   if (isSubmitted) {
