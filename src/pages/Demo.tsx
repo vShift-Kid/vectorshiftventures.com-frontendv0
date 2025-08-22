@@ -345,287 +345,137 @@ const Demo: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent" />
         <div className="container mx-auto px-6 relative">
           <div className="text-center max-w-4xl mx-auto">
+            <div className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MessageSquare className="w-12 h-12 text-white" />
+            </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Strategic Automation Blueprint
+                Experience Our AI Voice Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Tell us about your business challenges and receive a comprehensive strategic blueprint for lead generation, 
-              customer service automation, and social media management.
+              Speak directly with our AI assistant to learn about VectorShift Ventures services, get instant answers to your business questions, 
+              and experience the future of customer interaction.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={() => {
+                  const voiceButton = document.querySelector('[title="Try Voice Assistant"]') as HTMLButtonElement;
+                  voiceButton?.click();
+                }}
+                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105"
+              >
+                <div className="flex items-center gap-3">
+                  <Mic className="w-5 h-5" />
+                  Start Voice Conversation
+                </div>
+              </button>
+              <div className="text-sm text-gray-500 font-mono">
+                No registration required • Instant connection
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Capture Form */}
+      {/* Voice Assistant Showcase */}
       <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Brain className="w-8 h-8 text-white" />
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left: Voice Assistant Demo */}
+              <div className="text-center lg:text-left">
+                <div className="w-20 h-20 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-6">
+                  <Mic className="w-10 h-10 text-cyan-400" />
                 </div>
-                <h3 className="text-2xl font-mono font-semibold text-white mb-2">Unlock Your Strategic Blueprint</h3>
-                <p className="text-gray-400 font-mono">
-                  Get instant access to your custom automation strategy and implementation plan
+                <h2 className="text-3xl font-mono font-bold mb-6">
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                    AI-Powered Voice Assistant
+                  </span>
+                </h2>
+                <p className="text-gray-400 font-mono text-lg mb-8">
+                  Experience the future of customer interaction with our advanced AI voice assistant. 
+                  Get instant answers, schedule appointments, and learn about our services through natural conversation.
                 </p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={contactData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    value={contactData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Company Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={contactData.company}
-                    onChange={(e) => handleInputChange('company', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    placeholder="Enter your company name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Industry *
-                  </label>
-                  <select
-                    value={contactData.industry}
-                    onChange={(e) => handleInputChange('industry', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                  >
-                    <option value="">Select your industry</option>
-                    <option value="field-service">Field Service</option>
-                    <option value="e-commerce">E-commerce</option>
-                    <option value="construction">Construction</option>
-                    <option value="maintenance">Maintenance & Repair</option>
-                    <option value="utilities">Utilities</option>
-                    <option value="telecommunications">Telecommunications</option>
-                    <option value="manufacturing">Manufacturing</option>
-                    <option value="logistics">Logistics & Transportation</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="real-estate">Real Estate</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Your Biggest Business Challenge *
-                  </label>
-                  <textarea
-                    value={contactData.businessChallenge}
-                    onChange={(e) => handleInputChange('businessChallenge', e.target.value)}
-                    required
-                    rows={3}
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    placeholder="Describe your main business challenge or pain point..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Preferred Contact Method *
-                  </label>
-                  <select
-                    value={contactData.preferredContact}
-                    onChange={(e) => handleInputChange('preferredContact', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                  >
-                    <option value="email">Email</option>
-                    <option value="phone">Phone Call</option>
-                    <option value="text">Text Message</option>
-                  </select>
-                </div>
-
-                {/* File Upload Section */}
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Upload Supporting Documentation (Optional)
-                  </label>
-                  <div
-                    className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-                      dragActive 
-                        ? 'border-cyan-400 bg-cyan-500/10' 
-                        : 'border-cyan-500/30 hover:border-cyan-500/50'
-                    }`}
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
-                  >
-                    <Upload className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                    <p className="text-gray-300 font-mono mb-2">
-                      Drag and drop files here, or{' '}
-                      <label className="text-cyan-400 hover:text-cyan-300 cursor-pointer">
-                        browse files
-                        <input
-                          type="file"
-                          multiple
-                          className="hidden"
-                          onChange={(e) => handleFileUpload(e.target.files)}
-                          accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif"
-                        />
-                      </label>
-                    </p>
-                    <p className="text-sm text-gray-400 font-mono">
-                      Maximum 10MB total • PDF, DOC, TXT, Images accepted
-                    </p>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="font-mono text-gray-300">Natural voice conversation</span>
                   </div>
-
-                  {/* Security Disclaimer */}
-                  <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                    <div className="flex items-start">
-                      <AlertTriangle className="w-5 h-5 text-yellow-400 mr-2 mt-0.5 flex-shrink-0" />
-                      <div className="text-sm text-yellow-300 font-mono">
-                        <strong>Security Notice:</strong> Please do not upload proprietary data, trade secrets, 
-                        or any information that should not be publicly accessible. While we take security seriously, 
-                        we cannot be responsible for the content you upload. Only share non-sensitive, general business information.
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="font-mono text-gray-300">Instant responses to business questions</span>
                   </div>
-
-                  {/* Uploaded Files List */}
-                  {contactData.uploadedFiles.length > 0 && (
-                    <div className="mt-4">
-                      <h4 className="text-sm font-mono font-medium text-gray-300 mb-2">Uploaded Files:</h4>
-                      <div className="space-y-2">
-                        {contactData.uploadedFiles.map((file, index) => (
-                          <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded">
-                            <div className="flex items-center">
-                              <FileText className="w-4 h-4 text-cyan-400 mr-2" />
-                              <span className="text-sm text-gray-300 font-mono">{file.name}</span>
-                              <span className="text-xs text-gray-400 ml-2">
-                                ({(file.size / 1024 / 1024).toFixed(2)} MB)
-                              </span>
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() => removeFile(index)}
-                              className="text-red-400 hover:text-red-300 text-sm"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="font-mono text-gray-300">Appointment scheduling and booking</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="font-mono text-gray-300">Service information and pricing</span>
+                  </div>
                 </div>
 
                 <button
-                  type="submit"
-                  disabled={isLoading || !contactData.name || !contactData.email || !contactData.company || !contactData.industry || !contactData.businessChallenge}
-                  className="w-full font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => {
+                    const voiceButton = document.querySelector('[title="Try Voice Assistant"]') as HTMLButtonElement;
+                    voiceButton?.click();
+                  }}
+                  className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105"
                 >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Creating Your Strategic Blueprint...
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center gap-3">
-                      <Brain className="w-5 h-5" />
-                      Get My Strategic Blueprint
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5" />
+                    Try Voice Assistant Now
+                  </div>
                 </button>
-              </form>
+              </div>
 
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-400 font-mono">
-                  ✓ No credit card required • ✓ Instant access • ✓ 100% free
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Try Voice Assistant Section */}
-      <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                <MessageSquare className="w-10 h-10 text-cyan-400" />
-              </div>
-              <h2 className="text-3xl font-mono font-bold mb-4">
-                Experience Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Voice Assistant</span>
-              </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto font-mono text-lg">
-                Speak directly with our AI assistant to learn about VectorShift Ventures services, automation solutions, and get instant answers to your business questions.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
-                <Mic className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="font-mono font-semibold mb-2">Natural Conversation</h3>
-                <p className="text-gray-400 font-mono text-sm">Speak naturally and get instant responses about our services</p>
-              </div>
-              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
-                <Brain className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="font-mono font-semibold mb-2">Expert Knowledge</h3>
-                <p className="text-gray-400 font-mono text-sm">Get detailed information about automation solutions and pricing</p>
-              </div>
-              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
-                <Calendar className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="font-mono font-semibold mb-2">Appointment Booking</h3>
-                <p className="text-gray-400 font-mono text-sm">Schedule consultations and demos directly through conversation</p>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-2xl p-8">
-              <h3 className="text-xl font-mono font-semibold mb-4">Ready to Try?</h3>
-              <p className="text-gray-400 font-mono mb-6">
-                Click the voice assistant button in the bottom-right corner to start a conversation with our AI assistant.
-              </p>
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500 font-mono">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>No registration required</span>
+              {/* Right: Interactive Demo Card */}
+              <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/30 rounded-2xl p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-mono font-semibold text-white mb-2">Live Demo</h3>
+                  <p className="text-gray-400 font-mono">Click the voice assistant button to start</p>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>Instant connection</span>
+                
+                <div className="space-y-4">
+                  <div className="bg-gray-800/50 rounded-lg p-4 border border-cyan-500/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                      <span className="font-mono text-sm text-cyan-400">AI Assistant</span>
+                    </div>
+                    <p className="font-mono text-gray-300 text-sm">
+                      "Hello! I'm your VectorShift Ventures AI assistant. I can help you learn about our automation services, 
+                      schedule consultations, and answer any business questions you have. How can I assist you today?"
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600/30">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="font-mono text-sm text-gray-400">You</span>
+                    </div>
+                    <p className="font-mono text-gray-300 text-sm italic">
+                      "Tell me about your automation services..."
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 rounded-lg p-4 border border-cyan-500/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                      <span className="font-mono text-sm text-cyan-400">AI Assistant</span>
+                    </div>
+                    <p className="font-mono text-gray-300 text-sm">
+                      "We specialize in business automation solutions including lead generation systems, AI chatbots, 
+                      customer service automation, and social media management. Would you like to learn more about any specific service?"
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>Professional responses</span>
+                
+                <div className="mt-6 text-center">
+                  <p className="text-xs text-gray-500 font-mono">
+                    💡 Try asking about: services, pricing, appointments, automation solutions
+                  </p>
                 </div>
               </div>
             </div>
@@ -657,34 +507,114 @@ const Demo: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* AI Voice Assistant Features */}
       <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Services</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Voice Assistant Capabilities</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              We provide comprehensive automation solutions to transform your business operations.
+              Our AI voice assistant can handle a wide range of business interactions and provide instant, professional responses.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                <service.icon className="w-16 h-16 text-cyan-400 mb-6" />
-                <h3 className="text-2xl font-mono font-semibold mb-4">{service.title}</h3>
-                <p className="text-gray-400 font-mono mb-6">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-gray-300 font-mono">
-                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+              <MessageSquare className="w-16 h-16 text-cyan-400 mb-6" />
+              <h3 className="text-2xl font-mono font-semibold mb-4">Natural Conversation</h3>
+              <p className="text-gray-400 font-mono mb-6">Advanced AI that understands context and provides human-like responses to complex business questions.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Context-aware responses
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Multi-turn conversations
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Professional tone and language
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Industry-specific knowledge
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+              <Calendar className="w-16 h-16 text-cyan-400 mb-6" />
+              <h3 className="text-2xl font-mono font-semibold mb-4">Appointment Scheduling</h3>
+              <p className="text-gray-400 font-mono mb-6">Seamlessly schedule consultations, demos, and meetings directly through voice conversation.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Calendar integration
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Availability checking
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Meeting confirmation
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Reminder notifications
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+              <Brain className="w-16 h-16 text-cyan-400 mb-6" />
+              <h3 className="text-2xl font-mono font-semibold mb-4">Business Intelligence</h3>
+              <p className="text-gray-400 font-mono mb-6">Get detailed information about services, pricing, and automation solutions tailored to your needs.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Service explanations
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Pricing information
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  ROI calculations
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Case study examples
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+              <Users className="w-16 h-16 text-cyan-400 mb-6" />
+              <h3 className="text-2xl font-mono font-semibold mb-4">Lead Qualification</h3>
+              <p className="text-gray-400 font-mono mb-6">Intelligent lead qualification and routing to ensure prospects get the right information and follow-up.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Need assessment
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Budget qualification
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Timeline evaluation
+                </li>
+                <li className="flex items-center text-gray-300 font-mono">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
+                  Decision maker identification
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -729,24 +659,35 @@ const Demo: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Transform Your Business?</h2>
+            <h2 className="text-3xl font-mono font-bold mb-6">Ready to Experience the Future of Customer Interaction?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Get your strategic automation blueprint and discover how our services can revolutionize your lead generation, 
-              customer service, and social media management.
+              Try our AI voice assistant now and see how it can transform your business communication. 
+              Get instant answers, schedule appointments, and experience professional AI-powered conversations.
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
+                onClick={() => {
+                  const voiceButton = document.querySelector('[title="Try Voice Assistant"]') as HTMLButtonElement;
+                  voiceButton?.click();
+                }}
+                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105"
               >
-                Get My Strategic Blueprint
+                <div className="flex items-center gap-3">
+                  <Mic className="w-5 h-5" />
+                  Start Voice Conversation
+                </div>
               </button>
               <Link
                 to="/contact"
                 className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
               >
-                Learn More
+                Learn More About Our Services
               </Link>
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-500 font-mono">
+                ✓ No registration required • ✓ Instant connection • ✓ Professional AI responses
+              </p>
             </div>
           </div>
         </div>
