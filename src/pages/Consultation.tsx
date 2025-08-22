@@ -11,7 +11,9 @@ const Consultation: React.FC = () => {
     phone: '',
     industry: '',
     consultationPackage: '',
-    businessDescription: ''
+    businessDescription: '',
+    preferredDate: '',
+    preferredTime: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,7 +33,9 @@ const Consultation: React.FC = () => {
       updatedFormData.company.length > 0 &&
       updatedFormData.industry !== '' &&
       updatedFormData.consultationPackage !== '' &&
-      updatedFormData.businessDescription.length > 20 // Require meaningful business description
+      updatedFormData.businessDescription.length > 20 && // Require meaningful business description
+      updatedFormData.preferredDate.length > 0 &&
+      updatedFormData.preferredTime.length > 0
     );
   };
 
@@ -121,7 +125,8 @@ const Consultation: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Thank you, {formData.name}. We've received your consultation request and will contact you within 24 hours to confirm your appointment and discuss your business automation needs.
+              Thank you, {formData.name}. We've received your consultation request for {formData.preferredDate} at {formData.preferredTime}. 
+              We'll contact you within 24 hours to confirm your appointment and discuss your business automation needs.
             </p>
             
             <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -437,6 +442,44 @@ const Consultation: React.FC = () => {
                     />
                   </div>
                   
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Date *
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.preferredDate}
+                        onChange={(e) => handleInputChange('preferredDate', e.target.value)}
+                        required
+                        min={new Date().toISOString().split('T')[0]}
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Time *
+                      </label>
+                      <select
+                        value={formData.preferredTime}
+                        onChange={(e) => handleInputChange('preferredTime', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select a time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                  
                   <div className="text-center">
                     <button
                       type="submit"
@@ -462,11 +505,11 @@ const Consultation: React.FC = () => {
                     <div className="flex items-center gap-3 mb-4">
                       <Gift className="w-6 h-6 text-green-400" />
                       <h4 className="font-mono font-semibold text-green-400 text-lg">
-                        🎁 Your Custom Demo Reward
+                        🎁 Your Custom Voice Assistant Demo
                       </h4>
                     </div>
                     <p className="text-gray-300 font-mono mb-4">
-                      As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant and website demo specifically for your company.
+                      As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant specifically trained on your business processes and challenges.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div className="flex items-center gap-2">
@@ -474,8 +517,8 @@ const Consultation: React.FC = () => {
                         <span className="font-mono text-gray-300">Custom AI Voice Assistant</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Globe className="w-4 h-4 text-green-400" />
-                        <span className="font-mono text-gray-300">Personalized Website Demo</span>
+                        <Brain className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">Trained on Your Business</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-green-400" />
