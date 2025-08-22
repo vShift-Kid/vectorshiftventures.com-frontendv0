@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe, Target, DollarSign, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, User, Mail, Phone, Building, MessageSquare, CheckCircle, Bot, FileText, PhoneCall, Search, Brain, Globe, Target, DollarSign, ArrowRight, Gift } from 'lucide-react';
 import CustomDemoForm from '../components/CustomDemoForm';
 
 const Consultation: React.FC = () => {
@@ -15,12 +15,24 @@ const Consultation: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false); // New state for form validity
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
+    const updatedFormData = {
+      ...formData,
       [field]: value
-    }));
+    };
+    setFormData(updatedFormData);
+    
+    // Re-evaluate form validity with updated data
+    setIsFormValid(
+      updatedFormData.name.length > 0 &&
+      updatedFormData.email.length > 0 &&
+      updatedFormData.company.length > 0 &&
+      updatedFormData.industry !== '' &&
+      updatedFormData.consultationPackage !== '' &&
+      updatedFormData.businessDescription.length > 20 // Require meaningful business description
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -428,24 +440,50 @@ const Consultation: React.FC = () => {
                   <div className="text-center">
                     <button
                       type="submit"
-                      disabled={false} // isLoading state removed
-                      className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-mono font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3"
                     >
-                      {/* isLoading ? (
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          Submitting...
-                        </div>
-                      ) : ( */}
-                        <div className="flex items-center gap-3">
-                          <Brain className="w-5 h-5" />
-                          Book Consultation
-                          <ArrowRight className="w-5 h-5" />
-                        </div>
-                      {/* ) */}
+                      <div className="flex items-center gap-3">
+                        <Brain className="w-5 h-5" />
+                        Book Consultation
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
                     </button>
                   </div>
                 </form>
+                
+                {/* Custom Demo Reward Block - Only shows when form is valid */}
+                {isFormValid && (
+                  <div 
+                    className="mt-8 bg-gradient-to-b from-green-500/10 to-transparent border border-green-500/30 rounded-2xl p-6 transition-all duration-500 ease-in-out"
+                    style={{
+                      animation: 'fadeInUp 0.5s ease-out'
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <Gift className="w-6 h-6 text-green-400" />
+                      <h4 className="font-mono font-semibold text-green-400 text-lg">
+                        🎁 Your Custom Demo Reward
+                      </h4>
+                    </div>
+                    <p className="text-gray-300 font-mono mb-4">
+                      As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant and website demo specifically for your company.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Bot className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">Custom AI Voice Assistant</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Globe className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">Personalized Website Demo</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">24-48 Hour Delivery</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
