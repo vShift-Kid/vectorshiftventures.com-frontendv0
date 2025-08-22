@@ -26,7 +26,7 @@ const Demo: React.FC = () => {
     setFormData(updatedFormData);
     
     // Re-evaluate form validity with updated data
-    const isDemoOnly = updatedFormData.consultationPackage === 'Demo Request Only - Information Gathering';
+    const isDemoOnly = updatedFormData.consultationPackage === 'Demo Request Only - Evaluation Phase';
     
     setIsFormValid(
       updatedFormData.name.length > 0 &&
@@ -56,7 +56,7 @@ const Demo: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              {formData.consultationPackage === 'Demo Request Only - Information Gathering' 
+              {formData.consultationPackage === 'Demo Request Only - Evaluation Phase' 
                 ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant.`
                 : `Thank you, ${formData.name}. We've received your demo request for ${formData.preferredDate} at ${formData.preferredTime}. We'll contact you within 24 hours to confirm your appointment and discuss your business automation needs.`
               }
@@ -250,7 +250,7 @@ const Demo: React.FC = () => {
                       className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
                       <option value="">Select consultation package</option>
-                      <option value="Demo Request Only - Information Gathering">Demo Request Only - Information Gathering</option>
+                      <option value="Demo Request Only - Evaluation Phase">Demo Request Only - Evaluation Phase</option>
                       <option value="Discovery Call - Free (30 minutes)">Discovery Call - Free (30 minutes)</option>
                       <option value="Strategy Consultation - $297 (60 minutes) - Recommended">Strategy Consultation - $297 (60 minutes) - Recommended</option>
                       <option value="Technical Planning - $197 (45 minutes)">Technical Planning - $197 (45 minutes)</option>
@@ -305,7 +305,7 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                {formData.consultationPackage && formData.consultationPackage !== 'Demo Request Only - Information Gathering' && (
+                {formData.consultationPackage && formData.consultationPackage !== 'Demo Request Only - Evaluation Phase' && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
