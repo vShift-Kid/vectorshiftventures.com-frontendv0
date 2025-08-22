@@ -217,27 +217,35 @@ const Consultation: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Custom Field Service Voice Assistant
+                Get Your Custom Business Problem-Solving Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
               Provide your field service business information and receive a personalized AI voice assistant 
-              for customer service and operations. Available for a 30-minute call time or 14-day trial period.
+              specifically built to solve YOUR business problems. Available for a 30-minute call time or 14-day trial period.
             </p>
+            
+            <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-red-400">🏢 B2B Business Focus</h3>
+              <p className="text-gray-300 font-mono text-sm">
+                <strong>Business-to-Business Solutions:</strong> Designed exclusively for field service companies serving other businesses. 
+                Not for individual consumers - this is professional B2B customer service automation.
+              </p>
+            </div>
             
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-6 mb-8">
               <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free Trial Reward</h3>
               <p className="text-gray-300 font-mono text-sm">
                 Complete the consultation form below and receive a personalized field service AI voice assistant 
-                for a 30-minute call time or 14-day trial period - completely free! Business email required.
+                built specifically for YOUR business problems - for a 30-minute call time or 14-day trial period - completely free! Business email required.
               </p>
             </div>
             
             <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Built for Field Service Operations</h3>
+              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🎯 Built for YOUR Specific Business Problems</h3>
               <p className="text-gray-300 font-mono text-sm">
-                Designed for HVAC, plumbing, electrical, maintenance, and other field service businesses. 
-                Handles customer service, scheduling, and business problem-solving for B2B operations.
+                Your custom assistant will be trained on your specific field service challenges, customer pain points, 
+                business processes, and real problem-solving scenarios - not generic responses.
               </p>
             </div>
             

@@ -197,11 +197,11 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-6">
           <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Custom Field Service Voice Assistant Request Submitted!
+            Custom Business Problem-Solving Assistant Request Submitted!
           </span>
         </h2>
         <p className="text-xl text-gray-400 mb-8 font-mono">
-          Thank you, {formData.name}! We've received your custom field service voice assistant request and will begin creating your personalized AI assistant for a 30-minute call time or 14-day trial period.
+          Thank you, {formData.name}! We've received your custom business problem-solving assistant request and will begin creating your personalized AI assistant specifically trained to solve YOUR business problems for a 30-minute call time or 14-day trial period.
         </p>
         
         <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -210,17 +210,17 @@ const CustomDemoForm: React.FC = () => {
             <div className="text-center">
               <Brain className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
               <h4 className="font-mono font-semibold mb-2">AI Training</h4>
-              <p className="text-gray-400 font-mono text-sm">Our AI will analyze your field service requirements and create a custom voice assistant</p>
+              <p className="text-gray-400 font-mono text-sm">Our AI will analyze your specific business problems and create a custom problem-solving assistant</p>
             </div>
             <div className="text-center">
               <Calendar className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
               <h4 className="font-mono font-semibold mb-2">Trial Setup</h4>
-              <p className="text-gray-400 font-mono text-sm">Configure your voice assistant for 30-min call or 14-day trial period</p>
+              <p className="text-gray-400 font-mono text-sm">Configure your assistant for 30-min call or 14-day trial period</p>
             </div>
             <div className="text-center">
               <MessageSquare className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
               <h4 className="font-mono font-semibold mb-2">Trial Delivery</h4>
-              <p className="text-gray-400 font-mono text-sm">You'll receive access to your custom voice assistant within 24-48 hours</p>
+              <p className="text-gray-400 font-mono text-sm">You'll receive access to your custom business problem-solving assistant within 24-48 hours</p>
             </div>
           </div>
         </div>
@@ -248,15 +248,23 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-4">
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Request Your Custom Field Service Voice Assistant
+            Request Your Custom Business Problem-Solving Assistant
           </span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto font-mono text-lg">
-          Get a personalized AI voice assistant for your field service operations. 
-          Trained on your business information and available for a 30-minute call time or 14-day trial period.
+          Get a personalized AI voice assistant specifically built to solve YOUR business problems. 
+          Trained on your field service operations, customer challenges, and unique business scenarios for a 30-minute call time or 14-day trial period.
         </p>
         
-        <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mt-6 mb-6">
+        <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-6 mt-6 mb-6">
+          <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎯 Built for YOUR Specific Business Problems</h3>
+          <p className="text-gray-300 font-mono text-sm">
+            Unlike generic AI assistants, your custom voice assistant will be trained specifically on your business challenges, 
+            customer pain points, industry terminology, and real problem-solving scenarios unique to your field service operations.
+          </p>
+        </div>
+        
+        <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mb-6">
           <h3 className="text-lg font-mono font-semibold mb-3 text-purple-400">⚡ Vector Shift Ventures</h3>
           <p className="text-gray-300 font-mono text-sm">
             <span className="text-purple-400 font-semibold">Automation Agency</span> - Specializing in AI-powered business automation solutions for field service operations.
@@ -264,7 +272,7 @@ const CustomDemoForm: React.FC = () => {
         </div>
         
         <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6">
-          <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
+          <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 B2B Business Requirements:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
