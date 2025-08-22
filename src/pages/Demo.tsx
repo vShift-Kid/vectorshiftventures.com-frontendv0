@@ -269,6 +269,39 @@ const Demo: React.FC = () => {
                   />
                 </div>
 
+                <div>
+                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                    Additional Documentation
+                  </label>
+                  <div className="border-2 border-dashed border-cyan-500/30 rounded-lg p-6 text-center hover:border-cyan-400/50 transition-colors">
+                    <div className="space-y-4">
+                      <div className="w-12 h-12 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-white font-mono font-medium">Upload Additional Files</p>
+                        <p className="text-gray-400 font-mono text-sm mt-1">
+                          Upload business documents, process flows, or any additional information that would help us understand your needs better
+                        </p>
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                        <button
+                          type="button"
+                          className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-lg text-sm font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all"
+                        >
+                          Choose Files
+                        </button>
+                        <span className="text-gray-500 font-mono text-xs self-center">or drag and drop</span>
+                      </div>
+                      <p className="text-gray-500 font-mono text-xs">
+                        PDF, DOC, DOCX, TXT, or images up to 10MB each
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
@@ -338,18 +371,41 @@ const Demo: React.FC = () => {
                   <p className="text-gray-300 font-mono mb-4">
                     As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant specifically trained on your business processes and challenges.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  
+                  <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-4 mb-4">
+                    <h5 className="font-mono font-semibold text-green-400 mb-3">What You'll Receive:</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Bot className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">Custom AI Voice Assistant</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Brain className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">Trained on Your Business</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-green-400" />
+                        <span className="font-mono text-gray-300">24-48 Hour Delivery</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <Bot className="w-4 h-4 text-green-400" />
-                      <span className="font-mono text-gray-300">Custom AI Voice Assistant</span>
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="font-mono text-gray-300">Customer service & support</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Brain className="w-4 h-4 text-green-400" />
-                      <span className="font-mono text-gray-300">Trained on Your Business</span>
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="font-mono text-gray-300">Appointment scheduling & management</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-green-400" />
-                      <span className="font-mono text-gray-300">24-48 Hour Delivery</span>
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="font-mono text-gray-300">Business problem-solving</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="font-mono text-gray-300">Field service operations support</span>
                     </div>
                   </div>
                 </div>
