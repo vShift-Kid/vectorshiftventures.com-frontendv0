@@ -37,15 +37,6 @@ const Demo: React.FC = () => {
                   Try Voice Assistant
                 </div>
               </button>
-              <Link
-                to="/consultation"
-                className="font-mono bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all transform hover:scale-105"
-              >
-                <div className="flex items-center gap-3">
-                  <Brain className="w-5 h-5" />
-                  Get Your Custom Assistant
-                </div>
-              </Link>
               <div className="text-sm text-gray-500 font-mono">
                 No registration required • Instant connection
               </div>
@@ -105,16 +96,7 @@ const Demo: React.FC = () => {
                 </div>
               </button>
               
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/consultation"
-                  className="font-mono bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 rounded-full text-base font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all transform hover:scale-105"
-                >
-                  <div className="flex items-center gap-2">
-                    <Brain className="w-4 h-4" />
-                    Get Your Custom Assistant
-                  </div>
-                </Link>
+              <div className="mt-6">
                 <Link
                   to="/services"
                   className="font-mono text-cyan-400 hover:text-cyan-300 text-sm underline"
@@ -177,41 +159,6 @@ const Demo: React.FC = () => {
         </div>
       </section>
 
-      {/* Mid-Page CTA Section */}
-      <section className="py-16 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-mono font-bold mb-4">
-              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-                Custom Customer Service Assistant
-              </span>
-            </h2>
-            <p className="text-gray-300 font-mono mb-6">
-              Get a personalized AI voice assistant trained specifically on your business operations and field service requirements. 
-              Available for evaluation with 30-minute call time or 14-day trial period.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/consultation"
-                className="font-mono bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all transform hover:scale-105"
-              >
-                <div className="flex items-center gap-3">
-                  <Brain className="w-5 h-5" />
-                  Request Custom Assistant
-                  <ArrowRight className="w-5 h-5" />
-                </div>
-              </Link>
-              <Link
-                to="/services"
-                className="font-mono border border-green-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-500/10 transition-all"
-              >
-                View Services
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Custom Demo CTA Section */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
@@ -251,16 +198,6 @@ const Demo: React.FC = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/consultation"
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105"
-              >
-                <div className="flex items-center gap-3">
-                  <Brain className="w-5 h-5" />
-                  Request Custom Assistant
-                  <ArrowRight className="w-5 h-5" />
-                </div>
-              </Link>
               <Link
                 to="/contact"
                 className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
