@@ -16,21 +16,13 @@ const Demo: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                B2B Field Service Voice Assistant
+                Customer Service Voice Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Experience our AI voice assistant designed specifically for B2B field service operations. 
+              Experience our AI voice assistant designed specifically for field service operations. 
               Handle customer inquiries, schedule appointments, and solve business problems through natural conversation.
             </p>
-            
-            <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-red-400">🏢 B2B Business Focus</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                <strong>Business-to-Business Solutions:</strong> Designed exclusively for field service companies serving other businesses. 
-                Not for individual consumers - this is professional B2B customer service automation.
-              </p>
-            </div>
             
             <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
               <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Built for Field Service Businesses</h3>
@@ -191,7 +183,7 @@ const Demo: React.FC = () => {
             </div>
             <h2 className="text-3xl font-mono font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Custom Business Problem-Solving Assistant
+                Get Your Custom Customer Service Assistant
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
@@ -258,7 +250,7 @@ const Demo: React.FC = () => {
             </div>
             
             <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 B2B Business Requirements:</h3>
+              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
@@ -274,7 +266,7 @@ const Demo: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">B2B customer service focus</span>
+                  <span className="font-mono text-sm text-gray-300">Customer service focus</span>
                 </div>
               </div>
             </div>
@@ -299,7 +291,7 @@ const Demo: React.FC = () => {
             </div>
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500 font-mono">
-                ✓ Custom business problem-solving • ✓ 30-min call or 14-day trial • ✓ Business email required • ✓ Professional consultation included
+                ✓ Custom customer service assistant • ✓ 30-min call or 14-day trial • ✓ Business email required • ✓ Professional consultation included
               </p>
             </div>
           </div>

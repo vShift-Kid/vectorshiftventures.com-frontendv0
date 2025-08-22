@@ -197,11 +197,11 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-6">
           <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Custom Business Problem-Solving Assistant Request Submitted!
+            Custom Customer Service Assistant Request Submitted!
           </span>
         </h2>
         <p className="text-xl text-gray-400 mb-8 font-mono">
-          Thank you, {formData.name}! We've received your custom business problem-solving assistant request and will begin creating your personalized AI assistant specifically trained to solve YOUR business problems for a 30-minute call time or 14-day trial period.
+          Thank you, {formData.name}! We've received your custom customer service assistant request and will begin creating your personalized AI assistant specifically trained to solve YOUR business problems for a 30-minute call time or 14-day trial period.
         </p>
         
         <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -248,7 +248,7 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-4">
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Request Your Custom Business Problem-Solving Assistant
+            Request Your Custom Customer Service Assistant
           </span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto font-mono text-lg">
@@ -272,7 +272,7 @@ const CustomDemoForm: React.FC = () => {
         </div>
         
         <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6">
-          <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 B2B Business Requirements:</h3>
+          <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
@@ -288,7 +288,7 @@ const CustomDemoForm: React.FC = () => {
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span className="font-mono text-sm text-gray-300">B2B customer service focus</span>
+              <span className="font-mono text-sm text-gray-300">Customer service focus</span>
             </div>
           </div>
         </div>
@@ -323,6 +323,15 @@ const CustomDemoForm: React.FC = () => {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
+                onBlur={(e) => {
+                  const email = e.target.value.toLowerCase();
+                  const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'live.com', 'msn.com'];
+                  const domain = email.split('@')[1];
+                  if (personalDomains.includes(domain)) {
+                    alert('Please use a business email address. Personal email addresses like Gmail, Yahoo, etc. are not accepted.');
+                    e.target.focus();
+                  }
+                }}
                 required
                 className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                 placeholder="your.name@company.com"
@@ -330,7 +339,7 @@ const CustomDemoForm: React.FC = () => {
                 title="Please enter a valid business email address"
               />
               <p className="text-xs text-gray-500 font-mono mt-1">
-                Business email required (no personal emails like gmail.com, yahoo.com)
+                Business email required (no personal emails like gmail.com, yahoo.com, hotmail.com, etc.)
               </p>
             </div>
             <div>
