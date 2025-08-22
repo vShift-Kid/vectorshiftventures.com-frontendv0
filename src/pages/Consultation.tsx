@@ -217,36 +217,13 @@ const Consultation: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Custom Customer Service Assistant
+                Custom Customer Service Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Provide your field service business information and receive a personalized AI voice assistant 
-              specifically built to solve YOUR business problems. Available for a 30-minute call time or 14-day trial period.
+              Provide your field service business information to receive a personalized AI voice assistant 
+              specifically built to solve your business problems. Available for evaluation with 30-minute call time or 14-day trial period.
             </p>
-            
-            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free Trial Reward</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                Complete the consultation form below and receive a personalized field service AI voice assistant 
-                built specifically for YOUR business problems - for a 30-minute call time or 14-day trial period - completely free! Business email required.
-              </p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🎯 Built for YOUR Specific Business Problems</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                Your custom assistant will be trained on your specific field service challenges, customer pain points, 
-                business processes, and real problem-solving scenarios - not generic responses.
-              </p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-purple-400">⚡ Vector Shift Ventures</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                <span className="text-purple-400 font-semibold">Automation Agency</span> - Specializing in AI-powered business automation solutions for field service operations.
-              </p>
-            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">

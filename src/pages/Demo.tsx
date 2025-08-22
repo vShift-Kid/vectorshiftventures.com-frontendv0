@@ -24,21 +24,6 @@ const Demo: React.FC = () => {
               Handle customer inquiries, schedule appointments, and solve business problems through natural conversation.
             </p>
             
-            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Built for Field Service Businesses</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                Designed for HVAC, plumbing, electrical, maintenance, and other field service operations. 
-                Handles customer service, scheduling, and business problem-solving.
-              </p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-purple-400">⚡ Vector Shift Ventures</h3>
-              <p className="text-gray-300 font-mono text-sm">
-                <span className="text-purple-400 font-semibold">Automation Agency</span> - Specializing in AI-powered business automation solutions for field service operations.
-              </p>
-            </div>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={() => {
@@ -196,34 +181,32 @@ const Demo: React.FC = () => {
       <section className="py-16 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-8 mb-8">
-              <h2 className="text-2xl font-mono font-bold mb-4">
-                <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-                  Ready for Your Own Custom Customer Service Assistant?
-                </span>
-              </h2>
-              <p className="text-gray-300 font-mono mb-6">
-                Get a personalized AI voice assistant trained specifically on your business problems and field service operations. 
-                Available for a 30-minute call time or 14-day trial period.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/consultation"
-                  className="font-mono bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all transform hover:scale-105"
-                >
-                  <div className="flex items-center gap-3">
-                    <Brain className="w-5 h-5" />
-                    Get Your Custom Assistant
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
-                </Link>
-                <Link
-                  to="/services"
-                  className="font-mono border border-green-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-500/10 transition-all"
-                >
-                  View All Services
-                </Link>
-              </div>
+            <h2 className="text-2xl font-mono font-bold mb-4">
+              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+                Custom Customer Service Assistant
+              </span>
+            </h2>
+            <p className="text-gray-300 font-mono mb-6">
+              Get a personalized AI voice assistant trained specifically on your business operations and field service requirements. 
+              Available for evaluation with 30-minute call time or 14-day trial period.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/consultation"
+                className="font-mono bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all transform hover:scale-105"
+              >
+                <div className="flex items-center gap-3">
+                  <Brain className="w-5 h-5" />
+                  Request Custom Assistant
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </Link>
+              <Link
+                to="/services"
+                className="font-mono border border-green-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-500/10 transition-all"
+              >
+                View Services
+              </Link>
             </div>
           </div>
         </div>
@@ -238,58 +221,21 @@ const Demo: React.FC = () => {
             </div>
             <h2 className="text-3xl font-mono font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Custom Customer Service Assistant
+                Custom Customer Service Assistant
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Receive a personalized AI voice assistant specifically built to solve YOUR business problems. 
-              Trained on your field service operations, customer data, and unique challenges for a 30-minute call time or 14-day trial period.
+              Receive a personalized AI voice assistant specifically built to solve your business problems. 
+              Trained on your field service operations, customer data, and unique challenges for evaluation with 30-minute call time or 14-day trial period.
             </p>
             
-            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-8 mb-8">
-              <h3 className="text-xl font-mono font-semibold mb-4 text-green-400">🎯 Built for YOUR Specific Business Problems</h3>
-              <p className="text-gray-300 font-mono mb-6">
-                Unlike generic AI assistants, your custom voice assistant will be trained specifically on:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Your specific field service challenges</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Customer pain points and common issues</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Your business processes and workflows</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Industry-specific terminology and solutions</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Your pricing and service offerings</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-sm text-gray-300">Real business problem-solving scenarios</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
             <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-2xl p-8 mb-8">
-              <h3 className="text-xl font-mono font-semibold mb-4">What You'll Get:</h3>
+              <h3 className="text-xl font-mono font-semibold mb-4">What You'll Receive:</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <Brain className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">Custom Problem-Solving AI</h4>
-                  <p className="text-gray-400 font-mono text-sm">Trained specifically on your business problems and field service challenges</p>
+                  <h4 className="font-mono font-semibold mb-2">Custom AI Voice Assistant</h4>
+                  <p className="text-gray-400 font-mono text-sm">Trained on your field service operations and business processes</p>
                 </div>
                 <div className="text-center">
                   <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
@@ -304,28 +250,6 @@ const Demo: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">Business email address required</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">Field service operations focus</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">30-min call or 14-day trial</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">Customer service focus</span>
-                </div>
-              </div>
-            </div>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/consultation"
@@ -333,7 +257,7 @@ const Demo: React.FC = () => {
               >
                 <div className="flex items-center gap-3">
                   <Brain className="w-5 h-5" />
-                  Get Your Custom Business Assistant
+                  Request Custom Assistant
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </Link>
@@ -341,12 +265,12 @@ const Demo: React.FC = () => {
                 to="/contact"
                 className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
               >
-                Learn More About Our Services
+                Contact Us
               </Link>
             </div>
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500 font-mono">
-                ✓ Custom customer service assistant • ✓ 30-min call or 14-day trial • ✓ Business email required • ✓ Professional consultation included
+                Business email required • Field service focus • Professional consultation included
               </p>
             </div>
           </div>
