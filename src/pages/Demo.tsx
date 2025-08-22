@@ -26,6 +26,8 @@ const Demo: React.FC = () => {
     setFormData(updatedFormData);
     
     // Re-evaluate form validity with updated data
+    const isDemoOnly = updatedFormData.consultationPackage === 'Demo Request Only - Information Gathering';
+    
     setIsFormValid(
       updatedFormData.name.length > 0 &&
       updatedFormData.email.length > 0 &&
@@ -33,8 +35,7 @@ const Demo: React.FC = () => {
       updatedFormData.industry !== '' &&
       updatedFormData.consultationPackage !== '' &&
       updatedFormData.businessDescription.length > 20 &&
-      updatedFormData.preferredDate.length > 0 &&
-      updatedFormData.preferredTime.length > 0
+      (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
 
@@ -55,8 +56,10 @@ const Demo: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Thank you, {formData.name}. We've received your demo request for {formData.preferredDate} at {formData.preferredTime}. 
-              We'll contact you within 24 hours to confirm your appointment and discuss your business automation needs.
+              {formData.consultationPackage === 'Demo Request Only - Information Gathering' 
+                ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant.`
+                : `Thank you, ${formData.name}. We've received your demo request for ${formData.preferredDate} at ${formData.preferredTime}. We'll contact you within 24 hours to confirm your appointment and discuss your business automation needs.`
+              }
             </p>
             
             <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -247,6 +250,7 @@ const Demo: React.FC = () => {
                       className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
                       <option value="">Select consultation package</option>
+                      <option value="Demo Request Only - Information Gathering">Demo Request Only - Information Gathering</option>
                       <option value="Discovery Call - Free (30 minutes)">Discovery Call - Free (30 minutes)</option>
                       <option value="Strategy Consultation - $297 (60 minutes) - Recommended">Strategy Consultation - $297 (60 minutes) - Recommended</option>
                       <option value="Technical Planning - $197 (45 minutes)">Technical Planning - $197 (45 minutes)</option>
@@ -301,43 +305,45 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Preferred Date *
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.preferredDate}
-                      onChange={(e) => handleInputChange('preferredDate', e.target.value)}
-                      required
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
+                {formData.consultationPackage && formData.consultationPackage !== 'Demo Request Only - Information Gathering' && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Date *
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.preferredDate}
+                        onChange={(e) => handleInputChange('preferredDate', e.target.value)}
+                        required
+                        min={new Date().toISOString().split('T')[0]}
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Time *
+                      </label>
+                      <select
+                        value={formData.preferredTime}
+                        onChange={(e) => handleInputChange('preferredTime', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select a time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Preferred Time *
-                    </label>
-                    <select
-                      value={formData.preferredTime}
-                      onChange={(e) => handleInputChange('preferredTime', e.target.value)}
-                      required
-                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    >
-                      <option value="">Select a time</option>
-                      <option value="9:00 AM">9:00 AM</option>
-                      <option value="10:00 AM">10:00 AM</option>
-                      <option value="11:00 AM">11:00 AM</option>
-                      <option value="12:00 PM">12:00 PM</option>
-                      <option value="1:00 PM">1:00 PM</option>
-                      <option value="2:00 PM">2:00 PM</option>
-                      <option value="3:00 PM">3:00 PM</option>
-                      <option value="4:00 PM">4:00 PM</option>
-                      <option value="5:00 PM">5:00 PM</option>
-                    </select>
-                  </div>
-                </div>
+                )}
 
                 <div className="text-center">
                   <button
