@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star, Upload, AlertTriangle } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Play, ExternalLink, CheckCircle, Zap, TrendingUp, Calculator, Lightbulb, ArrowRight, Download, BarChart3, Target, Clock, DollarSign, Phone, Brain, FileText, Users, Mail, MessageSquare as TextIcon, Users as SocialIcon, Star, Upload, AlertTriangle, Mic } from 'lucide-react';
 import { getWebhookUrl } from '../config/api';
+import VoiceAssistant from '../components/VoiceAssistant';
 
 interface ContactData {
   name: string;
@@ -574,6 +575,64 @@ const Demo: React.FC = () => {
         </div>
       </section>
 
+      {/* Try Voice Assistant Section */}
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-8">
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                <MessageSquare className="w-10 h-10 text-cyan-400" />
+              </div>
+              <h2 className="text-3xl font-mono font-bold mb-4">
+                Experience Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Voice Assistant</span>
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto font-mono text-lg">
+                Speak directly with our AI assistant to learn about VectorShift Ventures services, automation solutions, and get instant answers to your business questions.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
+                <Mic className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="font-mono font-semibold mb-2">Natural Conversation</h3>
+                <p className="text-gray-400 font-mono text-sm">Speak naturally and get instant responses about our services</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
+                <Brain className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="font-mono font-semibold mb-2">Expert Knowledge</h3>
+                <p className="text-gray-400 font-mono text-sm">Get detailed information about automation solutions and pricing</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20">
+                <Calendar className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="font-mono font-semibold mb-2">Appointment Booking</h3>
+                <p className="text-gray-400 font-mono text-sm">Schedule consultations and demos directly through conversation</p>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-2xl p-8">
+              <h3 className="text-xl font-mono font-semibold mb-4">Ready to Try?</h3>
+              <p className="text-gray-400 font-mono mb-6">
+                Click the voice assistant button in the bottom-right corner to start a conversation with our AI assistant.
+              </p>
+              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500 font-mono">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span>No registration required</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span>Instant connection</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span>Professional responses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What You'll Get Preview */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
@@ -692,6 +751,9 @@ const Demo: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Voice Assistant */}
+      <VoiceAssistant />
     </div>
   );
 };
