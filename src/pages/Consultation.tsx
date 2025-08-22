@@ -217,17 +217,27 @@ const Consultation: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Get Your Custom AI Demo
+                Get Your Custom Field Service Voice Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Provide your business information and receive a personalized AI voice assistant and website demo tailored specifically to your company.
+              Provide your field service business information and receive a personalized AI voice assistant 
+              for customer service and operations. Available for a 7-day trial period.
             </p>
             
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free Custom Demo Reward</h3>
+              <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free 7-Day Trial Reward</h3>
               <p className="text-gray-300 font-mono text-sm">
-                Complete the consultation form below and receive a personalized AI voice assistant and website demo within 24-48 hours - completely free!
+                Complete the consultation form below and receive a personalized field service AI voice assistant 
+                for a 7-day trial period - completely free! Business email required.
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Built for Field Service Operations</h3>
+              <p className="text-gray-300 font-mono text-sm">
+                Designed for HVAC, plumbing, electrical, maintenance, and other field service businesses. 
+                Handles customer service, scheduling, and business problem-solving for B2B operations.
               </p>
             </div>
             
@@ -237,12 +247,12 @@ const Consultation: React.FC = () => {
                 <span className="font-mono text-sm">Custom AI Voice Assistant</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <Globe className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Personalized Website</span>
+                <Calendar className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">7-Day Trial Period</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <Calendar className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">24-48 Hour Delivery</span>
+                <MessageSquare className="w-8 h-8 text-cyan-400 mr-3" />
+                <span className="font-mono text-sm">Field Service Focus</span>
               </div>
             </div>
           </div>

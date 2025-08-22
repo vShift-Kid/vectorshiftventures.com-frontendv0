@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Building, User, Mail, Phone, FileText, Upload, CheckCircle, ArrowRight, Brain, Globe, MessageSquare } from 'lucide-react';
+import { Building, User, Mail, Phone, FileText, Upload, CheckCircle, ArrowRight, Brain, Globe, MessageSquare, Calendar } from 'lucide-react';
 
 interface CustomDemoData {
   // Contact Information
@@ -197,11 +197,11 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-6">
           <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Custom Demo Request Submitted!
+            Custom Field Service Voice Assistant Request Submitted!
           </span>
         </h2>
         <p className="text-xl text-gray-400 mb-8 font-mono">
-          Thank you, {formData.name}! We've received your custom demo request and will begin creating your personalized AI voice assistant and website demo.
+          Thank you, {formData.name}! We've received your custom field service voice assistant request and will begin creating your personalized AI assistant for a 7-day trial period.
         </p>
         
         <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -209,18 +209,18 @@ const CustomDemoForm: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <Brain className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-              <h4 className="font-mono font-semibold mb-2">AI Analysis</h4>
-              <p className="text-gray-400 font-mono text-sm">Our AI will analyze your requirements and create a custom voice assistant</p>
+              <h4 className="font-mono font-semibold mb-2">AI Training</h4>
+              <p className="text-gray-400 font-mono text-sm">Our AI will analyze your field service requirements and create a custom voice assistant</p>
             </div>
             <div className="text-center">
-              <Globe className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-              <h4 className="font-mono font-semibold mb-2">Website Creation</h4>
-              <p className="text-gray-400 font-mono text-sm">We'll build a personalized demo website with your branding</p>
+              <Calendar className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+              <h4 className="font-mono font-semibold mb-2">7-Day Trial Setup</h4>
+              <p className="text-gray-400 font-mono text-sm">Configure your voice assistant for customer service and field operations</p>
             </div>
             <div className="text-center">
               <MessageSquare className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-              <h4 className="font-mono font-semibold mb-2">Demo Delivery</h4>
-              <p className="text-gray-400 font-mono text-sm">You'll receive access to your custom demo within 24-48 hours</p>
+              <h4 className="font-mono font-semibold mb-2">Trial Delivery</h4>
+              <p className="text-gray-400 font-mono text-sm">You'll receive access to your custom voice assistant within 24-48 hours</p>
             </div>
           </div>
         </div>
@@ -248,13 +248,35 @@ const CustomDemoForm: React.FC = () => {
         </div>
         <h2 className="text-3xl font-mono font-bold mb-4">
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Request Your Custom Demo
+            Request Your Custom Field Service Voice Assistant
           </span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto font-mono text-lg">
-          Get a personalized AI voice assistant and website demo tailored specifically to your business. 
-          Our team will create a custom solution based on your requirements and deliver it within 24-48 hours.
+          Get a personalized AI voice assistant for your field service operations. 
+          Trained on your business information and available for a 7-day trial period.
         </p>
+        
+        <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mt-6">
+          <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span className="font-mono text-sm text-gray-300">Business email address required</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span className="font-mono text-sm text-gray-300">Field service operations focus</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span className="font-mono text-sm text-gray-300">7-day trial period</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span className="font-mono text-sm text-gray-300">B2B customer service focus</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
@@ -280,7 +302,7 @@ const CustomDemoForm: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                Email Address *
+                Business Email Address *
               </label>
               <input
                 type="email"
@@ -288,8 +310,13 @@ const CustomDemoForm: React.FC = () => {
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 required
                 className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                placeholder="your.email@company.com"
+                placeholder="your.name@company.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                title="Please enter a valid business email address"
               />
+              <p className="text-xs text-gray-500 font-mono mt-1">
+                Business email required (no personal emails like gmail.com, yahoo.com)
+              </p>
             </div>
             <div>
               <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
@@ -336,17 +363,18 @@ const CustomDemoForm: React.FC = () => {
                 required
                 className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
               >
-                <option value="">Select your industry</option>
-                <option value="e-commerce">E-commerce</option>
-                <option value="healthcare">Healthcare</option>
-                <option value="real-estate">Real Estate</option>
-                <option value="legal">Legal Services</option>
-                <option value="consulting">Consulting</option>
-                <option value="manufacturing">Manufacturing</option>
-                <option value="technology">Technology</option>
-                <option value="education">Education</option>
-                <option value="finance">Finance</option>
-                <option value="other">Other</option>
+                <option value="">Select your field service industry</option>
+                <option value="hvac">HVAC & Climate Control</option>
+                <option value="plumbing">Plumbing Services</option>
+                <option value="electrical">Electrical Services</option>
+                <option value="maintenance">Maintenance & Repair</option>
+                <option value="landscaping">Landscaping & Grounds</option>
+                <option value="cleaning">Commercial Cleaning</option>
+                <option value="security">Security & Access Control</option>
+                <option value="telecommunications">Telecommunications</option>
+                <option value="utilities">Utilities & Infrastructure</option>
+                <option value="manufacturing">Manufacturing Support</option>
+                <option value="other-field-service">Other Field Service</option>
               </select>
             </div>
             <div>
@@ -575,6 +603,18 @@ const CustomDemoForm: React.FC = () => {
                 <p className="text-sm text-gray-400 font-mono">
                   Maximum 10MB total • PDF, DOC, TXT, Images accepted
                 </p>
+              </div>
+
+              {/* Security Disclaimer */}
+              <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                <div className="flex items-start">
+                  <div className="w-5 h-5 text-yellow-400 mr-2 mt-0.5 flex-shrink-0">⚠️</div>
+                  <div className="text-sm text-yellow-300 font-mono">
+                    <strong>Security Notice:</strong> Please do not upload proprietary data, trade secrets, 
+                    or any information that should not be publicly accessible. Only share non-sensitive, 
+                    general business information. We cannot be responsible for the content you upload.
+                  </div>
+                </div>
               </div>
 
               {/* Uploaded Files List */}

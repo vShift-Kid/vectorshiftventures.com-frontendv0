@@ -16,13 +16,22 @@ const Demo: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Experience Our AI Voice Assistant
+                B2B Customer Service Voice Assistant
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Speak directly with our AI assistant to learn about VectorShift Ventures services, get instant answers to your business questions, 
-              and experience the future of customer interaction.
+              Experience our AI voice assistant designed specifically for field service operations. 
+              Handle customer inquiries, schedule appointments, and solve business problems through natural conversation.
             </p>
+            
+            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Built for Field Service Businesses</h3>
+              <p className="text-gray-300 font-mono text-sm">
+                Designed for HVAC, plumbing, electrical, maintenance, and other field service operations. 
+                Handles customer service, scheduling, and business problem-solving.
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={() => {
@@ -33,7 +42,7 @@ const Demo: React.FC = () => {
               >
                 <div className="flex items-center gap-3">
                   <Mic className="w-5 h-5" />
-                  Start Voice Conversation
+                  Try Voice Assistant
                 </div>
               </button>
               <div className="text-sm text-gray-500 font-mono">
@@ -56,30 +65,30 @@ const Demo: React.FC = () => {
                 </div>
                 <h2 className="text-3xl font-mono font-bold mb-6">
                   <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                    AI-Powered Voice Assistant
+                    Field Service AI Assistant
                   </span>
                 </h2>
                 <p className="text-gray-400 font-mono text-lg mb-8">
-                  Experience the future of customer interaction with our advanced AI voice assistant. 
-                  Get instant answers, schedule appointments, and learn about our services through natural conversation.
+                  Our AI voice assistant is specifically designed for field service operations. 
+                  Handle customer inquiries, schedule appointments, and solve business problems through natural conversation.
                 </p>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-gray-300">Natural voice conversation</span>
+                    <span className="font-mono text-gray-300">Customer service & support</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-gray-300">Instant responses to business questions</span>
+                    <span className="font-mono text-gray-300">Appointment scheduling & management</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-gray-300">Appointment scheduling and booking</span>
+                    <span className="font-mono text-gray-300">Business problem-solving</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="font-mono text-gray-300">Service information and pricing</span>
+                    <span className="font-mono text-gray-300">Field service operations support</span>
                   </div>
                 </div>
 
@@ -111,18 +120,18 @@ const Demo: React.FC = () => {
                       <span className="font-mono text-sm text-cyan-400">AI Assistant</span>
                     </div>
                     <p className="font-mono text-gray-300 text-sm">
-                      "Hello! I'm your VectorShift Ventures AI assistant. I can help you learn about our automation services, 
-                      schedule consultations, and answer any business questions you have. How can I assist you today?"
+                      "Hello! I'm your field service AI assistant. I can help with customer inquiries, schedule appointments, 
+                      and solve business problems. How can I assist your field service operation today?"
                     </p>
                   </div>
                   
                   <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600/30">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <span className="font-mono text-sm text-gray-400">You</span>
+                      <span className="font-mono text-sm text-gray-400">Customer</span>
                     </div>
                     <p className="font-mono text-gray-300 text-sm italic">
-                      "Tell me about your automation services..."
+                      "I need to schedule an HVAC maintenance appointment..."
                     </p>
                   </div>
                   
@@ -132,15 +141,15 @@ const Demo: React.FC = () => {
                       <span className="font-mono text-sm text-cyan-400">AI Assistant</span>
                     </div>
                     <p className="font-mono text-gray-300 text-sm">
-                      "We specialize in business automation solutions including lead generation systems, AI chatbots, 
-                      customer service automation, and social media management. Would you like to learn more about any specific service?"
+                      "I'd be happy to help schedule your HVAC maintenance. I can check our technician availability, 
+                      provide pricing information, and book the appointment. What's your preferred date and time?"
                     </p>
                   </div>
                 </div>
                 
                 <div className="mt-6 text-center">
                   <p className="text-xs text-gray-500 font-mono">
-                    💡 Try asking about: services, pricing, appointments, automation solutions
+                    💡 Try asking about: scheduling, customer service, field service operations, business problems
                   </p>
                 </div>
               </div>
@@ -154,106 +163,106 @@ const Demo: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Voice Assistant Capabilities</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Field Service Voice Assistant Capabilities</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Our AI voice assistant can handle a wide range of business interactions and provide instant, professional responses.
+              Our AI voice assistant is specifically designed for field service operations and can handle a wide range of business interactions.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
               <MessageSquare className="w-16 h-16 text-cyan-400 mb-6" />
-              <h3 className="text-2xl font-mono font-semibold mb-4">Natural Conversation</h3>
-              <p className="text-gray-400 font-mono mb-6">Advanced AI that understands context and provides human-like responses to complex business questions.</p>
+              <h3 className="text-2xl font-mono font-semibold mb-4">Customer Service & Support</h3>
+              <p className="text-gray-400 font-mono mb-6">Handle customer inquiries, troubleshoot issues, and provide support for field service operations.</p>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Context-aware responses
+                  Customer inquiry handling
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Multi-turn conversations
+                  Technical support assistance
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Professional tone and language
+                  Service request processing
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Industry-specific knowledge
+                  Emergency response coordination
                 </li>
               </ul>
             </div>
 
             <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
               <Calendar className="w-16 h-16 text-cyan-400 mb-6" />
-              <h3 className="text-2xl font-mono font-semibold mb-4">Appointment Scheduling</h3>
-              <p className="text-gray-400 font-mono mb-6">Seamlessly schedule consultations, demos, and meetings directly through voice conversation.</p>
+              <h3 className="text-2xl font-mono font-semibold mb-4">Appointment & Scheduling</h3>
+              <p className="text-gray-400 font-mono mb-6">Manage appointments, schedule technicians, and coordinate field service operations efficiently.</p>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Calendar integration
+                  Technician scheduling
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Availability checking
+                  Service appointment booking
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Meeting confirmation
+                  Route optimization
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Reminder notifications
+                  Maintenance scheduling
                 </li>
               </ul>
             </div>
 
             <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
               <Brain className="w-16 h-16 text-cyan-400 mb-6" />
-              <h3 className="text-2xl font-mono font-semibold mb-4">Business Intelligence</h3>
-              <p className="text-gray-400 font-mono mb-6">Get detailed information about services, pricing, and automation solutions tailored to your needs.</p>
+              <h3 className="text-2xl font-mono font-semibold mb-4">Business Problem Solving</h3>
+              <p className="text-gray-400 font-mono mb-6">Solve complex business problems and provide solutions for field service challenges.</p>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Service explanations
+                  Operational efficiency analysis
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Pricing information
+                  Cost optimization recommendations
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  ROI calculations
+                  Process improvement suggestions
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Case study examples
+                  Resource allocation optimization
                 </li>
               </ul>
             </div>
 
             <div className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
               <Users className="w-16 h-16 text-cyan-400 mb-6" />
-              <h3 className="text-2xl font-mono font-semibold mb-4">Lead Qualification</h3>
-              <p className="text-gray-400 font-mono mb-6">Intelligent lead qualification and routing to ensure prospects get the right information and follow-up.</p>
+              <h3 className="text-2xl font-mono font-semibold mb-4">Field Service Operations</h3>
+              <p className="text-gray-400 font-mono mb-6">Support field service operations with intelligent routing, technician management, and service coordination.</p>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Need assessment
+                  Technician dispatch coordination
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Budget qualification
+                  Service area management
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Timeline evaluation
+                  Equipment tracking & management
                 </li>
                 <li className="flex items-center text-gray-300 font-mono">
                   <CheckCircle className="w-4 h-4 text-cyan-400 mr-3 flex-shrink-0" />
-                  Decision maker identification
+                  Quality assurance monitoring
                 </li>
               </ul>
             </div>
@@ -270,12 +279,12 @@ const Demo: React.FC = () => {
             </div>
             <h2 className="text-3xl font-mono font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Want Your Own Custom Voice Assistant?
+                Get Your Custom Field Service Voice Assistant
               </span>
             </h2>
             <p className="text-gray-400 mb-8 font-mono text-lg">
-              Get a personalized AI voice assistant and website demo tailored specifically to your business. 
-              Our team will create a custom solution based on your requirements and deliver it within 24-48 hours.
+              Receive a personalized AI voice assistant trained on your business information and field service operations. 
+              Available for a 7-day trial period with business email verification.
             </p>
             
             <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-2xl p-8 mb-8">
@@ -284,17 +293,39 @@ const Demo: React.FC = () => {
                 <div className="text-center">
                   <Brain className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
                   <h4 className="font-mono font-semibold mb-2">Custom AI Voice Assistant</h4>
-                  <p className="text-gray-400 font-mono text-sm">Trained on your business information and processes</p>
+                  <p className="text-gray-400 font-mono text-sm">Trained on your field service operations and business processes</p>
                 </div>
                 <div className="text-center">
                   <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">Personalized Website</h4>
-                  <p className="text-gray-400 font-mono text-sm">Custom branding and features for your business</p>
+                  <h4 className="font-mono font-semibold mb-2">7-Day Trial Period</h4>
+                  <p className="text-gray-400 font-mono text-sm">Full access to test with your customers and operations</p>
                 </div>
                 <div className="text-center">
                   <Calendar className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">24-48 Hour Delivery</h4>
-                  <p className="text-gray-400 font-mono text-sm">Fast turnaround with professional consultation</p>
+                  <h4 className="font-mono font-semibold mb-2">24-48 Hour Setup</h4>
+                  <p className="text-gray-400 font-mono text-sm">Quick deployment with professional consultation</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-blue-400">🏢 Business Requirements:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span className="font-mono text-sm text-gray-300">Business email address required</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span className="font-mono text-sm text-gray-300">Field service operations focus</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span className="font-mono text-sm text-gray-300">No proprietary data uploads</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span className="font-mono text-sm text-gray-300">B2B customer service focus</span>
                 </div>
               </div>
             </div>
@@ -319,7 +350,7 @@ const Demo: React.FC = () => {
             </div>
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500 font-mono">
-                ✓ Free custom demo • ✓ No obligation • ✓ Professional consultation included
+                ✓ Free 7-day trial • ✓ Business email required • ✓ Field service focused • ✓ Professional consultation included
               </p>
             </div>
           </div>
