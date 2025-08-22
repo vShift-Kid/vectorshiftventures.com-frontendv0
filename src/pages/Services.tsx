@@ -5,6 +5,22 @@ import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, Che
 const Services: React.FC = () => {
   const mainServices = [
     {
+      icon: PhoneCall,
+      title: "Field Service Voice Assistant",
+      description: "B2B AI voice assistant specifically designed for field service operations and business problem-solving",
+      features: [
+        "Customer service & support",
+        "Appointment scheduling & management",
+        "Business problem-solving",
+        "Field service operations support",
+        "Technician dispatch coordination",
+        "Service area management",
+        "Equipment tracking & management",
+        "Quality assurance monitoring"
+      ],
+      benefits: ["Reduce customer service costs by 60%", "Improve response time by 80%", "24/7 availability", "B2B focused solutions"]
+    },
+    {
       icon: SocialIcon,
       title: "Online Reputation Management",
       description: "Comprehensive digital presence optimization and brand reputation enhancement",
@@ -113,7 +129,11 @@ const Services: React.FC = () => {
               Transform your business operations with our comprehensive AI automation solutions including lead generation, social media management, custom chatbots, and more.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-8">
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <PhoneCall className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Voice Assistant</span>
+              </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <MessageSquare className="w-6 h-6 text-cyan-400 mr-2" />
                 <span className="font-mono text-sm">Lead Generation</span>
