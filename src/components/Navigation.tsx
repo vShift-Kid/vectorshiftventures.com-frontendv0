@@ -32,7 +32,7 @@ const Navigation: React.FC = () => {
             <Link to="/" className="flex flex-col">
               <div className="flex items-center">
                 <span className="text-lg font-mono font-medium text-gray-400">
-                  Vectorshift
+                  Vector Shift
                 </span>
                 <span className="text-xl italic font-serif bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent ml-1">
                   Ventures
