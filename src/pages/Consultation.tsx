@@ -103,63 +103,34 @@ const Consultation: React.FC = () => {
         <div className="container mx-auto px-6 py-20">
           <div className="max-w-3xl mx-auto text-center">
             <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-8" />
-            <h1 className="text-4xl font-mono font-bold mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Consultation Request Submitted!
+            <h2 className="text-3xl font-mono font-bold mb-6">
+              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+                Consultation Request Submitted
               </span>
-            </h1>
+            </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Thank you for providing your business information! Now let's create your custom AI voice assistant and website demo.
+              Thank you, {formData.name}. We've received your consultation request and will contact you within 24 hours to confirm your appointment and discuss your business automation needs.
             </p>
             
-            <div className="bg-gradient-to-b from-green-500/10 to-transparent border border-green-500/20 rounded-2xl p-8 mb-8">
-              <h3 className="text-xl font-mono font-semibold mb-4 text-green-400">🎁 Your Reward: Custom Demo</h3>
-              <p className="text-gray-300 font-mono mb-6">
-                As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant and website demo specifically for your company.
-              </p>
+            <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
+              <h3 className="text-xl font-mono font-semibold text-white mb-4">What Happens Next?</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <Brain className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">Custom AI Voice Assistant</h4>
-                  <p className="text-gray-400 font-mono text-sm">Trained on your business information and processes</p>
-                </div>
-                <div className="text-center">
-                  <Globe className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">Personalized Website</h4>
-                  <p className="text-gray-400 font-mono text-sm">Custom branding and features for your business</p>
+                  <h4 className="font-mono font-semibold mb-2">Confirmation</h4>
+                  <p className="text-gray-400 font-mono text-sm">We'll confirm your consultation appointment within 24 hours</p>
                 </div>
                 <div className="text-center">
                   <Calendar className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">24-48 Hour Delivery</h4>
-                  <p className="text-gray-400 font-mono text-sm">Fast turnaround with professional consultation</p>
+                  <h4 className="font-mono font-semibold mb-2">Consultation</h4>
+                  <p className="text-gray-400 font-mono text-sm">Meet with our experts to discuss your automation needs</p>
+                </div>
+                <div className="text-center">
+                  <MessageSquare className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                  <h4 className="font-mono font-semibold mb-2">Custom Solution</h4>
+                  <p className="text-gray-400 font-mono text-sm">Receive a tailored automation strategy for your business</p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-4">What Happens Next?</h3>
-              <ul className="text-left space-y-3 text-gray-300 font-mono">
-                <li className="flex items-center">
-                  <Search className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  We analyze your business information and industry data
-                </li>
-                <li className="flex items-center">
-                  <Brain className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Train AI agents with your company-specific knowledge
-                </li>
-                <li className="flex items-center">
-                  <Bot className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Create custom voice assistant for your business
-                </li>
-                <li className="flex items-center">
-                  <Globe className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Build personalized website with your branding
-                </li>
-                <li className="flex items-center">
-                  <Calendar className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  Deliver your custom demo within 24-48 hours
-                </li>
-              </ul>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -198,26 +169,26 @@ const Consultation: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Custom Customer Service Assistant
+                Book Your Consultation
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Provide your field service business information to receive a personalized AI voice assistant 
-              specifically built to solve your business problems. Available for evaluation with 30-minute call time or 14-day trial period.
+              Schedule a consultation to discuss your field service business automation needs. 
+              Our experts will help you identify opportunities and create a customized solution for your business.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Brain className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Custom AI Voice Assistant</span>
+                <span className="font-mono text-sm">Custom AI Solutions</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Calendar className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">30-Min Call / 14-Day Trial</span>
+                <span className="font-mono text-sm">Flexible Scheduling</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <MessageSquare className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">Field Service Focus</span>
+                <span className="font-mono text-sm">Expert Consultation</span>
               </div>
             </div>
           </div>
@@ -230,7 +201,7 @@ const Consultation: React.FC = () => {
               </span>
             </h2>
             <p className="text-gray-400 text-center mb-8 font-mono">
-              All consultation packages include trained AI agents based on your comprehensive business information.
+              All consultation packages include comprehensive business analysis and customized automation recommendations.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -332,11 +303,11 @@ const Consultation: React.FC = () => {
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-mono font-bold mb-4">
                     <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                      Request Your Custom Customer Service Assistant
+                      Book Your Consultation
                     </span>
                   </h3>
                   <p className="text-gray-400 font-mono">
-                    Complete the form below to begin the process of creating your personalized AI voice assistant.
+                    Complete the form below to schedule your consultation and discuss your business automation needs.
                   </p>
                 </div>
                 
@@ -450,7 +421,7 @@ const Consultation: React.FC = () => {
                       required
                       rows={4}
                       className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                      placeholder="Describe your field service business, current challenges, and what you hope to achieve with a custom AI voice assistant..."
+                      placeholder="Describe your field service business, current challenges, and what you hope to achieve with automation..."
                     />
                   </div>
                   
@@ -468,7 +439,7 @@ const Consultation: React.FC = () => {
                       ) : ( */}
                         <div className="flex items-center gap-3">
                           <Brain className="w-5 h-5" />
-                          Submit Request
+                          Book Consultation
                           <ArrowRight className="w-5 h-5" />
                         </div>
                       {/* ) */}
