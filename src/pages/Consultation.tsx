@@ -5,45 +5,26 @@ import CustomDemoForm from '../components/CustomDemoForm';
 const Consultation: React.FC = () => {
   const [showCustomDemoForm, setShowCustomDemoForm] = useState(false);
   const [formData, setFormData] = useState({
-    // Company Information
-    companyName: '',
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
     industry: '',
-    companyWebsite: '',
-    companySize: '',
-    
-    // Contact Information
-    contactName: '',
-    contactEmail: '',
-    contactPhone: '',
-    contactRole: '',
-    
-    // Business Needs & Goals
-    businessDescription: '',
-    currentChallenges: '',
-    automationGoals: '',
-    timeline: '',
-    budgetRange: '',
-    
-    // Additional
-    consultationType: 'strategy',
-    preferredDate: '',
-    preferredTime: '',
-    additionalInfo: ''
+    consultationPackage: '',
+    businessDescription: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Consultation request:', formData);
     setIsSubmitted(true);
   };
 
@@ -211,7 +192,7 @@ const Consultation: React.FC = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent" />
         <div className="container mx-auto px-6 relative">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto mb-12">
             <div className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <Brain className="w-12 h-12 text-white" />
             </div>
@@ -240,389 +221,263 @@ const Consultation: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Consultation Types */}
-      <section className="py-20 bg-[#0A0B1E]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-mono font-bold mb-4">
-              Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Consultation Package</span>
+          {/* Consultation Packages */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <h2 className="text-2xl font-mono font-bold text-center mb-8">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Choose Your Consultation Package
+              </span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
+            <p className="text-gray-400 text-center mb-8 font-mono">
               All consultation packages include trained AI agents based on your comprehensive business information.
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {consultationTypes.map((type, index) => (
-              <div 
-                key={index} 
-                className={`p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border transition-all relative ${
-                  type.recommended 
-                    ? 'border-cyan-400 shadow-lg shadow-cyan-500/20' 
-                    : 'border-cyan-500/20 hover:border-cyan-500/40'
-                }`}
-              >
-                {type.recommended && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-mono font-semibold">
-                      Recommended
-                    </span>
-                  </div>
-                )}
-                <h3 className="text-2xl font-mono font-semibold mb-4">{type.title}</h3>
-                <div className="flex items-center text-cyan-400 mb-4">
-                  <Clock className="w-5 h-5 mr-2" />
-                  <span className="font-mono">{type.duration}</span>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Discovery Call */}
+              <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 rounded-2xl p-6 border border-gray-600/30">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-mono font-semibold mb-2">Discovery Call</h3>
+                  <div className="text-3xl font-mono font-bold text-green-400 mb-1">Free</div>
+                  <div className="text-gray-400 font-mono text-sm">30 minutes</div>
                 </div>
-                <p className="text-gray-400 font-mono mb-6">{type.description}</p>
-                
-                <ul className="space-y-2 mb-6">
-                  {type.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start text-sm text-gray-300 font-mono">
-                      <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
+                <p className="text-gray-300 font-mono text-sm mb-6">
+                  Initial consultation to understand your automation needs
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Business requirements assessment
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Automation opportunities review
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Service overview and consultation planning
+                  </li>
                 </ul>
-                
-                <div className="text-2xl font-mono font-bold text-green-400">{type.price}</div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Comprehensive Form */}
-      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-mono font-bold mb-4">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Provide Comprehensive Business Information
-                </span>
-              </h2>
-              <p className="text-gray-400 font-mono">
-                This information will be used to train your custom demo and phone agents with knowledge specific to your business.
-              </p>
+              {/* Strategy Consultation - Recommended */}
+              <div className="bg-gradient-to-b from-cyan-500/10 to-blue-500/10 rounded-2xl p-6 border border-cyan-500/30 relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-xs font-mono font-semibold">
+                    Recommended
+                  </span>
+                </div>
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-mono font-semibold mb-2">Strategy Consultation</h3>
+                  <div className="text-3xl font-mono font-bold text-cyan-400 mb-1">$297</div>
+                  <div className="text-gray-400 font-mono text-sm">60 minutes</div>
+                </div>
+                <p className="text-gray-300 font-mono text-sm mb-6">
+                  Comprehensive consultation to understand your needs and plan automation strategy
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Business needs assessment and analysis
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Custom automation strategy planning
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    ROI projections and implementation roadmap
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Technology recommendations and next steps
+                  </li>
+                </ul>
+              </div>
+
+              {/* Technical Planning */}
+              <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 rounded-2xl p-6 border border-gray-600/30">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-mono font-semibold mb-2">Technical Planning</h3>
+                  <div className="text-3xl font-mono font-bold text-green-400 mb-1">$197</div>
+                  <div className="text-gray-400 font-mono text-sm">45 minutes</div>
+                </div>
+                <p className="text-gray-300 font-mono text-sm mb-6">
+                  Deep dive into your processes and technical requirements
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Technical requirements analysis
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Integration planning and assessment
+                  </li>
+                  <li className="flex items-start text-sm text-gray-300 font-mono">
+                    <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Implementation strategy development
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Company Information */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Building className="w-6 h-6 text-cyan-400 mr-3" />
-                  Company Information
-                </h3>
+          {/* Custom Demo Form */}
+          {showCustomDemoForm ? (
+            <CustomDemoForm />
+          ) : (
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-cyan-500/20">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-mono font-bold mb-4">
+                    <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                      Request Your Custom Customer Service Assistant
+                    </span>
+                  </h3>
+                  <p className="text-gray-400 font-mono">
+                    Complete the form below to begin the process of creating your personalized AI voice assistant.
+                  </p>
+                </div>
                 
-                <div className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Company Name *</label>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Full Name *
+                      </label>
                       <input
                         type="text"
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleInputChange}
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
                         required
-                        placeholder="Enter company name"
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                        placeholder="Your full name"
                       />
                     </div>
-                    
                     <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Industry *</label>
-                      <select
-                        name="industry"
-                        value={formData.industry}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                      >
-                        <option value="">Select industry</option>
-                        <option value="technology">Technology/SaaS</option>
-                        <option value="ecommerce">E-commerce/Retail</option>
-                        <option value="healthcare">Healthcare</option>
-                        <option value="finance">Financial Services</option>
-                        <option value="real-estate">Real Estate</option>
-                        <option value="professional-services">Professional Services</option>
-                        <option value="education">Education</option>
-                        <option value="manufacturing">Manufacturing</option>
-                        <option value="marketing">Marketing/Advertising</option>
-                        <option value="consulting">Consulting</option>
-                        <option value="hospitality">Hospitality</option>
-                        <option value="construction">Construction</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Company Website</label>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Business Email Address *
+                      </label>
                       <input
-                        type="url"
-                        name="companyWebsite"
-                        value={formData.companyWebsite}
-                        onChange={handleInputChange}
-                        placeholder="https://yourcompany.com"
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                        placeholder="your.name@company.com"
                       />
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Company Size</label>
-                      <select
-                        name="companySize"
-                        value={formData.companySize}
-                        onChange={handleInputChange}
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                      >
-                        <option value="">Select company size</option>
-                        <option value="1-10">1-10 employees</option>
-                        <option value="11-50">11-50 employees</option>
-                        <option value="51-200">51-200 employees</option>
-                        <option value="201-1000">201-1,000 employees</option>
-                        <option value="1000+">1,000+ employees</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Information */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <User className="w-6 h-6 text-cyan-400 mr-3" />
-                  Contact Information
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Name *</label>
-                    <input
-                      type="text"
-                      name="contactName"
-                      value={formData.contactName}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="Your full name"
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Email *</label>
-                    <input
-                      type="email"
-                      name="contactEmail"
-                      value={formData.contactEmail}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="your.email@company.com"
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Contact Phone</label>
-                    <input
-                      type="tel"
-                      name="contactPhone"
-                      value={formData.contactPhone}
-                      onChange={handleInputChange}
-                      placeholder="+1 (555) 123-4567"
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Your Role</label>
-                    <input
-                      type="text"
-                      name="contactRole"
-                      value={formData.contactRole}
-                      onChange={handleInputChange}
-                      placeholder="e.g., Operations Manager, CEO, etc."
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Business Needs & Goals */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Target className="w-6 h-6 text-cyan-400 mr-3" />
-                  Business Needs & Goals
-                </h3>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Business Description *</label>
-                    <textarea
-                      name="businessDescription"
-                      value={formData.businessDescription}
-                      onChange={handleInputChange}
-                      required
-                      rows={4}
-                      placeholder="Describe your business operations and current processes..."
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Current Challenges *</label>
-                    <textarea
-                      name="currentChallenges"
-                      value={formData.currentChallenges}
-                      onChange={handleInputChange}
-                      required
-                      rows={4}
-                      placeholder="What challenges are you facing with current processes?"
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Automation Goals *</label>
-                    <textarea
-                      name="automationGoals"
-                      value={formData.automationGoals}
-                      onChange={handleInputChange}
-                      required
-                      rows={4}
-                      placeholder="What do you want to achieve with automation?"
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                    />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Timeline</label>
-                      <select
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleInputChange}
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                      >
-                        <option value="">Select timeline</option>
-                        <option value="immediate">Immediate (within 1 month)</option>
-                        <option value="short-term">Short-term (1-3 months)</option>
-                        <option value="medium-term">Medium-term (3-6 months)</option>
-                        <option value="long-term">Long-term (6+ months)</option>
-                        <option value="exploring">Just exploring options</option>
-                      </select>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Company Name *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.company}
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                        placeholder="Your company name"
+                      />
                     </div>
-                    
                     <div>
-                      <label className="block text-sm font-mono text-gray-300 mb-2">Budget Range</label>
-                      <select
-                        name="budgetRange"
-                        value={formData.budgetRange}
-                        onChange={handleInputChange}
-                        className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                      >
-                        <option value="">Select budget range</option>
-                        <option value="under-5k">Under $5,000</option>
-                        <option value="5k-15k">$5,000 - $15,000</option>
-                        <option value="15k-50k">$15,000 - $50,000</option>
-                        <option value="50k-100k">$50,000 - $100,000</option>
-                        <option value="100k+">$100,000+</option>
-                        <option value="not-sure">Not sure yet</option>
-                      </select>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                        placeholder="Your phone number"
+                      />
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Consultation Type & Scheduling */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <Calendar className="w-6 h-6 text-cyan-400 mr-3" />
-                  Consultation Preferences
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  
                   <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Consultation Type</label>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Industry *
+                    </label>
                     <select
-                      name="consultationType"
-                      value={formData.consultationType}
-                      onChange={handleInputChange}
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                      value={formData.industry}
+                      onChange={(e) => handleInputChange('industry', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
-                      <option value="strategy">Strategy Consultation</option>
-                      <option value="discovery">Discovery Call</option>
-                      <option value="technical">Technical Planning</option>
+                      <option value="">Select your field service industry</option>
+                      <option value="hvac">HVAC & Climate Control</option>
+                      <option value="plumbing">Plumbing Services</option>
+                      <option value="electrical">Electrical Services</option>
+                      <option value="maintenance">Maintenance & Repair</option>
+                      <option value="landscaping">Landscaping & Grounds</option>
+                      <option value="cleaning">Commercial Cleaning</option>
+                      <option value="security">Security & Access Control</option>
+                      <option value="telecommunications">Telecommunications</option>
+                      <option value="utilities">Utilities & Infrastructure</option>
+                      <option value="manufacturing">Manufacturing Support</option>
+                      <option value="other-field-service">Other Field Service</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Preferred Date</label>
-                    <input
-                      type="date"
-                      name="preferredDate"
-                      value={formData.preferredDate}
-                      onChange={handleInputChange}
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Consultation Package *
+                    </label>
+                    <select
+                      value={formData.consultationPackage}
+                      onChange={(e) => handleInputChange('consultationPackage', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                    >
+                      <option value="">Select your consultation package</option>
+                      <option value="discovery">Discovery Call - Free (30 minutes)</option>
+                      <option value="strategy">Strategy Consultation - $297 (60 minutes)</option>
+                      <option value="technical">Technical Planning - $197 (45 minutes)</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Business Description *
+                    </label>
+                    <textarea
+                      value={formData.businessDescription}
+                      onChange={(e) => handleInputChange('businessDescription', e.target.value)}
+                      required
+                      rows={4}
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Describe your field service business, current challenges, and what you hope to achieve with a custom AI voice assistant..."
                     />
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-mono text-gray-300 mb-2">Preferred Time</label>
-                    <select
-                      name="preferredTime"
-                      value={formData.preferredTime}
-                      onChange={handleInputChange}
-                      className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      disabled={false} // isLoading state removed
+                      className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option value="">Select Time</option>
-                      <option value="9:00 AM">9:00 AM</option>
-                      <option value="10:00 AM">10:00 AM</option>
-                      <option value="11:00 AM">11:00 AM</option>
-                      <option value="1:00 PM">1:00 PM</option>
-                      <option value="2:00 PM">2:00 PM</option>
-                      <option value="3:00 PM">3:00 PM</option>
-                      <option value="4:00 PM">4:00 PM</option>
-                    </select>
+                      {/* isLoading ? (
+                        <div className="flex items-center gap-3">
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          Submitting...
+                        </div>
+                      ) : ( */}
+                        <div className="flex items-center gap-3">
+                          <Brain className="w-5 h-5" />
+                          Submit Request
+                          <ArrowRight className="w-5 h-5" />
+                        </div>
+                      {/* ) */}
+                    </button>
                   </div>
-                </div>
+                </form>
               </div>
-
-              {/* Additional Information */}
-              <div className="bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-2xl p-8">
-                <h3 className="text-xl font-mono font-semibold mb-6 flex items-center">
-                  <MessageSquare className="w-6 h-6 text-cyan-400 mr-3" />
-                  Additional Information
-                </h3>
-                
-                <textarea
-                  name="additionalInfo"
-                  value={formData.additionalInfo}
-                  onChange={handleInputChange}
-                  rows={4}
-                  placeholder="Any additional information that would help us understand your business better..."
-                  className="w-full bg-[#0A0B1E] border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono focus:outline-none focus:border-cyan-400"
-                />
-              </div>
-
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0A0B1E]"
-                >
-                  Submit Consultation Request
-                </button>
-                <p className="text-sm text-gray-400 font-mono mt-4">
-                  We'll use this information to train your custom AI agents and prepare your consultation
-                </p>
-              </div>
-            </form>
-          </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
