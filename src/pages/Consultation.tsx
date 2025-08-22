@@ -222,14 +222,14 @@ const Consultation: React.FC = () => {
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
               Provide your field service business information and receive a personalized AI voice assistant 
-              for customer service and operations. Available for a 7-day trial period.
+              for customer service and operations. Available for a 30-minute call time or 14-day trial period.
             </p>
             
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free 7-Day Trial Reward</h3>
+              <h3 className="text-lg font-mono font-semibold mb-3 text-green-400">🎁 Free Trial Reward</h3>
               <p className="text-gray-300 font-mono text-sm">
                 Complete the consultation form below and receive a personalized field service AI voice assistant 
-                for a 7-day trial period - completely free! Business email required.
+                for a 30-minute call time or 14-day trial period - completely free! Business email required.
               </p>
             </div>
             
@@ -241,6 +241,13 @@ const Consultation: React.FC = () => {
               </p>
             </div>
             
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-purple-400">⚡ Vector Shift Ventures</h3>
+              <p className="text-gray-300 font-mono text-sm">
+                <span className="text-purple-400 font-semibold">Automation Agency</span> - Specializing in AI-powered business automation solutions for field service operations.
+              </p>
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Brain className="w-8 h-8 text-cyan-400 mr-3" />
@@ -248,7 +255,7 @@ const Consultation: React.FC = () => {
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Calendar className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="font-mono text-sm">7-Day Trial Period</span>
+                <span className="font-mono text-sm">30-Min Call / 14-Day Trial</span>
               </div>
               <div className="flex items-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <MessageSquare className="w-8 h-8 text-cyan-400 mr-3" />

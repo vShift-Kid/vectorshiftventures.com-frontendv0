@@ -32,6 +32,13 @@ const Demo: React.FC = () => {
               </p>
             </div>
             
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6 mb-8">
+              <h3 className="text-lg font-mono font-semibold mb-3 text-purple-400">⚡ Vector Shift Ventures</h3>
+              <p className="text-gray-300 font-mono text-sm">
+                <span className="text-purple-400 font-semibold">Automation Agency</span> - Specializing in AI-powered business automation solutions for field service operations.
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={() => {
@@ -284,7 +291,7 @@ const Demo: React.FC = () => {
             </h2>
             <p className="text-gray-400 mb-8 font-mono text-lg">
               Receive a personalized AI voice assistant trained on your business information and field service operations. 
-              Available for a 7-day trial period with business email verification.
+              Available for a 30-minute call time or 14-day trial period with business email verification.
             </p>
             
             <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-2xl p-8 mb-8">
@@ -297,8 +304,8 @@ const Demo: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                  <h4 className="font-mono font-semibold mb-2">7-Day Trial Period</h4>
-                  <p className="text-gray-400 font-mono text-sm">Full access to test with your customers and operations</p>
+                  <h4 className="font-mono font-semibold mb-2">30-Min Call / 14-Day Trial</h4>
+                  <p className="text-gray-400 font-mono text-sm">Choose between 30-minute call time or 14-day trial period</p>
                 </div>
                 <div className="text-center">
                   <Calendar className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
@@ -321,7 +328,7 @@ const Demo: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="font-mono text-sm text-gray-300">No proprietary data uploads</span>
+                  <span className="font-mono text-sm text-gray-300">30-min call or 14-day trial</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
@@ -350,7 +357,7 @@ const Demo: React.FC = () => {
             </div>
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500 font-mono">
-                ✓ Free 7-day trial • ✓ Business email required • ✓ Field service focused • ✓ Professional consultation included
+                ✓ 30-min call or 14-day trial • ✓ Business email required • ✓ Field service focused • ✓ Professional consultation included
               </p>
             </div>
           </div>
