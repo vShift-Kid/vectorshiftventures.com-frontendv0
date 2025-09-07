@@ -24,6 +24,9 @@ const Demo: React.FC = () => {
     industryContext: ''
   });
 
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [dragActive, setDragActive] = useState(false);
+
   const handleInputChange = (field: string, value: string) => {
     const updatedFormData = {
       ...formData,
@@ -48,6 +51,55 @@ const Demo: React.FC = () => {
       updatedFormData.industryContext !== '' &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
+  };
+
+  const handleFileUpload = (files: FileList | null) => {
+    if (!files) return;
+    
+    const newFiles = Array.from(files);
+    const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);
+    const maxSize = 50 * 1024 * 1024; // 50MB limit per file
+    const maxTotalSize = 100 * 1024 * 1024; // 100MB total limit
+    
+    // Check individual file size
+    const oversizedFiles = newFiles.filter(file => file.size > maxSize);
+    if (oversizedFiles.length > 0) {
+      alert(`The following files exceed the 50MB limit: ${oversizedFiles.map(f => f.name).join(', ')}`);
+      return;
+    }
+    
+    // Check total size
+    const currentTotalSize = uploadedFiles.reduce((acc, file) => acc + file.size, 0);
+    if (currentTotalSize + totalSize > maxTotalSize) {
+      alert('Total file size would exceed 100MB limit. Please select smaller files.');
+      return;
+    }
+    
+    setUploadedFiles(prev => [...prev, ...newFiles]);
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,17 +131,29 @@ const Demo: React.FC = () => {
           interactionMode: formData.interactionMode,
           industryContext: formData.industryContext
         },
+        uploadedFiles: uploadedFiles.map(file => ({
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          lastModified: file.lastModified
+        })),
         source: 'vectorshiftventures-demo-page',
         submittedAt: new Date().toISOString()
       };
 
-      // Send to n8n webhook
+      // Create FormData for file upload
+      const formDataToSend = new FormData();
+      formDataToSend.append('webhookData', JSON.stringify(webhookData));
+      
+      // Add files to FormData
+      uploadedFiles.forEach((file, index) => {
+        formDataToSend.append(`file_${index}`, file);
+      });
+
+      // Send to n8n webhook with files
       const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/lead-submission', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookData)
+        body: formDataToSend
       });
 
       if (response.ok) {
@@ -449,9 +513,19 @@ const Demo: React.FC = () => {
 
                 <div>
                   <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Additional Documentation
+                    Additional Documentation (Optional)
                   </label>
-                  <div className="border-2 border-dashed border-cyan-500/30 rounded-lg p-6 text-center hover:border-cyan-400/50 transition-colors">
+                  <div
+                    className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                      dragActive 
+                        ? 'border-cyan-400 bg-cyan-500/10' 
+                        : 'border-cyan-500/30 hover:border-cyan-400/50'
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
                     <div className="space-y-4">
                       <div className="w-12 h-12 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
                         <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -465,19 +539,54 @@ const Demo: React.FC = () => {
                         </p>
                       </div>
                       <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                        <button
-                          type="button"
-                          className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-lg text-sm font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all"
-                        >
+                        <label className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-lg text-sm font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all cursor-pointer">
                           Choose Files
-                        </button>
+                          <input
+                            type="file"
+                            multiple
+                            className="hidden"
+                            onChange={(e) => handleFileUpload(e.target.files)}
+                            accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif,.xlsx,.xls,.ppt,.pptx"
+                          />
+                        </label>
                         <span className="text-gray-500 font-mono text-xs self-center">or drag and drop</span>
                       </div>
                       <p className="text-gray-500 font-mono text-xs">
-                        PDF, DOC, DOCX, TXT, or images up to 10MB each
+                        PDF, DOC, DOCX, TXT, images, Excel, PowerPoint up to 50MB each (100MB total)
                       </p>
                     </div>
                   </div>
+
+                  {/* Uploaded Files List */}
+                  {uploadedFiles.length > 0 && (
+                    <div className="mt-4">
+                      <h4 className="text-sm font-mono font-medium text-gray-300 mb-2">Uploaded Files:</h4>
+                      <div className="space-y-2">
+                        {uploadedFiles.map((file, index) => (
+                          <div key={index} className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
+                            <div className="flex items-center">
+                              <svg className="w-4 h-4 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <div>
+                                <span className="text-sm text-gray-300 font-mono">{file.name}</span>
+                                <span className="text-xs text-gray-400 ml-2">
+                                  ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                                </span>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFile(index)}
+                              className="text-red-400 hover:text-red-300 text-sm font-mono"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {formData.consultationPackage && formData.consultationPackage !== 'Demo Request Only - Evaluation Phase' && (
