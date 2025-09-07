@@ -141,36 +141,39 @@ const Demo: React.FC = () => {
         submittedAt: new Date().toISOString()
       };
 
-      // Create FormData for file upload
-      const formDataToSend = new FormData();
-      formDataToSend.append('webhookData', JSON.stringify(webhookData));
-      
-      // Add files to FormData
-      uploadedFiles.forEach((file, index) => {
-        formDataToSend.append(`file_${index}`, file);
-      });
-
-      // Send to n8n webhook for Supabase integration
+      // Send JSON data to n8n webhook for Supabase integration
       console.log('Submitting to n8n webhook for Supabase integration...');
+      console.log('Webhook data:', webhookData);
+      console.log('Uploaded files:', uploadedFiles);
+      
       const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed', {
         method: 'POST',
-        body: formDataToSend
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData)
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
       if (response.ok) {
+        const responseData = await response.text();
         console.log('Demo request submitted successfully to n8n webhook');
+        console.log('Response data:', responseData);
         setIsSubmitted(true);
       } else {
         console.error('Failed to submit demo request to webhook');
         const errorText = await response.text();
         console.error('Error response:', errorText);
-        // Still show success for now, but log the error
-        setIsSubmitted(true);
+        console.error('Response status:', response.status);
+        console.error('Response statusText:', response.statusText);
+        alert('Failed to submit form. Please try again or contact support.');
       }
     } catch (error) {
       console.error('Error submitting demo request:', error);
-      // Still show success for now, but log the error
-      setIsSubmitted(true);
+      console.error('Error details:', error);
+      alert('Error submitting form: ' + (error instanceof Error ? error.message : 'Unknown error'));
     }
   };
 
