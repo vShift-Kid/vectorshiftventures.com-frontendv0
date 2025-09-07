@@ -141,17 +141,23 @@ const Demo: React.FC = () => {
         submittedAt: new Date().toISOString()
       };
 
-      // Send JSON data to n8n webhook for Supabase integration
+      // Send FormData with JSON and files to n8n webhook
       console.log('Submitting to n8n webhook for Supabase integration...');
       console.log('Webhook data:', webhookData);
       console.log('Uploaded files:', uploadedFiles);
       
+      // Create FormData for file upload
+      const formDataToSend = new FormData();
+      formDataToSend.append('webhookData', JSON.stringify(webhookData));
+      
+      // Add files to FormData
+      uploadedFiles.forEach((file, index) => {
+        formDataToSend.append(`file_${index}`, file);
+      });
+      
       const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookData)
+        body: formDataToSend
       });
 
       console.log('Response status:', response.status);
