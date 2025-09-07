@@ -13,14 +13,14 @@ import {
   ArrowLeft,
   ExternalLink
 } from 'lucide-react';
-import { supabase, Company, ResearchData, GeneratedContent, VapiIntegration, WebsiteConfig } from '../lib/supabase';
+// import { supabase, Company, ResearchData, GeneratedContent, VapiIntegration, WebsiteConfig } from '../lib/supabase';
 
 interface CompanyData {
-  company: Company;
-  research?: ResearchData;
-  content?: GeneratedContent;
-  vapi?: VapiIntegration;
-  website?: WebsiteConfig;
+  company: any; // Company;
+  research?: any; // ResearchData;
+  content?: any; // GeneratedContent;
+  vapi?: any; // VapiIntegration;
+  website?: any; // WebsiteConfig;
 }
 
 const CompanyPage: React.FC = () => {
