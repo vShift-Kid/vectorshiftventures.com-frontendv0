@@ -15,7 +15,13 @@ const Demo: React.FC = () => {
     consultationPackage: '',
     businessDescription: '',
     preferredDate: '',
-    preferredTime: ''
+    preferredTime: '',
+    // Voice Agent Customization Fields
+    useCase: '',
+    targetUsers: '',
+    languageStyle: '',
+    interactionMode: '',
+    industryContext: ''
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -35,6 +41,11 @@ const Demo: React.FC = () => {
       updatedFormData.industry !== '' &&
       updatedFormData.consultationPackage !== '' &&
       updatedFormData.businessDescription.length > 20 &&
+      updatedFormData.useCase !== '' &&
+      updatedFormData.targetUsers !== '' &&
+      updatedFormData.languageStyle !== '' &&
+      updatedFormData.interactionMode !== '' &&
+      updatedFormData.industryContext !== '' &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
@@ -60,6 +71,13 @@ const Demo: React.FC = () => {
         scheduling: {
           preferredDate: formData.preferredDate,
           preferredTime: formData.preferredTime
+        },
+        voiceAgentCustomization: {
+          useCase: formData.useCase,
+          targetUsers: formData.targetUsers,
+          languageStyle: formData.languageStyle,
+          interactionMode: formData.interactionMode,
+          industryContext: formData.industryContext
         },
         source: 'vectorshiftventures-demo-page',
         submittedAt: new Date().toISOString()
@@ -102,7 +120,7 @@ const Demo: React.FC = () => {
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
               {formData.consultationPackage === 'Demo Request Only - Evaluation Phase' 
-                ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant.`
+                ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant tailored for ${formData.useCase} with ${formData.targetUsers}.`
                 : `Thank you, ${formData.name}. We've received your demo request for ${formData.preferredDate} at ${formData.preferredTime}. We'll contact you within 24 hours to confirm your appointment and discuss your business automation needs.`
               }
             </p>
@@ -317,6 +335,118 @@ const Demo: React.FC = () => {
                   />
                 </div>
 
+                {/* Voice Agent Customization Section */}
+                <div className="bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 rounded-2xl p-6">
+                  <div className="text-center mb-6">
+                    <h4 className="text-lg font-mono font-semibold text-blue-400 mb-2">
+                      🎯 Voice Agent Customization
+                    </h4>
+                    <p className="text-gray-400 font-mono text-sm">
+                      Help us create the perfect voice assistant for your business needs
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Primary Use Case *
+                      </label>
+                      <select
+                        value={formData.useCase}
+                        onChange={(e) => handleInputChange('useCase', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">What should the agent do?</option>
+                        <option value="customer-service">Customer Service (answer FAQs, schedule appointments)</option>
+                        <option value="dispatch-scheduling">Dispatch & Scheduling (assign jobs, update technicians)</option>
+                        <option value="equipment-troubleshooting">Equipment Troubleshooting (guide step-by-step repair checks)</option>
+                        <option value="internal-knowledge">Internal Knowledge Access (manuals, SOPs, training support)</option>
+                        <option value="status-updates">Status Updates (job progress, delivery, repair status)</option>
+                        <option value="sales-lead-qualification">Sales/Lead Qualification (capture customer needs, book demos)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Target Users *
+                      </label>
+                      <select
+                        value={formData.targetUsers}
+                        onChange={(e) => handleInputChange('targetUsers', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Who will interact with it?</option>
+                        <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
+                        <option value="supervisors-managers">Supervisors/Managers (job tracking, reporting, escalations)</option>
+                        <option value="customers">Customers (service requests, appointment booking, FAQs)</option>
+                        <option value="call-center-dispatch">Call Center / Dispatch Agents (assist in handling calls or queries)</option>
+                        <option value="sales-front-office">Sales / Front Office Staff (qualify leads, gather customer info)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Language & Style *
+                      </label>
+                      <select
+                        value={formData.languageStyle}
+                        onChange={(e) => handleInputChange('languageStyle', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select preferred language and style</option>
+                        <option value="english-professional">English (US) – Professional</option>
+                        <option value="english-friendly">English (US) – Friendly/Conversational</option>
+                        <option value="english-uk">English (UK)</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="bilingual-english-spanish">Bilingual (English + Spanish)</option>
+                        <option value="other">Other (specify in business description)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Interaction Mode *
+                      </label>
+                      <select
+                        value={formData.interactionMode}
+                        onChange={(e) => handleInputChange('interactionMode', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">How should users interact?</option>
+                        <option value="voice-only">Voice Only</option>
+                        <option value="voice-text-chat">Voice + Text Chat</option>
+                        <option value="text-only">Text Only</option>
+                      </select>
+                    </div>
+
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Industry Context *
+                      </label>
+                      <select
+                        value={formData.industryContext}
+                        onChange={(e) => handleInputChange('industryContext', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select your specific industry context</option>
+                        <option value="hvac-mechanical">HVAC / Mechanical Services</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="electrical-power">Electrical / Power Systems</option>
+                        <option value="manufacturing-industrial">Manufacturing / Industrial</option>
+                        <option value="medical-healthcare">Medical / Healthcare</option>
+                        <option value="logistics-warehousing">Logistics / Warehousing</option>
+                        <option value="it-software">IT / Software</option>
+                        <option value="other">Other (specify in business description)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                     Additional Documentation
@@ -419,7 +549,7 @@ const Demo: React.FC = () => {
                     </h4>
                   </div>
                   <p className="text-gray-300 font-mono mb-4">
-                    As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant specifically trained on your business processes and challenges.
+                    As a thank you for providing your comprehensive business information, we'll create a personalized AI voice assistant specifically trained on your business processes and challenges. Your assistant will be optimized for <strong className="text-green-400">{formData.useCase}</strong> and designed for <strong className="text-green-400">{formData.targetUsers}</strong>.
                   </p>
                   
                   <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-4 mb-4">
