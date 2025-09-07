@@ -9,6 +9,7 @@ const Demo = React.lazy(() => import('./pages/Demo'));
 const Services = React.lazy(() => import('./pages/Services'));
 const Consultation = React.lazy(() => import('./pages/Consultation'));
 const Contact = React.lazy(() => import('./pages/Contact'));
+const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
 
 // Loading component
@@ -31,6 +32,8 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/consultation" element={<Consultation />} />
               <Route path="/contact" element={<Contact />} />
+              {/* Dynamic company routes - this will match any slug */}
+              <Route path="/:slug" element={<CompanyPage />} />
             </Routes>
             <Chatbot />
           </Suspense>
