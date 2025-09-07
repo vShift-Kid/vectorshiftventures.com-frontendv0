@@ -6,7 +6,7 @@ services:
     region: oregon
     buildCommand: npm ci && npm run build
     startCommand: npx serve -s dist -l $PORT
-    repo: https://github.com/yourusername/vectorshift-ventures.git
+    repo: https://github.com/vShift-Kid/vectorshiftventures.git
     branch: main
     envVars:
       - key: NODE_VERSION
