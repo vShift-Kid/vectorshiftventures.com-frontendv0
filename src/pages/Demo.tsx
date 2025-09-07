@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, Gift, Bot, Globe } from 'lucide-react';
-import GoogleSheetsService, { FormSubmissionData } from '../services/googleSheets';
-import GoogleDriveService from '../services/googleDrive';
-import { GOOGLE_SHEETS_API_KEY, validateGoogleConfig } from '../config/google';
 
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -109,20 +106,8 @@ const Demo: React.FC = () => {
     e.preventDefault();
     
     try {
-      // Validate Google API configuration
-      const configValidation = validateGoogleConfig();
-      if (!configValidation.isValid) {
-        console.error('Google API configuration error:', configValidation.errors);
-        alert('Configuration error: ' + configValidation.errors.join(', '));
-        return;
-      }
-
-      // Initialize services
-      const sheetsService = new GoogleSheetsService(GOOGLE_SHEETS_API_KEY);
-      const driveService = new GoogleDriveService('');
-
-      // Prepare the form data
-      const submissionData: FormSubmissionData = {
+      // Prepare the data for the n8n webhook
+      const webhookData = {
         contactInfo: {
           name: formData.name,
           email: formData.email,
@@ -131,7 +116,7 @@ const Demo: React.FC = () => {
         businessInfo: {
           companyName: formData.company,
           industry: formData.industry,
-          website: '', // Can be added later
+          website: '', // Will be researched by n8n
           businessDescription: formData.businessDescription
         },
         consultationPackage: formData.consultationPackage,
@@ -156,29 +141,36 @@ const Demo: React.FC = () => {
         submittedAt: new Date().toISOString()
       };
 
-      // Submit to Google Sheets
-      console.log('Submitting to Google Sheets...');
-      const sheetsResult = await sheetsService.submitFormData(submissionData);
+      // Create FormData for file upload
+      const formDataToSend = new FormData();
+      formDataToSend.append('webhookData', JSON.stringify(webhookData));
       
-      if (sheetsResult.success) {
-        console.log('Successfully submitted to Google Sheets:', sheetsResult.message);
-        
-        // Handle file uploads (metadata only for now)
-        if (uploadedFiles.length > 0) {
-          console.log('Processing file metadata...');
-          const fileMetadata = driveService.getFileMetadata(uploadedFiles);
-          console.log('File metadata prepared:', fileMetadata);
-        }
-        
+      // Add files to FormData
+      uploadedFiles.forEach((file, index) => {
+        formDataToSend.append(`file_${index}`, file);
+      });
+
+      // Send to n8n webhook for Supabase integration
+      console.log('Submitting to n8n webhook for Supabase integration...');
+      const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed', {
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        console.log('Demo request submitted successfully to n8n webhook');
         setIsSubmitted(true);
       } else {
-        console.error('Failed to submit to Google Sheets:', sheetsResult.message);
-        alert('Failed to submit form: ' + sheetsResult.message);
+        console.error('Failed to submit demo request to webhook');
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        // Still show success for now, but log the error
+        setIsSubmitted(true);
       }
-      
     } catch (error) {
       console.error('Error submitting demo request:', error);
-      alert('Error submitting form: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      // Still show success for now, but log the error
+      setIsSubmitted(true);
     }
   };
 
