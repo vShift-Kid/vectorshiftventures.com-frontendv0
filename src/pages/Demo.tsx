@@ -1099,7 +1099,7 @@ const Demo: React.FC = () => {
               </div>
             </div>
 
-            <div className="text-center">
+                <div className="text-center">
                   <button
                     type="submit"
                     disabled={!isFormValid}
@@ -1117,7 +1117,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-            </div>
+                  </div>
           </div>
         </div>
       </section>
