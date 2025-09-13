@@ -609,7 +609,7 @@ const Demo: React.FC = () => {
                       >
                         <option value="">Who will primarily interact with your voice agent?</option>
                         <optgroup label="Field Operations">
-                          <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
+                        <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
                           <option value="service-technicians">Service Technicians (installation, repair, maintenance)</option>
                           <option value="maintenance-staff">Maintenance Staff (preventive maintenance, inspections)</option>
                           <option value="emergency-technicians">Emergency Response Technicians</option>
@@ -617,7 +617,7 @@ const Demo: React.FC = () => {
                           <option value="apprentice-technicians">Apprentice & Junior Technicians</option>
                         </optgroup>
                         <optgroup label="Management & Supervision">
-                          <option value="supervisors-managers">Supervisors/Managers (job tracking, reporting, escalations)</option>
+                        <option value="supervisors-managers">Supervisors/Managers (job tracking, reporting, escalations)</option>
                           <option value="operations-managers">Operations Managers (workflow optimization, resource allocation)</option>
                           <option value="field-managers">Field Managers (technician coordination, quality control)</option>
                           <option value="dispatch-managers">Dispatch Managers (scheduling, route optimization)</option>
@@ -625,7 +625,7 @@ const Demo: React.FC = () => {
                           <option value="regional-managers">Regional Managers (multi-location oversight)</option>
                         </optgroup>
                         <optgroup label="Customer-Facing">
-                          <option value="customers">Customers (service requests, appointment booking, FAQs)</option>
+                        <option value="customers">Customers (service requests, appointment booking, FAQs)</option>
                           <option value="business-customers">Business Customers (B2B service requests, contracts)</option>
                           <option value="residential-customers">Residential Customers (home services, maintenance)</option>
                           <option value="property-managers">Property Managers (multi-unit management, maintenance)</option>
@@ -633,7 +633,7 @@ const Demo: React.FC = () => {
                           <option value="emergency-customers">Emergency Customers (urgent service requests)</option>
                         </optgroup>
                         <optgroup label="Internal Support Staff">
-                          <option value="call-center-dispatch">Call Center / Dispatch Agents (assist in handling calls or queries)</option>
+                        <option value="call-center-dispatch">Call Center / Dispatch Agents (assist in handling calls or queries)</option>
                           <option value="customer-service-reps">Customer Service Representatives</option>
                           <option value="sales-reps">Sales Representatives (lead qualification, quotes)</option>
                           <option value="account-managers">Account Managers (client relationship management)</option>
@@ -641,7 +641,7 @@ const Demo: React.FC = () => {
                           <option value="scheduling-coordinators">Scheduling Coordinators (appointment management)</option>
                         </optgroup>
                         <optgroup label="Administrative & Back Office">
-                          <option value="sales-front-office">Sales / Front Office Staff (qualify leads, gather customer info)</option>
+                        <option value="sales-front-office">Sales / Front Office Staff (qualify leads, gather customer info)</option>
                           <option value="administrative-staff">Administrative Staff (data entry, documentation)</option>
                           <option value="billing-staff">Billing & Accounting Staff (invoicing, payment processing)</option>
                           <option value="hr-personnel">HR Personnel (employee support, training coordination)</option>
@@ -700,10 +700,10 @@ const Demo: React.FC = () => {
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Voice Agent Specialization *
                         <div className="group relative">
-                          <button type="button" className="w-4 h-4 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 text-xs font-bold transition-colors">
+                          <button type="button" className="w-5 h-5 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 text-xs font-bold transition-colors p-1">
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-cyan-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-cyan-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 pointer-events-auto z-20 shadow-lg">
                             This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating" and "short cycling" issues.
                           </div>
                         </div>
@@ -810,10 +810,10 @@ const Demo: React.FC = () => {
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Primary Research Focus *
                         <div className="group relative">
-                          <button type="button" className="w-4 h-4 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors">
+                          <button type="button" className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1">
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 pointer-events-auto z-20 shadow-lg">
                             This guides our research to gather the most relevant information for your voice agent. We'll focus on industry trends, customer insights, or operational excellence based on your selection.
                           </div>
                         </div>
@@ -854,16 +854,16 @@ const Demo: React.FC = () => {
                             <option value="knowledge-management">Knowledge management and documentation</option>
                           </optgroup>
                         </select>
-                      </div>
-                      
+                </div>
+
                       <div>
                         <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                           Research Depth Preference
                           <div className="group relative">
-                            <button type="button" className="w-4 h-4 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors">
+                            <button type="button" className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1">
                               ?
                             </button>
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 pointer-events-auto z-20 shadow-lg">
                               Choose how detailed the research should be. Comprehensive = deep dive, Focused = specific areas, Overview = high-level insights.
                             </div>
                           </div>
@@ -891,10 +891,10 @@ const Demo: React.FC = () => {
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Demo Type *
                         <div className="group relative">
-                          <button type="button" className="w-4 h-4 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors">
+                          <button type="button" className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1">
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 pointer-events-auto z-20 shadow-lg">
                             Voice Agent: Phone-based customer service. Chatbot: Web-based chat interface. Newsletter: Customized email content and automation.
                           </div>
                         </div>
@@ -917,8 +917,8 @@ const Demo: React.FC = () => {
 
                   {/* Additional Business Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                <div>
+                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                         Your Role in the Business *
                       </label>
                       <select
@@ -984,10 +984,10 @@ const Demo: React.FC = () => {
                   <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                     Additional Documentation (Optional)
                     <div className="group relative">
-                      <button type="button" className="w-4 h-4 bg-green-500/20 hover:bg-green-500/30 rounded-full flex items-center justify-center text-green-400 text-xs font-bold transition-colors">
+                      <button type="button" className="w-5 h-5 bg-green-500/20 hover:bg-green-500/30 rounded-full flex items-center justify-center text-green-400 text-xs font-bold transition-colors p-1">
                         ?
                       </button>
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-green-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-green-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 pointer-events-auto z-20 shadow-lg">
                         Upload service manuals, FAQs, procedures, pricing sheets. Avoid customer data, financial records, or proprietary information.
                       </div>
                     </div>
