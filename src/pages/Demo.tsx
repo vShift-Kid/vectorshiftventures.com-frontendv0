@@ -2,131 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, Brain, CheckCircle, ArrowRight, Bot, Globe } from 'lucide-react';
 
-// Function to get tailored analytics specializations based on target users
-const getAnalyticsSpecializations = (targetUsers: string): string[] => {
-  const allSpecializations = {
-    // Field Service Technicians
-    technicians: [
-      'Equipment Diagnostics', 'Troubleshooting Procedures', 'Calibration Analysis', 'Tool Performance',
-      'Vibration Analysis', 'Thermal Analysis', 'Electrical System Analysis', 'Mechanical System Analysis',
-      'Sensor Data Analysis', 'Error Code Analysis', 'Maintenance Procedures', 'Safety Protocols',
-      'Parts Identification', 'Warranty Procedures', 'Service Documentation', 'Quality Control'
-    ],
-    
-    // Project Managers
-    projectManagers: [
-      'Project Timeline Analysis', 'Resource Allocation', 'Budget Performance', 'Risk Assessment',
-      'Team Productivity Analysis', 'Client Satisfaction Metrics', 'Project Success Rates', 'Cost-Benefit Analysis',
-      'Schedule Optimization', 'Resource Utilization', 'Quality Metrics', 'Delivery Performance',
-      'Stakeholder Communication', 'Change Management', 'Project ROI Analysis', 'Performance Dashboards'
-    ],
-    
-    // Program Managers
-    programManagers: [
-      'Strategic Planning Analysis', 'Portfolio Performance', 'Resource Planning', 'Strategic Alignment',
-      'Program ROI Analysis', 'Stakeholder Management', 'Risk Management', 'Compliance Monitoring',
-      'Performance Metrics', 'Budget Forecasting', 'Resource Optimization', 'Strategic Initiatives',
-      'Market Analysis', 'Competitive Intelligence', 'Innovation Tracking', 'Executive Reporting'
-    ],
-    
-    // Data Analysts
-    dataAnalysts: [
-      'Statistical Analysis', 'Predictive Modeling', 'Data Mining', 'Trend Analysis',
-      'Correlation Analysis', 'Regression Analysis', 'Time Series Analysis', 'Machine Learning',
-      'Big Data Analytics', 'Data Visualization', 'Performance Metrics', 'KPI Analysis',
-      'Anomaly Detection', 'Pattern Recognition', 'Data Quality Analysis', 'Reporting Automation'
-    ],
-    
-    // Executives
-    executives: [
-      'Strategic Performance', 'Financial Analysis', 'Market Intelligence', 'Competitive Analysis',
-      'ROI Analysis', 'Risk Assessment', 'Growth Metrics', 'Market Share Analysis',
-      'Customer Analytics', 'Revenue Analysis', 'Cost Analysis', 'Investment Analysis',
-      'Strategic Planning', 'Performance Dashboards', 'Executive Reporting', 'Decision Support'
-    ],
-    
-    // Logistics & Supply Chain
-    logistics: [
-      'Inventory Optimization', 'Supply Chain Analysis', 'Demand Forecasting', 'Supplier Performance',
-      'Logistics Efficiency', 'Cost Optimization', 'Delivery Performance', 'Warehouse Management',
-      'Transportation Analysis', 'Procurement Analysis', 'Vendor Management', 'Supply Chain Risk',
-      'Order Fulfillment', 'Distribution Analysis', 'Logistics Planning', 'Supply Chain Visibility'
-    ],
-    
-    // Customer Care & Support
-    customerCare: [
-      'Customer Satisfaction', 'Support Ticket Analysis', 'Response Time Analysis', 'Resolution Rates',
-      'Customer Feedback Analysis', 'Service Quality Metrics', 'Customer Journey Analysis', 'Retention Analysis',
-      'Support Performance', 'Customer Experience', 'Complaint Analysis', 'Service Level Analysis',
-      'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization'
-    ],
-    
-    // IT & Engineering
-    itEngineering: [
-      'System Performance', 'Network Analysis', 'Security Analysis', 'Infrastructure Monitoring',
-      'Software Performance', 'Database Analysis', 'API Performance', 'System Reliability',
-      'Capacity Planning', 'Technology Trends', 'Integration Analysis', 'System Optimization',
-      'Cybersecurity Analysis', 'Cloud Performance', 'Data Management', 'Technology Roadmap'
-    ],
-    
-    // Manufacturing & Operations
-    manufacturing: [
-      'Production Analysis', 'Quality Control', 'Process Optimization', 'Efficiency Analysis',
-      'Manufacturing Metrics', 'Equipment Performance', 'Production Planning', 'Quality Assurance',
-      'Process Improvement', 'Manufacturing Intelligence', 'Production Forecasting', 'Operational Excellence',
-      'Lean Manufacturing', 'Six Sigma Analysis', 'Process Monitoring', 'Manufacturing Analytics'
-    ]
-  };
-
-  // Get specializations based on target users
-  let specializations: string[] = [];
-  
-  if (targetUsers.includes('Field Service Technicians') || targetUsers.includes('Technicians')) {
-    specializations = [...specializations, ...allSpecializations.technicians];
-  }
-  if (targetUsers.includes('Project Managers') || targetUsers.includes('Project Management')) {
-    specializations = [...specializations, ...allSpecializations.projectManagers];
-  }
-  if (targetUsers.includes('Program Managers') || targetUsers.includes('Program Management')) {
-    specializations = [...specializations, ...allSpecializations.programManagers];
-  }
-  if (targetUsers.includes('Data Analysts') || targetUsers.includes('Analytics Team')) {
-    specializations = [...specializations, ...allSpecializations.dataAnalysts];
-  }
-  if (targetUsers.includes('Executives') || targetUsers.includes('Senior Management')) {
-    specializations = [...specializations, ...allSpecializations.executives];
-  }
-  if (targetUsers.includes('Logistics') || targetUsers.includes('Supply Chain')) {
-    specializations = [...specializations, ...allSpecializations.logistics];
-  }
-  if (targetUsers.includes('Customer Care') || targetUsers.includes('Customer Support')) {
-    specializations = [...specializations, ...allSpecializations.customerCare];
-  }
-  if (targetUsers.includes('IT') || targetUsers.includes('Engineering')) {
-    specializations = [...specializations, ...allSpecializations.itEngineering];
-  }
-  if (targetUsers.includes('Manufacturing') || targetUsers.includes('Operations')) {
-    specializations = [...specializations, ...allSpecializations.manufacturing];
-  }
-
-  // If no specific target users selected, show all specializations
-  if (specializations.length === 0) {
-    specializations = [
-      ...allSpecializations.technicians,
-      ...allSpecializations.projectManagers,
-      ...allSpecializations.programManagers,
-      ...allSpecializations.dataAnalysts,
-      ...allSpecializations.executives,
-      ...allSpecializations.logistics,
-      ...allSpecializations.customerCare,
-      ...allSpecializations.itEngineering,
-      ...allSpecializations.manufacturing
-    ];
-  }
-
-  // Remove duplicates and return
-  return [...new Set(specializations)];
-};
 
 // Function to filter specializations based on search query
 const getFilteredSpecializations = (specializations: string[], query: string): string[] => {
@@ -186,6 +61,40 @@ const sectionData = {
     'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
     'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
     'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction'
+  ]
+};
+
+// Categorized Data Analytics Specializations
+const analyticsCategories = {
+  'Reliability & Quality': [
+    'Failure Prediction', 'Reliability Analysis', 'Quality Control', 'Defect Analysis',
+    'Anomaly Detection', 'Root Cause Analysis', 'Statistical Process Control', 'Six Sigma Analysis',
+    'Quality Metrics', 'Reliability Prediction', 'Failure Mode Analysis', 'Risk Assessment',
+    'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards'
+  ],
+  'Maintenance & Operations': [
+    'Preventive Maintenance', 'Maintenance Scheduling', 'Equipment Performance', 'Downtime Analysis',
+    'Maintenance Optimization', 'Spare Parts Analysis', 'Work Order Analysis', 'Maintenance Costs',
+    'Equipment Lifecycle', 'Maintenance Efficiency', 'Predictive Maintenance', 'Condition Monitoring',
+    'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence'
+  ],
+  'Engineering & Technical': [
+    'Technical Analysis', 'Design Optimization', 'Performance Engineering', 'System Analysis',
+    'Technical Specifications', 'Engineering Metrics', 'Design Validation', 'Technical Documentation',
+    'Engineering Efficiency', 'Technical Standards', 'Engineering Processes', 'Technical Innovation',
+    'Engineering Quality', 'Technical Risk', 'Engineering Compliance', 'Technical Training'
+  ],
+  'Management & Strategy': [
+    'Strategic Planning', 'Management Metrics', 'Performance Management', 'Strategic Analysis',
+    'Management Reporting', 'Strategic Initiatives', 'Management Efficiency', 'Strategic Planning',
+    'Management Optimization', 'Strategic Performance', 'Management Analytics', 'Strategic Metrics',
+    'Management Planning', 'Strategic Management', 'Management Strategy', 'Strategic Analytics'
+  ],
+  'Logistics & Supply Chain': [
+    'Supply Chain Analysis', 'Logistics Optimization', 'Inventory Management', 'Supply Chain Efficiency',
+    'Logistics Planning', 'Supply Chain Performance', 'Inventory Optimization', 'Logistics Metrics',
+    'Supply Chain Analytics', 'Logistics Analytics', 'Supply Chain Planning', 'Logistics Performance',
+    'Supply Chain Optimization', 'Logistics Management', 'Supply Chain Strategy', 'Logistics Strategy'
   ]
 };
 
@@ -1479,41 +1388,58 @@ const Demo: React.FC = () => {
                   </div>
                 )}
 
-                {/* Search Results */}
-                <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-64 overflow-y-auto">
-                  <h5 className="text-sm font-mono font-semibold text-gray-300 mb-3">
-                    Available Specializations
+                {/* Categorized Search Results */}
+                <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
+                  <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
+                    Available Specializations by Category
                   </h5>
-                  <div className="space-y-2">
-                    {getFilteredSpecializations(getAnalyticsSpecializations(formData.targetUsers), searchQuery).map((specialization) => (
-                      <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={formData.advancedCapabilities.includes(specialization)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setFormData(prev => ({
-                                ...prev,
-                                advancedCapabilities: [...prev.advancedCapabilities, specialization]
-                              }));
-                            } else {
-                              setFormData(prev => ({
-                                ...prev,
-                                advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
-                              }));
-                            }
-                          }}
-                          className="mr-3 text-orange-500 focus:ring-orange-400"
-                        />
-                        <span className="text-sm font-mono text-gray-300">{specialization}</span>
-                      </label>
-                    ))}
-                    {getFilteredSpecializations(getAnalyticsSpecializations(formData.targetUsers), searchQuery).length === 0 && searchQuery && (
-                      <p className="text-sm text-gray-400 font-mono text-center py-4">
-                        No specializations found for "{searchQuery}". Try a different search term.
-                      </p>
-                    )}
-                  </div>
+                  
+                  {Object.entries(analyticsCategories).map(([category, specializations]) => {
+                    const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
+                    
+                    if (filteredSpecializations.length === 0) return null;
+                    
+                    return (
+                      <div key={category} className="mb-6 last:mb-0">
+                        <h6 className="text-sm font-mono font-semibold text-orange-300 mb-3 border-b border-orange-500/20 pb-1">
+                          {category}
+                        </h6>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {filteredSpecializations.map((specialization) => (
+                            <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.advancedCapabilities.includes(specialization)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      advancedCapabilities: [...prev.advancedCapabilities, specialization]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                                    }));
+                                  }
+                                }}
+                                className="mr-3 text-orange-500 focus:ring-orange-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{specialization}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  
+                  {Object.values(analyticsCategories).every(specializations => 
+                    getFilteredSpecializations(specializations, searchQuery).length === 0
+                  ) && searchQuery && (
+                    <p className="text-sm text-gray-400 font-mono text-center py-4">
+                      No specializations found for "{searchQuery}"
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -1712,74 +1638,74 @@ const Demo: React.FC = () => {
                 {/* Upload Area */}
                 <div
                   className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                    dragActive
+                      dragActive 
                       ? 'border-purple-400 bg-purple-400/10'
                       : 'border-gray-600 hover:border-purple-400/50'
-                  }`}
-                  onDragEnter={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDragOver={handleDrag}
-                  onDrop={handleDrop}
-                >
-                  <div className="space-y-4">
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
+                    <div className="space-y-4">
                     <div className="text-4xl text-purple-400">📁</div>
-                    <div>
+                      <div>
                       <p className="text-lg font-mono text-gray-300 mb-2">
                         Upload Documents for Knowledge Base
                       </p>
                       <p className="text-sm text-gray-400 mb-4">
                         Drag and drop files here or click to browse
                       </p>
-                      <input
-                        type="file"
-                        multiple
+                          <input
+                            type="file"
+                            multiple
                         accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.pptx"
                         onChange={handleFileUpload}
-                        className="hidden"
+                            className="hidden"
                         id="file-upload"
-                      />
+                          />
                       <label
                         htmlFor="file-upload"
                         className="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-mono rounded-lg cursor-pointer transition-colors"
                       >
                         Choose Files
-                      </label>
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Uploaded Files List */}
-                {uploadedFiles.length > 0 && (
+                  {/* Uploaded Files List */}
+                  {uploadedFiles.length > 0 && (
                   <div className="space-y-3">
                     <h5 className="text-lg font-mono font-semibold text-gray-300">
                       Uploaded Files ({uploadedFiles.length})
                     </h5>
-                    <div className="space-y-2">
-                      {uploadedFiles.map((file, index) => (
+                      <div className="space-y-2">
+                        {uploadedFiles.map((file, index) => (
                         <div
                           key={index}
                           className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3"
                         >
                           <div className="flex items-center space-x-3">
                             <div className="text-purple-400">📄</div>
-                            <div>
+                              <div>
                               <p className="text-sm font-mono text-gray-300">{file.name}</p>
                               <p className="text-xs text-gray-400">
                                 {(file.size / 1024 / 1024).toFixed(2)} MB
                               </p>
+                              </div>
                             </div>
-                          </div>
-                          <button
-                            onClick={() => removeFile(index)}
+                            <button
+                              onClick={() => removeFile(index)}
                             className="text-red-400 hover:text-red-300 transition-colors"
-                          >
+                            >
                             ✕
-                          </button>
-                        </div>
-                      ))}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 {/* Document Guidelines */}
                 <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
@@ -1799,8 +1725,8 @@ const Demo: React.FC = () => {
                         <li>• Troubleshooting guides and FAQs</li>
                         <li>• Parts catalogs and inventory lists</li>
                       </ul>
-                    </div>
-                    
+                </div>
+
                     <div>
                       <h6 className="font-mono font-medium text-red-300 mb-2">⚠️ What to Avoid:</h6>
                       <ul className="text-sm text-gray-300 space-y-1 ml-4">
