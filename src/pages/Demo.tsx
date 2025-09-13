@@ -128,6 +128,19 @@ const getAnalyticsSpecializations = (targetUsers: string): string[] => {
   return [...new Set(specializations)];
 };
 
+// Function to filter specializations based on search query
+const getFilteredSpecializations = (specializations: string[], query: string): string[] => {
+  if (!query.trim()) return specializations;
+  
+  const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+  
+  return specializations.filter(specialization => 
+    searchTerms.every(term => 
+      specialization.toLowerCase().includes(term)
+    )
+  );
+};
+
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -176,6 +189,7 @@ const Demo: React.FC = () => {
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -1117,39 +1131,91 @@ const Demo: React.FC = () => {
               
               <div className="mb-6">
                 <p className="text-sm text-gray-400 font-mono mb-4">
-                  Select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
+                  Search and select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
                 </p>
               </div>
               
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                  Analytics Specializations (Select all that apply)
-                      </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {getAnalyticsSpecializations(formData.targetUsers).map((specialization) => (
-                    <label key={specialization} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={formData.advancedCapabilities.includes(specialization)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setFormData(prev => ({
-                              ...prev,
-                              advancedCapabilities: [...prev.advancedCapabilities, specialization]
-                            }));
-                          } else {
-                            setFormData(prev => ({
-                              ...prev,
-                              advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
-                            }));
-                          }
-                        }}
-                        className="mr-3 text-orange-500 focus:ring-orange-400"
-                      />
-                      <span className="text-sm font-mono text-gray-300">{specialization}</span>
-                    </label>
-                  ))}
+              <div className="space-y-4">
+                {/* Search Bar */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search analytics specializations (e.g., 'equipment', 'maintenance', 'predictive')..."
+                    className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
+                  />
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
+                    🔍
+                  </div>
+                </div>
+
+                {/* Selected Specializations */}
+                {formData.advancedCapabilities.length > 0 && (
+                  <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                    <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
+                      Selected Specializations ({formData.advancedCapabilities.length})
+                    </h5>
+                    <div className="flex flex-wrap gap-2">
+                      {formData.advancedCapabilities.map((specialization) => (
+                        <span
+                          key={specialization}
+                          className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
+                        >
+                          {specialization}
+                          <button
+                            onClick={() => {
+                              setFormData(prev => ({
+                                ...prev,
+                                advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                              }));
+                            }}
+                            className="ml-2 text-orange-400 hover:text-orange-300"
+                          >
+                            ✕
+                          </button>
+                        </span>
+                      ))}
                     </div>
+                  </div>
+                )}
+
+                {/* Search Results */}
+                <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-64 overflow-y-auto">
+                  <h5 className="text-sm font-mono font-semibold text-gray-300 mb-3">
+                    Available Specializations
+                  </h5>
+                  <div className="space-y-2">
+                    {getFilteredSpecializations(getAnalyticsSpecializations(formData.targetUsers), searchQuery).map((specialization) => (
+                      <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={formData.advancedCapabilities.includes(specialization)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setFormData(prev => ({
+                                ...prev,
+                                advancedCapabilities: [...prev.advancedCapabilities, specialization]
+                              }));
+                            } else {
+                              setFormData(prev => ({
+                                ...prev,
+                                advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                              }));
+                            }
+                          }}
+                          className="mr-3 text-orange-500 focus:ring-orange-400"
+                        />
+                        <span className="text-sm font-mono text-gray-300">{specialization}</span>
+                      </label>
+                    ))}
+                    {getFilteredSpecializations(getAnalyticsSpecializations(formData.targetUsers), searchQuery).length === 0 && searchQuery && (
+                      <p className="text-sm text-gray-400 font-mono text-center py-4">
+                        No specializations found for "{searchQuery}". Try a different search term.
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
