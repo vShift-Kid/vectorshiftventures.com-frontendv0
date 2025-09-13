@@ -31,15 +31,13 @@ const Demo: React.FC = () => {
     researchDepth: '',
     // Demo Type Field
     demoType: '',
-    // Specializations Field
-    specializations: [] as string[],
     // Additional AI Agent Attributes
     agentPersonality: '',
     communicationStyle: '',
     technicalLevel: '',
     problemSolvingApproach: '',
     customerInteractionStyle: '',
-    knowledgeSources: [] as string[],
+    specializations: [] as string[],
     performanceGoals: [] as string[],
     integrationRequirements: [] as string[],
     complianceNeeds: [] as string[],
@@ -52,9 +50,6 @@ const Demo: React.FC = () => {
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [showSpecializations, setShowSpecializations] = useState(false);
-  const [specializationSearch, setSpecializationSearch] = useState('');
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -64,188 +59,7 @@ const Demo: React.FC = () => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
   };
 
-  // Handle click outside to close dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setShowSpecializations(false);
-      }
-    };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Specializations data organized by field service departments and roles
-  const specializationsData = {
-    'Field Service Operations': [
-      'Field Technicians', 'Service Calls', 'Equipment Repair', 'Preventive Maintenance',
-      'Emergency Service', 'On-Site Installation', 'Equipment Calibration', 'Troubleshooting',
-      'Diagnostics', 'Parts Replacement', 'System Testing', 'Commissioning',
-      'Field Training', 'Customer Support', 'Service Documentation'
-    ],
-    'Product Support & Engineering': [
-      'Product Support', 'Technical Support', 'Engineering', 'Product Development',
-      'Design Engineering', 'Test Engineering', 'Quality Engineering', 'Reliability Engineering',
-      'Failure Analysis', 'Root Cause Analysis', 'Product Testing', 'Validation',
-      'Design Reviews', 'Technical Documentation', 'Engineering Change Orders'
-    ],
-    'Management & Leadership': [
-      'Field Service Management', 'Senior Management', 'Operations Management',
-      'Team Leadership', 'Performance Management', 'Strategic Planning', 'Budget Management',
-      'Resource Allocation', 'Decision Making', 'Change Management', 'Process Improvement',
-      'KPI Management', 'Staff Development', 'Succession Planning'
-    ],
-    'Logistics & Supply Chain': [
-      'Logistics', 'Parts Management', 'Inventory Control', 'Supply Chain',
-      'Parts Ordering', 'Parts Returns', 'Shipping', 'Receiving', 'Warehouse Management',
-      'Inventory Tracking', 'Parts Availability', 'Vendor Management', 'Procurement',
-      'Distribution', 'Transportation', 'Parts Forecasting'
-    ],
-    'Customer Care & Warranty': [
-      'Customer Care', 'Warranty Management', 'Customer Relations', 'Account Management',
-      'Contract Management', 'Service Agreements', 'Customer Satisfaction', 'Complaint Resolution',
-      'Warranty Claims', 'Parts Warranty', 'Service Contracts', 'Customer Onboarding',
-      'Account Reviews', 'Customer Retention', 'Relationship Management'
-    ],
-    'Program Management': [
-      'Program Management', 'Project Management', 'Customer Programs', 'Large Account Management',
-      'Program Planning', 'Timeline Management', 'Resource Planning', 'Risk Management',
-      'Stakeholder Management', 'Program Execution', 'Program Monitoring', 'Program Reporting',
-      'Customer Success', 'Program Optimization', 'Program Renewal'
-    ],
-    'IT & Technology': [
-      'IT Support', 'System Administration', 'Database Management', 'Network Management',
-      'Software Support', 'Hardware Support', 'Cybersecurity', 'Data Management',
-      'System Integration', 'IT Infrastructure', 'Cloud Computing', 'Mobile Solutions',
-      'Digital Transformation', 'IT Security', 'System Monitoring'
-    ],
-    'Documentation & Training': [
-      'Documentation', 'Technical Writing', 'Procedure Development', 'Training Materials',
-      'User Manuals', 'Service Manuals', 'Process Documentation', 'Knowledge Management',
-      'Training Delivery', 'Competency Development', 'Certification Programs', 'E-Learning',
-      'Document Control', 'Version Management', 'Content Management'
-    ],
-    'HR & Administration': [
-      'Human Resources', 'Recruitment', 'Employee Relations', 'Performance Reviews',
-      'Compensation', 'Benefits Administration', 'Training & Development', 'Policy Development',
-      'Compliance', 'Workplace Safety', 'Employee Engagement', 'Succession Planning',
-      'Administrative Support', 'Office Management', 'Facilities Management'
-    ],
-    'Manufacturing & Production': [
-      'Manufacturing', 'Production Planning', 'Quality Control', 'Assembly',
-      'Testing', 'Packaging', 'Shipping', 'Production Scheduling', 'Work Order Management',
-      'Manufacturing Engineering', 'Process Improvement', 'Lean Manufacturing',
-      'Six Sigma', 'Continuous Improvement', 'Production Monitoring'
-    ],
-    'Sales & Business Development': [
-      'Sales', 'Business Development', 'Account Management', 'Customer Acquisition',
-      'Proposal Development', 'Contract Negotiation', 'Pricing', 'Market Analysis',
-      'Competitive Analysis', 'Sales Forecasting', 'Lead Generation', 'Customer Presentations',
-      'Relationship Building', 'Sales Support', 'Revenue Growth'
-    ],
-    'Finance & Accounting': [
-      'Finance', 'Accounting', 'Financial Analysis', 'Budgeting', 'Cost Management',
-      'Revenue Recognition', 'Financial Reporting', 'Audit Support', 'Tax Compliance',
-      'Financial Planning', 'Investment Analysis', 'Risk Assessment', 'Financial Controls',
-      'Expense Management', 'Financial Modeling'
-    ],
-    'Quality & Compliance': [
-      'Quality Management', 'Compliance', 'Regulatory Affairs', 'Audit Management',
-      'Quality Assurance', 'Process Validation', 'Documentation Control', 'Risk Management',
-      'Corrective Actions', 'Preventive Actions', 'CAPA Management', 'Regulatory Reporting',
-      'Standards Compliance', 'Certification Management', 'Quality Metrics'
-    ],
-    'Electrical Systems': [
-      'Power Distribution', 'Motor Controls', 'VFD Systems', 'High Voltage',
-      'Low Voltage', 'Control Systems', 'Automation Systems', 'PLC Systems',
-      'HMI Systems', 'SCADA Systems', 'Network Infrastructure', 'Transformers',
-      'Switchgear', 'Panel Boards', 'Conduit Systems', 'Cable Management',
-      'Lighting Systems', 'Fire Safety Systems', 'Security Systems', 'Access Control',
-      'Audio/Video Systems', 'Telecommunications', 'Fiber Optics', 'Wireless Systems',
-      'Electrical Testing', 'Troubleshooting', 'Preventive Maintenance', 'Code Compliance',
-      'Energy Management', 'Power Quality', 'Grounding Systems', 'Surge Protection'
-    ],
-    'HVAC & Mechanical Systems': [
-      'HVAC Systems', 'Refrigeration', 'Boiler Systems', 'Chiller Systems',
-      'Heat Pumps', 'Air Handling Units', 'Ductwork', 'Ventilation',
-      'Heating Systems', 'Cooling Systems', 'Air Quality', 'Energy Efficiency',
-      'Building Automation', 'Thermostats', 'Load Calculations', 'System Balancing',
-      'Commissioning', 'Retrofit', 'Maintenance', 'Pumps', 'Compressors',
-      'Generators', 'Mechanical Systems', 'Hydraulics', 'Pneumatics'
-    ],
-    'Medical & Laboratory Equipment': [
-      'Medical Equipment', 'CT Systems', 'X-Ray Equipment', 'Diagnostic Equipment',
-      'Laboratory Equipment', 'Imaging Systems', 'Patient Monitoring', 'Surgical Equipment',
-      'Therapy Equipment', 'Rehabilitation Equipment', 'Dental Equipment', 'Veterinary Equipment',
-      'Pharmaceutical Equipment', 'Research Equipment', 'Calibration Equipment', 'Test Equipment',
-      'Measurement Tools', 'Diagnostic Tools', 'Safety Equipment', 'Compliance Equipment'
-    ],
-    'Industrial & Manufacturing Equipment': [
-      'Industrial Equipment', 'Manufacturing Equipment', 'Heavy Machinery', 'Production Equipment',
-      'Packaging Equipment', 'Food Processing Equipment', 'Chemical Equipment', 'Mining Equipment',
-      'Construction Equipment', 'Agricultural Equipment', 'Material Handling', 'Conveyor Systems',
-      'Robotics', 'Automation Equipment', 'Quality Control Equipment', 'Testing Equipment',
-      'Safety Equipment', 'Environmental Equipment', 'Waste Management Equipment', 'Recycling Equipment'
-    ],
-    'Industry Specializations': [
-      'Healthcare', 'Manufacturing', 'Automotive', 'Aerospace', 'Energy',
-      'Telecommunications', 'Food & Beverage', 'Pharmaceuticals', 'Chemicals',
-      'Oil & Gas', 'Mining', 'Construction', 'Agriculture', 'Transportation',
-      'Retail', 'Hospitality', 'Education', 'Government'
-    ]
-  };
-
-  const handleSpecializationToggle = (specialization: string) => {
-    setFormData(prev => {
-      const currentSpecializations = prev.specializations || [];
-      if (currentSpecializations.includes(specialization)) {
-        return {
-          ...prev,
-          specializations: currentSpecializations.filter(s => s !== specialization)
-        };
-      } else if (currentSpecializations.length < 7) {
-        // Check if adding this specialization would exceed 3 per group
-        const category = getSpecializationCategory(specialization);
-        const categoryCount = currentSpecializations.filter(s => getSpecializationCategory(s) === category).length;
-        
-        if (categoryCount < 3) {
-          return {
-            ...prev,
-            specializations: [...currentSpecializations, specialization]
-          };
-        }
-      }
-      return prev;
-    });
-  };
-
-  const getSpecializationCategory = (specialization: string) => {
-    for (const [category, items] of Object.entries(specializationsData)) {
-      if (items.includes(specialization)) {
-        return category;
-      }
-    }
-    return '';
-  };
-
-  const filteredSpecializations = () => {
-    const search = specializationSearch.toLowerCase();
-    const filtered: { [key: string]: string[] } = {};
-    
-    Object.entries(specializationsData).forEach(([category, items]) => {
-      const filteredItems = items.filter(item => 
-        item.toLowerCase().includes(search)
-      );
-      if (filteredItems.length > 0) {
-        filtered[category] = filteredItems;
-      }
-    });
-    
-    return filtered;
-  };
 
   const handleInputChange = (field: string, value: string) => {
     const updatedFormData = {
@@ -841,143 +655,6 @@ const Demo: React.FC = () => {
                     </div>
                   </div>
 
-                {/* Agent Specializations */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
-                    Agent Specializations
-                  </h4>
-                  
-                              <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Select up to 7 specializations (max 3 per category) *
-                      <div className="relative">
-                        <button 
-                          type="button" 
-                          className="w-5 h-5 bg-purple-500/20 hover:bg-purple-500/30 rounded-full flex items-center justify-center text-purple-400 text-xs font-bold transition-colors p-1"
-                          onMouseEnter={() => handleTooltipShow('specializations')}
-                          onMouseLeave={() => handleTooltipHide('specializations')}
-                        >
-                          ?
-                        </button>
-                        <div 
-                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 p-3 bg-gray-800 border border-purple-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
-                            showTooltips.specializations ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          onMouseEnter={() => handleTooltipShow('specializations')}
-                          onMouseLeave={() => handleTooltipHide('specializations')}
-                        >
-                          Choose specific areas where your AI agent should have expertise. This helps us train it with the right terminology, processes, and knowledge for your field.
-                              </div>
-                            </div>
-                    </label>
-                    
-                    {/* Selected Specializations Display */}
-                    {formData.specializations.length > 0 && (
-                      <div className="mb-4 p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg">
-                        <div className="flex flex-wrap gap-2">
-                          {formData.specializations.map((spec, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm font-mono rounded-full flex items-center gap-2"
-                            >
-                              {spec}
-                            <button
-                              type="button"
-                                onClick={() => handleSpecializationToggle(spec)}
-                                className="text-purple-400 hover:text-purple-300 transition-colors"
-                            >
-                                ×
-                            </button>
-                            </span>
-                        ))}
-                      </div>
-                        <div className="text-xs text-gray-400 mt-2 font-mono">
-                          {formData.specializations.length}/7 selected (max 3 per category)
-                        </div>
-                </div>
-                    )}
-
-                    {/* Multi-select Dropdown */}
-                    <div className="relative" ref={dropdownRef}>
-                      <button
-                        type="button"
-                        onClick={() => setShowSpecializations(!showSpecializations)}
-                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400 text-left flex items-center justify-between"
-                      >
-                        <span className={formData.specializations.length > 0 ? 'text-white' : 'text-gray-400'}>
-                          {formData.specializations.length > 0 
-                            ? `${formData.specializations.length} specializations selected`
-                            : 'Click to select specializations'
-                          }
-                        </span>
-                        <span className={`transform transition-transform ${showSpecializations ? 'rotate-180' : ''}`}>
-                          ▼
-                        </span>
-                      </button>
-
-                      {showSpecializations && (
-                        <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-purple-500/30 rounded-lg shadow-lg z-30 max-h-96 overflow-hidden">
-                          {/* Search Input */}
-                          <div className="p-3 border-b border-purple-500/20">
-                      <input
-                              type="text"
-                              placeholder="Search specializations..."
-                              value={specializationSearch}
-                              onChange={(e) => setSpecializationSearch(e.target.value)}
-                              className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white font-mono text-sm focus:outline-none focus:border-purple-400"
-                      />
-                    </div>
-
-                          {/* Specializations List */}
-                          <div className="max-h-80 overflow-y-auto">
-                            {Object.entries(filteredSpecializations()).map(([category, items]) => (
-                              <div key={category} className="border-b border-gray-700 last:border-b-0">
-                                <div className="px-3 py-2 bg-gray-700/50 text-purple-300 font-mono text-sm font-semibold sticky top-0">
-                                  {category}
-                                </div>
-                                <div className="p-2">
-                                  {items.map((item) => (
-                                    <label
-                                      key={item}
-                                      className={`flex items-center p-2 rounded cursor-pointer transition-colors ${
-                                        formData.specializations.includes(item)
-                                          ? 'bg-purple-500/20 text-purple-300'
-                                          : 'hover:bg-gray-700/50 text-gray-300'
-                                      } ${
-                                        (formData.specializations.length >= 7 || 
-                                         (formData.specializations.filter(s => getSpecializationCategory(s) === category).length >= 3 && !formData.specializations.includes(item)))
-                                          ? 'opacity-50 cursor-not-allowed'
-                                          : ''
-                                      }`}
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        checked={formData.specializations.includes(item)}
-                                        onChange={() => handleSpecializationToggle(item)}
-                                        disabled={formData.specializations.length >= 7 || 
-                                                 (formData.specializations.filter(s => getSpecializationCategory(s) === category).length >= 3 && !formData.specializations.includes(item))}
-                                        className="mr-3 text-purple-500 focus:ring-purple-400"
-                                      />
-                                      <span className="text-sm font-mono">{item}</span>
-                                    </label>
-                                  ))}
-                    </div>
-                  </div>
-                            ))}
-                          </div>
-
-                          {/* Selection Counter */}
-                          <div className="px-3 py-2 bg-gray-700/50 border-t border-gray-600 text-xs text-gray-400 font-mono">
-                            {formData.specializations.length}/7 selected
-                            {formData.specializations.length >= 7 && (
-                              <span className="text-purple-400 ml-2">• Maximum reached</span>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
 
                 {/* AI Agent Personality & Communication */}
                 <div className="border-t border-cyan-500/20 pt-8">
@@ -1067,16 +744,16 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Knowledge Sources & Performance Goals */}
+                {/* Specializations & Performance Goals */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-yellow-400">
-                    Knowledge Sources & Performance Goals
+                    Specializations & Performance Goals
                   </h4>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Knowledge Sources (Select all that apply)
+                        Specializations (Select all that apply)
                       </label>
                       <div className="space-y-2">
                         {[
@@ -1088,17 +765,17 @@ const Demo: React.FC = () => {
                           <label key={source} className="flex items-center">
                             <input
                               type="checkbox"
-                              checked={formData.knowledgeSources.includes(source)}
+                              checked={formData.specializations.includes(source)}
                               onChange={(e) => {
                                 if (e.target.checked) {
                                   setFormData(prev => ({
                                     ...prev,
-                                    knowledgeSources: [...prev.knowledgeSources, source]
+                                    specializations: [...prev.specializations, source]
                                   }));
                                 } else {
                                   setFormData(prev => ({
                                     ...prev,
-                                    knowledgeSources: prev.knowledgeSources.filter(s => s !== source)
+                                    specializations: prev.specializations.filter(s => s !== source)
                                   }));
                                 }
                               }}
