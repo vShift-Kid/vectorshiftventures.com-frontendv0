@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, Gift, Bot, Globe, FileText, Zap, Search } from 'lucide-react';
+import { MessageSquare, Brain, CheckCircle, ArrowRight, Bot, Globe } from 'lucide-react';
 
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -30,11 +30,15 @@ const Demo: React.FC = () => {
     researchFocus: '',
     researchDepth: '',
     // Demo Type Field
-    demoType: ''
+    demoType: '',
+    // Specializations Field
+    specializations: [] as string[]
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [dragActive, setDragActive] = useState(false);
+  const [showSpecializations, setShowSpecializations] = useState(false);
+  const [specializationSearch, setSpecializationSearch] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -42,6 +46,112 @@ const Demo: React.FC = () => {
 
   const handleTooltipHide = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
+  };
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowSpecializations(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Specializations data organized by category
+  const specializationsData = {
+    'Medical & Healthcare': [
+      'X-Ray Technology', 'CT Scanning', 'MRI Technology', 'Ultrasound', 'Nuclear Medicine',
+      'Radiation Therapy', 'Medical Imaging', 'Laboratory Testing', 'Phlebotomy', 'EKG/ECG',
+      'Respiratory Therapy', 'Physical Therapy', 'Occupational Therapy', 'Speech Therapy',
+      'Medical Coding', 'Health Information Management', 'Patient Care', 'Medical Equipment'
+    ],
+    'Construction & Trades': [
+      'Carpentry', 'Framing', 'Finish Carpentry', 'Cabinet Making', 'Woodworking',
+      'Masonry', 'Brick Laying', 'Stone Work', 'Concrete Work', 'Drywall Installation',
+      'Flooring Installation', 'Tile Work', 'Roofing', 'Siding', 'Insulation',
+      'Painting', 'Plastering', 'Welding', 'Metal Fabrication', 'Steel Work'
+    ],
+    'Electronics & Technology': [
+      'Circuit Board Repair', 'Electronic Diagnostics', 'Microcontroller Programming',
+      'Embedded Systems', 'IoT Devices', 'Robotics', 'Automation Systems',
+      'Control Systems', 'PLC Programming', 'HMI Development', 'SCADA Systems',
+      'Network Infrastructure', 'Fiber Optic Installation', 'Wireless Systems',
+      'Audio/Video Systems', 'Security Systems', 'Smart Home Technology'
+    ],
+    'Mechanical & Engineering': [
+      'Hydraulic Systems', 'Pneumatic Systems', 'Mechanical Assembly', 'Precision Machining',
+      'CNC Programming', 'Tool and Die Making', 'Quality Control', 'Metrology',
+      'Mechanical Design', 'CAD/CAM', '3D Modeling', 'Prototyping', 'Testing',
+      'Maintenance Planning', 'Reliability Engineering', 'Failure Analysis'
+    ],
+    'Electrical & Power': [
+      'High Voltage Systems', 'Low Voltage Systems', 'Power Distribution', 'Motor Controls',
+      'VFD Programming', 'Electrical Safety', 'Code Compliance', 'Energy Management',
+      'Renewable Energy', 'Solar Installation', 'Wind Power', 'Battery Systems',
+      'Electrical Testing', 'Troubleshooting', 'Preventive Maintenance'
+    ],
+    'Software & IT': [
+      'Software Development', 'Database Management', 'System Administration',
+      'Network Security', 'Cybersecurity', 'Cloud Computing', 'DevOps',
+      'API Development', 'Mobile App Development', 'Web Development',
+      'Data Analytics', 'Machine Learning', 'AI Integration', 'Automation Scripting'
+    ],
+    'Customer Service & Support': [
+      'Technical Support', 'Customer Relations', 'Account Management', 'Sales Support',
+      'Training & Education', 'Documentation', 'Process Improvement', 'Quality Assurance',
+      'Compliance Management', 'Regulatory Affairs', 'Safety Training', 'Emergency Response'
+    ],
+    'Project Management & Operations': [
+      'Project Planning', 'Resource Management', 'Timeline Management', 'Budget Control',
+      'Risk Assessment', 'Quality Management', 'Vendor Management', 'Supply Chain',
+      'Inventory Management', 'Workflow Optimization', 'Process Documentation',
+      'Performance Metrics', 'Continuous Improvement', 'Change Management'
+    ],
+    'Specialized Equipment': [
+      'Heavy Machinery', 'Industrial Equipment', 'Manufacturing Equipment', 'Packaging Equipment',
+      'Food Processing Equipment', 'Pharmaceutical Equipment', 'Laboratory Equipment',
+      'Medical Devices', 'Safety Equipment', 'Environmental Equipment', 'Testing Equipment',
+      'Calibration Equipment', 'Measurement Instruments', 'Diagnostic Tools'
+    ]
+  };
+
+  const handleSpecializationToggle = (specialization: string) => {
+    setFormData(prev => {
+      const currentSpecializations = prev.specializations || [];
+      if (currentSpecializations.includes(specialization)) {
+        return {
+          ...prev,
+          specializations: currentSpecializations.filter(s => s !== specialization)
+        };
+      } else if (currentSpecializations.length < 5) {
+        return {
+          ...prev,
+          specializations: [...currentSpecializations, specialization]
+        };
+      }
+      return prev;
+    });
+  };
+
+  const filteredSpecializations = () => {
+    const search = specializationSearch.toLowerCase();
+    const filtered: { [key: string]: string[] } = {};
+    
+    Object.entries(specializationsData).forEach(([category, items]) => {
+      const filteredItems = items.filter(item => 
+        item.toLowerCase().includes(search)
+      );
+      if (filteredItems.length > 0) {
+        filtered[category] = filteredItems;
+      }
+    });
+    
+    return filtered;
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -72,33 +182,12 @@ const Demo: React.FC = () => {
       updatedFormData.currentChallenges.length > 10 &&
       updatedFormData.researchFocus.length > 0 &&
       updatedFormData.demoType.length > 0 &&
+      updatedFormData.specializations.length > 0 &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
 
-  const handleFileUpload = (files: FileList) => {
-    const newFiles = Array.from(files);
-    setUploadedFiles(prev => [...prev, ...newFiles]);
-  };
 
-  const handleDrag = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFileUpload(e.dataTransfer.files);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -652,6 +741,142 @@ const Demo: React.FC = () => {
                       <option value="chatbot">Chatbot Demo - Website chat interface for instant customer support and lead qualification</option>
                       <option value="newsletter">Customized Newsletter Demo - Industry-specific content, maintenance tips, and customer engagement</option>
                     </select>
+                  </div>
+                </div>
+
+                {/* Agent Specializations */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
+                    Agent Specializations
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                      Select up to 5 specializations *
+                      <div className="relative">
+                        <button 
+                          type="button" 
+                          className="w-5 h-5 bg-purple-500/20 hover:bg-purple-500/30 rounded-full flex items-center justify-center text-purple-400 text-xs font-bold transition-colors p-1"
+                          onMouseEnter={() => handleTooltipShow('specializations')}
+                          onMouseLeave={() => handleTooltipHide('specializations')}
+                        >
+                          ?
+                        </button>
+                        <div 
+                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 p-3 bg-gray-800 border border-purple-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                            showTooltips.specializations ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onMouseEnter={() => handleTooltipShow('specializations')}
+                          onMouseLeave={() => handleTooltipHide('specializations')}
+                        >
+                          Choose specific areas where your AI agent should have expertise. This helps us train it with the right terminology, processes, and knowledge for your field.
+                        </div>
+                      </div>
+                    </label>
+                    
+                    {/* Selected Specializations Display */}
+                    {formData.specializations.length > 0 && (
+                      <div className="mb-4 p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg">
+                        <div className="flex flex-wrap gap-2">
+                          {formData.specializations.map((spec, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm font-mono rounded-full flex items-center gap-2"
+                            >
+                              {spec}
+                              <button
+                                type="button"
+                                onClick={() => handleSpecializationToggle(spec)}
+                                className="text-purple-400 hover:text-purple-300 transition-colors"
+                              >
+                                ×
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                        <div className="text-xs text-gray-400 mt-2 font-mono">
+                          {formData.specializations.length}/5 selected
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Multi-select Dropdown */}
+                    <div className="relative" ref={dropdownRef}>
+                      <button
+                        type="button"
+                        onClick={() => setShowSpecializations(!showSpecializations)}
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400 text-left flex items-center justify-between"
+                      >
+                        <span className={formData.specializations.length > 0 ? 'text-white' : 'text-gray-400'}>
+                          {formData.specializations.length > 0 
+                            ? `${formData.specializations.length} specializations selected`
+                            : 'Click to select specializations'
+                          }
+                        </span>
+                        <span className={`transform transition-transform ${showSpecializations ? 'rotate-180' : ''}`}>
+                          ▼
+                        </span>
+                      </button>
+
+                      {showSpecializations && (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-purple-500/30 rounded-lg shadow-lg z-30 max-h-96 overflow-hidden">
+                          {/* Search Input */}
+                          <div className="p-3 border-b border-purple-500/20">
+                            <input
+                              type="text"
+                              placeholder="Search specializations..."
+                              value={specializationSearch}
+                              onChange={(e) => setSpecializationSearch(e.target.value)}
+                              className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white font-mono text-sm focus:outline-none focus:border-purple-400"
+                            />
+                          </div>
+
+                          {/* Specializations List */}
+                          <div className="max-h-80 overflow-y-auto">
+                            {Object.entries(filteredSpecializations()).map(([category, items]) => (
+                              <div key={category} className="border-b border-gray-700 last:border-b-0">
+                                <div className="px-3 py-2 bg-gray-700/50 text-purple-300 font-mono text-sm font-semibold sticky top-0">
+                                  {category}
+                                </div>
+                                <div className="p-2">
+                                  {items.map((item) => (
+                                    <label
+                                      key={item}
+                                      className={`flex items-center p-2 rounded cursor-pointer transition-colors ${
+                                        formData.specializations.includes(item)
+                                          ? 'bg-purple-500/20 text-purple-300'
+                                          : 'hover:bg-gray-700/50 text-gray-300'
+                                      } ${
+                                        formData.specializations.length >= 5 && !formData.specializations.includes(item)
+                                          ? 'opacity-50 cursor-not-allowed'
+                                          : ''
+                                      }`}
+                                    >
+                                      <input
+                                        type="checkbox"
+                                        checked={formData.specializations.includes(item)}
+                                        onChange={() => handleSpecializationToggle(item)}
+                                        disabled={formData.specializations.length >= 5 && !formData.specializations.includes(item)}
+                                        className="mr-3 text-purple-500 focus:ring-purple-400"
+                                      />
+                                      <span className="text-sm font-mono">{item}</span>
+                                    </label>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Selection Counter */}
+                          <div className="px-3 py-2 bg-gray-700/50 border-t border-gray-600 text-xs text-gray-400 font-mono">
+                            {formData.specializations.length}/5 selected
+                            {formData.specializations.length >= 5 && (
+                              <span className="text-purple-400 ml-2">• Maximum reached</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
