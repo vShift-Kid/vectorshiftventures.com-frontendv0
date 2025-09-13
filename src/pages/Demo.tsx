@@ -143,7 +143,7 @@ const Demo: React.FC = () => {
     businessDescription: '',
     preferredDate: '',
     preferredTime: '',
-    // Voice Agent Customization Fields
+    // AI Agent Customization Fields
     useCase: '',
     targetUsers: '',
     languageStyle: '',
@@ -280,7 +280,7 @@ const Demo: React.FC = () => {
           preferredDate: formData.preferredDate,
           preferredTime: formData.preferredTime
         },
-        voiceAgentCustomization: {
+        aiAgentCustomization: {
           useCase: formData.useCase,
           targetUsers: formData.targetUsers,
           languageStyle: formData.languageStyle,
@@ -338,8 +338,8 @@ const Demo: React.FC = () => {
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
               {formData.consultationPackage === 'Demo Request Only - Evaluation Phase' 
-                ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant tailored for ${formData.useCase} with ${formData.targetUsers}.`
-                : `Thank you, ${formData.name}. We've received your consultation request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant tailored for ${formData.useCase} with ${formData.targetUsers}.`
+                ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom AI solution tailored for ${formData.useCase} with ${formData.targetUsers}.`
+                : `Thank you, ${formData.name}. We've received your consultation request and will contact you within 24 hours to discuss your business automation needs and create your custom AI solution tailored for ${formData.useCase} with ${formData.targetUsers}.`
               }
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -378,7 +378,7 @@ const Demo: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Get a personalized AI voice assistant and website demo specifically built for your field service business. 
+              Get a personalized AI solution and website demo specifically built for your field service business. 
               Complete the form below to schedule your consultation and receive your custom demo.
             </p>
             
@@ -388,8 +388,8 @@ const Demo: React.FC = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-white" />
               </div>
-                  <h3 className="font-mono font-semibold mb-2">Custom Voice Agent</h3>
-                  <p className="text-sm text-gray-400">AI-powered phone system trained on your business</p>
+                  <h3 className="font-mono font-semibold mb-2">Custom AI Agent</h3>
+                  <p className="text-sm text-gray-400">AI-powered system trained on your business</p>
               </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -430,7 +430,7 @@ const Demo: React.FC = () => {
                   </span>
                 </h3>
                 <p className="text-gray-400 font-mono">
-                  Complete the form below to schedule your consultation and receive your personalized AI voice assistant demo.
+                  Complete the form below to schedule your consultation and receive your personalized AI solution demo.
                 </p>
               </div>
 
@@ -599,10 +599,10 @@ const Demo: React.FC = () => {
                   />
                 </div>
 
-                {/* Voice Agent Customization Section */}
+                {/* AI Agent Customization Section */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
-                    Voice Agent Customization
+                    AI Agent Customization
                     </h4>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -616,7 +616,7 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">What should your voice agent primarily do?</option>
+                        <option value="">What should your AI agent primarily do?</option>
                         <optgroup label="Customer Service & Support">
                           <option value="customer-support">Customer Support & Help Desk</option>
                           <option value="technical-support">Technical Support & Troubleshooting</option>
@@ -648,7 +648,7 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">Who will primarily interact with your voice agent?</option>
+                        <option value="">Who will primarily interact with your AI agent?</option>
                         <optgroup label="External Customers">
                           <option value="residential-customers">Residential Customers</option>
                           <option value="commercial-clients">Commercial Clients</option>
@@ -710,7 +710,7 @@ const Demo: React.FC = () => {
 
                     <div className="md:col-span-2">
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Voice Agent Specialization *
+                      AI Agent Specialization *
                       <div className="relative">
                         <button 
                           type="button" 
@@ -727,7 +727,7 @@ const Demo: React.FC = () => {
                           onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
                           onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
                         >
-                          This helps us train your AI solutions with industry-specific terminology, processes, and knowledge. Voice agents understand technical terms like "SEER rating", "short cycling", "backflow prevention", and "VFD controls". Chatbots can answer questions about equipment, pricing, and scheduling. Newsletters can share industry trends, maintenance tips, and regulatory updates.
+                          This helps us train your AI solutions with industry-specific terminology, processes, and knowledge. AI agents understand technical terms like "SEER rating", "short cycling", "backflow prevention", and "VFD controls". Voice agents can handle phone calls, chatbots can answer questions about equipment and scheduling, and newsletters can share industry trends and maintenance tips.
                         </div>
                       </div>
                       </label>
@@ -737,7 +737,7 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                      <option value="">How should your voice agent be specialized?</option>
+                      <option value="">How should your AI agent be specialized?</option>
                       <optgroup label="HVAC & Climate Control">
                         <option value="hvac-residential">HVAC - Residential Services</option>
                         <option value="hvac-commercial">HVAC - Commercial Services</option>
@@ -767,7 +767,7 @@ const Demo: React.FC = () => {
                         <option value="other">Other Field Service</option>
                       </optgroup>
                       </select>
-                  </div>
+                    </div>
                 </div>
 
                 {/* Demo Type Selection */}
@@ -810,8 +810,8 @@ const Demo: React.FC = () => {
                       <option value="chatbot">Chatbot Demo - Website chat interface for instant customer support and lead qualification</option>
                       <option value="newsletter">Customized Newsletter Demo - Industry-specific content, maintenance tips, and customer engagement</option>
                     </select>
-                    </div>
                   </div>
+                </div>
 
 
                 {/* AI Agent Personality & Communication */}
@@ -821,10 +821,10 @@ const Demo: React.FC = () => {
                   </h4>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                <div>
+                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                         Agent Personality *
-                      </label>
+                  </label>
                       <select
                         value={formData.agentPersonality}
                         onChange={(e) => handleInputChange('agentPersonality', e.target.value)}
@@ -1118,74 +1118,74 @@ const Demo: React.FC = () => {
                 {/* Upload Area */}
                 <div
                   className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                    dragActive
+                      dragActive 
                       ? 'border-purple-400 bg-purple-400/10'
                       : 'border-gray-600 hover:border-purple-400/50'
-                  }`}
-                  onDragEnter={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDragOver={handleDrag}
-                  onDrop={handleDrop}
-                >
-                  <div className="space-y-4">
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
+                    <div className="space-y-4">
                     <div className="text-4xl text-purple-400">📁</div>
-                    <div>
+                      <div>
                       <p className="text-lg font-mono text-gray-300 mb-2">
                         Upload Documents for Knowledge Base
                       </p>
                       <p className="text-sm text-gray-400 mb-4">
                         Drag and drop files here or click to browse
                       </p>
-                      <input
-                        type="file"
-                        multiple
+                          <input
+                            type="file"
+                            multiple
                         accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.pptx"
                         onChange={handleFileUpload}
-                        className="hidden"
+                            className="hidden"
                         id="file-upload"
-                      />
+                          />
                       <label
                         htmlFor="file-upload"
                         className="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-mono rounded-lg cursor-pointer transition-colors"
                       >
                         Choose Files
-                      </label>
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Uploaded Files List */}
-                {uploadedFiles.length > 0 && (
+                  {/* Uploaded Files List */}
+                  {uploadedFiles.length > 0 && (
                   <div className="space-y-3">
                     <h5 className="text-lg font-mono font-semibold text-gray-300">
                       Uploaded Files ({uploadedFiles.length})
                     </h5>
-                    <div className="space-y-2">
-                      {uploadedFiles.map((file, index) => (
+                      <div className="space-y-2">
+                        {uploadedFiles.map((file, index) => (
                         <div
                           key={index}
                           className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3"
                         >
                           <div className="flex items-center space-x-3">
                             <div className="text-purple-400">📄</div>
-                            <div>
+                              <div>
                               <p className="text-sm font-mono text-gray-300">{file.name}</p>
                               <p className="text-xs text-gray-400">
                                 {(file.size / 1024 / 1024).toFixed(2)} MB
                               </p>
+                              </div>
                             </div>
-                          </div>
-                          <button
-                            onClick={() => removeFile(index)}
+                            <button
+                              onClick={() => removeFile(index)}
                             className="text-red-400 hover:text-red-300 transition-colors"
-                          >
+                            >
                             ✕
-                          </button>
-                        </div>
-                      ))}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 {/* Document Guidelines */}
                 <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
@@ -1205,8 +1205,8 @@ const Demo: React.FC = () => {
                         <li>• Troubleshooting guides and FAQs</li>
                         <li>• Parts catalogs and inventory lists</li>
                       </ul>
-                    </div>
-                    
+                </div>
+
                     <div>
                       <h6 className="font-mono font-medium text-red-300 mb-2">⚠️ What to Avoid:</h6>
                       <ul className="text-sm text-gray-300 space-y-1 ml-4">
@@ -1243,10 +1243,10 @@ const Demo: React.FC = () => {
                 </p>
               </div>
               
-              <div>
-                <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                   Analytics Specializations (Select all that apply)
-                </label>
+                      </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {getAnalyticsSpecializations(formData.targetUsers).map((specialization) => (
                     <label key={specialization} className="flex items-center">
@@ -1271,7 +1271,7 @@ const Demo: React.FC = () => {
                       <span className="text-sm font-mono text-gray-300">{specialization}</span>
                     </label>
                   ))}
-                </div>
+                    </div>
               </div>
             </div>
 
@@ -1281,10 +1281,10 @@ const Demo: React.FC = () => {
                     Troubleshooting Methodology
                   </h4>
                   
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                       Troubleshooting Approaches (Select all that apply)
-                    </label>
+                      </label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[
                         'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
@@ -1383,7 +1383,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-            </div>
+                  </div>
           </div>
         </div>
       </section>
