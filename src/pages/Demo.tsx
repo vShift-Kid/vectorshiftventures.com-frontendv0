@@ -64,37 +64,31 @@ const sectionData = {
   ]
 };
 
-// Categorized Data Analytics Specializations
-const analyticsCategories = {
-  'Reliability & Quality': [
+// Main Specializations - Core Areas
+const mainSpecializations = {
+  'Reliability': [
     'Failure Prediction', 'Reliability Analysis', 'Quality Control', 'Defect Analysis',
     'Anomaly Detection', 'Root Cause Analysis', 'Statistical Process Control', 'Six Sigma Analysis',
     'Quality Metrics', 'Reliability Prediction', 'Failure Mode Analysis', 'Risk Assessment',
-    'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards'
+    'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards',
+    'Equipment Reliability', 'System Reliability', 'Component Analysis', 'Failure Prevention',
+    'Reliability Testing', 'Quality Assurance', 'Inspection Analysis', 'Standards Compliance'
   ],
-  'Maintenance & Operations': [
+  'Maintenance': [
     'Preventive Maintenance', 'Maintenance Scheduling', 'Equipment Performance', 'Downtime Analysis',
     'Maintenance Optimization', 'Spare Parts Analysis', 'Work Order Analysis', 'Maintenance Costs',
     'Equipment Lifecycle', 'Maintenance Efficiency', 'Predictive Maintenance', 'Condition Monitoring',
-    'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence'
+    'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence',
+    'Maintenance Strategies', 'Equipment Health', 'Maintenance Documentation', 'Maintenance Training',
+    'Maintenance Reporting', 'Maintenance Budgeting', 'Maintenance Forecasting', 'Maintenance Automation'
   ],
-  'Engineering & Technical': [
-    'Technical Analysis', 'Design Optimization', 'Performance Engineering', 'System Analysis',
-    'Technical Specifications', 'Engineering Metrics', 'Design Validation', 'Technical Documentation',
-    'Engineering Efficiency', 'Technical Standards', 'Engineering Processes', 'Technical Innovation',
-    'Engineering Quality', 'Technical Risk', 'Engineering Compliance', 'Technical Training'
-  ],
-  'Management & Strategy': [
-    'Strategic Planning', 'Management Metrics', 'Performance Management', 'Strategic Analysis',
-    'Management Reporting', 'Strategic Initiatives', 'Management Efficiency', 'Strategic Planning',
-    'Management Optimization', 'Strategic Performance', 'Management Analytics', 'Strategic Metrics',
-    'Management Planning', 'Strategic Management', 'Management Strategy', 'Strategic Analytics'
-  ],
-  'Logistics & Supply Chain': [
-    'Supply Chain Analysis', 'Logistics Optimization', 'Inventory Management', 'Supply Chain Efficiency',
-    'Logistics Planning', 'Supply Chain Performance', 'Inventory Optimization', 'Logistics Metrics',
-    'Supply Chain Analytics', 'Logistics Analytics', 'Supply Chain Planning', 'Logistics Performance',
-    'Supply Chain Optimization', 'Logistics Management', 'Supply Chain Strategy', 'Logistics Strategy'
+  'Operations': [
+    'Operational Excellence', 'Process Optimization', 'Efficiency Analysis', 'Performance Management',
+    'Production Analysis', 'Manufacturing Metrics', 'Equipment Performance', 'Production Planning',
+    'Quality Assurance', 'Process Improvement', 'Manufacturing Intelligence', 'Production Forecasting',
+    'Lean Manufacturing', 'Six Sigma Analysis', 'Process Monitoring', 'Manufacturing Analytics',
+    'Operational Planning', 'Resource Management', 'Performance Tracking', 'Operational Metrics',
+    'Process Control', 'Operational Strategy', 'Performance Optimization', 'Operational Reporting'
   ]
 };
 
@@ -1350,7 +1344,7 @@ const Demo: React.FC = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search analytics specializations (e.g., 'equipment', 'maintenance', 'predictive')..."
+                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'operations')..."
                     className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
                   />
                   <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
@@ -1388,23 +1382,23 @@ const Demo: React.FC = () => {
                   </div>
                 )}
 
-                {/* Categorized Search Results */}
+                {/* Main Specializations */}
                 <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
                   <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
-                    Available Specializations by Category
+                    Core Specialization Areas
                   </h5>
                   
-                  {Object.entries(analyticsCategories).map(([category, specializations]) => {
+                  {Object.entries(mainSpecializations).map(([category, specializations]) => {
                     const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
                     
                     if (filteredSpecializations.length === 0) return null;
                     
                     return (
                       <div key={category} className="mb-6 last:mb-0">
-                        <h6 className="text-sm font-mono font-semibold text-orange-300 mb-3 border-b border-orange-500/20 pb-1">
+                        <h6 className="text-lg font-mono font-semibold text-orange-300 mb-4 border-b border-orange-500/30 pb-2">
                           {category}
                         </h6>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                           {filteredSpecializations.map((specialization) => (
                             <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
                               <input
@@ -1433,7 +1427,7 @@ const Demo: React.FC = () => {
                     );
                   })}
                   
-                  {Object.values(analyticsCategories).every(specializations => 
+                  {Object.values(mainSpecializations).every(specializations => 
                     getFilteredSpecializations(specializations, searchQuery).length === 0
                   ) && searchQuery && (
                     <p className="text-sm text-gray-400 font-mono text-center py-4">
