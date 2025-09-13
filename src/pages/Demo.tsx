@@ -27,7 +27,9 @@ const Demo: React.FC = () => {
     currentChallenges: '',
     // Research Focus Fields
     researchFocus: '',
-    researchDepth: ''
+    researchDepth: '',
+    // Demo Type Field
+    demoType: ''
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -59,6 +61,7 @@ const Demo: React.FC = () => {
       updatedFormData.teamSize !== '' &&
       updatedFormData.currentChallenges.length > 10 &&
       updatedFormData.researchFocus !== '' &&
+      updatedFormData.demoType !== '' &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
@@ -148,6 +151,7 @@ const Demo: React.FC = () => {
           researchFocus: formData.researchFocus,
           researchDepth: formData.researchDepth
         },
+        demoType: formData.demoType,
         uploadedFiles: uploadedFiles.map(file => ({
           name: file.name,
           size: file.size,
@@ -1197,6 +1201,91 @@ const Demo: React.FC = () => {
                           <div className="flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
                             <span className="font-mono text-gray-300">Enhances competitive positioning</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Demo Type Selection */}
+                  <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-xl p-6 mb-6">
+                    <h5 className="font-mono font-semibold text-indigo-400 mb-4 flex items-center gap-2">
+                      <Gift className="w-5 h-5" />
+                      Demo Type Selection
+                    </h5>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-4">
+                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                          Demo Type *
+                        </label>
+                        <select
+                          value={formData.demoType || ''}
+                          onChange={(e) => handleInputChange('demoType', e.target.value)}
+                          required
+                          className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
+                        >
+                          <option value="">Select your preferred demo type</option>
+                          <option value="voice-agent">Voice Agent Demo</option>
+                          <option value="chatbot">Chatbot Demo</option>
+                          <option value="newsletter">Customized Newsletter Demo</option>
+                        </select>
+                      </div>
+                      
+                      <div className="md:col-span-2">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                          <div className="p-3 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
+                            <h6 className="font-mono font-semibold text-indigo-300 mb-2 flex items-center gap-2">
+                              <Phone className="w-4 h-4" />
+                              Voice Agent
+                            </h6>
+                            <p className="text-xs text-gray-300 font-mono">
+                              Interactive phone call demonstration with AI voice assistant handling customer inquiries, scheduling, and support.
+                            </p>
+                          </div>
+                          
+                          <div className="p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                            <h6 className="font-mono font-semibold text-purple-300 mb-2 flex items-center gap-2">
+                              <MessageSquare className="w-4 h-4" />
+                              Chatbot
+                            </h6>
+                            <p className="text-xs text-gray-300 font-mono">
+                              Web-based chat interface demonstration with AI handling customer questions, lead qualification, and support.
+                            </p>
+                          </div>
+                          
+                          <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20">
+                            <h6 className="font-mono font-semibold text-green-300 mb-2 flex items-center gap-2">
+                              <Globe className="w-4 h-4" />
+                              Newsletter
+                            </h6>
+                            <p className="text-xs text-gray-300 font-mono">
+                              Customized email newsletter demonstration with industry-specific content, automation, and engagement strategies.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-4 p-3 bg-indigo-500/10 rounded-lg border border-indigo-500/30">
+                      <h6 className="font-mono font-semibold text-indigo-300 mb-2 text-sm">💡 Demo Selection Guide:</h6>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div className="space-y-1">
+                          <div className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <span className="font-mono text-gray-300"><strong>Voice Agent:</strong> Best for phone-based customer service, appointment scheduling, and support calls</span>
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <span className="font-mono text-gray-300"><strong>Chatbot:</strong> Best for website support, lead qualification, and instant customer assistance</span>
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <span className="font-mono text-gray-300"><strong>Newsletter:</strong> Best for customer engagement, industry updates, and automated marketing</span>
                           </div>
                         </div>
                       </div>
