@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, Brain, CheckCircle, ArrowRight, Bot, Globe } from 'lucide-react';
 
@@ -49,6 +49,7 @@ const Demo: React.FC = () => {
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [dragActive, setDragActive] = useState(false);
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -56,6 +57,38 @@ const Demo: React.FC = () => {
 
   const handleTooltipHide = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
+  };
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const newFiles = Array.from(e.dataTransfer.files);
+      setUploadedFiles(prev => [...prev, ...newFiles]);
+    }
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setUploadedFiles(prev => [...prev, ...newFiles]);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
 
@@ -946,11 +979,134 @@ const Demo: React.FC = () => {
                           <span className="text-sm font-mono text-gray-300">{report}</span>
                         </label>
                       ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Document Upload Section */}
+            <div className="border-t border-cyan-500/20 pt-8">
+              <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
+                Document Upload for AI Training
+              </h4>
+              
+              <div className="space-y-6">
+                {/* Upload Area */}
+                <div
+                  className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                    dragActive
+                      ? 'border-purple-400 bg-purple-400/10'
+                      : 'border-gray-600 hover:border-purple-400/50'
+                  }`}
+                  onDragEnter={handleDrag}
+                  onDragLeave={handleDrag}
+                  onDragOver={handleDrag}
+                  onDrop={handleDrop}
+                >
+                  <div className="space-y-4">
+                    <div className="text-4xl text-purple-400">📁</div>
+                    <div>
+                      <p className="text-lg font-mono text-gray-300 mb-2">
+                        Upload Documents for AI Training
+                      </p>
+                      <p className="text-sm text-gray-400 mb-4">
+                        Drag and drop files here or click to browse
+                      </p>
+                      <input
+                        type="file"
+                        multiple
+                        accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.pptx"
+                        onChange={handleFileUpload}
+                        className="hidden"
+                        id="file-upload"
+                      />
+                      <label
+                        htmlFor="file-upload"
+                        className="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-mono rounded-lg cursor-pointer transition-colors"
+                      >
+                        Choose Files
+                      </label>
                     </div>
                   </div>
                 </div>
 
-                {/* Advanced AI & Analytics Capabilities */}
+                {/* Uploaded Files List */}
+                {uploadedFiles.length > 0 && (
+                  <div className="space-y-3">
+                    <h5 className="text-lg font-mono font-semibold text-gray-300">
+                      Uploaded Files ({uploadedFiles.length})
+                    </h5>
+                    <div className="space-y-2">
+                      {uploadedFiles.map((file, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className="text-purple-400">📄</div>
+                            <div>
+                              <p className="text-sm font-mono text-gray-300">{file.name}</p>
+                              <p className="text-xs text-gray-400">
+                                {(file.size / 1024 / 1024).toFixed(2)} MB
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => removeFile(index)}
+                            className="text-red-400 hover:text-red-300 transition-colors"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Document Guidelines */}
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                  <h5 className="text-lg font-mono font-semibold text-blue-400 mb-4">
+                    📋 Document Upload Guidelines
+                  </h5>
+                  <div className="space-y-4">
+                    <div>
+                      <h6 className="font-mono font-medium text-blue-300 mb-2">✅ Recommended Documents:</h6>
+                      <ul className="text-sm text-gray-300 space-y-1 ml-4">
+                        <li>• Equipment manuals and technical specifications</li>
+                        <li>• Service bulletins and maintenance procedures</li>
+                        <li>• Training materials and knowledge bases</li>
+                        <li>• Historical service records and case studies</li>
+                        <li>• Customer feedback and support tickets</li>
+                        <li>• Industry standards and compliance documents</li>
+                        <li>• Troubleshooting guides and FAQs</li>
+                        <li>• Parts catalogs and inventory lists</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h6 className="font-mono font-medium text-red-300 mb-2">⚠️ What to Avoid:</h6>
+                      <ul className="text-sm text-gray-300 space-y-1 ml-4">
+                        <li>• Proprietary or confidential company data</li>
+                        <li>• Personal information or customer data</li>
+                        <li>• Financial records or sensitive business information</li>
+                        <li>• Copyrighted materials you don't own</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h6 className="font-mono font-medium text-green-300 mb-2">💡 Pro Tips:</h6>
+                      <ul className="text-sm text-gray-300 space-y-1 ml-4">
+                        <li>• Upload 5-15 documents for best results</li>
+                        <li>• Include a mix of technical and procedural documents</li>
+                        <li>• Ensure documents are clear and well-formatted</li>
+                        <li>• Focus on content that will help the AI understand your specific processes</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Advanced AI & Analytics Capabilities */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
                     Advanced AI & Analytics Capabilities
