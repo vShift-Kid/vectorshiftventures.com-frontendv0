@@ -64,7 +64,7 @@ const sectionData = {
   ]
 };
 
-// Main Specializations - Core Areas
+// Main Specializations - RME Core Areas
 const mainSpecializations = {
   'Reliability': [
     'Failure Prediction', 'Reliability Analysis', 'Quality Control', 'Defect Analysis',
@@ -72,7 +72,8 @@ const mainSpecializations = {
     'Quality Metrics', 'Reliability Prediction', 'Failure Mode Analysis', 'Risk Assessment',
     'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards',
     'Equipment Reliability', 'System Reliability', 'Component Analysis', 'Failure Prevention',
-    'Reliability Testing', 'Quality Assurance', 'Inspection Analysis', 'Standards Compliance'
+    'Reliability Testing', 'Quality Assurance', 'Inspection Analysis', 'Standards Compliance',
+    'Reliability Engineering', 'Fault Tolerance', 'Redundancy Analysis', 'MTBF Analysis'
   ],
   'Maintenance': [
     'Preventive Maintenance', 'Maintenance Scheduling', 'Equipment Performance', 'Downtime Analysis',
@@ -80,15 +81,27 @@ const mainSpecializations = {
     'Equipment Lifecycle', 'Maintenance Efficiency', 'Predictive Maintenance', 'Condition Monitoring',
     'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence',
     'Maintenance Strategies', 'Equipment Health', 'Maintenance Documentation', 'Maintenance Training',
-    'Maintenance Reporting', 'Maintenance Budgeting', 'Maintenance Forecasting', 'Maintenance Automation'
+    'Maintenance Reporting', 'Maintenance Budgeting', 'Maintenance Forecasting', 'Maintenance Automation',
+    'Maintenance Engineering', 'Asset Management', 'Maintenance Reliability', 'Maintenance Analytics'
   ],
-  'Operations': [
-    'Operational Excellence', 'Process Optimization', 'Efficiency Analysis', 'Performance Management',
-    'Production Analysis', 'Manufacturing Metrics', 'Equipment Performance', 'Production Planning',
-    'Quality Assurance', 'Process Improvement', 'Manufacturing Intelligence', 'Production Forecasting',
-    'Lean Manufacturing', 'Six Sigma Analysis', 'Process Monitoring', 'Manufacturing Analytics',
-    'Operational Planning', 'Resource Management', 'Performance Tracking', 'Operational Metrics',
-    'Process Control', 'Operational Strategy', 'Performance Optimization', 'Operational Reporting'
+  'Engineering': [
+    'Technical Analysis', 'Design Optimization', 'Performance Engineering', 'System Analysis',
+    'Technical Specifications', 'Engineering Metrics', 'Design Validation', 'Technical Documentation',
+    'Engineering Efficiency', 'Technical Standards', 'Engineering Processes', 'Technical Innovation',
+    'Engineering Quality', 'Technical Risk', 'Engineering Compliance', 'Technical Training',
+    'Engineering Design', 'System Integration', 'Technical Troubleshooting', 'Engineering Support',
+    'Technical Consulting', 'Engineering Solutions', 'Technical Implementation', 'Engineering Management',
+    'Field Engineering', 'Technical Services', 'Engineering Operations', 'Technical Support'
+  ],
+  'Supporting Operations': [
+    'Supply Chain Management', 'Inventory Control', 'Parts Management', 'Vendor Management',
+    'Procurement Analysis', 'Supplier Performance', 'Logistics Planning', 'Distribution Management',
+    'Warehouse Operations', 'Transportation Management', 'Order Fulfillment', 'Supply Chain Analytics',
+    'Customer Service', 'Support Ticket Management', 'Service Level Management', 'Customer Satisfaction',
+    'Training & Development', 'Skills Assessment', 'Competency Management', 'Knowledge Management',
+    'Documentation Management', 'Technical Writing', 'Process Documentation', 'Standard Operating Procedures',
+    'Project Management', 'Resource Planning', 'Timeline Management', 'Budget Management',
+    'Quality Management', 'Process Improvement', 'Continuous Improvement', 'Performance Monitoring'
   ]
 };
 
@@ -1328,7 +1341,7 @@ const Demo: React.FC = () => {
             {/* Data Analytics Specializations */}
             <div className="border-t border-cyan-500/20 pt-8">
               <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
-                Data Analytics Specializations
+                RME & Supporting Operations Specializations
               </h4>
               
               <div className="mb-6">
@@ -1344,7 +1357,7 @@ const Demo: React.FC = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'operations')..."
+                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'engineering', 'supporting')..."
                     className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
                   />
                   <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
@@ -1385,7 +1398,7 @@ const Demo: React.FC = () => {
                 {/* Main Specializations */}
                 <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
                   <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
-                    Core Specialization Areas
+                    RME & Supporting Operations Specializations
                   </h5>
                   
                   {Object.entries(mainSpecializations).map(([category, specializations]) => {
