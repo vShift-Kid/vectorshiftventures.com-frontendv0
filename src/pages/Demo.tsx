@@ -43,7 +43,12 @@ const Demo: React.FC = () => {
     performanceGoals: [] as string[],
     integrationRequirements: [] as string[],
     complianceNeeds: [] as string[],
-    reportingNeeds: [] as string[]
+    reportingNeeds: [] as string[],
+    // Advanced AI Capabilities
+    advancedCapabilities: [] as string[],
+    troubleshootingMethodology: [] as string[],
+    dataAnalysisCapabilities: [] as string[],
+    predictiveCapabilities: [] as string[]
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -202,13 +207,28 @@ const Demo: React.FC = () => {
           specializations: currentSpecializations.filter(s => s !== specialization)
         };
       } else if (currentSpecializations.length < 7) {
-        return {
-          ...prev,
-          specializations: [...currentSpecializations, specialization]
-        };
+        // Check if adding this specialization would exceed 3 per group
+        const category = getSpecializationCategory(specialization);
+        const categoryCount = currentSpecializations.filter(s => getSpecializationCategory(s) === category).length;
+        
+        if (categoryCount < 3) {
+          return {
+            ...prev,
+            specializations: [...currentSpecializations, specialization]
+          };
+        }
       }
       return prev;
     });
+  };
+
+  const getSpecializationCategory = (specialization: string) => {
+    for (const [category, items] of Object.entries(specializationsData)) {
+      if (items.includes(specialization)) {
+        return category;
+      }
+    }
+    return '';
   };
 
   const filteredSpecializations = () => {
@@ -829,7 +849,7 @@ const Demo: React.FC = () => {
                   
                               <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Select up to 7 specializations *
+                      Select up to 7 specializations (max 3 per category) *
                       <div className="relative">
                         <button 
                           type="button" 
@@ -872,8 +892,8 @@ const Demo: React.FC = () => {
                         ))}
                       </div>
                         <div className="text-xs text-gray-400 mt-2 font-mono">
-                          {formData.specializations.length}/7 selected
-                    </div>
+                          {formData.specializations.length}/7 selected (max 3 per category)
+                        </div>
                 </div>
                     )}
 
@@ -924,7 +944,8 @@ const Demo: React.FC = () => {
                                           ? 'bg-purple-500/20 text-purple-300'
                                           : 'hover:bg-gray-700/50 text-gray-300'
                                       } ${
-                                        formData.specializations.length >= 7 && !formData.specializations.includes(item)
+                                        (formData.specializations.length >= 7 || 
+                                         (formData.specializations.filter(s => getSpecializationCategory(s) === category).length >= 3 && !formData.specializations.includes(item)))
                                           ? 'opacity-50 cursor-not-allowed'
                                           : ''
                                       }`}
@@ -933,7 +954,8 @@ const Demo: React.FC = () => {
                                         type="checkbox"
                                         checked={formData.specializations.includes(item)}
                                         onChange={() => handleSpecializationToggle(item)}
-                                        disabled={formData.specializations.length >= 7 && !formData.specializations.includes(item)}
+                                        disabled={formData.specializations.length >= 7 || 
+                                                 (formData.specializations.filter(s => getSpecializationCategory(s) === category).length >= 3 && !formData.specializations.includes(item))}
                                         className="mr-3 text-purple-500 focus:ring-purple-400"
                                       />
                                       <span className="text-sm font-mono">{item}</span>
@@ -1246,6 +1268,182 @@ const Demo: React.FC = () => {
                             className="mr-3 text-blue-500 focus:ring-blue-400"
                           />
                           <span className="text-sm font-mono text-gray-300">{report}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced AI Capabilities */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
+                    Advanced AI Capabilities
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Advanced Capabilities (Select all that apply)
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        'Anomaly Detection', 'Predictive Maintenance', 'Failure Prediction', 'Performance Monitoring',
+                        'Log File Analysis', 'Pattern Recognition', 'Trend Analysis', 'Statistical Analysis',
+                        'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision',
+                        'Real-time Monitoring', 'Alert Generation', 'Automated Diagnostics', 'Root Cause Analysis',
+                        'Risk Assessment', 'Quality Prediction', 'Efficiency Optimization', 'Cost Optimization'
+                      ].map((capability) => (
+                        <label key={capability} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={formData.advancedCapabilities.includes(capability)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  advancedCapabilities: [...prev.advancedCapabilities, capability]
+                                }));
+                              } else {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  advancedCapabilities: prev.advancedCapabilities.filter(c => c !== capability)
+                                }));
+                              }
+                            }}
+                            className="mr-3 text-orange-500 focus:ring-orange-400"
+                          />
+                          <span className="text-sm font-mono text-gray-300">{capability}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Troubleshooting Methodology */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-teal-400">
+                    Troubleshooting Methodology
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Troubleshooting Approaches (Select all that apply)
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
+                        'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
+                        'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
+                        'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
+                        'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules'
+                      ].map((method) => (
+                        <label key={method} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={formData.troubleshootingMethodology.includes(method)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  troubleshootingMethodology: [...prev.troubleshootingMethodology, method]
+                                }));
+                              } else {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== method)
+                                }));
+                              }
+                            }}
+                            className="mr-3 text-teal-500 focus:ring-teal-400"
+                          />
+                          <span className="text-sm font-mono text-gray-300">{method}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Data Analysis Capabilities */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-pink-400">
+                    Data Analysis Capabilities
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Data Analysis Types (Select all that apply)
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        'Log File Analysis', 'Sensor Data Analysis', 'Performance Metrics Analysis', 'Error Log Analysis',
+                        'Usage Pattern Analysis', 'Failure Mode Analysis', 'Correlation Analysis', 'Regression Analysis',
+                        'Time Series Analysis', 'Frequency Analysis', 'Spectral Analysis', 'Waveform Analysis',
+                        'Statistical Process Control', 'Quality Control Charts', 'Reliability Analysis', 'Survival Analysis',
+                        'Clustering Analysis', 'Classification Analysis', 'Association Analysis', 'Predictive Modeling'
+                      ].map((analysis) => (
+                        <label key={analysis} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={formData.dataAnalysisCapabilities.includes(analysis)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  dataAnalysisCapabilities: [...prev.dataAnalysisCapabilities, analysis]
+                                }));
+                              } else {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  dataAnalysisCapabilities: prev.dataAnalysisCapabilities.filter(a => a !== analysis)
+                                }));
+                              }
+                            }}
+                            className="mr-3 text-pink-500 focus:ring-pink-400"
+                          />
+                          <span className="text-sm font-mono text-gray-300">{analysis}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Predictive Capabilities */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
+                    Predictive Capabilities
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Predictive Features (Select all that apply)
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
+                        'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
+                        'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
+                        'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
+                        'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction'
+                      ].map((prediction) => (
+                        <label key={prediction} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={formData.predictiveCapabilities.includes(prediction)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  predictiveCapabilities: [...prev.predictiveCapabilities, prediction]
+                                }));
+                              } else {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== prediction)
+                                }));
+                              }
+                            }}
+                            className="mr-3 text-cyan-500 focus:ring-cyan-400"
+                          />
+                          <span className="text-sm font-mono text-gray-300">{prediction}</span>
                         </label>
                       ))}
                     </div>
