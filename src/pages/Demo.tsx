@@ -208,7 +208,7 @@ const Demo: React.FC = () => {
       updatedFormData.currentChallenges.length > 10 &&
       updatedFormData.researchFocus.length > 0 &&
       updatedFormData.demoType.length > 0 &&
-      updatedFormData.specializations.length > 0 &&
+      updatedFormData.rmeSpecializations.length > 0 &&
       updatedFormData.agentPersonality.length > 0 &&
       updatedFormData.communicationStyle.length > 0 &&
       updatedFormData.technicalLevel.length > 0 &&
