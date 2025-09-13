@@ -91,24 +91,6 @@ const mainSpecializations = {
     'Customer Journey Analysis', 'Retention Analysis', 'Complaint Analysis', 'Service Level Analysis',
     'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization',
     'Customer Care', 'Support Operations', 'Service Delivery', 'Customer Relationship Management'
-  ],
-  'Troubleshooting & Diagnostics': [
-    'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
-    'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
-    'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
-    'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
-    'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules',
-    'Diagnostic Procedures', 'Fault Detection', 'Problem Resolution', 'Technical Troubleshooting',
-    'Equipment Diagnostics', 'System Diagnostics', 'Performance Diagnostics', 'Failure Diagnostics'
-  ],
-  'Predictive & Analytics': [
-    'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
-    'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
-    'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
-    'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
-    'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction',
-    'Predictive Analytics', 'Machine Learning', 'Data Mining', 'Pattern Recognition',
-    'Anomaly Detection', 'Trend Analysis', 'Forecasting Models', 'Predictive Maintenance'
   ]
 };
 
@@ -147,29 +129,14 @@ const Demo: React.FC = () => {
     technicalLevel: '',
     problemSolvingApproach: '',
     customerInteractionStyle: '',
-    specializations: [] as string[],
-    performanceGoals: [] as string[],
-    integrationRequirements: [] as string[],
-    complianceNeeds: [] as string[],
-    reportingNeeds: [] as string[],
-    // Advanced AI & Analytics Capabilities
-    advancedCapabilities: [] as string[],
-    troubleshootingMethodology: [] as string[],
-    predictiveCapabilities: [] as string[]
+    // RME Specializations
+    rmeSpecializations: [] as string[]
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchQueries, setSearchQueries] = useState<{[key: string]: string}>({
-    specializations: '',
-    performanceGoals: '',
-    integrationRequirements: '',
-    complianceNeeds: '',
-    reportingNeeds: '',
-    troubleshootingMethodology: '',
-    predictiveCapabilities: ''
-  });
+  const [searchQueries, setSearchQueries] = useState<{[key: string]: string}>({});
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -997,7 +964,7 @@ const Demo: React.FC = () => {
               
               <div className="mb-6">
                 <p className="text-sm text-gray-400 font-mono mb-4">
-                  Search and select the RME (Reliability, Maintenance, Engineering) and Operations specializations your AI agent should focus on. These will guide comprehensive research and training for your field service demo application.
+                  Search and select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
                 </p>
               </div>
               
@@ -1008,7 +975,7 @@ const Demo: React.FC = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search RME specializations (e.g., 'reliability', 'maintenance', 'troubleshooting', 'predictive')..."
+                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'engineering', 'supporting')..."
                     className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
                   />
                   <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
@@ -1017,13 +984,13 @@ const Demo: React.FC = () => {
                 </div>
 
                 {/* Selected Specializations */}
-                {formData.advancedCapabilities.length > 0 && (
+                {formData.rmeSpecializations.length > 0 && (
                   <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
                     <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
-                      Selected Specializations ({formData.advancedCapabilities.length})
+                      Selected Specializations ({formData.rmeSpecializations.length})
                     </h5>
                     <div className="flex flex-wrap gap-2">
-                      {formData.advancedCapabilities.map((specialization) => (
+                      {formData.rmeSpecializations.map((specialization) => (
                         <span
                           key={specialization}
                           className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
@@ -1033,7 +1000,7 @@ const Demo: React.FC = () => {
                             onClick={() => {
                               setFormData(prev => ({
                                 ...prev,
-                                advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                                rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
                               }));
                             }}
                             className="ml-2 text-orange-400 hover:text-orange-300"
@@ -1067,17 +1034,17 @@ const Demo: React.FC = () => {
                             <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
                               <input
                                 type="checkbox"
-                                checked={formData.advancedCapabilities.includes(specialization)}
+                                checked={formData.rmeSpecializations.includes(specialization)}
                                 onChange={(e) => {
                                   if (e.target.checked) {
                                     setFormData(prev => ({
                                       ...prev,
-                                      advancedCapabilities: [...prev.advancedCapabilities, specialization]
+                                      rmeSpecializations: [...prev.rmeSpecializations, specialization]
                                     }));
                                   } else {
                                     setFormData(prev => ({
                                       ...prev,
-                                      advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                                      rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
                                     }));
                                   }
                                 }}
