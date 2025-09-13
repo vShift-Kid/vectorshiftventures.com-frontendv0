@@ -64,44 +64,80 @@ const sectionData = {
   ]
 };
 
-// Main Specializations - RME Core Areas
+// RME & Supporting Operations - Comprehensive Specializations
 const mainSpecializations = {
-  'Reliability': [
+  'Reliability & Quality': [
     'Failure Prediction', 'Reliability Analysis', 'Quality Control', 'Defect Analysis',
     'Anomaly Detection', 'Root Cause Analysis', 'Statistical Process Control', 'Six Sigma Analysis',
     'Quality Metrics', 'Reliability Prediction', 'Failure Mode Analysis', 'Risk Assessment',
     'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards',
     'Equipment Reliability', 'System Reliability', 'Component Analysis', 'Failure Prevention',
     'Reliability Testing', 'Quality Assurance', 'Inspection Analysis', 'Standards Compliance',
-    'Reliability Engineering', 'Fault Tolerance', 'Redundancy Analysis', 'MTBF Analysis'
+    'Reliability Engineering', 'Fault Tolerance', 'Redundancy Analysis', 'MTBF Analysis',
+    'Safety Procedures', 'Compliance Documentation', 'Industry Standards', 'Regulatory Guidelines',
+    'Quality Certifications', 'Environmental Regulations', 'Safety Standards', 'Audit Requirements'
   ],
-  'Maintenance': [
+  'Maintenance & Operations': [
     'Preventive Maintenance', 'Maintenance Scheduling', 'Equipment Performance', 'Downtime Analysis',
     'Maintenance Optimization', 'Spare Parts Analysis', 'Work Order Analysis', 'Maintenance Costs',
     'Equipment Lifecycle', 'Maintenance Efficiency', 'Predictive Maintenance', 'Condition Monitoring',
     'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence',
     'Maintenance Strategies', 'Equipment Health', 'Maintenance Documentation', 'Maintenance Training',
     'Maintenance Reporting', 'Maintenance Budgeting', 'Maintenance Forecasting', 'Maintenance Automation',
-    'Maintenance Engineering', 'Asset Management', 'Maintenance Reliability', 'Maintenance Analytics'
+    'Maintenance Engineering', 'Asset Management', 'Maintenance Reliability', 'Maintenance Analytics',
+    'Equipment Manuals', 'Service Bulletins', 'Troubleshooting Guides', 'Parts Catalogs',
+    'Warranty Information', 'Historical Service Records', 'Emergency Response', 'Performance Metrics'
   ],
-  'Engineering': [
+  'Engineering & Technical': [
     'Technical Analysis', 'Design Optimization', 'Performance Engineering', 'System Analysis',
     'Technical Specifications', 'Engineering Metrics', 'Design Validation', 'Technical Documentation',
     'Engineering Efficiency', 'Technical Standards', 'Engineering Processes', 'Technical Innovation',
     'Engineering Quality', 'Technical Risk', 'Engineering Compliance', 'Technical Training',
     'Engineering Design', 'System Integration', 'Technical Troubleshooting', 'Engineering Support',
     'Technical Consulting', 'Engineering Solutions', 'Technical Implementation', 'Engineering Management',
-    'Field Engineering', 'Technical Services', 'Engineering Operations', 'Technical Support'
+    'Field Engineering', 'Technical Services', 'Engineering Operations', 'Technical Support',
+    'Software Documentation', 'Video Tutorials', 'Training Materials', 'Best Practices',
+    'Technical Writing', 'Process Documentation', 'Standard Operating Procedures', 'Knowledge Management'
   ],
-  'Supporting Operations': [
-    'Supply Chain Management', 'Inventory Control', 'Parts Management', 'Vendor Management',
-    'Procurement Analysis', 'Supplier Performance', 'Logistics Planning', 'Distribution Management',
-    'Warehouse Operations', 'Transportation Management', 'Order Fulfillment', 'Supply Chain Analytics',
+  'Performance & Goals': [
+    'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction', 'Minimize Equipment Downtime',
+    'Reduce Parts Inventory', 'Improve Technician Efficiency', 'Enhance Safety Compliance', 'Reduce Warranty Claims',
+    'Improve Documentation', 'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling',
+    'Enhance Training', 'Reduce Errors', 'Improve Communication', 'Increase Repeat Business',
+    'Performance Management', 'Operational Excellence', 'Efficiency Analysis', 'Process Optimization',
+    'Quality Improvement', 'Cost Reduction', 'Productivity Enhancement', 'Service Level Improvement',
+    'Customer Experience', 'Operational Metrics', 'Performance Tracking', 'Continuous Improvement'
+  ],
+  'Integration & Systems': [
+    'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
+    'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
+    'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
+    'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations',
+    'System Integration', 'Technical Implementation', 'Data Integration', 'Workflow Automation',
+    'System Optimization', 'Technology Integration', 'Digital Transformation', 'Process Automation'
+  ],
+  'Compliance & Standards': [
+    'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
+    'Environmental Regulations', 'Safety Standards', 'Quality Certifications', 'Industry Standards',
+    'Local Regulations', 'International Standards', 'Audit Requirements', 'Documentation Standards',
+    'Training Requirements', 'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements',
+    'Regulatory Compliance', 'Standards Compliance', 'Compliance Monitoring', 'Audit Management',
+    'Risk Management', 'Quality Assurance', 'Safety Management', 'Regulatory Reporting'
+  ],
+  'Reporting & Analytics': [
+    'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
+    'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
+    'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
+    'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis',
+    'Data Analytics', 'Business Intelligence', 'Performance Dashboards', 'KPI Analysis',
+    'Trend Analysis', 'Predictive Analytics', 'Reporting Automation', 'Data Visualization'
+  ],
+  'Customer & Support': [
     'Customer Service', 'Support Ticket Management', 'Service Level Management', 'Customer Satisfaction',
-    'Training & Development', 'Skills Assessment', 'Competency Management', 'Knowledge Management',
-    'Documentation Management', 'Technical Writing', 'Process Documentation', 'Standard Operating Procedures',
-    'Project Management', 'Resource Planning', 'Timeline Management', 'Budget Management',
-    'Quality Management', 'Process Improvement', 'Continuous Improvement', 'Performance Monitoring'
+    'Customer Feedback', 'Customer Experience', 'Support Performance', 'Service Quality Metrics',
+    'Customer Journey Analysis', 'Retention Analysis', 'Complaint Analysis', 'Service Level Analysis',
+    'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization',
+    'Customer Care', 'Support Operations', 'Service Delivery', 'Customer Relationship Management'
   ]
 };
 
@@ -889,363 +925,7 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Specializations & Performance Goals */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-yellow-400">
-                    Specializations & Performance Goals
-                  </h4>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Specializations */}
-                    <div className="space-y-4">
-                      <h5 className="text-lg font-mono font-semibold text-yellow-300">
-                        Specializations
-                      </h5>
-                      
-                      {/* Search Bar */}
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={searchQueries.specializations}
-                          onChange={(e) => setSearchQueries(prev => ({ ...prev, specializations: e.target.value }))}
-                          placeholder="Search specializations (e.g., 'equipment', 'safety', 'training')..."
-                          className="w-full p-3 bg-gray-800/50 border border-yellow-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-yellow-400 pr-10"
-                        />
-                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400">
-                          🔍
-                        </div>
-                      </div>
 
-                      {/* Selected Items */}
-                      {formData.specializations.length > 0 && (
-                        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
-                          <h6 className="text-sm font-mono font-semibold text-yellow-300 mb-2">
-                            Selected ({formData.specializations.length})
-                          </h6>
-                          <div className="flex flex-wrap gap-1">
-                            {formData.specializations.map((item) => (
-                              <span
-                                key={item}
-                                className="inline-flex items-center px-2 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded text-xs font-mono text-yellow-300"
-                              >
-                                {item}
-                                <button
-                                  onClick={() => {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      specializations: prev.specializations.filter(s => s !== item)
-                                    }));
-                                  }}
-                                  className="ml-1 text-yellow-400 hover:text-yellow-300"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Search Results */}
-                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                        <div className="space-y-1">
-                          {getFilteredSpecializations(sectionData.specializations, searchQueries.specializations).map((item) => (
-                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.specializations.includes(item)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      specializations: [...prev.specializations, item]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      specializations: prev.specializations.filter(s => s !== item)
-                                    }));
-                                  }
-                                }}
-                                className="mr-2 text-yellow-500 focus:ring-yellow-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{item}</span>
-                            </label>
-                          ))}
-                          {getFilteredSpecializations(sectionData.specializations, searchQueries.specializations).length === 0 && searchQueries.specializations && (
-                            <p className="text-sm text-gray-400 font-mono text-center py-2">
-                              No specializations found for "{searchQueries.specializations}"
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Performance Goals */}
-                    <div className="space-y-4">
-                      <h5 className="text-lg font-mono font-semibold text-yellow-300">
-                        Performance Goals
-                      </h5>
-                      
-                      {/* Search Bar */}
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={searchQueries.performanceGoals}
-                          onChange={(e) => setSearchQueries(prev => ({ ...prev, performanceGoals: e.target.value }))}
-                          placeholder="Search goals (e.g., 'reduce', 'improve', 'increase')..."
-                          className="w-full p-3 bg-gray-800/50 border border-yellow-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-yellow-400 pr-10"
-                        />
-                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400">
-                          🔍
-                        </div>
-                      </div>
-
-                      {/* Selected Items */}
-                      {formData.performanceGoals.length > 0 && (
-                        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
-                          <h6 className="text-sm font-mono font-semibold text-yellow-300 mb-2">
-                            Selected ({formData.performanceGoals.length})
-                          </h6>
-                          <div className="flex flex-wrap gap-1">
-                            {formData.performanceGoals.map((item) => (
-                              <span
-                                key={item}
-                                className="inline-flex items-center px-2 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded text-xs font-mono text-yellow-300"
-                              >
-                                {item}
-                                <button
-                                  onClick={() => {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      performanceGoals: prev.performanceGoals.filter(g => g !== item)
-                                    }));
-                                  }}
-                                  className="ml-1 text-yellow-400 hover:text-yellow-300"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Search Results */}
-                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                        <div className="space-y-1">
-                          {getFilteredSpecializations(sectionData.performanceGoals, searchQueries.performanceGoals).map((item) => (
-                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.performanceGoals.includes(item)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      performanceGoals: [...prev.performanceGoals, item]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      performanceGoals: prev.performanceGoals.filter(g => g !== item)
-                                    }));
-                                  }
-                                }}
-                                className="mr-2 text-yellow-500 focus:ring-yellow-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{item}</span>
-                            </label>
-                          ))}
-                          {getFilteredSpecializations(sectionData.performanceGoals, searchQueries.performanceGoals).length === 0 && searchQueries.performanceGoals && (
-                            <p className="text-sm text-gray-400 font-mono text-center py-2">
-                              No goals found for "{searchQueries.performanceGoals}"
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Integration & Compliance Requirements */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-red-400">
-                    Integration & Compliance Requirements
-                  </h4>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Integration Requirements */}
-                    <div className="space-y-4">
-                      <h5 className="text-lg font-mono font-semibold text-red-300">
-                        Integration Requirements
-                      </h5>
-                      
-                      {/* Search Bar */}
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={searchQueries.integrationRequirements}
-                          onChange={(e) => setSearchQueries(prev => ({ ...prev, integrationRequirements: e.target.value }))}
-                          placeholder="Search integrations (e.g., 'CRM', 'ERP', 'mobile')..."
-                          className="w-full p-3 bg-gray-800/50 border border-red-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-red-400 pr-10"
-                        />
-                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400">
-                          🔍
-                        </div>
-                      </div>
-
-                      {/* Selected Items */}
-                      {formData.integrationRequirements.length > 0 && (
-                        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
-                          <h6 className="text-sm font-mono font-semibold text-red-300 mb-2">
-                            Selected ({formData.integrationRequirements.length})
-                          </h6>
-                          <div className="flex flex-wrap gap-1">
-                            {formData.integrationRequirements.map((item) => (
-                              <span
-                                key={item}
-                                className="inline-flex items-center px-2 py-1 bg-red-600/20 border border-red-500/30 rounded text-xs font-mono text-red-300"
-                              >
-                                {item}
-                                <button
-                                  onClick={() => {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      integrationRequirements: prev.integrationRequirements.filter(i => i !== item)
-                                    }));
-                                  }}
-                                  className="ml-1 text-red-400 hover:text-red-300"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Search Results */}
-                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                        <div className="space-y-1">
-                          {getFilteredSpecializations(sectionData.integrationRequirements, searchQueries.integrationRequirements).map((item) => (
-                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.integrationRequirements.includes(item)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      integrationRequirements: [...prev.integrationRequirements, item]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      integrationRequirements: prev.integrationRequirements.filter(i => i !== item)
-                                    }));
-                                  }
-                                }}
-                                className="mr-2 text-red-500 focus:ring-red-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{item}</span>
-                            </label>
-                          ))}
-                          {getFilteredSpecializations(sectionData.integrationRequirements, searchQueries.integrationRequirements).length === 0 && searchQueries.integrationRequirements && (
-                            <p className="text-sm text-gray-400 font-mono text-center py-2">
-                              No integrations found for "{searchQueries.integrationRequirements}"
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Compliance Needs */}
-                    <div className="space-y-4">
-                      <h5 className="text-lg font-mono font-semibold text-red-300">
-                        Compliance Needs
-                      </h5>
-                      
-                      {/* Search Bar */}
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={searchQueries.complianceNeeds}
-                          onChange={(e) => setSearchQueries(prev => ({ ...prev, complianceNeeds: e.target.value }))}
-                          placeholder="Search compliance (e.g., 'OSHA', 'FDA', 'ISO')..."
-                          className="w-full p-3 bg-gray-800/50 border border-red-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-red-400 pr-10"
-                        />
-                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400">
-                          🔍
-                        </div>
-                      </div>
-
-                      {/* Selected Items */}
-                      {formData.complianceNeeds.length > 0 && (
-                        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
-                          <h6 className="text-sm font-mono font-semibold text-red-300 mb-2">
-                            Selected ({formData.complianceNeeds.length})
-                          </h6>
-                          <div className="flex flex-wrap gap-1">
-                            {formData.complianceNeeds.map((item) => (
-                              <span
-                                key={item}
-                                className="inline-flex items-center px-2 py-1 bg-red-600/20 border border-red-500/30 rounded text-xs font-mono text-red-300"
-                              >
-                                {item}
-                                <button
-                                  onClick={() => {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      complianceNeeds: prev.complianceNeeds.filter(c => c !== item)
-                                    }));
-                                  }}
-                                  className="ml-1 text-red-400 hover:text-red-300"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Search Results */}
-                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                        <div className="space-y-1">
-                          {getFilteredSpecializations(sectionData.complianceNeeds, searchQueries.complianceNeeds).map((item) => (
-                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.complianceNeeds.includes(item)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      complianceNeeds: [...prev.complianceNeeds, item]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      complianceNeeds: prev.complianceNeeds.filter(c => c !== item)
-                                    }));
-                                  }
-                                }}
-                                className="mr-2 text-red-500 focus:ring-red-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{item}</span>
-                            </label>
-                          ))}
-                          {getFilteredSpecializations(sectionData.complianceNeeds, searchQueries.complianceNeeds).length === 0 && searchQueries.complianceNeeds && (
-                            <p className="text-sm text-gray-400 font-mono text-center py-2">
-                              No compliance needs found for "{searchQueries.complianceNeeds}"
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 {/* Reporting & Analytics Needs */}
                 <div className="border-t border-cyan-500/20 pt-8">
