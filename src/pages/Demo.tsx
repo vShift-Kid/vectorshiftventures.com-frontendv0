@@ -513,6 +513,44 @@ const Demo: React.FC = () => {
                     </p>
                   </div>
 
+                  {/* Specialization Explanation */}
+                  <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl p-4 mb-6">
+                    <h5 className="font-mono font-semibold text-cyan-400 mb-3 flex items-center gap-2">
+                      <Brain className="w-4 h-4" />
+                      Why Specialization Matters
+                    </h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Industry-specific terminology and jargon</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Common problems and solutions</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Safety protocols and compliance</span>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Equipment and tool knowledge</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Customer communication patterns</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="font-mono text-gray-300">Service workflow optimization</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
@@ -524,7 +562,7 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">What should the agent do?</option>
+                        <option value="">What should your voice agent primarily do?</option>
                         <optgroup label="Customer Service & Support">
                           <option value="customer-service-faqs">Customer Service - Answer FAQs & General Questions</option>
                           <option value="appointment-scheduling">Appointment Scheduling & Booking</option>
@@ -594,7 +632,7 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">Who will interact with it?</option>
+                        <option value="">Who will primarily interact with your voice agent?</option>
                         <optgroup label="Field Operations">
                           <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
                           <option value="service-technicians">Service Technicians (installation, repair, maintenance)</option>
@@ -685,7 +723,7 @@ const Demo: React.FC = () => {
 
                     <div className="md:col-span-2">
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Industry Context *
+                        Voice Agent Specialization *
                       </label>
                       <select
                         value={formData.industryContext}
@@ -693,16 +731,104 @@ const Demo: React.FC = () => {
                         required
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
-                        <option value="">Select your specific industry context</option>
-                        <option value="hvac-mechanical">HVAC / Mechanical Services</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="electrical-power">Electrical / Power Systems</option>
-                        <option value="manufacturing-industrial">Manufacturing / Industrial</option>
-                        <option value="medical-healthcare">Medical / Healthcare</option>
-                        <option value="logistics-warehousing">Logistics / Warehousing</option>
-                        <option value="it-software">IT / Software</option>
-                        <option value="other">Other (specify in business description)</option>
+                        <option value="">How should your voice agent be specialized?</option>
+                        <optgroup label="HVAC & Climate Control Specialization">
+                          <option value="hvac-residential-specialist">Residential HVAC (home heating/cooling, ductwork, thermostats)</option>
+                          <option value="hvac-commercial-specialist">Commercial HVAC (building systems, maintenance, energy efficiency)</option>
+                          <option value="hvac-industrial-specialist">Industrial HVAC (large facilities, process cooling, ventilation)</option>
+                          <option value="refrigeration-specialist">Refrigeration (commercial freezers, walk-ins, ice machines)</option>
+                          <option value="duct-cleaning-specialist">Duct Cleaning & Air Quality (cleaning, sanitizing, air testing)</option>
+                        </optgroup>
+                        <optgroup label="Plumbing Specialization">
+                          <option value="plumbing-residential-specialist">Residential Plumbing (leaks, clogs, fixtures, water heaters)</option>
+                          <option value="plumbing-commercial-specialist">Commercial Plumbing (restaurants, offices, multi-unit buildings)</option>
+                          <option value="plumbing-industrial-specialist">Industrial Plumbing (manufacturing, processing, large systems)</option>
+                          <option value="drain-sewer-specialist">Drain & Sewer (cleaning, repair, video inspection, jetting)</option>
+                          <option value="water-treatment-specialist">Water Treatment (filtration, softening, purification systems)</option>
+                        </optgroup>
+                        <optgroup label="Electrical Specialization">
+                          <option value="electrical-residential-specialist">Residential Electrical (outlets, switches, lighting, panels)</option>
+                          <option value="electrical-commercial-specialist">Commercial Electrical (office buildings, retail, restaurants)</option>
+                          <option value="electrical-industrial-specialist">Industrial Electrical (manufacturing, heavy equipment, motors)</option>
+                          <option value="low-voltage-specialist">Low Voltage Systems (security, networking, automation, AV)</option>
+                          <option value="generator-specialist">Generator & Backup Power (installation, maintenance, testing)</option>
+                        </optgroup>
+                        <optgroup label="Maintenance & Repair Specialization">
+                          <option value="facility-maintenance-specialist">Facility Maintenance (preventive care, inspections, repairs)</option>
+                          <option value="equipment-repair-specialist">Equipment Repair (machinery, appliances, specialized tools)</option>
+                          <option value="emergency-repair-specialist">Emergency Repair (24/7 response, urgent fixes, crisis management)</option>
+                          <option value="warranty-service-specialist">Warranty Services (manufacturer support, extended coverage)</option>
+                          <option value="preventive-maintenance-specialist">Preventive Maintenance (scheduled service, condition monitoring)</option>
+                        </optgroup>
+                        <optgroup label="Landscaping & Grounds Specialization">
+                          <option value="landscaping-residential-specialist">Residential Landscaping (lawns, gardens, outdoor living)</option>
+                          <option value="landscaping-commercial-specialist">Commercial Landscaping (office parks, retail centers, complexes)</option>
+                          <option value="lawn-care-specialist">Lawn Care & Maintenance (mowing, fertilizing, pest control)</option>
+                          <option value="tree-service-specialist">Tree Services (pruning, removal, health assessment)</option>
+                          <option value="irrigation-specialist">Irrigation Systems (sprinklers, drip systems, controllers)</option>
+                        </optgroup>
+                        <optgroup label="Cleaning Services Specialization">
+                          <option value="commercial-cleaning-specialist">Commercial Cleaning (offices, retail, medical facilities)</option>
+                          <option value="residential-cleaning-specialist">Residential Cleaning (homes, apartments, move-in/out)</option>
+                          <option value="specialized-cleaning-specialist">Specialized Cleaning (carpets, windows, post-construction)</option>
+                          <option value="medical-cleaning-specialist">Medical/Healthcare Cleaning (sanitization, compliance, safety)</option>
+                          <option value="industrial-cleaning-specialist">Industrial Cleaning (manufacturing, warehouses, heavy-duty)</option>
+                        </optgroup>
+                        <optgroup label="Security & Access Control Specialization">
+                          <option value="security-systems-specialist">Security Systems (alarms, cameras, monitoring, response)</option>
+                          <option value="access-control-specialist">Access Control (keycards, biometrics, door systems)</option>
+                          <option value="cctv-surveillance-specialist">CCTV & Surveillance (cameras, recording, remote monitoring)</option>
+                          <option value="fire-safety-specialist">Fire Safety Systems (alarms, sprinklers, suppression, testing)</option>
+                          <option value="emergency-response-specialist">Emergency Response (monitoring, dispatch, coordination)</option>
+                        </optgroup>
+                        <optgroup label="Technology & Communications Specialization">
+                          <option value="telecommunications-specialist">Telecommunications (phone systems, internet, connectivity)</option>
+                          <option value="network-installation-specialist">Network Installation (wiring, routers, switches, configuration)</option>
+                          <option value="cable-services-specialist">Cable & Internet Services (installation, repair, upgrades)</option>
+                          <option value="it-support-specialist">IT Support Services (troubleshooting, maintenance, upgrades)</option>
+                          <option value="automation-specialist">Building Automation (smart systems, IoT, energy management)</option>
+                        </optgroup>
+                        <optgroup label="Healthcare & Medical Specialization">
+                          <option value="medical-equipment-specialist">Medical Equipment (diagnostic, treatment, monitoring devices)</option>
+                          <option value="healthcare-facilities-specialist">Healthcare Facilities (hospitals, clinics, labs, compliance)</option>
+                          <option value="laboratory-services-specialist">Laboratory Services (equipment, testing, quality control)</option>
+                          <option value="pharmaceutical-specialist">Pharmaceutical Services (manufacturing, quality, compliance)</option>
+                          <option value="dental-equipment-specialist">Dental Equipment (chairs, imaging, sterilization, maintenance)</option>
+                        </optgroup>
+                        <optgroup label="Manufacturing & Industrial Specialization">
+                          <option value="manufacturing-support-specialist">Manufacturing Support (production lines, equipment, quality)</option>
+                          <option value="industrial-equipment-specialist">Industrial Equipment (machinery, motors, control systems)</option>
+                          <option value="production-line-specialist">Production Line Services (automation, maintenance, optimization)</option>
+                          <option value="quality-control-specialist">Quality Control (testing, inspection, compliance, standards)</option>
+                          <option value="safety-compliance-specialist">Safety & Compliance (OSHA, regulations, training, monitoring)</option>
+                        </optgroup>
+                        <optgroup label="Transportation & Logistics Specialization">
+                          <option value="fleet-maintenance-specialist">Fleet Maintenance (vehicles, trucks, equipment, scheduling)</option>
+                          <option value="logistics-support-specialist">Logistics Support (warehousing, distribution, tracking)</option>
+                          <option value="warehouse-services-specialist">Warehouse Services (equipment, automation, inventory systems)</option>
+                          <option value="delivery-services-specialist">Delivery Services (routing, tracking, customer communication)</option>
+                          <option value="transportation-repair-specialist">Transportation Repair (vehicles, equipment, emergency service)</option>
+                        </optgroup>
+                        <optgroup label="Custom Specialization">
+                          <option value="multi-service-specialist">Multi-Service Provider (combines multiple specialties)</option>
+                          <option value="consulting-specialist">Consulting Services (advisory, planning, optimization)</option>
+                          <option value="inspection-specialist">Inspection Services (quality, safety, compliance, certification)</option>
+                          <option value="custom-solution-specialist">Custom Solution (unique business model, specify in description)</option>
+                        </optgroup>
                       </select>
+                      <p className="text-xs text-gray-500 mt-2 font-mono">
+                        💡 This helps us train your voice agent with the right terminology, processes, and industry-specific knowledge for your business.
+                      </p>
+                      
+                      {/* Example Section */}
+                      <div className="mt-3 p-3 bg-gray-800/30 rounded-lg border border-gray-600/30">
+                        <h6 className="font-mono font-semibold text-gray-300 mb-2 text-sm">Example:</h6>
+                        <p className="text-xs text-gray-400 font-mono">
+                          If you select "Residential HVAC", your voice agent will understand terms like "SEER rating", "ductwork", "thermostat programming", 
+                          "refrigerant levels", and common issues like "short cycling" or "frozen coils". It will know to ask about square footage, 
+                          insulation, and energy efficiency when providing recommendations.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
