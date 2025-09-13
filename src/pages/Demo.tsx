@@ -5,6 +5,7 @@ import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, 
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [showTooltips, setShowTooltips] = useState<{[key: string]: boolean}>({});
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,6 +35,14 @@ const Demo: React.FC = () => {
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
+
+  const handleTooltipShow = (tooltipId: string) => {
+    setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
+  };
+
+  const handleTooltipHide = (tooltipId: string) => {
+    setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
+  };
 
   const handleInputChange = (field: string, value: string) => {
     const updatedFormData = {
@@ -699,11 +708,22 @@ const Demo: React.FC = () => {
                     <div className="md:col-span-2">
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Voice Agent Specialization *
-                        <div className="relative group">
-                          <button type="button" className="w-5 h-5 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 text-xs font-bold transition-colors p-1">
+                        <div className="relative">
+                          <button 
+                            type="button" 
+                            className="w-5 h-5 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 text-xs font-bold transition-colors p-1"
+                            onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
+                            onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
+                          >
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-cyan-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg">
+                          <div 
+                            className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-cyan-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                              showTooltips.voiceAgentSpecialization ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
+                            onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
+                          >
                             This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating" and "short cycling" issues.
                           </div>
                         </div>
@@ -809,11 +829,22 @@ const Demo: React.FC = () => {
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Primary Research Focus *
-                        <div className="group relative">
-                          <button type="button" className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1">
+                        <div className="relative">
+                          <button 
+                            type="button" 
+                            className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1"
+                            onMouseEnter={() => handleTooltipShow('researchFocus')}
+                            onMouseLeave={() => handleTooltipHide('researchFocus')}
+                          >
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg">
+                          <div 
+                            className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                              showTooltips.researchFocus ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onMouseEnter={() => handleTooltipShow('researchFocus')}
+                            onMouseLeave={() => handleTooltipHide('researchFocus')}
+                          >
                             This guides our research to gather the most relevant information for your voice agent. We'll focus on industry trends, customer insights, or operational excellence based on your selection.
                           </div>
                         </div>
@@ -859,11 +890,22 @@ const Demo: React.FC = () => {
                       <div>
                         <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                           Research Depth Preference
-                          <div className="group relative">
-                            <button type="button" className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1">
+                          <div className="relative">
+                            <button 
+                              type="button" 
+                              className="w-5 h-5 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors p-1"
+                              onMouseEnter={() => handleTooltipShow('researchDepth')}
+                              onMouseLeave={() => handleTooltipHide('researchDepth')}
+                            >
                               ?
                             </button>
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg">
+                            <div 
+                              className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                                showTooltips.researchDepth ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              onMouseEnter={() => handleTooltipShow('researchDepth')}
+                              onMouseLeave={() => handleTooltipHide('researchDepth')}
+                            >
                               Choose how detailed the research should be. Comprehensive = deep dive, Focused = specific areas, Overview = high-level insights.
                             </div>
                           </div>
@@ -890,11 +932,22 @@ const Demo: React.FC = () => {
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Demo Type *
-                        <div className="group relative">
-                          <button type="button" className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1">
+                        <div className="relative">
+                          <button 
+                            type="button" 
+                            className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
+                            onMouseEnter={() => handleTooltipShow('demoType')}
+                            onMouseLeave={() => handleTooltipHide('demoType')}
+                          >
                             ?
                           </button>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg">
+                          <div 
+                            className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                              showTooltips.demoType ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onMouseEnter={() => handleTooltipShow('demoType')}
+                            onMouseLeave={() => handleTooltipHide('demoType')}
+                          >
                             Voice Agent: Phone-based customer service. Chatbot: Web-based chat interface. Newsletter: Customized email content and automation.
                           </div>
                         </div>
@@ -983,11 +1036,22 @@ const Demo: React.FC = () => {
                 <div>
                   <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                     Additional Documentation (Optional)
-                    <div className="group relative">
-                      <button type="button" className="w-5 h-5 bg-green-500/20 hover:bg-green-500/30 rounded-full flex items-center justify-center text-green-400 text-xs font-bold transition-colors p-1">
+                    <div className="relative">
+                      <button 
+                        type="button" 
+                        className="w-5 h-5 bg-green-500/20 hover:bg-green-500/30 rounded-full flex items-center justify-center text-green-400 text-xs font-bold transition-colors p-1"
+                        onMouseEnter={() => handleTooltipShow('documentation')}
+                        onMouseLeave={() => handleTooltipHide('documentation')}
+                      >
                         ?
                       </button>
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-green-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg">
+                      <div 
+                        className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-green-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                          showTooltips.documentation ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        onMouseEnter={() => handleTooltipShow('documentation')}
+                        onMouseLeave={() => handleTooltipHide('documentation')}
+                      >
                         Upload service manuals, FAQs, procedures, pricing sheets. Avoid customer data, financial records, or proprietary information.
                       </div>
                     </div>
