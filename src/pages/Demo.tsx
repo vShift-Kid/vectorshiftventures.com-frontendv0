@@ -32,7 +32,18 @@ const Demo: React.FC = () => {
     // Demo Type Field
     demoType: '',
     // Specializations Field
-    specializations: [] as string[]
+    specializations: [] as string[],
+    // Additional AI Agent Attributes
+    agentPersonality: '',
+    communicationStyle: '',
+    technicalLevel: '',
+    problemSolvingApproach: '',
+    customerInteractionStyle: '',
+    knowledgeSources: [] as string[],
+    performanceGoals: [] as string[],
+    integrationRequirements: [] as string[],
+    complianceNeeds: [] as string[],
+    reportingNeeds: [] as string[]
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -245,6 +256,10 @@ const Demo: React.FC = () => {
       updatedFormData.researchFocus.length > 0 &&
       updatedFormData.demoType.length > 0 &&
       updatedFormData.specializations.length > 0 &&
+      updatedFormData.agentPersonality.length > 0 &&
+      updatedFormData.communicationStyle.length > 0 &&
+      updatedFormData.technicalLevel.length > 0 &&
+      updatedFormData.problemSolvingApproach.length > 0 &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
@@ -938,6 +953,301 @@ const Demo: React.FC = () => {
                           </div>
                         </div>
                       )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Agent Personality & Communication */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-green-400">
+                    AI Agent Personality & Communication
+                  </h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Agent Personality *
+                      </label>
+                      <select
+                        value={formData.agentPersonality}
+                        onChange={(e) => handleInputChange('agentPersonality', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
+                      >
+                        <option value="">Select agent personality</option>
+                        <option value="professional">Professional - Formal, authoritative, expert tone</option>
+                        <option value="friendly">Friendly - Warm, approachable, conversational</option>
+                        <option value="technical">Technical - Precise, detailed, engineering-focused</option>
+                        <option value="consultative">Consultative - Advisory, solution-oriented, strategic</option>
+                        <option value="empathetic">Empathetic - Understanding, patient, supportive</option>
+                        <option value="efficient">Efficient - Direct, quick, results-focused</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Communication Style *
+                      </label>
+                      <select
+                        value={formData.communicationStyle}
+                        onChange={(e) => handleInputChange('communicationStyle', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
+                      >
+                        <option value="">Select communication style</option>
+                        <option value="step-by-step">Step-by-Step - Detailed instructions, sequential guidance</option>
+                        <option value="overview-first">Overview First - Big picture, then details</option>
+                        <option value="problem-focused">Problem-Focused - Identify issue, then solution</option>
+                        <option value="solution-focused">Solution-Focused - Immediate answers, quick fixes</option>
+                        <option value="interactive">Interactive - Questions, clarification, dialogue</option>
+                        <option value="reference-based">Reference-Based - Manuals, specs, documentation</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Technical Level *
+                      </label>
+                      <select
+                        value={formData.technicalLevel}
+                        onChange={(e) => handleInputChange('technicalLevel', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
+                      >
+                        <option value="">Select technical level</option>
+                        <option value="beginner">Beginner - Basic concepts, simple explanations</option>
+                        <option value="intermediate">Intermediate - Some technical knowledge, moderate detail</option>
+                        <option value="advanced">Advanced - High technical knowledge, detailed explanations</option>
+                        <option value="expert">Expert - Deep technical expertise, complex problem solving</option>
+                        <option value="adaptive">Adaptive - Adjusts based on user's technical level</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Problem Solving Approach *
+                      </label>
+                      <select
+                        value={formData.problemSolvingApproach}
+                        onChange={(e) => handleInputChange('problemSolvingApproach', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
+                      >
+                        <option value="">Select problem solving approach</option>
+                        <option value="systematic">Systematic - Methodical, step-by-step diagnosis</option>
+                        <option value="creative">Creative - Innovative solutions, thinking outside the box</option>
+                        <option value="collaborative">Collaborative - Team-based, multiple perspectives</option>
+                        <option value="data-driven">Data-Driven - Evidence-based, analytical approach</option>
+                        <option value="experience-based">Experience-Based - Past cases, lessons learned</option>
+                        <option value="preventive">Preventive - Proactive, risk mitigation focus</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Knowledge Sources & Performance Goals */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-yellow-400">
+                    Knowledge Sources & Performance Goals
+                  </h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Knowledge Sources (Select all that apply)
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          'Equipment Manuals', 'Technical Specifications', 'Service Bulletins', 'Training Materials',
+                          'Historical Service Records', 'Customer Feedback', 'Industry Standards', 'Regulatory Guidelines',
+                          'Best Practices', 'Troubleshooting Guides', 'Parts Catalogs', 'Warranty Information',
+                          'Safety Procedures', 'Compliance Documentation', 'Software Documentation', 'Video Tutorials'
+                        ].map((source) => (
+                          <label key={source} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.knowledgeSources.includes(source)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    knowledgeSources: [...prev.knowledgeSources, source]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    knowledgeSources: prev.knowledgeSources.filter(s => s !== source)
+                                  }));
+                                }
+                              }}
+                              className="mr-3 text-yellow-500 focus:ring-yellow-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{source}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Performance Goals (Select all that apply)
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction',
+                          'Minimize Equipment Downtime', 'Reduce Parts Inventory', 'Improve Technician Efficiency',
+                          'Enhance Safety Compliance', 'Reduce Warranty Claims', 'Improve Documentation',
+                          'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling', 'Enhance Training',
+                          'Reduce Errors', 'Improve Communication', 'Increase Repeat Business'
+                        ].map((goal) => (
+                          <label key={goal} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.performanceGoals.includes(goal)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    performanceGoals: [...prev.performanceGoals, goal]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    performanceGoals: prev.performanceGoals.filter(g => g !== goal)
+                                  }));
+                                }
+                              }}
+                              className="mr-3 text-yellow-500 focus:ring-yellow-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{goal}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Integration & Compliance Requirements */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-red-400">
+                    Integration & Compliance Requirements
+                  </h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Integration Requirements (Select all that apply)
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
+                          'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
+                          'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
+                          'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations'
+                        ].map((integration) => (
+                          <label key={integration} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.integrationRequirements.includes(integration)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    integrationRequirements: [...prev.integrationRequirements, integration]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    integrationRequirements: prev.integrationRequirements.filter(i => i !== integration)
+                                  }));
+                                }
+                              }}
+                              className="mr-3 text-red-500 focus:ring-red-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{integration}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Compliance Needs (Select all that apply)
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
+                          'Environmental Regulations', 'Safety Standards', 'Quality Certifications',
+                          'Industry Standards', 'Local Regulations', 'International Standards',
+                          'Audit Requirements', 'Documentation Standards', 'Training Requirements',
+                          'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements'
+                        ].map((compliance) => (
+                          <label key={compliance} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.complianceNeeds.includes(compliance)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    complianceNeeds: [...prev.complianceNeeds, compliance]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    complianceNeeds: prev.complianceNeeds.filter(c => c !== compliance)
+                                  }));
+                                }
+                              }}
+                              className="mr-3 text-red-500 focus:ring-red-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{compliance}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Reporting & Analytics Needs */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-blue-400">
+                    Reporting & Analytics Needs
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Reporting Needs (Select all that apply)
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
+                        'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
+                        'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
+                        'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis'
+                      ].map((report) => (
+                        <label key={report} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={formData.reportingNeeds.includes(report)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  reportingNeeds: [...prev.reportingNeeds, report]
+                                }));
+                              } else {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  reportingNeeds: prev.reportingNeeds.filter(r => r !== report)
+                                }));
+                              }
+                            }}
+                            className="mr-3 text-blue-500 focus:ring-blue-400"
+                          />
+                          <span className="text-sm font-mono text-gray-300">{report}</span>
+                        </label>
+                      ))}
                     </div>
                   </div>
                 </div>
