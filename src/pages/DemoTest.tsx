@@ -130,15 +130,15 @@ const getFilteredSpecializations = (specializations: string[], query: string): s
 };
 
 const DemoTest: React.FC = () => {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [showTooltips, setShowTooltips] = useState<{[key: string]: boolean}>({});
   const [countdown, setCountdown] = useState(30);
 
   const [formData, setFormData] = useState({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    company: 'Acme Corporation',
+    name: '',
+    email: '',
+    company: '',
     phone: '',
     industry: '',
     consultationPackage: '',
