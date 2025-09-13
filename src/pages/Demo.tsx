@@ -347,32 +347,32 @@ const Demo: React.FC = () => {
                   >
                     <option value="">Select your field service industry</option>
                     <optgroup label="HVAC & Climate Control">
-                      <option value="hvac-residential">HVAC - Residential</option>
-                      <option value="hvac-commercial">HVAC - Commercial</option>
-                      <option value="hvac-industrial">HVAC - Industrial</option>
-                      <option value="refrigeration">Refrigeration</option>
-                      <option value="ductwork">Ductwork & Ventilation</option>
+                      <option value="hvac-residential">HVAC - Residential (Furnaces, AC units, thermostats, ductwork, SEER ratings, energy efficiency)</option>
+                      <option value="hvac-commercial">HVAC - Commercial (RTUs, VAV systems, building automation, maintenance contracts, zoning)</option>
+                      <option value="hvac-industrial">HVAC - Industrial (Chillers, boilers, process cooling, clean rooms, air handling units)</option>
+                      <option value="refrigeration">Refrigeration (Walk-in coolers, commercial freezers, ice machines, refrigerant handling, temperature control)</option>
+                      <option value="ductwork">Ductwork & Ventilation (Duct cleaning, air balancing, indoor air quality, ventilation systems, airflow testing)</option>
                     </optgroup>
                     <optgroup label="Plumbing Services">
-                      <option value="plumbing-residential">Plumbing - Residential</option>
-                      <option value="plumbing-commercial">Plumbing - Commercial</option>
-                      <option value="plumbing-industrial">Plumbing - Industrial</option>
-                      <option value="drain-cleaning">Drain Cleaning</option>
-                      <option value="water-heater">Water Heater Services</option>
+                      <option value="plumbing-residential">Plumbing - Residential (Faucets, toilets, sinks, garbage disposals, pipe repairs, water pressure, leaks)</option>
+                      <option value="plumbing-commercial">Plumbing - Commercial (Restaurant plumbing, grease traps, commercial fixtures, backflow prevention, water systems)</option>
+                      <option value="plumbing-industrial">Plumbing - Industrial (Process piping, water treatment, pump systems, chemical handling, large-scale installations)</option>
+                      <option value="drain-cleaning">Drain Cleaning (Sewer lines, main line cleaning, hydro jetting, camera inspections, root removal, clog prevention)</option>
+                      <option value="water-heater">Water Heater Services (Tankless, traditional tanks, heat pumps, maintenance, temperature control, energy efficiency)</option>
                     </optgroup>
                     <optgroup label="Electrical Services">
-                      <option value="electrical-residential">Electrical - Residential</option>
-                      <option value="electrical-commercial">Electrical - Commercial</option>
-                      <option value="electrical-industrial">Electrical - Industrial</option>
-                      <option value="generator">Generator Services</option>
-                      <option value="security-systems">Security Systems</option>
+                      <option value="electrical-residential">Electrical - Residential (Outlets, switches, lighting, panels, GFCI, AFCI, smart home wiring, surge protection)</option>
+                      <option value="electrical-commercial">Electrical - Commercial (LED retrofits, emergency lighting, power distribution, data cabling, energy management)</option>
+                      <option value="electrical-industrial">Electrical - Industrial (Motor controls, VFDs, power quality, three-phase systems, automation, safety systems)</option>
+                      <option value="generator">Generator Services (Standby generators, transfer switches, load testing, maintenance, fuel systems, automatic start)</option>
+                      <option value="security-systems">Security Systems (Access control, cameras, alarms, intercoms, smart locks, monitoring, integration)</option>
                     </optgroup>
                     <optgroup label="Other Field Services">
-                      <option value="landscaping">Landscaping & Lawn Care</option>
-                      <option value="pest-control">Pest Control</option>
-                      <option value="cleaning">Commercial Cleaning</option>
-                      <option value="maintenance">Facility Maintenance</option>
-                      <option value="other">Other Field Service</option>
+                      <option value="landscaping">Landscaping & Lawn Care (Mowing, trimming, fertilization, irrigation, pest control, seasonal cleanup, design)</option>
+                      <option value="pest-control">Pest Control (Termite treatment, rodent control, insect management, inspection, prevention, wildlife removal)</option>
+                      <option value="cleaning">Commercial Cleaning (Office cleaning, janitorial, carpet cleaning, window washing, sanitization, maintenance)</option>
+                      <option value="maintenance">Facility Maintenance (Preventive maintenance, repairs, equipment servicing, building systems, emergency response)</option>
+                      <option value="other">Other Field Service (Specify your specialized service area in business description)</option>
                     </optgroup>
                   </select>
                 </div>
@@ -536,7 +536,7 @@ const Demo: React.FC = () => {
                           onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
                           onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
                         >
-                          This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating" and "short cycling" issues.
+                          This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating", "short cycling", "ductwork sizing", and "refrigerant levels". Plumbing agents know about "backflow prevention", "hydro jetting", and "water pressure issues".
                         </div>
                       </div>
                     </label>
