@@ -16,53 +16,6 @@ const getFilteredSpecializations = (specializations: string[], query: string): s
   );
 };
 
-// Data for all searchable sections
-const sectionData = {
-  specializations: [
-    'Equipment Manuals', 'Technical Specifications', 'Service Bulletins', 'Training Materials',
-    'Historical Service Records', 'Customer Feedback', 'Industry Standards', 'Regulatory Guidelines',
-    'Best Practices', 'Troubleshooting Guides', 'Parts Catalogs', 'Warranty Information',
-    'Safety Procedures', 'Compliance Documentation', 'Software Documentation', 'Video Tutorials'
-  ],
-  performanceGoals: [
-    'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction', 'Minimize Equipment Downtime',
-    'Reduce Parts Inventory', 'Improve Technician Efficiency', 'Enhance Safety Compliance', 'Reduce Warranty Claims',
-    'Improve Documentation', 'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling',
-    'Enhance Training', 'Reduce Errors', 'Improve Communication', 'Increase Repeat Business'
-  ],
-  integrationRequirements: [
-    'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
-    'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
-    'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
-    'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations'
-  ],
-  complianceNeeds: [
-    'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
-    'Environmental Regulations', 'Safety Standards', 'Quality Certifications', 'Industry Standards',
-    'Local Regulations', 'International Standards', 'Audit Requirements', 'Documentation Standards',
-    'Training Requirements', 'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements'
-  ],
-  reportingNeeds: [
-    'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
-    'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
-    'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
-    'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis'
-  ],
-  troubleshootingMethodology: [
-    'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
-    'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
-    'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
-    'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
-    'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules'
-  ],
-  predictiveCapabilities: [
-    'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
-    'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
-    'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
-    'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
-    'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction'
-  ]
-};
 
 // RME & Supporting Operations - Comprehensive Specializations
 const mainSpecializations = {
@@ -138,6 +91,24 @@ const mainSpecializations = {
     'Customer Journey Analysis', 'Retention Analysis', 'Complaint Analysis', 'Service Level Analysis',
     'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization',
     'Customer Care', 'Support Operations', 'Service Delivery', 'Customer Relationship Management'
+  ],
+  'Troubleshooting & Diagnostics': [
+    'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
+    'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
+    'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
+    'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
+    'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules',
+    'Diagnostic Procedures', 'Fault Detection', 'Problem Resolution', 'Technical Troubleshooting',
+    'Equipment Diagnostics', 'System Diagnostics', 'Performance Diagnostics', 'Failure Diagnostics'
+  ],
+  'Predictive & Analytics': [
+    'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
+    'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
+    'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
+    'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
+    'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction',
+    'Predictive Analytics', 'Machine Learning', 'Data Mining', 'Pattern Recognition',
+    'Anomaly Detection', 'Trend Analysis', 'Forecasting Models', 'Predictive Maintenance'
   ]
 };
 
@@ -1026,7 +997,7 @@ const Demo: React.FC = () => {
               
               <div className="mb-6">
                 <p className="text-sm text-gray-400 font-mono mb-4">
-                  Search and select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
+                  Search and select the RME (Reliability, Maintenance, Engineering) and Operations specializations your AI agent should focus on. These will guide comprehensive research and training for your field service demo application.
                 </p>
               </div>
               
@@ -1037,7 +1008,7 @@ const Demo: React.FC = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'engineering', 'supporting')..."
+                    placeholder="Search RME specializations (e.g., 'reliability', 'maintenance', 'troubleshooting', 'predictive')..."
                     className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
                   />
                   <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
@@ -1131,188 +1102,6 @@ const Demo: React.FC = () => {
               </div>
             </div>
 
-                {/* Troubleshooting Methodology */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-teal-400">
-                    Troubleshooting Methodology
-                  </h4>
-                  
-                    <div className="space-y-4">
-                      <h5 className="text-lg font-mono font-semibold text-teal-300">
-                        Troubleshooting Approaches
-                      </h5>
-                      
-                      {/* Search Bar */}
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={searchQueries.troubleshootingMethodology}
-                          onChange={(e) => setSearchQueries(prev => ({ ...prev, troubleshootingMethodology: e.target.value }))}
-                          placeholder="Search approaches (e.g., 'analysis', 'testing', 'diagnosis')..."
-                          className="w-full p-3 bg-gray-800/50 border border-teal-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-teal-400 pr-10"
-                        />
-                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-teal-400">
-                          🔍
-                        </div>
-                      </div>
-
-                      {/* Selected Items */}
-                      {formData.troubleshootingMethodology.length > 0 && (
-                        <div className="bg-teal-900/20 border border-teal-500/30 rounded-lg p-3">
-                          <h6 className="text-sm font-mono font-semibold text-teal-300 mb-2">
-                            Selected ({formData.troubleshootingMethodology.length})
-                          </h6>
-                          <div className="flex flex-wrap gap-1">
-                            {formData.troubleshootingMethodology.map((item) => (
-                              <span
-                                key={item}
-                                className="inline-flex items-center px-2 py-1 bg-teal-600/20 border border-teal-500/30 rounded text-xs font-mono text-teal-300"
-                              >
-                                {item}
-                                <button
-                                  onClick={() => {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== item)
-                                    }));
-                                  }}
-                                  className="ml-1 text-teal-400 hover:text-teal-300"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Search Results */}
-                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                        <div className="space-y-1">
-                          {getFilteredSpecializations(sectionData.troubleshootingMethodology, searchQueries.troubleshootingMethodology).map((item) => (
-                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.troubleshootingMethodology.includes(item)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      troubleshootingMethodology: [...prev.troubleshootingMethodology, item]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== item)
-                                    }));
-                                  }
-                                }}
-                                className="mr-2 text-teal-500 focus:ring-teal-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{item}</span>
-                            </label>
-                          ))}
-                          {getFilteredSpecializations(sectionData.troubleshootingMethodology, searchQueries.troubleshootingMethodology).length === 0 && searchQueries.troubleshootingMethodology && (
-                            <p className="text-sm text-gray-400 font-mono text-center py-2">
-                              No approaches found for "{searchQueries.troubleshootingMethodology}"
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-
-                {/* Predictive Capabilities */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
-                    Predictive Capabilities
-                  </h4>
-                  
-                  <div className="space-y-4">
-                    <h5 className="text-lg font-mono font-semibold text-cyan-300">
-                      Predictive Features
-                    </h5>
-                    
-                    {/* Search Bar */}
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={searchQueries.predictiveCapabilities}
-                        onChange={(e) => setSearchQueries(prev => ({ ...prev, predictiveCapabilities: e.target.value }))}
-                        placeholder="Search features (e.g., 'prediction', 'forecasting', 'maintenance')..."
-                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400 pr-10"
-                      />
-                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-400">
-                        🔍
-                      </div>
-                    </div>
-
-                    {/* Selected Items */}
-                    {formData.predictiveCapabilities.length > 0 && (
-                      <div className="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
-                        <h6 className="text-sm font-mono font-semibold text-cyan-300 mb-2">
-                          Selected ({formData.predictiveCapabilities.length})
-                        </h6>
-                        <div className="flex flex-wrap gap-1">
-                          {formData.predictiveCapabilities.map((item) => (
-                            <span
-                              key={item}
-                              className="inline-flex items-center px-2 py-1 bg-cyan-600/20 border border-cyan-500/30 rounded text-xs font-mono text-cyan-300"
-                            >
-                              {item}
-                              <button
-                                onClick={() => {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== item)
-                                  }));
-                                }}
-                                className="ml-1 text-cyan-400 hover:text-cyan-300"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Search Results */}
-                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                      <div className="space-y-1">
-                        {getFilteredSpecializations(sectionData.predictiveCapabilities, searchQueries.predictiveCapabilities).map((item) => (
-                          <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={formData.predictiveCapabilities.includes(item)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    predictiveCapabilities: [...prev.predictiveCapabilities, item]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== item)
-                                  }));
-                                }
-                              }}
-                              className="mr-2 text-cyan-500 focus:ring-cyan-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{item}</span>
-                          </label>
-                        ))}
-                        {getFilteredSpecializations(sectionData.predictiveCapabilities, searchQueries.predictiveCapabilities).length === 0 && searchQueries.predictiveCapabilities && (
-                          <p className="text-sm text-gray-400 font-mono text-center py-2">
-                            No features found for "{searchQueries.predictiveCapabilities}"
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
             {/* Document Upload Section */}
