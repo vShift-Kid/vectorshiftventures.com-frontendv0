@@ -1158,77 +1158,174 @@ const Demo: React.FC = () => {
                     Integration & Compliance Requirements
                   </h4>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Integration Requirements (Select all that apply)
-                      </label>
-                      <div className="space-y-2">
-                        {[
-                          'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
-                          'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
-                          'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
-                          'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations'
-                        ].map((integration) => (
-                          <label key={integration} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              checked={formData.integrationRequirements.includes(integration)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    integrationRequirements: [...prev.integrationRequirements, integration]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    integrationRequirements: prev.integrationRequirements.filter(i => i !== integration)
-                                  }));
-                                }
-                              }}
-                              className="mr-3 text-red-500 focus:ring-red-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{integration}</span>
-                          </label>
-                        ))}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Integration Requirements */}
+                    <div className="space-y-4">
+                      <h5 className="text-lg font-mono font-semibold text-red-300">
+                        Integration Requirements
+                      </h5>
+                      
+                      {/* Search Bar */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={searchQueries.integrationRequirements}
+                          onChange={(e) => setSearchQueries(prev => ({ ...prev, integrationRequirements: e.target.value }))}
+                          placeholder="Search integrations (e.g., 'CRM', 'ERP', 'mobile')..."
+                          className="w-full p-3 bg-gray-800/50 border border-red-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-red-400 pr-10"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400">
+                          🔍
+                        </div>
+                      </div>
+
+                      {/* Selected Items */}
+                      {formData.integrationRequirements.length > 0 && (
+                        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
+                          <h6 className="text-sm font-mono font-semibold text-red-300 mb-2">
+                            Selected ({formData.integrationRequirements.length})
+                          </h6>
+                          <div className="flex flex-wrap gap-1">
+                            {formData.integrationRequirements.map((item) => (
+                              <span
+                                key={item}
+                                className="inline-flex items-center px-2 py-1 bg-red-600/20 border border-red-500/30 rounded text-xs font-mono text-red-300"
+                              >
+                                {item}
+                                <button
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      integrationRequirements: prev.integrationRequirements.filter(i => i !== item)
+                                    }));
+                                  }}
+                                  className="ml-1 text-red-400 hover:text-red-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Search Results */}
+                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                        <div className="space-y-1">
+                          {getFilteredSpecializations(sectionData.integrationRequirements, searchQueries.integrationRequirements).map((item) => (
+                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.integrationRequirements.includes(item)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      integrationRequirements: [...prev.integrationRequirements, item]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      integrationRequirements: prev.integrationRequirements.filter(i => i !== item)
+                                    }));
+                                  }
+                                }}
+                                className="mr-2 text-red-500 focus:ring-red-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{item}</span>
+                            </label>
+                          ))}
+                          {getFilteredSpecializations(sectionData.integrationRequirements, searchQueries.integrationRequirements).length === 0 && searchQueries.integrationRequirements && (
+                            <p className="text-sm text-gray-400 font-mono text-center py-2">
+                              No integrations found for "{searchQueries.integrationRequirements}"
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Compliance Needs (Select all that apply)
-                      </label>
-                      <div className="space-y-2">
-                        {[
-                          'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
-                          'Environmental Regulations', 'Safety Standards', 'Quality Certifications',
-                          'Industry Standards', 'Local Regulations', 'International Standards',
-                          'Audit Requirements', 'Documentation Standards', 'Training Requirements',
-                          'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements'
-                        ].map((compliance) => (
-                          <label key={compliance} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              checked={formData.complianceNeeds.includes(compliance)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    complianceNeeds: [...prev.complianceNeeds, compliance]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    complianceNeeds: prev.complianceNeeds.filter(c => c !== compliance)
-                                  }));
-                                }
-                              }}
-                              className="mr-3 text-red-500 focus:ring-red-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{compliance}</span>
-                          </label>
-                        ))}
+                    {/* Compliance Needs */}
+                    <div className="space-y-4">
+                      <h5 className="text-lg font-mono font-semibold text-red-300">
+                        Compliance Needs
+                      </h5>
+                      
+                      {/* Search Bar */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={searchQueries.complianceNeeds}
+                          onChange={(e) => setSearchQueries(prev => ({ ...prev, complianceNeeds: e.target.value }))}
+                          placeholder="Search compliance (e.g., 'OSHA', 'FDA', 'ISO')..."
+                          className="w-full p-3 bg-gray-800/50 border border-red-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-red-400 pr-10"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400">
+                          🔍
+                        </div>
+                      </div>
+
+                      {/* Selected Items */}
+                      {formData.complianceNeeds.length > 0 && (
+                        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
+                          <h6 className="text-sm font-mono font-semibold text-red-300 mb-2">
+                            Selected ({formData.complianceNeeds.length})
+                          </h6>
+                          <div className="flex flex-wrap gap-1">
+                            {formData.complianceNeeds.map((item) => (
+                              <span
+                                key={item}
+                                className="inline-flex items-center px-2 py-1 bg-red-600/20 border border-red-500/30 rounded text-xs font-mono text-red-300"
+                              >
+                                {item}
+                                <button
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      complianceNeeds: prev.complianceNeeds.filter(c => c !== item)
+                                    }));
+                                  }}
+                                  className="ml-1 text-red-400 hover:text-red-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Search Results */}
+                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                        <div className="space-y-1">
+                          {getFilteredSpecializations(sectionData.complianceNeeds, searchQueries.complianceNeeds).map((item) => (
+                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.complianceNeeds.includes(item)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      complianceNeeds: [...prev.complianceNeeds, item]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      complianceNeeds: prev.complianceNeeds.filter(c => c !== item)
+                                    }));
+                                  }
+                                }}
+                                className="mr-2 text-red-500 focus:ring-red-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{item}</span>
+                            </label>
+                          ))}
+                          {getFilteredSpecializations(sectionData.complianceNeeds, searchQueries.complianceNeeds).length === 0 && searchQueries.complianceNeeds && (
+                            <p className="text-sm text-gray-400 font-mono text-center py-2">
+                              No compliance needs found for "{searchQueries.complianceNeeds}"
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1240,41 +1337,89 @@ const Demo: React.FC = () => {
                     Reporting & Analytics Needs
                   </h4>
                   
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Reporting Needs (Select all that apply)
-                    </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
-                        'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
-                        'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
-                        'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis'
-                      ].map((report) => (
-                        <label key={report} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.reportingNeeds.includes(report)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  reportingNeeds: [...prev.reportingNeeds, report]
-                                }));
-                              } else {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  reportingNeeds: prev.reportingNeeds.filter(r => r !== report)
-                                }));
-                              }
-                            }}
-                            className="mr-3 text-blue-500 focus:ring-blue-400"
-                          />
-                          <span className="text-sm font-mono text-gray-300">{report}</span>
-                        </label>
-                      ))}
-                </div>
-              </div>
+                  <div className="space-y-4">
+                    <h5 className="text-lg font-mono font-semibold text-blue-300">
+                      Reporting Needs
+                    </h5>
+                    
+                    {/* Search Bar */}
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={searchQueries.reportingNeeds}
+                        onChange={(e) => setSearchQueries(prev => ({ ...prev, reportingNeeds: e.target.value }))}
+                        placeholder="Search reporting needs (e.g., 'performance', 'compliance', 'revenue')..."
+                        className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400 pr-10"
+                      />
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400">
+                        🔍
+                      </div>
+                    </div>
+
+                    {/* Selected Items */}
+                    {formData.reportingNeeds.length > 0 && (
+                      <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+                        <h6 className="text-sm font-mono font-semibold text-blue-300 mb-2">
+                          Selected ({formData.reportingNeeds.length})
+                        </h6>
+                        <div className="flex flex-wrap gap-1">
+                          {formData.reportingNeeds.map((item) => (
+                            <span
+                              key={item}
+                              className="inline-flex items-center px-2 py-1 bg-blue-600/20 border border-blue-500/30 rounded text-xs font-mono text-blue-300"
+                            >
+                              {item}
+                              <button
+                                onClick={() => {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    reportingNeeds: prev.reportingNeeds.filter(r => r !== item)
+                                  }));
+                                }}
+                                className="ml-1 text-blue-400 hover:text-blue-300"
+                              >
+                                ✕
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Search Results */}
+                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                      <div className="space-y-1">
+                        {getFilteredSpecializations(sectionData.reportingNeeds, searchQueries.reportingNeeds).map((item) => (
+                          <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={formData.reportingNeeds.includes(item)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    reportingNeeds: [...prev.reportingNeeds, item]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    reportingNeeds: prev.reportingNeeds.filter(r => r !== item)
+                                  }));
+                                }
+                              }}
+                              className="mr-2 text-blue-500 focus:ring-blue-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{item}</span>
+                          </label>
+                        ))}
+                        {getFilteredSpecializations(sectionData.reportingNeeds, searchQueries.reportingNeeds).length === 0 && searchQueries.reportingNeeds && (
+                          <p className="text-sm text-gray-400 font-mono text-center py-2">
+                            No reporting needs found for "{searchQueries.reportingNeeds}"
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
 
 
             {/* Data Analytics Specializations */}
@@ -1379,42 +1524,89 @@ const Demo: React.FC = () => {
                     Troubleshooting Methodology
                   </h4>
                   
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Troubleshooting Approaches (Select all that apply)
-                      </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
-                        'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
-                        'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
-                        'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
-                        'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules'
-                      ].map((method) => (
-                        <label key={method} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.troubleshootingMethodology.includes(method)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  troubleshootingMethodology: [...prev.troubleshootingMethodology, method]
-                                }));
-                              } else {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== method)
-                                }));
-                              }
-                            }}
-                            className="mr-3 text-teal-500 focus:ring-teal-400"
-                          />
-                          <span className="text-sm font-mono text-gray-300">{method}</span>
-                        </label>
-                      ))}
+                    <div className="space-y-4">
+                      <h5 className="text-lg font-mono font-semibold text-teal-300">
+                        Troubleshooting Approaches
+                      </h5>
+                      
+                      {/* Search Bar */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={searchQueries.troubleshootingMethodology}
+                          onChange={(e) => setSearchQueries(prev => ({ ...prev, troubleshootingMethodology: e.target.value }))}
+                          placeholder="Search approaches (e.g., 'analysis', 'testing', 'diagnosis')..."
+                          className="w-full p-3 bg-gray-800/50 border border-teal-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-teal-400 pr-10"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-teal-400">
+                          🔍
+                        </div>
+                      </div>
+
+                      {/* Selected Items */}
+                      {formData.troubleshootingMethodology.length > 0 && (
+                        <div className="bg-teal-900/20 border border-teal-500/30 rounded-lg p-3">
+                          <h6 className="text-sm font-mono font-semibold text-teal-300 mb-2">
+                            Selected ({formData.troubleshootingMethodology.length})
+                          </h6>
+                          <div className="flex flex-wrap gap-1">
+                            {formData.troubleshootingMethodology.map((item) => (
+                              <span
+                                key={item}
+                                className="inline-flex items-center px-2 py-1 bg-teal-600/20 border border-teal-500/30 rounded text-xs font-mono text-teal-300"
+                              >
+                                {item}
+                                <button
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== item)
+                                    }));
+                                  }}
+                                  className="ml-1 text-teal-400 hover:text-teal-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Search Results */}
+                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                        <div className="space-y-1">
+                          {getFilteredSpecializations(sectionData.troubleshootingMethodology, searchQueries.troubleshootingMethodology).map((item) => (
+                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.troubleshootingMethodology.includes(item)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      troubleshootingMethodology: [...prev.troubleshootingMethodology, item]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      troubleshootingMethodology: prev.troubleshootingMethodology.filter(m => m !== item)
+                                    }));
+                                  }
+                                }}
+                                className="mr-2 text-teal-500 focus:ring-teal-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{item}</span>
+                            </label>
+                          ))}
+                          {getFilteredSpecializations(sectionData.troubleshootingMethodology, searchQueries.troubleshootingMethodology).length === 0 && searchQueries.troubleshootingMethodology && (
+                            <p className="text-sm text-gray-400 font-mono text-center py-2">
+                              No approaches found for "{searchQueries.troubleshootingMethodology}"
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
 
 
@@ -1424,40 +1616,87 @@ const Demo: React.FC = () => {
                     Predictive Capabilities
                   </h4>
                   
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Predictive Features (Select all that apply)
-                    </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
-                        'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
-                        'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
-                        'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
-                        'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction'
-                      ].map((prediction) => (
-                        <label key={prediction} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.predictiveCapabilities.includes(prediction)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  predictiveCapabilities: [...prev.predictiveCapabilities, prediction]
-                                }));
-                              } else {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== prediction)
-                                }));
-                              }
-                            }}
-                            className="mr-3 text-cyan-500 focus:ring-cyan-400"
-                          />
-                          <span className="text-sm font-mono text-gray-300">{prediction}</span>
-                        </label>
-                      ))}
+                  <div className="space-y-4">
+                    <h5 className="text-lg font-mono font-semibold text-cyan-300">
+                      Predictive Features
+                    </h5>
+                    
+                    {/* Search Bar */}
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={searchQueries.predictiveCapabilities}
+                        onChange={(e) => setSearchQueries(prev => ({ ...prev, predictiveCapabilities: e.target.value }))}
+                        placeholder="Search features (e.g., 'prediction', 'forecasting', 'maintenance')..."
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400 pr-10"
+                      />
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-400">
+                        🔍
+                      </div>
+                    </div>
+
+                    {/* Selected Items */}
+                    {formData.predictiveCapabilities.length > 0 && (
+                      <div className="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
+                        <h6 className="text-sm font-mono font-semibold text-cyan-300 mb-2">
+                          Selected ({formData.predictiveCapabilities.length})
+                        </h6>
+                        <div className="flex flex-wrap gap-1">
+                          {formData.predictiveCapabilities.map((item) => (
+                            <span
+                              key={item}
+                              className="inline-flex items-center px-2 py-1 bg-cyan-600/20 border border-cyan-500/30 rounded text-xs font-mono text-cyan-300"
+                            >
+                              {item}
+                              <button
+                                onClick={() => {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== item)
+                                  }));
+                                }}
+                                className="ml-1 text-cyan-400 hover:text-cyan-300"
+                              >
+                                ✕
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Search Results */}
+                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                      <div className="space-y-1">
+                        {getFilteredSpecializations(sectionData.predictiveCapabilities, searchQueries.predictiveCapabilities).map((item) => (
+                          <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={formData.predictiveCapabilities.includes(item)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    predictiveCapabilities: [...prev.predictiveCapabilities, item]
+                                  }));
+                                } else {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    predictiveCapabilities: prev.predictiveCapabilities.filter(p => p !== item)
+                                  }));
+                                }
+                              }}
+                              className="mr-2 text-cyan-500 focus:ring-cyan-400"
+                            />
+                            <span className="text-sm font-mono text-gray-300">{item}</span>
+                          </label>
+                        ))}
+                        {getFilteredSpecializations(sectionData.predictiveCapabilities, searchQueries.predictiveCapabilities).length === 0 && searchQueries.predictiveCapabilities && (
+                          <p className="text-sm text-gray-400 font-mono text-center py-2">
+                            No features found for "{searchQueries.predictiveCapabilities}"
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
