@@ -136,7 +136,6 @@ const Demo: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchQueries, setSearchQueries] = useState<{[key: string]: string}>({});
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -190,8 +189,31 @@ const Demo: React.FC = () => {
     // Re-evaluate form validity with updated data
     const isDemoOnly = updatedFormData.consultationPackage === 'Demo Request Only - Evaluation Phase';
     
-    // Temporarily disable form validation to test
-    setIsFormValid(true);
+    setIsFormValid(
+      updatedFormData.name.length > 0 &&
+      updatedFormData.email.length > 0 &&
+      updatedFormData.company.length > 0 &&
+      updatedFormData.phone.length > 0 &&
+      updatedFormData.industry.length > 0 &&
+      updatedFormData.consultationPackage.length > 0 &&
+      updatedFormData.businessDescription.length > 10 &&
+      updatedFormData.useCase.length > 0 &&
+      updatedFormData.targetUsers.length > 0 &&
+      updatedFormData.languageStyle.length > 0 &&
+      updatedFormData.interactionMode.length > 0 &&
+      updatedFormData.industryContext.length > 0 &&
+      updatedFormData.businessRole.length > 0 &&
+      updatedFormData.teamSize.length > 0 &&
+      updatedFormData.currentChallenges.length > 10 &&
+      updatedFormData.researchFocus.length > 0 &&
+      updatedFormData.demoType.length > 0 &&
+      updatedFormData.rmeSpecializations.length > 0 &&
+      updatedFormData.agentPersonality.length > 0 &&
+      updatedFormData.communicationStyle.length > 0 &&
+      updatedFormData.technicalLevel.length > 0 &&
+      updatedFormData.problemSolvingApproach.length > 0 &&
+      (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
+    );
   };
 
 
@@ -839,99 +861,7 @@ const Demo: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-
-
-                {/* Reporting & Analytics Needs */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-blue-400">
-                    Reporting & Analytics Needs
-                  </h4>
-                  
-                  <div className="space-y-4">
-                    <h5 className="text-lg font-mono font-semibold text-blue-300">
-                      Reporting Needs
-                    </h5>
-                    
-                    {/* Search Bar */}
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={searchQueries.reportingNeeds}
-                        onChange={(e) => setSearchQueries(prev => ({ ...prev, reportingNeeds: e.target.value }))}
-                        placeholder="Search reporting needs (e.g., 'performance', 'compliance', 'revenue')..."
-                        className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400 pr-10"
-                      />
-                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400">
-                        🔍
-                      </div>
-                    </div>
-
-                    {/* Selected Items */}
-                    {formData.reportingNeeds.length > 0 && (
-                      <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
-                        <h6 className="text-sm font-mono font-semibold text-blue-300 mb-2">
-                          Selected ({formData.reportingNeeds.length})
-                        </h6>
-                        <div className="flex flex-wrap gap-1">
-                          {formData.reportingNeeds.map((item) => (
-                            <span
-                              key={item}
-                              className="inline-flex items-center px-2 py-1 bg-blue-600/20 border border-blue-500/30 rounded text-xs font-mono text-blue-300"
-                            >
-                              {item}
-                              <button
-                                onClick={() => {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    reportingNeeds: prev.reportingNeeds.filter(r => r !== item)
-                                  }));
-                                }}
-                                className="ml-1 text-blue-400 hover:text-blue-300"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Search Results */}
-                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
-                      <div className="space-y-1">
-                        {getFilteredSpecializations(sectionData.reportingNeeds, searchQueries.reportingNeeds).map((item) => (
-                          <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={formData.reportingNeeds.includes(item)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    reportingNeeds: [...prev.reportingNeeds, item]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    reportingNeeds: prev.reportingNeeds.filter(r => r !== item)
-                                  }));
-                                }
-                              }}
-                              className="mr-2 text-blue-500 focus:ring-blue-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{item}</span>
-                          </label>
-                        ))}
-                        {getFilteredSpecializations(sectionData.reportingNeeds, searchQueries.reportingNeeds).length === 0 && searchQueries.reportingNeeds && (
-                          <p className="text-sm text-gray-400 font-mono text-center py-2">
-                            No reporting needs found for "{searchQueries.reportingNeeds}"
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
+              </div>
 
             {/* Data Analytics Specializations */}
             <div className="border-t border-cyan-500/20 pt-8">
@@ -1045,8 +975,6 @@ const Demo: React.FC = () => {
                 </div>
               </div>
             </div>
-
-              </div>
 
             {/* Document Upload Section */}
             <div className="border-t border-cyan-500/20 pt-8">
@@ -1171,7 +1099,7 @@ const Demo: React.FC = () => {
               </div>
             </div>
 
-                <div className="text-center">
+            <div className="text-center">
                   <button
                     type="submit"
                     disabled={!isFormValid}
@@ -1189,7 +1117,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-                  </div>
+            </div>
           </div>
         </div>
       </section>

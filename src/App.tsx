@@ -5,7 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy load components for code splitting
 const Home = React.lazy(() => import('./pages/Home'));
-const Demo = React.lazy(() => import('./pages/Demo'));
+const Demo = React.lazy(() => import('./pages/DemoTest'));
 const Services = React.lazy(() => import('./pages/Services'));
 const Consultation = React.lazy(() => import('./pages/Consultation'));
 const Contact = React.lazy(() => import('./pages/Contact'));
