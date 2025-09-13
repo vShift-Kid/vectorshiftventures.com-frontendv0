@@ -525,43 +525,6 @@ const Demo: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Specialization Explanation */}
-                  <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl p-4 mb-6">
-                    <h5 className="font-mono font-semibold text-cyan-400 mb-3 flex items-center gap-2">
-                      <Brain className="w-4 h-4" />
-                      Why Specialization Matters
-                    </h5>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      <div className="space-y-2">
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Industry-specific terminology and jargon</span>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Common problems and solutions</span>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Safety protocols and compliance</span>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Equipment and tool knowledge</span>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Customer communication patterns</span>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="font-mono text-gray-300">Service workflow optimization</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -734,8 +697,16 @@ const Demo: React.FC = () => {
                     </div>
 
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                         Voice Agent Specialization *
+                        <div className="group relative">
+                          <button type="button" className="w-4 h-4 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 text-xs font-bold transition-colors">
+                            ?
+                          </button>
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-cyan-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                            This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating" and "short cycling" issues.
+                          </div>
+                        </div>
                       </label>
                       <select
                         value={formData.industryContext}
@@ -828,294 +799,25 @@ const Demo: React.FC = () => {
                           <option value="custom-solution-specialist">Custom Solution (unique business model, specify in description)</option>
                         </optgroup>
                       </select>
-                      <p className="text-xs text-gray-500 mt-2 font-mono">
-                        💡 This helps us train your voice agent with the right terminology, processes, and industry-specific knowledge for your business.
-                      </p>
-                      
-                      {/* Example Section */}
-                      <div className="mt-3 p-3 bg-gray-800/30 rounded-lg border border-gray-600/30">
-                        <h6 className="font-mono font-semibold text-gray-300 mb-2 text-sm">Example:</h6>
-                        <p className="text-xs text-gray-400 font-mono">
-                          If you select "Residential HVAC", your voice agent will understand terms like "SEER rating", "ductwork", "thermostat programming", 
-                          "refrigerant levels", and common issues like "short cycling" or "frozen coils". It will know to ask about square footage, 
-                          insulation, and energy efficiency when providing recommendations.
-                        </p>
-                      </div>
                     </div>
                   </div>
 
-                  {/* Document Upload Guidance Section */}
-                  <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-6 mb-6">
-                    <h5 className="font-mono font-semibold text-green-400 mb-4 flex items-center gap-2">
-                      <FileText className="w-5 h-5" />
-                      Document Upload for Optimal Voice Agent Training
-                    </h5>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h6 className="font-mono font-semibold text-green-300 mb-3 text-sm">📋 Recommended Documents to Upload:</h6>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Service manuals and equipment guides</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">FAQ documents and common questions</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Pricing sheets and service catalogs</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Safety protocols and procedures</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Company policies and standards</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Training materials and best practices</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <h6 className="font-mono font-semibold text-green-300 mb-3 text-sm">🚫 Avoid Uploading:</h6>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Customer personal information</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Financial records or invoices</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Proprietary trade secrets</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Internal employee data</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Confidential business strategies</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Legal documents or contracts</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-                      <h6 className="font-mono font-semibold text-green-300 mb-2 text-sm">💡 Pro Tips for Better Results:</h6>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Use clear, descriptive filenames</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Include industry terminology and jargon</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Upload step-by-step procedures</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Include common troubleshooting guides</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Add product specifications and features</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Include customer communication templates</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Document Examples Section */}
-                    <div className="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-                      <h6 className="font-mono font-semibold text-blue-300 mb-3 text-sm">📄 Example Document Types by Industry:</h6>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                        <div className="space-y-2">
-                          <h7 className="font-mono font-semibold text-blue-200 text-xs">HVAC Services:</h7>
-                          <div className="space-y-1">
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Furnace maintenance checklists</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">AC troubleshooting guides</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Ductwork installation procedures</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <h7 className="font-mono font-semibold text-blue-200 text-xs">Plumbing Services:</h7>
-                          <div className="space-y-1">
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Water heater repair manuals</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Drain cleaning procedures</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Pipe installation standards</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <h7 className="font-mono font-semibold text-blue-200 text-xs">Electrical Services:</h7>
-                          <div className="space-y-1">
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Panel upgrade procedures</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Outlet installation guides</span>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <div className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                              <span className="font-mono text-gray-300">Safety protocol checklists</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Voice Agent Optimization Section */}
-                  <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-500/30 rounded-xl p-6 mb-6">
-                    <h5 className="font-mono font-semibold text-purple-400 mb-4 flex items-center gap-2">
-                      <Zap className="w-5 h-5" />
-                      Voice Agent Optimization Settings
-                    </h5>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h6 className="font-mono font-semibold text-purple-300 mb-3 text-sm">🎯 Research & Knowledge Enhancement:</h6>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Industry trend analysis and updates</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Competitor service offerings research</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Latest equipment and technology updates</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Regulatory compliance and safety updates</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Customer feedback and common pain points</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <h6 className="font-mono font-semibold text-purple-300 mb-3 text-sm">🤖 Chatbot & Voice Agent Features:</h6>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Multi-language support capabilities</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Integration with existing business systems</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Real-time data access and updates</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Automated follow-up and scheduling</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Performance analytics and reporting</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4 p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
-                      <h6 className="font-mono font-semibold text-purple-300 mb-2 text-sm">🔧 Advanced Configuration Options:</h6>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Voice tone and personality</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Response speed optimization</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Escalation protocols</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Custom knowledge base</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Integration APIs</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Continuous learning</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
                   {/* Research Focus Preferences */}
-                  <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl p-6 mb-6">
-                    <h5 className="font-mono font-semibold text-orange-400 mb-4 flex items-center gap-2">
-                      <Search className="w-5 h-5" />
-                      Research Focus Preferences
-                    </h5>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Primary Research Focus *
-                        </label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                        Primary Research Focus *
+                        <div className="group relative">
+                          <button type="button" className="w-4 h-4 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors">
+                            ?
+                          </button>
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                            This guides our research to gather the most relevant information for your voice agent. We'll focus on industry trends, customer insights, or operational excellence based on your selection.
+                          </div>
+                        </div>
+                      </label>
                         <select
                           value={formData.researchFocus || ''}
                           onChange={(e) => handleInputChange('researchFocus', e.target.value)}
@@ -1155,8 +857,16 @@ const Demo: React.FC = () => {
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                           Research Depth Preference
+                          <div className="group relative">
+                            <button type="button" className="w-4 h-4 bg-orange-500/20 hover:bg-orange-500/30 rounded-full flex items-center justify-center text-orange-400 text-xs font-bold transition-colors">
+                              ?
+                            </button>
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-orange-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                              Choose how detailed the research should be. Comprehensive = deep dive, Focused = specific areas, Overview = high-level insights.
+                            </div>
+                          </div>
                         </label>
                         <select
                           value={formData.researchDepth || ''}
@@ -1172,53 +882,23 @@ const Demo: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-4 p-3 bg-orange-500/10 rounded-lg border border-orange-500/30">
-                      <h6 className="font-mono font-semibold text-orange-300 mb-2 text-sm">🔍 How This Helps Your Voice Agent:</h6>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Provides up-to-date industry knowledge</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Enables informed recommendations</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Improves customer service quality</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Stays current with market trends</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Addresses common customer concerns</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300">Enhances competitive positioning</span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
                   {/* Demo Type Selection */}
-                  <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-xl p-6 mb-6">
-                    <h5 className="font-mono font-semibold text-indigo-400 mb-4 flex items-center gap-2">
-                      <Gift className="w-5 h-5" />
-                      Demo Type Selection
-                    </h5>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-4">
-                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Demo Type *
-                        </label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                        Demo Type *
+                        <div className="group relative">
+                          <button type="button" className="w-4 h-4 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors">
+                            ?
+                          </button>
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                            Voice Agent: Phone-based customer service. Chatbot: Web-based chat interface. Newsletter: Customized email content and automation.
+                          </div>
+                        </div>
+                      </label>
                         <select
                           value={formData.demoType || ''}
                           onChange={(e) => handleInputChange('demoType', e.target.value)}
@@ -1232,63 +912,6 @@ const Demo: React.FC = () => {
                         </select>
                       </div>
                       
-                      <div className="md:col-span-2">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                          <div className="p-3 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
-                            <h6 className="font-mono font-semibold text-indigo-300 mb-2 flex items-center gap-2">
-                              <Phone className="w-4 h-4" />
-                              Voice Agent
-                            </h6>
-                            <p className="text-xs text-gray-300 font-mono">
-                              Interactive phone call demonstration with AI voice assistant handling customer inquiries, scheduling, and support.
-                            </p>
-                          </div>
-                          
-                          <div className="p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                            <h6 className="font-mono font-semibold text-purple-300 mb-2 flex items-center gap-2">
-                              <MessageSquare className="w-4 h-4" />
-                              Chatbot
-                            </h6>
-                            <p className="text-xs text-gray-300 font-mono">
-                              Web-based chat interface demonstration with AI handling customer questions, lead qualification, and support.
-                            </p>
-                          </div>
-                          
-                          <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-                            <h6 className="font-mono font-semibold text-green-300 mb-2 flex items-center gap-2">
-                              <Globe className="w-4 h-4" />
-                              Newsletter
-                            </h6>
-                            <p className="text-xs text-gray-300 font-mono">
-                              Customized email newsletter demonstration with industry-specific content, automation, and engagement strategies.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4 p-3 bg-indigo-500/10 rounded-lg border border-indigo-500/30">
-                      <h6 className="font-mono font-semibold text-indigo-300 mb-2 text-sm">💡 Demo Selection Guide:</h6>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300"><strong>Voice Agent:</strong> Best for phone-based customer service, appointment scheduling, and support calls</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300"><strong>Chatbot:</strong> Best for website support, lead qualification, and instant customer assistance</span>
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="font-mono text-gray-300"><strong>Newsletter:</strong> Best for customer engagement, industry updates, and automated marketing</span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
@@ -1358,8 +981,16 @@ const Demo: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                     Additional Documentation (Optional)
+                    <div className="group relative">
+                      <button type="button" className="w-4 h-4 bg-green-500/20 hover:bg-green-500/30 rounded-full flex items-center justify-center text-green-400 text-xs font-bold transition-colors">
+                        ?
+                      </button>
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-green-500/30 rounded-lg text-xs font-mono text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                        Upload service manuals, FAQs, procedures, pricing sheets. Avoid customer data, financial records, or proprietary information.
+                      </div>
+                    </div>
                   </label>
                   <div
                     className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
