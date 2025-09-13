@@ -142,11 +142,37 @@ const Demo: React.FC = () => {
       'Corrective Actions', 'Preventive Actions', 'CAPA Management', 'Regulatory Reporting',
       'Standards Compliance', 'Certification Management', 'Quality Metrics'
     ],
-    'Equipment & Technical': [
-      'CT Systems', 'X-Ray Equipment', 'Medical Imaging', 'Diagnostic Equipment',
-      'Laboratory Equipment', 'Industrial Equipment', 'HVAC Systems', 'Electrical Systems',
-      'Mechanical Systems', 'Control Systems', 'Automation', 'Robotics',
-      'Calibration Equipment', 'Test Equipment', 'Measurement Tools'
+    'Electrical Systems': [
+      'Power Distribution', 'Motor Controls', 'VFD Systems', 'High Voltage',
+      'Low Voltage', 'Control Systems', 'Automation Systems', 'PLC Systems',
+      'HMI Systems', 'SCADA Systems', 'Network Infrastructure', 'Transformers',
+      'Switchgear', 'Panel Boards', 'Conduit Systems', 'Cable Management',
+      'Lighting Systems', 'Fire Safety Systems', 'Security Systems', 'Access Control',
+      'Audio/Video Systems', 'Telecommunications', 'Fiber Optics', 'Wireless Systems',
+      'Electrical Testing', 'Troubleshooting', 'Preventive Maintenance', 'Code Compliance',
+      'Energy Management', 'Power Quality', 'Grounding Systems', 'Surge Protection'
+    ],
+    'HVAC & Mechanical Systems': [
+      'HVAC Systems', 'Refrigeration', 'Boiler Systems', 'Chiller Systems',
+      'Heat Pumps', 'Air Handling Units', 'Ductwork', 'Ventilation',
+      'Heating Systems', 'Cooling Systems', 'Air Quality', 'Energy Efficiency',
+      'Building Automation', 'Thermostats', 'Load Calculations', 'System Balancing',
+      'Commissioning', 'Retrofit', 'Maintenance', 'Pumps', 'Compressors',
+      'Generators', 'Mechanical Systems', 'Hydraulics', 'Pneumatics'
+    ],
+    'Medical & Laboratory Equipment': [
+      'Medical Equipment', 'CT Systems', 'X-Ray Equipment', 'Diagnostic Equipment',
+      'Laboratory Equipment', 'Imaging Systems', 'Patient Monitoring', 'Surgical Equipment',
+      'Therapy Equipment', 'Rehabilitation Equipment', 'Dental Equipment', 'Veterinary Equipment',
+      'Pharmaceutical Equipment', 'Research Equipment', 'Calibration Equipment', 'Test Equipment',
+      'Measurement Tools', 'Diagnostic Tools', 'Safety Equipment', 'Compliance Equipment'
+    ],
+    'Industrial & Manufacturing Equipment': [
+      'Industrial Equipment', 'Manufacturing Equipment', 'Heavy Machinery', 'Production Equipment',
+      'Packaging Equipment', 'Food Processing Equipment', 'Chemical Equipment', 'Mining Equipment',
+      'Construction Equipment', 'Agricultural Equipment', 'Material Handling', 'Conveyor Systems',
+      'Robotics', 'Automation Equipment', 'Quality Control Equipment', 'Testing Equipment',
+      'Safety Equipment', 'Environmental Equipment', 'Waste Management Equipment', 'Recycling Equipment'
     ],
     'Industry Specializations': [
       'Healthcare', 'Manufacturing', 'Automotive', 'Aerospace', 'Energy',
