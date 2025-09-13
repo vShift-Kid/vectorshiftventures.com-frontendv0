@@ -2,6 +2,132 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, Brain, CheckCircle, ArrowRight, Bot, Globe } from 'lucide-react';
 
+// Function to get tailored analytics specializations based on target users
+const getAnalyticsSpecializations = (targetUsers: string): string[] => {
+  const allSpecializations = {
+    // Field Service Technicians
+    technicians: [
+      'Equipment Diagnostics', 'Troubleshooting Procedures', 'Calibration Analysis', 'Tool Performance',
+      'Vibration Analysis', 'Thermal Analysis', 'Electrical System Analysis', 'Mechanical System Analysis',
+      'Sensor Data Analysis', 'Error Code Analysis', 'Maintenance Procedures', 'Safety Protocols',
+      'Parts Identification', 'Warranty Procedures', 'Service Documentation', 'Quality Control'
+    ],
+    
+    // Project Managers
+    projectManagers: [
+      'Project Timeline Analysis', 'Resource Allocation', 'Budget Performance', 'Risk Assessment',
+      'Team Productivity Analysis', 'Client Satisfaction Metrics', 'Project Success Rates', 'Cost-Benefit Analysis',
+      'Schedule Optimization', 'Resource Utilization', 'Quality Metrics', 'Delivery Performance',
+      'Stakeholder Communication', 'Change Management', 'Project ROI Analysis', 'Performance Dashboards'
+    ],
+    
+    // Program Managers
+    programManagers: [
+      'Strategic Planning Analysis', 'Portfolio Performance', 'Resource Planning', 'Strategic Alignment',
+      'Program ROI Analysis', 'Stakeholder Management', 'Risk Management', 'Compliance Monitoring',
+      'Performance Metrics', 'Budget Forecasting', 'Resource Optimization', 'Strategic Initiatives',
+      'Market Analysis', 'Competitive Intelligence', 'Innovation Tracking', 'Executive Reporting'
+    ],
+    
+    // Data Analysts
+    dataAnalysts: [
+      'Statistical Analysis', 'Predictive Modeling', 'Data Mining', 'Trend Analysis',
+      'Correlation Analysis', 'Regression Analysis', 'Time Series Analysis', 'Machine Learning',
+      'Big Data Analytics', 'Data Visualization', 'Performance Metrics', 'KPI Analysis',
+      'Anomaly Detection', 'Pattern Recognition', 'Data Quality Analysis', 'Reporting Automation'
+    ],
+    
+    // Executives
+    executives: [
+      'Strategic Performance', 'Financial Analysis', 'Market Intelligence', 'Competitive Analysis',
+      'ROI Analysis', 'Risk Assessment', 'Growth Metrics', 'Market Share Analysis',
+      'Customer Analytics', 'Revenue Analysis', 'Cost Analysis', 'Investment Analysis',
+      'Strategic Planning', 'Performance Dashboards', 'Executive Reporting', 'Decision Support'
+    ],
+    
+    // Logistics & Supply Chain
+    logistics: [
+      'Inventory Optimization', 'Supply Chain Analysis', 'Demand Forecasting', 'Supplier Performance',
+      'Logistics Efficiency', 'Cost Optimization', 'Delivery Performance', 'Warehouse Management',
+      'Transportation Analysis', 'Procurement Analysis', 'Vendor Management', 'Supply Chain Risk',
+      'Order Fulfillment', 'Distribution Analysis', 'Logistics Planning', 'Supply Chain Visibility'
+    ],
+    
+    // Customer Care & Support
+    customerCare: [
+      'Customer Satisfaction', 'Support Ticket Analysis', 'Response Time Analysis', 'Resolution Rates',
+      'Customer Feedback Analysis', 'Service Quality Metrics', 'Customer Journey Analysis', 'Retention Analysis',
+      'Support Performance', 'Customer Experience', 'Complaint Analysis', 'Service Level Analysis',
+      'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization'
+    ],
+    
+    // IT & Engineering
+    itEngineering: [
+      'System Performance', 'Network Analysis', 'Security Analysis', 'Infrastructure Monitoring',
+      'Software Performance', 'Database Analysis', 'API Performance', 'System Reliability',
+      'Capacity Planning', 'Technology Trends', 'Integration Analysis', 'System Optimization',
+      'Cybersecurity Analysis', 'Cloud Performance', 'Data Management', 'Technology Roadmap'
+    ],
+    
+    // Manufacturing & Operations
+    manufacturing: [
+      'Production Analysis', 'Quality Control', 'Process Optimization', 'Efficiency Analysis',
+      'Manufacturing Metrics', 'Equipment Performance', 'Production Planning', 'Quality Assurance',
+      'Process Improvement', 'Manufacturing Intelligence', 'Production Forecasting', 'Operational Excellence',
+      'Lean Manufacturing', 'Six Sigma Analysis', 'Process Monitoring', 'Manufacturing Analytics'
+    ]
+  };
+
+  // Get specializations based on target users
+  let specializations: string[] = [];
+  
+  if (targetUsers.includes('Field Service Technicians') || targetUsers.includes('Technicians')) {
+    specializations = [...specializations, ...allSpecializations.technicians];
+  }
+  if (targetUsers.includes('Project Managers') || targetUsers.includes('Project Management')) {
+    specializations = [...specializations, ...allSpecializations.projectManagers];
+  }
+  if (targetUsers.includes('Program Managers') || targetUsers.includes('Program Management')) {
+    specializations = [...specializations, ...allSpecializations.programManagers];
+  }
+  if (targetUsers.includes('Data Analysts') || targetUsers.includes('Analytics Team')) {
+    specializations = [...specializations, ...allSpecializations.dataAnalysts];
+  }
+  if (targetUsers.includes('Executives') || targetUsers.includes('Senior Management')) {
+    specializations = [...specializations, ...allSpecializations.executives];
+  }
+  if (targetUsers.includes('Logistics') || targetUsers.includes('Supply Chain')) {
+    specializations = [...specializations, ...allSpecializations.logistics];
+  }
+  if (targetUsers.includes('Customer Care') || targetUsers.includes('Customer Support')) {
+    specializations = [...specializations, ...allSpecializations.customerCare];
+  }
+  if (targetUsers.includes('IT') || targetUsers.includes('Engineering')) {
+    specializations = [...specializations, ...allSpecializations.itEngineering];
+  }
+  if (targetUsers.includes('Manufacturing') || targetUsers.includes('Operations')) {
+    specializations = [...specializations, ...allSpecializations.manufacturing];
+  }
+
+  // If no specific target users selected, show all specializations
+  if (specializations.length === 0) {
+    specializations = [
+      ...allSpecializations.technicians,
+      ...allSpecializations.projectManagers,
+      ...allSpecializations.programManagers,
+      ...allSpecializations.dataAnalysts,
+      ...allSpecializations.executives,
+      ...allSpecializations.logistics,
+      ...allSpecializations.customerCare,
+      ...allSpecializations.itEngineering,
+      ...allSpecializations.manufacturing
+    ];
+  }
+
+  // Remove duplicates and return
+  return [...new Set(specializations)];
+};
+
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -985,7 +1111,7 @@ const Demo: React.FC = () => {
             {/* Document Upload Section */}
             <div className="border-t border-cyan-500/20 pt-8">
               <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
-                Document Upload for AI Training
+                Knowledge Base Document Upload
               </h4>
               
               <div className="space-y-6">
@@ -1005,7 +1131,7 @@ const Demo: React.FC = () => {
                     <div className="text-4xl text-purple-400">📁</div>
                     <div>
                       <p className="text-lg font-mono text-gray-300 mb-2">
-                        Upload Documents for AI Training
+                        Upload Documents for Knowledge Base
                       </p>
                       <p className="text-sm text-gray-400 mb-4">
                         Drag and drop files here or click to browse
@@ -1122,32 +1248,7 @@ const Demo: React.FC = () => {
                   Analytics Specializations (Select all that apply)
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    // Equipment & Technical Analysis
-                    'Electromechanical Systems', 'Calibration Procedures', 'Tool Performance Analysis', 'Equipment Lifecycle Analysis',
-                    'Vibration Analysis', 'Thermal Analysis', 'Pressure System Analysis', 'Electrical System Analysis',
-                    'Hydraulic System Analysis', 'Pneumatic System Analysis', 'Control System Analysis', 'Sensor Data Analysis',
-                    
-                    // Field Service Operations
-                    'Preventive Maintenance Planning', 'Corrective Maintenance Analysis', 'Parts Inventory Optimization', 'Service Route Optimization',
-                    'Technician Performance Analysis', 'Customer Satisfaction Analysis', 'Service Quality Metrics', 'Response Time Analysis',
-                    'Work Order Analysis', 'Service History Analysis', 'Warranty Claim Analysis', 'Contract Performance Analysis',
-                    
-                    // Predictive & Diagnostic Analytics
-                    'Failure Prediction Modeling', 'Anomaly Detection', 'Root Cause Analysis', 'Trend Analysis',
-                    'Performance Forecasting', 'Risk Assessment', 'Reliability Analysis', 'Maintenance Scheduling Optimization',
-                    'Cost Prediction Analysis', 'Efficiency Optimization', 'Quality Control Analysis', 'Compliance Monitoring',
-                    
-                    // Data Processing & Intelligence
-                    'Log File Analysis', 'Error Pattern Recognition', 'Usage Pattern Analysis', 'Statistical Process Control',
-                    'Time Series Analysis', 'Correlation Analysis', 'Regression Analysis', 'Machine Learning Applications',
-                    'Predictive Modeling', 'Data Mining', 'Big Data Analytics', 'Real-time Monitoring',
-                    
-                    // Industry-Specific Analytics
-                    'Medical Equipment Analysis', 'Manufacturing Process Analysis', 'Energy Consumption Analysis', 'Environmental Impact Analysis',
-                    'Safety Performance Analysis', 'Regulatory Compliance Analysis', 'Supply Chain Analysis', 'Financial Performance Analysis',
-                    'Customer Behavior Analysis', 'Market Trend Analysis', 'Competitive Analysis', 'Innovation Opportunity Analysis'
-                  ].map((specialization) => (
+                  {getAnalyticsSpecializations(formData.targetUsers).map((specialization) => (
                     <label key={specialization} className="flex items-center">
                       <input
                         type="checkbox"
