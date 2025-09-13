@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, Gift, Bot, Globe } from 'lucide-react';
+import { MessageSquare, Brain, Calendar, CheckCircle, ArrowRight, Phone, Users, Gift, Bot, Globe, FileText, Zap, Search } from 'lucide-react';
 
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
