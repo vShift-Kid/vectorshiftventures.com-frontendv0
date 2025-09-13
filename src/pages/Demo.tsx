@@ -65,88 +65,74 @@ const Demo: React.FC = () => {
   // Specializations data organized by category
   const specializationsData = {
     'Medical & Healthcare': [
-      'X-Ray Technology', 'CT Scanning', 'MRI Technology', 'Ultrasound', 'Nuclear Medicine',
-      'Radiation Therapy', 'Medical Imaging', 'Laboratory Testing', 'Phlebotomy', 'EKG/ECG',
-      'Respiratory Therapy', 'Physical Therapy', 'Occupational Therapy', 'Speech Therapy',
-      'Medical Coding', 'Health Information Management', 'Patient Care', 'Medical Equipment',
-      'Surgery Support', 'Anesthesia Technology', 'Radiology', 'Pathology', 'Cardiology',
-      'Neurology', 'Oncology', 'Pediatrics', 'Geriatrics', 'Emergency Medicine'
+      'X-Ray', 'CT', 'MRI', 'Ultrasound', 'Laboratory', 'Phlebotomy', 'EKG',
+      'Respiratory', 'Physical Therapy', 'Occupational Therapy', 'Speech Therapy',
+      'Medical Coding', 'Patient Care', 'Medical Equipment', 'Radiology',
+      'Cardiology', 'Emergency Medicine', 'Surgery', 'Anesthesia'
     ],
-    'Construction & Building Trades': [
-      'Carpentry', 'Framing', 'Finish Carpentry', 'Cabinet Making', 'Woodworking',
-      'Masonry', 'Brick Laying', 'Stone Work', 'Concrete Work', 'Drywall Installation',
-      'Flooring Installation', 'Tile Work', 'Roofing', 'Siding', 'Insulation',
-      'Painting', 'Plastering', 'Welding', 'Metal Fabrication', 'Steel Work',
-      'Scaffolding', 'Crane Operation', 'Excavation', 'Foundation Work', 'Structural Engineering',
-      'Building Inspection', 'Code Compliance', 'Permit Processing', 'Site Safety', 'Project Estimation'
+    'Construction & Building': [
+      'Carpentry', 'Framing', 'Masonry', 'Concrete', 'Drywall', 'Flooring',
+      'Tile', 'Roofing', 'Siding', 'Insulation', 'Painting', 'Welding',
+      'Steel Work', 'Scaffolding', 'Excavation', 'Foundation', 'Building Inspection',
+      'Code Compliance', 'Site Safety', 'Project Estimation'
     ],
     'Electronics & Technology': [
-      'Circuit Board Repair', 'Electronic Diagnostics', 'Microcontroller Programming',
-      'Embedded Systems', 'IoT Devices', 'Robotics', 'Automation Systems',
-      'Control Systems', 'PLC Programming', 'HMI Development', 'SCADA Systems',
-      'Network Infrastructure', 'Fiber Optic Installation', 'Wireless Systems',
-      'Audio/Video Systems', 'Security Systems', 'Smart Home Technology',
-      'Telecommunications', 'Satellite Systems', 'RF Technology', 'Antenna Design',
-      'Signal Processing', 'Digital Systems', 'Microelectronics', 'Semiconductor Technology'
+      'Circuit Boards', 'Electronics', 'Microcontrollers', 'IoT', 'Robotics',
+      'Automation', 'Control Systems', 'PLC', 'HMI', 'SCADA', 'Networking',
+      'Fiber Optics', 'Wireless', 'Audio/Video', 'Security Systems',
+      'Telecommunications', 'RF', 'Antennas', 'Digital Systems'
     ],
     'Mechanical & Engineering': [
-      'Hydraulic Systems', 'Pneumatic Systems', 'Mechanical Assembly', 'Precision Machining',
-      'CNC Programming', 'Tool and Die Making', 'Quality Control', 'Metrology',
-      'Mechanical Design', 'CAD/CAM', '3D Modeling', 'Prototyping', 'Testing',
-      'Maintenance Planning', 'Reliability Engineering', 'Failure Analysis',
-      'Fluid Dynamics', 'Thermodynamics', 'Materials Science', 'Manufacturing Engineering',
-      'Industrial Design', 'Product Development', 'Process Engineering', 'Lean Manufacturing'
+      'Hydraulics', 'Pneumatics', 'Assembly', 'Machining', 'CNC', 'Tool Making',
+      'Quality Control', 'Metrology', 'CAD/CAM', '3D Modeling', 'Prototyping',
+      'Testing', 'Maintenance', 'Reliability', 'Failure Analysis', 'Fluid Dynamics',
+      'Materials', 'Manufacturing', 'Design', 'Process Engineering'
     ],
-    'Electrical & Power Systems': [
-      'High Voltage Systems', 'Low Voltage Systems', 'Power Distribution', 'Motor Controls',
-      'VFD Programming', 'Electrical Safety', 'Code Compliance', 'Energy Management',
-      'Renewable Energy', 'Solar Installation', 'Wind Power', 'Battery Systems',
-      'Electrical Testing', 'Troubleshooting', 'Preventive Maintenance',
-      'Power Generation', 'Transmission Lines', 'Substation Design', 'Grid Management',
-      'Energy Storage', 'Microgrids', 'Smart Grid Technology', 'Power Quality'
+    'Electrical & Power': [
+      'High Voltage', 'Low Voltage', 'Power Distribution', 'Motor Controls',
+      'VFD', 'Electrical Safety', 'Code Compliance', 'Energy Management',
+      'Solar', 'Wind Power', 'Batteries', 'Electrical Testing', 'Troubleshooting',
+      'Power Generation', 'Transmission', 'Substations', 'Grid Management',
+      'Energy Storage', 'Power Quality'
     ],
-    'HVAC & Climate Control': [
-      'Heating Systems', 'Cooling Systems', 'Ventilation', 'Air Quality', 'Ductwork Design',
-      'Refrigeration', 'Heat Pumps', 'Boiler Systems', 'Chiller Systems', 'Air Handling Units',
-      'Energy Efficiency', 'Building Automation', 'Thermostat Programming', 'Load Calculations',
-      'System Balancing', 'Commissioning', 'Retrofit Projects', 'Maintenance Contracts'
+    'HVAC & Climate': [
+      'Heating', 'Cooling', 'Ventilation', 'Air Quality', 'Ductwork',
+      'Refrigeration', 'Heat Pumps', 'Boilers', 'Chillers', 'Air Handling',
+      'Energy Efficiency', 'Building Automation', 'Thermostats', 'Load Calculations',
+      'System Balancing', 'Commissioning', 'Retrofit', 'Maintenance'
     ],
-    'Plumbing & Water Systems': [
-      'Water Supply Systems', 'Drainage Systems', 'Sewer Systems', 'Water Treatment',
-      'Backflow Prevention', 'Hydro Jetting', 'Pipe Installation', 'Fixture Installation',
-      'Water Heater Service', 'Sump Pump Systems', 'Irrigation Systems', 'Fire Sprinkler Systems',
-      'Cross-Connection Control', 'Water Pressure Systems', 'Pipe Fitting', 'Valve Repair'
+    'Plumbing & Water': [
+      'Water Supply', 'Drainage', 'Sewer', 'Water Treatment', 'Backflow',
+      'Hydro Jetting', 'Pipe Installation', 'Fixtures', 'Water Heaters',
+      'Sump Pumps', 'Irrigation', 'Fire Sprinklers', 'Water Pressure',
+      'Pipe Fitting', 'Valve Repair', 'Cross-Connection'
     ],
     'Automotive & Transportation': [
-      'Engine Repair', 'Transmission Service', 'Brake Systems', 'Suspension Systems',
-      'Electrical Systems', 'Diagnostic Testing', 'Emission Control', 'Fuel Systems',
-      'Air Conditioning', 'Body Work', 'Paint & Refinishing', 'Fleet Maintenance',
-      'Commercial Vehicles', 'Heavy Equipment', 'Motorcycle Service', 'Marine Engines'
+      'Engine Repair', 'Transmission', 'Brakes', 'Suspension', 'Electrical',
+      'Diagnostics', 'Emissions', 'Fuel Systems', 'Air Conditioning', 'Body Work',
+      'Painting', 'Fleet Maintenance', 'Commercial Vehicles', 'Heavy Equipment',
+      'Motorcycles', 'Marine Engines'
     ],
-    'Software & Information Technology': [
-      'Software Development', 'Database Management', 'System Administration',
-      'Network Security', 'Cybersecurity', 'Cloud Computing', 'DevOps',
-      'API Development', 'Mobile App Development', 'Web Development',
-      'Data Analytics', 'Machine Learning', 'AI Integration', 'Automation Scripting',
-      'IT Support', 'System Integration', 'Database Design', 'Software Testing',
-      'User Experience Design', 'Information Architecture', 'Digital Transformation'
+    'Software & IT': [
+      'Software Development', 'Database', 'System Administration', 'Network Security',
+      'Cybersecurity', 'Cloud Computing', 'DevOps', 'API Development',
+      'Mobile Apps', 'Web Development', 'Data Analytics', 'Machine Learning',
+      'AI Integration', 'IT Support', 'System Integration', 'Software Testing'
     ],
-    'Food Service & Hospitality': [
-      'Culinary Arts', 'Food Safety', 'Kitchen Equipment', 'Restaurant Operations',
-      'Menu Planning', 'Catering', 'Food Preparation', 'Sanitation Procedures',
-      'Health Department Compliance', 'Inventory Management', 'Cost Control',
-      'Customer Service', 'Event Planning', 'Hotel Operations', 'Tourism Management'
+    'Food Service': [
+      'Culinary', 'Food Safety', 'Kitchen Equipment', 'Restaurant Operations',
+      'Menu Planning', 'Catering', 'Food Preparation', 'Sanitation',
+      'Health Compliance', 'Inventory', 'Cost Control', 'Customer Service',
+      'Event Planning', 'Hotel Operations'
     ],
     'Education & Training': [
-      'Curriculum Development', 'Instructional Design', 'Educational Technology',
-      'Student Assessment', 'Classroom Management', 'Special Education',
-      'Adult Learning', 'Vocational Training', 'Online Learning', 'Training Materials',
-      'Educational Psychology', 'Learning Management Systems', 'Academic Advising',
-      'Educational Administration', 'Research Methods', 'Educational Policy'
+      'Curriculum', 'Instructional Design', 'Educational Technology', 'Assessment',
+      'Classroom Management', 'Special Education', 'Adult Learning', 'Vocational Training',
+      'Online Learning', 'Training Materials', 'Academic Advising', 'Educational Administration'
     ],
     'Finance & Business': [
       'Accounting', 'Financial Analysis', 'Tax Preparation', 'Bookkeeping',
-      'Payroll Management', 'Budget Planning', 'Investment Analysis', 'Risk Management',
+      'Payroll', 'Budget Planning', 'Investment Analysis', 'Risk Management',
       'Business Planning', 'Market Research', 'Sales Management', 'Customer Relations',
       'Human Resources', 'Operations Management', 'Strategic Planning', 'Compliance'
     ],
@@ -154,52 +140,51 @@ const Demo: React.FC = () => {
       'Contract Law', 'Regulatory Compliance', 'Risk Assessment', 'Policy Development',
       'Legal Research', 'Document Review', 'Compliance Auditing', 'Safety Regulations',
       'Environmental Law', 'Employment Law', 'Intellectual Property', 'Data Privacy',
-      'Industry Standards', 'Certification Requirements', 'Licensing', 'Permit Management'
+      'Industry Standards', 'Certification', 'Licensing', 'Permits'
     ],
     'Environmental & Safety': [
       'Environmental Compliance', 'Safety Management', 'Hazardous Materials', 'Waste Management',
-      'Air Quality', 'Water Quality', 'Noise Control', 'Ergonomics', 'OSHA Compliance',
-      'Environmental Impact Assessment', 'Sustainability Planning', 'Green Building',
-      'Renewable Energy', 'Carbon Footprint', 'Environmental Monitoring', 'Safety Training'
+      'Air Quality', 'Water Quality', 'Noise Control', 'Ergonomics', 'OSHA',
+      'Environmental Impact', 'Sustainability', 'Green Building', 'Renewable Energy',
+      'Environmental Monitoring', 'Safety Training'
     ],
     'Manufacturing & Production': [
       'Production Planning', 'Quality Control', 'Lean Manufacturing', 'Six Sigma',
-      'Supply Chain Management', 'Inventory Control', 'Process Improvement',
-      'Manufacturing Engineering', 'Production Scheduling', 'Equipment Maintenance',
-      'Safety Procedures', 'Workplace Organization', 'Continuous Improvement',
-      'Statistical Process Control', 'Root Cause Analysis', 'Change Management'
+      'Supply Chain', 'Inventory Control', 'Process Improvement', 'Manufacturing Engineering',
+      'Production Scheduling', 'Equipment Maintenance', 'Safety Procedures', 'Workplace Organization',
+      'Continuous Improvement', 'Statistical Control', 'Root Cause Analysis', 'Change Management'
     ],
-    'Customer Service & Support': [
+    'Customer Service': [
       'Technical Support', 'Customer Relations', 'Account Management', 'Sales Support',
-      'Training & Education', 'Documentation', 'Process Improvement', 'Quality Assurance',
+      'Training', 'Documentation', 'Process Improvement', 'Quality Assurance',
       'Compliance Management', 'Regulatory Affairs', 'Safety Training', 'Emergency Response',
-      'Call Center Operations', 'Customer Success', 'Relationship Management', 'Conflict Resolution'
+      'Call Center', 'Customer Success', 'Relationship Management', 'Conflict Resolution'
     ],
-    'Project Management & Operations': [
+    'Project Management': [
       'Project Planning', 'Resource Management', 'Timeline Management', 'Budget Control',
       'Risk Assessment', 'Quality Management', 'Vendor Management', 'Supply Chain',
       'Inventory Management', 'Workflow Optimization', 'Process Documentation',
       'Performance Metrics', 'Continuous Improvement', 'Change Management',
-      'Agile Methodology', 'Scrum Master', 'Stakeholder Management', 'Communication Planning'
+      'Agile', 'Scrum', 'Stakeholder Management', 'Communication'
     ],
-    'Specialized Equipment & Tools': [
+    'Equipment & Tools': [
       'Heavy Machinery', 'Industrial Equipment', 'Manufacturing Equipment', 'Packaging Equipment',
       'Food Processing Equipment', 'Pharmaceutical Equipment', 'Laboratory Equipment',
       'Medical Devices', 'Safety Equipment', 'Environmental Equipment', 'Testing Equipment',
-      'Calibration Equipment', 'Measurement Instruments', 'Diagnostic Tools',
-      'Lifting Equipment', 'Pressure Vessels', 'Pumps & Compressors', 'Generators'
+      'Calibration', 'Measurement', 'Diagnostics', 'Lifting Equipment', 'Pressure Vessels',
+      'Pumps', 'Compressors', 'Generators'
     ],
-    'Arts & Creative Services': [
+    'Creative Services': [
       'Graphic Design', 'Web Design', 'Photography', 'Videography', 'Audio Production',
-      'Writing & Editing', 'Content Creation', 'Marketing Materials', 'Brand Development',
-      'User Interface Design', 'Print Design', 'Digital Media', 'Social Media Management',
-      'Creative Direction', 'Art Direction', 'Copywriting', 'Technical Writing'
+      'Writing', 'Editing', 'Content Creation', 'Marketing Materials', 'Brand Development',
+      'User Interface Design', 'Print Design', 'Digital Media', 'Social Media',
+      'Creative Direction', 'Copywriting', 'Technical Writing'
     ],
     'Agriculture & Landscaping': [
-      'Crop Management', 'Soil Science', 'Irrigation Systems', 'Pest Control',
-      'Landscape Design', 'Plant Care', 'Equipment Operation', 'Harvest Management',
-      'Greenhouse Operations', 'Livestock Management', 'Agricultural Technology',
-      'Environmental Stewardship', 'Organic Farming', 'Precision Agriculture', 'Farm Management'
+      'Crop Management', 'Soil Science', 'Irrigation', 'Pest Control', 'Landscape Design',
+      'Plant Care', 'Equipment Operation', 'Harvest Management', 'Greenhouse Operations',
+      'Livestock Management', 'Agricultural Technology', 'Environmental Stewardship',
+      'Organic Farming', 'Precision Agriculture', 'Farm Management'
     ]
   };
 
