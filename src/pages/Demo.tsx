@@ -42,10 +42,9 @@ const Demo: React.FC = () => {
     integrationRequirements: [] as string[],
     complianceNeeds: [] as string[],
     reportingNeeds: [] as string[],
-    // Advanced AI Capabilities
+    // Advanced AI & Analytics Capabilities
     advancedCapabilities: [] as string[],
     troubleshootingMethodology: [] as string[],
-    dataAnalysisCapabilities: [] as string[],
     predictiveCapabilities: [] as string[]
   });
 
@@ -951,10 +950,10 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Advanced AI Capabilities */}
+                {/* Advanced AI & Analytics Capabilities */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
-                    Advanced AI Capabilities
+                    Advanced AI & Analytics Capabilities
                   </h4>
                   
                   <div>
@@ -967,7 +966,12 @@ const Demo: React.FC = () => {
                         'Log File Analysis', 'Pattern Recognition', 'Trend Analysis', 'Statistical Analysis',
                         'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision',
                         'Real-time Monitoring', 'Alert Generation', 'Automated Diagnostics', 'Root Cause Analysis',
-                        'Risk Assessment', 'Quality Prediction', 'Efficiency Optimization', 'Cost Optimization'
+                        'Risk Assessment', 'Quality Prediction', 'Efficiency Optimization', 'Cost Optimization',
+                        'Sensor Data Analysis', 'Error Log Analysis', 'Usage Pattern Analysis', 'Failure Mode Analysis',
+                        'Correlation Analysis', 'Regression Analysis', 'Time Series Analysis', 'Frequency Analysis',
+                        'Spectral Analysis', 'Waveform Analysis', 'Statistical Process Control', 'Quality Control Charts',
+                        'Reliability Analysis', 'Survival Analysis', 'Clustering Analysis', 'Classification Analysis',
+                        'Association Analysis', 'Predictive Modeling', 'Data Mining', 'Big Data Analytics'
                       ].map((capability) => (
                         <label key={capability} className="flex items-center">
                           <input
@@ -1039,49 +1043,6 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Data Analysis Capabilities */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-pink-400">
-                    Data Analysis Capabilities
-                  </h4>
-                  
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Data Analysis Types (Select all that apply)
-                    </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'Log File Analysis', 'Sensor Data Analysis', 'Performance Metrics Analysis', 'Error Log Analysis',
-                        'Usage Pattern Analysis', 'Failure Mode Analysis', 'Correlation Analysis', 'Regression Analysis',
-                        'Time Series Analysis', 'Frequency Analysis', 'Spectral Analysis', 'Waveform Analysis',
-                        'Statistical Process Control', 'Quality Control Charts', 'Reliability Analysis', 'Survival Analysis',
-                        'Clustering Analysis', 'Classification Analysis', 'Association Analysis', 'Predictive Modeling'
-                      ].map((analysis) => (
-                        <label key={analysis} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.dataAnalysisCapabilities.includes(analysis)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  dataAnalysisCapabilities: [...prev.dataAnalysisCapabilities, analysis]
-                                }));
-                              } else {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  dataAnalysisCapabilities: prev.dataAnalysisCapabilities.filter(a => a !== analysis)
-                                }));
-                              }
-                            }}
-                            className="mr-3 text-pink-500 focus:ring-pink-400"
-                          />
-                          <span className="text-sm font-mono text-gray-300">{analysis}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
 
                 {/* Predictive Capabilities */}
                 <div className="border-t border-cyan-500/20 pt-8">
