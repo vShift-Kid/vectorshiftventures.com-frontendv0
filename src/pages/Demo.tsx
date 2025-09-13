@@ -211,7 +211,7 @@ const Demo: React.FC = () => {
           ...prev,
           specializations: currentSpecializations.filter(s => s !== specialization)
         };
-      } else if (currentSpecializations.length < 5) {
+      } else if (currentSpecializations.length < 7) {
         return {
           ...prev,
           specializations: [...currentSpecializations, specialization]
@@ -325,7 +325,7 @@ const Demo: React.FC = () => {
         },
         body: JSON.stringify(webhookData)
       });
-
+      
       if (response.ok) {
         setIsSubmitted(true);
         console.log('Demo request submitted successfully');
@@ -351,7 +351,7 @@ const Demo: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              {formData.consultationPackage === 'Demo Request Only - Evaluation Phase'
+              {formData.consultationPackage === 'Demo Request Only - Evaluation Phase' 
                 ? `Thank you, ${formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant tailored for ${formData.useCase} with ${formData.targetUsers}.`
                 : `Thank you, ${formData.name}. We've received your consultation request and will contact you within 24 hours to discuss your business automation needs and create your custom voice assistant tailored for ${formData.useCase} with ${formData.targetUsers}.`
               }
@@ -401,10 +401,10 @@ const Demo: React.FC = () => {
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-white" />
-                  </div>
+              </div>
                   <h3 className="font-mono font-semibold mb-2">Custom Voice Agent</h3>
                   <p className="text-sm text-gray-400">AI-powered phone system trained on your business</p>
-                </div>
+              </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Globe className="w-8 h-8 text-white" />
@@ -507,16 +507,16 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Industry *
-                  </label>
-                  <select
-                    value={formData.industry}
-                    onChange={(e) => handleInputChange('industry', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                  >
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Industry *
+                    </label>
+                    <select
+                      value={formData.industry}
+                      onChange={(e) => handleInputChange('industry', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                    >
                     <option value="">Select your field service industry</option>
                     <optgroup label="HVAC & Climate Control">
                       <option value="hvac-residential">HVAC - Residential (Furnaces, AC units, thermostats, ductwork, SEER ratings, energy efficiency)</option>
@@ -579,24 +579,24 @@ const Demo: React.FC = () => {
                       <option value="grounds-keeping">Grounds Keeping (Landscape maintenance, snow removal, parking lot cleaning, seasonal services, property management)</option>
                       <option value="other">Other Field Service (Specify your specialized service area in business description)</option>
                     </optgroup>
-                  </select>
-                </div>
+                    </select>
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    Consultation Package *
-                  </label>
-                  <select
-                    value={formData.consultationPackage}
-                    onChange={(e) => handleInputChange('consultationPackage', e.target.value)}
-                    required
-                    className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                  >
-                    <option value="">Select consultation package</option>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Consultation Package *
+                    </label>
+                    <select
+                      value={formData.consultationPackage}
+                      onChange={(e) => handleInputChange('consultationPackage', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                    >
+                      <option value="">Select consultation package</option>
                     <option value="Full Consultation - Strategy & Implementation">Full Consultation - Strategy & Implementation</option>
-                    <option value="Demo Request Only - Evaluation Phase">Demo Request Only - Evaluation Phase</option>
+                      <option value="Demo Request Only - Evaluation Phase">Demo Request Only - Evaluation Phase</option>
                     <option value="Custom Package - Let's Discuss">Custom Package - Let's Discuss</option>
-                  </select>
+                    </select>
                 </div>
 
                 <div>
@@ -617,8 +617,8 @@ const Demo: React.FC = () => {
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
                     Voice Agent Customization
-                  </h4>
-                  
+                    </h4>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
@@ -682,7 +682,7 @@ const Demo: React.FC = () => {
                         </optgroup>
                       </select>
                     </div>
-                  </div>
+                    </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     <div>
@@ -720,9 +720,9 @@ const Demo: React.FC = () => {
                         <option value="video">Video Calls (Future)</option>
                       </select>
                     </div>
-                  </div>
+                    </div>
 
-                  <div className="md:col-span-2">
+                    <div className="md:col-span-2">
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                       Voice Agent Specialization *
                       <div className="relative">
@@ -744,13 +744,13 @@ const Demo: React.FC = () => {
                           This helps us train your AI solutions with industry-specific terminology, processes, and knowledge. Voice agents understand technical terms like "SEER rating", "short cycling", "backflow prevention", and "VFD controls". Chatbots can answer questions about equipment, pricing, and scheduling. Newsletters can share industry trends, maintenance tips, and regulatory updates.
                         </div>
                       </div>
-                    </label>
-                    <select
-                      value={formData.industryContext}
-                      onChange={(e) => handleInputChange('industryContext', e.target.value)}
-                      required
-                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    >
+                      </label>
+                      <select
+                        value={formData.industryContext}
+                        onChange={(e) => handleInputChange('industryContext', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
                       <option value="">How should your voice agent be specialized?</option>
                       <optgroup label="HVAC & Climate Control">
                         <option value="hvac-residential">HVAC - Residential Services</option>
@@ -780,7 +780,7 @@ const Demo: React.FC = () => {
                         <option value="maintenance">Facility Maintenance</option>
                         <option value="other">Other Field Service</option>
                       </optgroup>
-                    </select>
+                      </select>
                   </div>
                 </div>
 
@@ -789,8 +789,8 @@ const Demo: React.FC = () => {
                   <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
                     Demo Type Selection
                   </h4>
-                  
-                  <div>
+
+                <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
                       Demo Type *
                       <div className="relative">
@@ -810,9 +810,9 @@ const Demo: React.FC = () => {
                           onMouseLeave={() => handleTooltipHide('demoType')}
                         >
                           Voice Agent: Phone-based customer service, appointment booking, and technical support. Chatbot: Website chat interface for instant customer support and lead qualification. Newsletter: Industry-specific content, maintenance tips, and customer engagement.
-                        </div>
                       </div>
-                    </label>
+                      </div>
+                        </label>
                     <select
                       value={formData.demoType || ''}
                       onChange={(e) => handleInputChange('demoType', e.target.value)}
@@ -824,8 +824,8 @@ const Demo: React.FC = () => {
                       <option value="chatbot">Chatbot Demo - Website chat interface for instant customer support and lead qualification</option>
                       <option value="newsletter">Customized Newsletter Demo - Industry-specific content, maintenance tips, and customer engagement</option>
                     </select>
+                    </div>
                   </div>
-                </div>
 
                 {/* Agent Specializations */}
                 <div className="border-t border-cyan-500/20 pt-8">
@@ -833,9 +833,9 @@ const Demo: React.FC = () => {
                     Agent Specializations
                   </h4>
                   
-                  <div>
+                              <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Select up to 5 specializations *
+                      Select up to 7 specializations *
                       <div className="relative">
                         <button 
                           type="button" 
@@ -853,8 +853,8 @@ const Demo: React.FC = () => {
                           onMouseLeave={() => handleTooltipHide('specializations')}
                         >
                           Choose specific areas where your AI agent should have expertise. This helps us train it with the right terminology, processes, and knowledge for your field.
-                        </div>
-                      </div>
+                              </div>
+                            </div>
                     </label>
                     
                     {/* Selected Specializations Display */}
@@ -867,20 +867,20 @@ const Demo: React.FC = () => {
                               className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm font-mono rounded-full flex items-center gap-2"
                             >
                               {spec}
-                              <button
-                                type="button"
+                            <button
+                              type="button"
                                 onClick={() => handleSpecializationToggle(spec)}
                                 className="text-purple-400 hover:text-purple-300 transition-colors"
-                              >
+                            >
                                 ×
-                              </button>
+                            </button>
                             </span>
-                          ))}
-                        </div>
-                        <div className="text-xs text-gray-400 mt-2 font-mono">
-                          {formData.specializations.length}/5 selected
-                        </div>
+                        ))}
                       </div>
+                        <div className="text-xs text-gray-400 mt-2 font-mono">
+                          {formData.specializations.length}/7 selected
+                    </div>
+                </div>
                     )}
 
                     {/* Multi-select Dropdown */}
@@ -905,14 +905,14 @@ const Demo: React.FC = () => {
                         <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-purple-500/30 rounded-lg shadow-lg z-30 max-h-96 overflow-hidden">
                           {/* Search Input */}
                           <div className="p-3 border-b border-purple-500/20">
-                            <input
+                      <input
                               type="text"
                               placeholder="Search specializations..."
                               value={specializationSearch}
                               onChange={(e) => setSpecializationSearch(e.target.value)}
                               className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white font-mono text-sm focus:outline-none focus:border-purple-400"
-                            />
-                          </div>
+                      />
+                    </div>
 
                           {/* Specializations List */}
                           <div className="max-h-80 overflow-y-auto">
@@ -930,7 +930,7 @@ const Demo: React.FC = () => {
                                           ? 'bg-purple-500/20 text-purple-300'
                                           : 'hover:bg-gray-700/50 text-gray-300'
                                       } ${
-                                        formData.specializations.length >= 5 && !formData.specializations.includes(item)
+                                        formData.specializations.length >= 7 && !formData.specializations.includes(item)
                                           ? 'opacity-50 cursor-not-allowed'
                                           : ''
                                       }`}
@@ -939,21 +939,21 @@ const Demo: React.FC = () => {
                                         type="checkbox"
                                         checked={formData.specializations.includes(item)}
                                         onChange={() => handleSpecializationToggle(item)}
-                                        disabled={formData.specializations.length >= 5 && !formData.specializations.includes(item)}
+                                        disabled={formData.specializations.length >= 7 && !formData.specializations.includes(item)}
                                         className="mr-3 text-purple-500 focus:ring-purple-400"
                                       />
                                       <span className="text-sm font-mono">{item}</span>
                                     </label>
                                   ))}
-                                </div>
-                              </div>
+                    </div>
+                  </div>
                             ))}
                           </div>
 
                           {/* Selection Counter */}
                           <div className="px-3 py-2 bg-gray-700/50 border-t border-gray-600 text-xs text-gray-400 font-mono">
-                            {formData.specializations.length}/5 selected
-                            {formData.specializations.length >= 5 && (
+                            {formData.specializations.length}/7 selected
+                            {formData.specializations.length >= 7 && (
                               <span className="text-purple-400 ml-2">• Maximum reached</span>
                             )}
                           </div>
@@ -981,7 +981,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-            </div>
+                  </div>
           </div>
         </div>
       </section>
@@ -989,4 +989,4 @@ const Demo: React.FC = () => {
   );
 };
 
-export default Demo;
+export default Demo; 
