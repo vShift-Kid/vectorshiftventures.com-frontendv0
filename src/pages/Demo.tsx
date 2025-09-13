@@ -367,11 +367,44 @@ const Demo: React.FC = () => {
                       <option value="generator">Generator Services (Standby generators, transfer switches, load testing, maintenance, fuel systems, automatic start)</option>
                       <option value="security-systems">Security Systems (Access control, cameras, alarms, intercoms, smart locks, monitoring, integration)</option>
                     </optgroup>
-                    <optgroup label="Other Field Services">
+                    <optgroup label="Home & Property Services">
                       <option value="landscaping">Landscaping & Lawn Care (Mowing, trimming, fertilization, irrigation, pest control, seasonal cleanup, design)</option>
                       <option value="pest-control">Pest Control (Termite treatment, rodent control, insect management, inspection, prevention, wildlife removal)</option>
                       <option value="cleaning">Commercial Cleaning (Office cleaning, janitorial, carpet cleaning, window washing, sanitization, maintenance)</option>
-                      <option value="maintenance">Facility Maintenance (Preventive maintenance, repairs, equipment servicing, building systems, emergency response)</option>
+                      <option value="pool-service">Pool & Spa Services (Pool cleaning, chemical balancing, equipment repair, winterization, safety compliance, automation)</option>
+                      <option value="roofing">Roofing & Gutters (Shingle repair, gutter cleaning, leak detection, storm damage, maintenance, ventilation)</option>
+                      <option value="siding">Siding & Exterior (Vinyl siding, painting, pressure washing, weatherproofing, maintenance, repairs)</option>
+                    </optgroup>
+                    <optgroup label="Automotive & Transportation">
+                      <option value="auto-repair">Auto Repair (Engine diagnostics, brake service, oil changes, transmission, electrical, emissions testing)</option>
+                      <option value="towing">Towing & Recovery (Emergency towing, roadside assistance, vehicle recovery, impound services, fleet management)</option>
+                      <option value="fleet-maintenance">Fleet Maintenance (Commercial vehicle service, preventive maintenance, compliance, fuel management, driver support)</option>
+                      <option value="mobile-mechanic">Mobile Mechanic (On-site repairs, emergency service, fleet support, diagnostic services, convenience repairs)</option>
+                    </optgroup>
+                    <optgroup label="Technology & Security">
+                      <option value="it-support">IT Support & Services (Computer repair, network setup, cybersecurity, data recovery, software support, remote assistance)</option>
+                      <option value="security-installation">Security Installation (Alarm systems, cameras, access control, monitoring, smart home integration, maintenance)</option>
+                      <option value="av-installation">Audio/Visual Installation (Home theaters, conference rooms, sound systems, video walls, smart displays, integration)</option>
+                      <option value="network-installation">Network & Cabling (Ethernet, fiber optic, WiFi, structured cabling, data centers, telecommunications)</option>
+                    </optgroup>
+                    <optgroup label="Health & Safety Services">
+                      <option value="medical-equipment">Medical Equipment Service (Hospital equipment, diagnostic machines, maintenance, calibration, compliance, training)</option>
+                      <option value="fire-safety">Fire Safety & Protection (Fire extinguisher service, sprinkler systems, alarms, inspections, emergency planning)</option>
+                      <option value="environmental">Environmental Services (Air quality testing, mold remediation, asbestos removal, water testing, compliance)</option>
+                      <option value="safety-consulting">Safety Consulting (OSHA compliance, safety training, risk assessment, emergency planning, workplace safety)</option>
+                    </optgroup>
+                    <optgroup label="Specialized Services">
+                      <option value="locksmith">Locksmith Services (Lock installation, key cutting, security systems, safe services, emergency access, commercial locks)</option>
+                      <option value="appliance-repair">Appliance Repair (Washers, dryers, refrigerators, ovens, dishwashers, microwaves, warranty service)</option>
+                      <option value="garage-doors">Garage Door Services (Installation, repair, maintenance, opener service, spring replacement, safety systems)</option>
+                      <option value="window-treatment">Window & Door Services (Window repair, door installation, glass replacement, weatherproofing, security upgrades)</option>
+                      <option value="hvac-ductwork">HVAC Ductwork (Duct cleaning, sealing, insulation, design, installation, air quality improvement)</option>
+                    </optgroup>
+                    <optgroup label="Commercial & Industrial">
+                      <option value="facility-maintenance">Facility Maintenance (Preventive maintenance, repairs, equipment servicing, building systems, emergency response)</option>
+                      <option value="janitorial">Janitorial Services (Office cleaning, floor care, restroom maintenance, waste management, specialized cleaning)</option>
+                      <option value="waste-management">Waste Management (Trash collection, recycling, hazardous waste, dumpster service, sustainability programs)</option>
+                      <option value="grounds-keeping">Grounds Keeping (Landscape maintenance, snow removal, parking lot cleaning, seasonal services, property management)</option>
                       <option value="other">Other Field Service (Specify your specialized service area in business description)</option>
                     </optgroup>
                   </select>
@@ -536,7 +569,7 @@ const Demo: React.FC = () => {
                           onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
                           onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
                         >
-                          This helps us train your voice agent with industry-specific terminology, processes, and knowledge. For example, HVAC agents understand "SEER rating", "short cycling", "ductwork sizing", and "refrigerant levels". Plumbing agents know about "backflow prevention", "hydro jetting", and "water pressure issues".
+                          This helps us train your AI solutions with industry-specific terminology, processes, and knowledge. Voice agents understand technical terms like "SEER rating", "short cycling", "backflow prevention", and "VFD controls". Chatbots can answer questions about equipment, pricing, and scheduling. Newsletters can share industry trends, maintenance tips, and regulatory updates.
                         </div>
                       </div>
                     </label>
@@ -575,6 +608,49 @@ const Demo: React.FC = () => {
                         <option value="maintenance">Facility Maintenance</option>
                         <option value="other">Other Field Service</option>
                       </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Demo Type Selection */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
+                    Demo Type Selection
+                  </h4>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                      Demo Type *
+                      <div className="relative">
+                        <button 
+                          type="button" 
+                          className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          ?
+                        </button>
+                        <div 
+                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                            showTooltips.demoType ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          Voice Agent: Phone-based customer service, appointment booking, and technical support. Chatbot: Website chat interface for instant customer support and lead qualification. Newsletter: Industry-specific content, maintenance tips, and customer engagement.
+                        </div>
+                      </div>
+                    </label>
+                    <select
+                      value={formData.demoType || ''}
+                      onChange={(e) => handleInputChange('demoType', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
+                    >
+                      <option value="">Select your preferred demo type</option>
+                      <option value="voice-agent">Voice Agent Demo - Phone-based customer service, appointment booking, and technical support</option>
+                      <option value="chatbot">Chatbot Demo - Website chat interface for instant customer support and lead qualification</option>
+                      <option value="newsletter">Customized Newsletter Demo - Industry-specific content, maintenance tips, and customer engagement</option>
                     </select>
                   </div>
                 </div>
