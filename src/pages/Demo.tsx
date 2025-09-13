@@ -21,7 +21,10 @@ const Demo: React.FC = () => {
     targetUsers: '',
     languageStyle: '',
     interactionMode: '',
-    industryContext: ''
+    industryContext: '',
+    businessRole: '',
+    teamSize: '',
+    currentChallenges: ''
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -49,6 +52,9 @@ const Demo: React.FC = () => {
       updatedFormData.languageStyle !== '' &&
       updatedFormData.interactionMode !== '' &&
       updatedFormData.industryContext !== '' &&
+      updatedFormData.businessRole !== '' &&
+      updatedFormData.teamSize !== '' &&
+      updatedFormData.currentChallenges.length > 10 &&
       (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
     );
   };
@@ -129,7 +135,10 @@ const Demo: React.FC = () => {
           targetUsers: formData.targetUsers,
           languageStyle: formData.languageStyle,
           interactionMode: formData.interactionMode,
-          industryContext: formData.industryContext
+          industryContext: formData.industryContext,
+          businessRole: formData.businessRole,
+          teamSize: formData.teamSize,
+          currentChallenges: formData.currentChallenges
         },
         uploadedFiles: uploadedFiles.map(file => ({
           name: file.name,
@@ -366,16 +375,98 @@ const Demo: React.FC = () => {
                       required
                       className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
-                      <option value="">Select your industry</option>
-                      <option value="HVAC">HVAC</option>
-                      <option value="Plumbing">Plumbing</option>
-                      <option value="Electrical">Electrical</option>
-                      <option value="Landscaping">Landscaping</option>
-                      <option value="Cleaning">Cleaning</option>
-                      <option value="Security">Security</option>
-                      <option value="IT Services">IT Services</option>
-                      <option value="Construction">Construction</option>
-                      <option value="Other">Other</option>
+                      <option value="">Select your field service industry</option>
+                      <optgroup label="HVAC & Climate Control">
+                        <option value="hvac-residential">HVAC - Residential</option>
+                        <option value="hvac-commercial">HVAC - Commercial</option>
+                        <option value="hvac-industrial">HVAC - Industrial</option>
+                        <option value="refrigeration">Refrigeration Services</option>
+                        <option value="duct-cleaning">Duct Cleaning & Maintenance</option>
+                      </optgroup>
+                      <optgroup label="Plumbing Services">
+                        <option value="plumbing-residential">Plumbing - Residential</option>
+                        <option value="plumbing-commercial">Plumbing - Commercial</option>
+                        <option value="plumbing-industrial">Plumbing - Industrial</option>
+                        <option value="drain-cleaning">Drain Cleaning & Sewer</option>
+                        <option value="water-treatment">Water Treatment Systems</option>
+                      </optgroup>
+                      <optgroup label="Electrical Services">
+                        <option value="electrical-residential">Electrical - Residential</option>
+                        <option value="electrical-commercial">Electrical - Commercial</option>
+                        <option value="electrical-industrial">Electrical - Industrial</option>
+                        <option value="low-voltage">Low Voltage Systems</option>
+                        <option value="generator-services">Generator Services</option>
+                      </optgroup>
+                      <optgroup label="Maintenance & Repair">
+                        <option value="facility-maintenance">Facility Maintenance</option>
+                        <option value="equipment-repair">Equipment Repair</option>
+                        <option value="preventive-maintenance">Preventive Maintenance</option>
+                        <option value="emergency-repair">Emergency Repair Services</option>
+                        <option value="warranty-services">Warranty Services</option>
+                      </optgroup>
+                      <optgroup label="Landscaping & Grounds">
+                        <option value="landscaping-residential">Landscaping - Residential</option>
+                        <option value="landscaping-commercial">Landscaping - Commercial</option>
+                        <option value="lawn-care">Lawn Care & Maintenance</option>
+                        <option value="tree-services">Tree Services</option>
+                        <option value="irrigation">Irrigation Systems</option>
+                      </optgroup>
+                      <optgroup label="Cleaning Services">
+                        <option value="commercial-cleaning">Commercial Cleaning</option>
+                        <option value="residential-cleaning">Residential Cleaning</option>
+                        <option value="specialized-cleaning">Specialized Cleaning</option>
+                        <option value="post-construction">Post-Construction Cleanup</option>
+                        <option value="carpet-cleaning">Carpet & Upholstery</option>
+                      </optgroup>
+                      <optgroup label="Security & Access Control">
+                        <option value="security-systems">Security Systems</option>
+                        <option value="access-control">Access Control Systems</option>
+                        <option value="cctv-surveillance">CCTV & Surveillance</option>
+                        <option value="alarm-systems">Alarm Systems</option>
+                        <option value="fire-safety">Fire Safety Systems</option>
+                      </optgroup>
+                      <optgroup label="Technology & Communications">
+                        <option value="telecommunications">Telecommunications</option>
+                        <option value="network-installation">Network Installation</option>
+                        <option value="cable-services">Cable & Internet Services</option>
+                        <option value="phone-systems">Phone Systems</option>
+                        <option value="it-support">IT Support Services</option>
+                      </optgroup>
+                      <optgroup label="Utilities & Infrastructure">
+                        <option value="utilities">Utilities Services</option>
+                        <option value="infrastructure">Infrastructure Maintenance</option>
+                        <option value="pipeline-services">Pipeline Services</option>
+                        <option value="power-distribution">Power Distribution</option>
+                        <option value="water-systems">Water Systems</option>
+                      </optgroup>
+                      <optgroup label="Manufacturing & Industrial">
+                        <option value="manufacturing-support">Manufacturing Support</option>
+                        <option value="industrial-equipment">Industrial Equipment</option>
+                        <option value="production-line">Production Line Services</option>
+                        <option value="quality-control">Quality Control Services</option>
+                        <option value="safety-compliance">Safety & Compliance</option>
+                      </optgroup>
+                      <optgroup label="Healthcare & Medical">
+                        <option value="medical-equipment">Medical Equipment Services</option>
+                        <option value="healthcare-facilities">Healthcare Facilities</option>
+                        <option value="laboratory-services">Laboratory Services</option>
+                        <option value="pharmaceutical">Pharmaceutical Services</option>
+                        <option value="dental-equipment">Dental Equipment</option>
+                      </optgroup>
+                      <optgroup label="Transportation & Logistics">
+                        <option value="fleet-maintenance">Fleet Maintenance</option>
+                        <option value="logistics-support">Logistics Support</option>
+                        <option value="warehouse-services">Warehouse Services</option>
+                        <option value="delivery-services">Delivery Services</option>
+                        <option value="transportation-repair">Transportation Repair</option>
+                      </optgroup>
+                      <optgroup label="Other Field Services">
+                        <option value="other-field-service">Other Field Service</option>
+                        <option value="consulting-services">Consulting Services</option>
+                        <option value="inspection-services">Inspection Services</option>
+                        <option value="testing-services">Testing Services</option>
+                        <option value="custom-solution">Custom Solution</option>
+                      </optgroup>
                     </select>
                   </div>
                   <div>
@@ -434,12 +525,62 @@ const Demo: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
                         <option value="">What should the agent do?</option>
-                        <option value="customer-service">Customer Service (answer FAQs, schedule appointments)</option>
-                        <option value="dispatch-scheduling">Dispatch & Scheduling (assign jobs, update technicians)</option>
-                        <option value="equipment-troubleshooting">Equipment Troubleshooting (guide step-by-step repair checks)</option>
-                        <option value="internal-knowledge">Internal Knowledge Access (manuals, SOPs, training support)</option>
-                        <option value="status-updates">Status Updates (job progress, delivery, repair status)</option>
-                        <option value="sales-lead-qualification">Sales/Lead Qualification (capture customer needs, book demos)</option>
+                        <optgroup label="Customer Service & Support">
+                          <option value="customer-service-faqs">Customer Service - Answer FAQs & General Questions</option>
+                          <option value="appointment-scheduling">Appointment Scheduling & Booking</option>
+                          <option value="service-requests">Service Request Intake & Processing</option>
+                          <option value="complaint-handling">Complaint Handling & Resolution</option>
+                          <option value="billing-inquiries">Billing & Payment Inquiries</option>
+                          <option value="warranty-support">Warranty & Service Support</option>
+                        </optgroup>
+                        <optgroup label="Dispatch & Operations">
+                          <option value="dispatch-scheduling">Dispatch & Job Assignment</option>
+                          <option value="technician-coordination">Technician Coordination & Updates</option>
+                          <option value="route-optimization">Route Optimization & Planning</option>
+                          <option value="emergency-dispatch">Emergency Dispatch & Response</option>
+                          <option value="inventory-management">Inventory & Parts Management</option>
+                          <option value="work-order-tracking">Work Order Tracking & Updates</option>
+                        </optgroup>
+                        <optgroup label="Technical Support">
+                          <option value="equipment-troubleshooting">Equipment Troubleshooting & Diagnostics</option>
+                          <option value="repair-guidance">Step-by-Step Repair Guidance</option>
+                          <option value="maintenance-reminders">Maintenance Reminders & Scheduling</option>
+                          <option value="technical-documentation">Technical Documentation Access</option>
+                          <option value="safety-compliance">Safety & Compliance Guidance</option>
+                          <option value="quality-control">Quality Control & Inspection Support</option>
+                        </optgroup>
+                        <optgroup label="Sales & Marketing">
+                          <option value="lead-qualification">Lead Qualification & Nurturing</option>
+                          <option value="sales-support">Sales Support & Product Information</option>
+                          <option value="quote-generation">Quote Generation & Pricing</option>
+                          <option value="demo-scheduling">Demo & Consultation Scheduling</option>
+                          <option value="follow-up-calls">Follow-up & Retention Calls</option>
+                          <option value="market-research">Market Research & Customer Feedback</option>
+                        </optgroup>
+                        <optgroup label="Internal Operations">
+                          <option value="internal-knowledge">Internal Knowledge & Training Support</option>
+                          <option value="sop-guidance">SOP & Process Guidance</option>
+                          <option value="employee-onboarding">Employee Onboarding & Training</option>
+                          <option value="performance-tracking">Performance Tracking & Reporting</option>
+                          <option value="compliance-monitoring">Compliance Monitoring & Alerts</option>
+                          <option value="resource-allocation">Resource Allocation & Planning</option>
+                        </optgroup>
+                        <optgroup label="Status & Communication">
+                          <option value="status-updates">Job Status Updates & Notifications</option>
+                          <option value="delivery-tracking">Delivery & Service Tracking</option>
+                          <option value="progress-reporting">Progress Reporting & Updates</option>
+                          <option value="escalation-management">Escalation & Issue Management</option>
+                          <option value="stakeholder-communication">Stakeholder Communication</option>
+                          <option value="incident-reporting">Incident Reporting & Documentation</option>
+                        </optgroup>
+                        <optgroup label="Specialized Functions">
+                          <option value="multi-language-support">Multi-Language Customer Support</option>
+                          <option value="accessibility-support">Accessibility & Special Needs Support</option>
+                          <option value="after-hours-support">After-Hours & Emergency Support</option>
+                          <option value="integration-support">System Integration & API Support</option>
+                          <option value="data-collection">Data Collection & Analytics</option>
+                          <option value="custom-workflow">Custom Workflow Automation</option>
+                        </optgroup>
                       </select>
                     </div>
 
@@ -454,11 +595,54 @@ const Demo: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
                         <option value="">Who will interact with it?</option>
-                        <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
-                        <option value="supervisors-managers">Supervisors/Managers (job tracking, reporting, escalations)</option>
-                        <option value="customers">Customers (service requests, appointment booking, FAQs)</option>
-                        <option value="call-center-dispatch">Call Center / Dispatch Agents (assist in handling calls or queries)</option>
-                        <option value="sales-front-office">Sales / Front Office Staff (qualify leads, gather customer info)</option>
+                        <optgroup label="Field Operations">
+                          <option value="field-technicians">Field Technicians (repair, maintenance, troubleshooting)</option>
+                          <option value="service-technicians">Service Technicians (installation, repair, maintenance)</option>
+                          <option value="maintenance-staff">Maintenance Staff (preventive maintenance, inspections)</option>
+                          <option value="emergency-technicians">Emergency Response Technicians</option>
+                          <option value="specialized-technicians">Specialized Technicians (HVAC, electrical, plumbing)</option>
+                          <option value="apprentice-technicians">Apprentice & Junior Technicians</option>
+                        </optgroup>
+                        <optgroup label="Management & Supervision">
+                          <option value="supervisors-managers">Supervisors/Managers (job tracking, reporting, escalations)</option>
+                          <option value="operations-managers">Operations Managers (workflow optimization, resource allocation)</option>
+                          <option value="field-managers">Field Managers (technician coordination, quality control)</option>
+                          <option value="dispatch-managers">Dispatch Managers (scheduling, route optimization)</option>
+                          <option value="service-managers">Service Managers (customer relations, service delivery)</option>
+                          <option value="regional-managers">Regional Managers (multi-location oversight)</option>
+                        </optgroup>
+                        <optgroup label="Customer-Facing">
+                          <option value="customers">Customers (service requests, appointment booking, FAQs)</option>
+                          <option value="business-customers">Business Customers (B2B service requests, contracts)</option>
+                          <option value="residential-customers">Residential Customers (home services, maintenance)</option>
+                          <option value="property-managers">Property Managers (multi-unit management, maintenance)</option>
+                          <option value="facility-managers">Facility Managers (commercial building services)</option>
+                          <option value="emergency-customers">Emergency Customers (urgent service requests)</option>
+                        </optgroup>
+                        <optgroup label="Internal Support Staff">
+                          <option value="call-center-dispatch">Call Center / Dispatch Agents (assist in handling calls or queries)</option>
+                          <option value="customer-service-reps">Customer Service Representatives</option>
+                          <option value="sales-reps">Sales Representatives (lead qualification, quotes)</option>
+                          <option value="account-managers">Account Managers (client relationship management)</option>
+                          <option value="support-specialists">Support Specialists (technical support, troubleshooting)</option>
+                          <option value="scheduling-coordinators">Scheduling Coordinators (appointment management)</option>
+                        </optgroup>
+                        <optgroup label="Administrative & Back Office">
+                          <option value="sales-front-office">Sales / Front Office Staff (qualify leads, gather customer info)</option>
+                          <option value="administrative-staff">Administrative Staff (data entry, documentation)</option>
+                          <option value="billing-staff">Billing & Accounting Staff (invoicing, payment processing)</option>
+                          <option value="hr-personnel">HR Personnel (employee support, training coordination)</option>
+                          <option value="compliance-staff">Compliance & Safety Staff (regulatory adherence)</option>
+                          <option value="quality-assurance">Quality Assurance Staff (service quality monitoring)</option>
+                        </optgroup>
+                        <optgroup label="External Partners">
+                          <option value="vendors-suppliers">Vendors & Suppliers (inventory, parts ordering)</option>
+                          <option value="contractors">Subcontractors (specialized services, overflow work)</option>
+                          <option value="insurance-adjusters">Insurance Adjusters (claims processing, damage assessment)</option>
+                          <option value="regulatory-inspectors">Regulatory Inspectors (compliance verification)</option>
+                          <option value="third-party-integrators">Third-Party Integrators (system integration, API access)</option>
+                          <option value="business-partners">Business Partners (collaborative service delivery)</option>
+                        </optgroup>
                       </select>
                     </div>
 
@@ -520,6 +704,70 @@ const Demo: React.FC = () => {
                         <option value="other">Other (specify in business description)</option>
                       </select>
                     </div>
+                  </div>
+
+                  {/* Additional Business Information */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Your Role in the Business *
+                      </label>
+                      <select
+                        value={formData.businessRole}
+                        onChange={(e) => handleInputChange('businessRole', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select your role</option>
+                        <option value="owner-founder">Owner / Founder</option>
+                        <option value="ceo-president">CEO / President</option>
+                        <option value="operations-manager">Operations Manager</option>
+                        <option value="service-manager">Service Manager</option>
+                        <option value="dispatch-manager">Dispatch Manager</option>
+                        <option value="field-manager">Field Manager</option>
+                        <option value="sales-manager">Sales Manager</option>
+                        <option value="customer-service-manager">Customer Service Manager</option>
+                        <option value="it-manager">IT Manager</option>
+                        <option value="administrative-manager">Administrative Manager</option>
+                        <option value="supervisor">Supervisor</option>
+                        <option value="technician">Technician</option>
+                        <option value="other-role">Other Role</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Team Size *
+                      </label>
+                      <select
+                        value={formData.teamSize}
+                        onChange={(e) => handleInputChange('teamSize', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      >
+                        <option value="">Select team size</option>
+                        <option value="1-5">1-5 employees</option>
+                        <option value="6-15">6-15 employees</option>
+                        <option value="16-50">16-50 employees</option>
+                        <option value="51-100">51-100 employees</option>
+                        <option value="101-500">101-500 employees</option>
+                        <option value="500+">500+ employees</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Current Business Challenges *
+                    </label>
+                    <textarea
+                      value={formData.currentChallenges}
+                      onChange={(e) => handleInputChange('currentChallenges', e.target.value)}
+                      required
+                      rows={3}
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Describe your main business challenges (e.g., scheduling conflicts, customer communication, technician coordination, etc.)"
+                    />
                   </div>
                 </div>
 

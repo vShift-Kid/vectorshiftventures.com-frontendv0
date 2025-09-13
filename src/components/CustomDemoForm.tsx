@@ -159,25 +159,49 @@ const CustomDemoForm: React.FC = () => {
   };
 
   const voiceAssistantOptions = [
-    'Appointment Scheduling',
-    'Lead Qualification',
-    'Customer Support',
-    'Product Information',
-    'Pricing Queries',
-    'FAQ Handling',
+    'Appointment Scheduling & Booking',
+    'Lead Qualification & Nurturing',
+    'Customer Support & FAQs',
+    'Service Request Intake',
+    'Dispatch & Job Assignment',
+    'Equipment Troubleshooting',
+    'Technical Documentation Access',
+    'Billing & Payment Inquiries',
+    'Warranty & Service Support',
+    'Emergency Response Coordination',
+    'Maintenance Reminders',
+    'Quality Control & Inspection',
     'Multi-language Support',
-    'Integration with CRM'
+    'Integration with CRM/ERP',
+    'Route Optimization',
+    'Inventory Management',
+    'Compliance Monitoring',
+    'Performance Tracking',
+    'Safety & Training Support',
+    'Custom Workflow Automation'
   ];
 
   const websiteFeaturesOptions = [
-    'Dynamic Content',
-    'Lead Capture Forms',
-    'Interactive Demos',
-    'Custom Branding',
-    'Analytics Dashboard',
-    'SEO Optimization',
-    'Mobile Responsive',
-    'E-commerce Integration'
+    'Dynamic Content Management',
+    'Advanced Lead Capture Forms',
+    'Interactive Service Demos',
+    'Custom Branding & Design',
+    'Real-time Analytics Dashboard',
+    'SEO Optimization & Marketing',
+    'Mobile Responsive Design',
+    'E-commerce Integration',
+    'Customer Portal & Login',
+    'Online Appointment Booking',
+    'Service Request Forms',
+    'Payment Processing',
+    'Multi-language Support',
+    'Live Chat Integration',
+    'Document Management',
+    'Customer Reviews & Testimonials',
+    'Service Area Mapping',
+    'Emergency Contact Forms',
+    'Quote & Estimate Tools',
+    'Customer Communication Hub'
   ];
 
   const handleCheckboxChange = (field: 'voiceAssistantFeatures' | 'websiteFeatures', value: string) => {
@@ -373,17 +397,97 @@ const CustomDemoForm: React.FC = () => {
                 className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
               >
                 <option value="">Select your field service industry</option>
-                <option value="hvac">HVAC & Climate Control</option>
-                <option value="plumbing">Plumbing Services</option>
-                <option value="electrical">Electrical Services</option>
-                <option value="maintenance">Maintenance & Repair</option>
-                <option value="landscaping">Landscaping & Grounds</option>
-                <option value="cleaning">Commercial Cleaning</option>
-                <option value="security">Security & Access Control</option>
-                <option value="telecommunications">Telecommunications</option>
-                <option value="utilities">Utilities & Infrastructure</option>
-                <option value="manufacturing">Manufacturing Support</option>
-                <option value="other-field-service">Other Field Service</option>
+                <optgroup label="HVAC & Climate Control">
+                  <option value="hvac-residential">HVAC - Residential</option>
+                  <option value="hvac-commercial">HVAC - Commercial</option>
+                  <option value="hvac-industrial">HVAC - Industrial</option>
+                  <option value="refrigeration">Refrigeration Services</option>
+                  <option value="duct-cleaning">Duct Cleaning & Maintenance</option>
+                </optgroup>
+                <optgroup label="Plumbing Services">
+                  <option value="plumbing-residential">Plumbing - Residential</option>
+                  <option value="plumbing-commercial">Plumbing - Commercial</option>
+                  <option value="plumbing-industrial">Plumbing - Industrial</option>
+                  <option value="drain-cleaning">Drain Cleaning & Sewer</option>
+                  <option value="water-treatment">Water Treatment Systems</option>
+                </optgroup>
+                <optgroup label="Electrical Services">
+                  <option value="electrical-residential">Electrical - Residential</option>
+                  <option value="electrical-commercial">Electrical - Commercial</option>
+                  <option value="electrical-industrial">Electrical - Industrial</option>
+                  <option value="low-voltage">Low Voltage Systems</option>
+                  <option value="generator-services">Generator Services</option>
+                </optgroup>
+                <optgroup label="Maintenance & Repair">
+                  <option value="facility-maintenance">Facility Maintenance</option>
+                  <option value="equipment-repair">Equipment Repair</option>
+                  <option value="preventive-maintenance">Preventive Maintenance</option>
+                  <option value="emergency-repair">Emergency Repair Services</option>
+                  <option value="warranty-services">Warranty Services</option>
+                </optgroup>
+                <optgroup label="Landscaping & Grounds">
+                  <option value="landscaping-residential">Landscaping - Residential</option>
+                  <option value="landscaping-commercial">Landscaping - Commercial</option>
+                  <option value="lawn-care">Lawn Care & Maintenance</option>
+                  <option value="tree-services">Tree Services</option>
+                  <option value="irrigation">Irrigation Systems</option>
+                </optgroup>
+                <optgroup label="Cleaning Services">
+                  <option value="commercial-cleaning">Commercial Cleaning</option>
+                  <option value="residential-cleaning">Residential Cleaning</option>
+                  <option value="specialized-cleaning">Specialized Cleaning</option>
+                  <option value="post-construction">Post-Construction Cleanup</option>
+                  <option value="carpet-cleaning">Carpet & Upholstery</option>
+                </optgroup>
+                <optgroup label="Security & Access Control">
+                  <option value="security-systems">Security Systems</option>
+                  <option value="access-control">Access Control Systems</option>
+                  <option value="cctv-surveillance">CCTV & Surveillance</option>
+                  <option value="alarm-systems">Alarm Systems</option>
+                  <option value="fire-safety">Fire Safety Systems</option>
+                </optgroup>
+                <optgroup label="Technology & Communications">
+                  <option value="telecommunications">Telecommunications</option>
+                  <option value="network-installation">Network Installation</option>
+                  <option value="cable-services">Cable & Internet Services</option>
+                  <option value="phone-systems">Phone Systems</option>
+                  <option value="it-support">IT Support Services</option>
+                </optgroup>
+                <optgroup label="Utilities & Infrastructure">
+                  <option value="utilities">Utilities Services</option>
+                  <option value="infrastructure">Infrastructure Maintenance</option>
+                  <option value="pipeline-services">Pipeline Services</option>
+                  <option value="power-distribution">Power Distribution</option>
+                  <option value="water-systems">Water Systems</option>
+                </optgroup>
+                <optgroup label="Manufacturing & Industrial">
+                  <option value="manufacturing-support">Manufacturing Support</option>
+                  <option value="industrial-equipment">Industrial Equipment</option>
+                  <option value="production-line">Production Line Services</option>
+                  <option value="quality-control">Quality Control Services</option>
+                  <option value="safety-compliance">Safety & Compliance</option>
+                </optgroup>
+                <optgroup label="Healthcare & Medical">
+                  <option value="medical-equipment">Medical Equipment Services</option>
+                  <option value="healthcare-facilities">Healthcare Facilities</option>
+                  <option value="laboratory-services">Laboratory Services</option>
+                  <option value="pharmaceutical">Pharmaceutical Services</option>
+                  <option value="dental-equipment">Dental Equipment</option>
+                </optgroup>
+                <optgroup label="Transportation & Logistics">
+                  <option value="fleet-maintenance">Fleet Maintenance</option>
+                  <option value="logistics-support">Logistics Support</option>
+                  <option value="warehouse-services">Warehouse Services</option>
+                  <option value="delivery-services">Delivery Services</option>
+                  <option value="transportation-repair">Transportation Repair</option>
+                </optgroup>
+                <optgroup label="Other Field Services">
+                  <option value="other-field-service">Other Field Service</option>
+                  <option value="consulting-services">Consulting Services</option>
+                  <option value="inspection-services">Inspection Services</option>
+                  <option value="testing-services">Testing Services</option>
+                  <option value="custom-solution">Custom Solution</option>
+                </optgroup>
               </select>
             </div>
             <div>
