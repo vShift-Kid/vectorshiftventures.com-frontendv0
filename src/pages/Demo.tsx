@@ -1105,54 +1105,74 @@ const Demo: React.FC = () => {
               </div>
             </div>
 
-            {/* Advanced AI & Analytics Capabilities */}
+            {/* Data Analytics Specializations */}
             <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
-                    Advanced AI & Analytics Capabilities
-                  </h4>
-                  
-                  <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                      Advanced Capabilities (Select all that apply)
+              <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
+                Data Analytics Specializations
+              </h4>
+              
+              <div className="mb-6">
+                <p className="text-sm text-gray-400 font-mono mb-4">
+                  Select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
+                </p>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                  Analytics Specializations (Select all that apply)
+                </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    // Equipment & Technical Analysis
+                    'Electromechanical Systems', 'Calibration Procedures', 'Tool Performance Analysis', 'Equipment Lifecycle Analysis',
+                    'Vibration Analysis', 'Thermal Analysis', 'Pressure System Analysis', 'Electrical System Analysis',
+                    'Hydraulic System Analysis', 'Pneumatic System Analysis', 'Control System Analysis', 'Sensor Data Analysis',
+                    
+                    // Field Service Operations
+                    'Preventive Maintenance Planning', 'Corrective Maintenance Analysis', 'Parts Inventory Optimization', 'Service Route Optimization',
+                    'Technician Performance Analysis', 'Customer Satisfaction Analysis', 'Service Quality Metrics', 'Response Time Analysis',
+                    'Work Order Analysis', 'Service History Analysis', 'Warranty Claim Analysis', 'Contract Performance Analysis',
+                    
+                    // Predictive & Diagnostic Analytics
+                    'Failure Prediction Modeling', 'Anomaly Detection', 'Root Cause Analysis', 'Trend Analysis',
+                    'Performance Forecasting', 'Risk Assessment', 'Reliability Analysis', 'Maintenance Scheduling Optimization',
+                    'Cost Prediction Analysis', 'Efficiency Optimization', 'Quality Control Analysis', 'Compliance Monitoring',
+                    
+                    // Data Processing & Intelligence
+                    'Log File Analysis', 'Error Pattern Recognition', 'Usage Pattern Analysis', 'Statistical Process Control',
+                    'Time Series Analysis', 'Correlation Analysis', 'Regression Analysis', 'Machine Learning Applications',
+                    'Predictive Modeling', 'Data Mining', 'Big Data Analytics', 'Real-time Monitoring',
+                    
+                    // Industry-Specific Analytics
+                    'Medical Equipment Analysis', 'Manufacturing Process Analysis', 'Energy Consumption Analysis', 'Environmental Impact Analysis',
+                    'Safety Performance Analysis', 'Regulatory Compliance Analysis', 'Supply Chain Analysis', 'Financial Performance Analysis',
+                    'Customer Behavior Analysis', 'Market Trend Analysis', 'Competitive Analysis', 'Innovation Opportunity Analysis'
+                  ].map((specialization) => (
+                    <label key={specialization} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={formData.advancedCapabilities.includes(specialization)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setFormData(prev => ({
+                              ...prev,
+                              advancedCapabilities: [...prev.advancedCapabilities, specialization]
+                            }));
+                          } else {
+                            setFormData(prev => ({
+                              ...prev,
+                              advancedCapabilities: prev.advancedCapabilities.filter(c => c !== specialization)
+                            }));
+                          }
+                        }}
+                        className="mr-3 text-orange-500 focus:ring-orange-400"
+                      />
+                      <span className="text-sm font-mono text-gray-300">{specialization}</span>
                     </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'Anomaly Detection', 'Predictive Maintenance', 'Failure Prediction', 'Performance Monitoring',
-                        'Log File Analysis', 'Pattern Recognition', 'Trend Analysis', 'Statistical Analysis',
-                        'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision',
-                        'Real-time Monitoring', 'Alert Generation', 'Automated Diagnostics', 'Root Cause Analysis',
-                        'Risk Assessment', 'Quality Prediction', 'Efficiency Optimization', 'Cost Optimization',
-                        'Sensor Data Analysis', 'Error Log Analysis', 'Usage Pattern Analysis', 'Failure Mode Analysis',
-                        'Correlation Analysis', 'Regression Analysis', 'Time Series Analysis', 'Frequency Analysis',
-                        'Spectral Analysis', 'Waveform Analysis', 'Statistical Process Control', 'Quality Control Charts',
-                        'Reliability Analysis', 'Survival Analysis', 'Clustering Analysis', 'Classification Analysis',
-                        'Association Analysis', 'Predictive Modeling', 'Data Mining', 'Big Data Analytics'
-                      ].map((capability) => (
-                        <label key={capability} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.advancedCapabilities.includes(capability)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  advancedCapabilities: [...prev.advancedCapabilities, capability]
-                                }));
-                              } else {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  advancedCapabilities: prev.advancedCapabilities.filter(c => c !== capability)
-                                }));
-                              }
-                            }}
-                            className="mr-3 text-orange-500 focus:ring-orange-400"
-                          />
-                          <span className="text-sm font-mono text-gray-300">{capability}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
+              </div>
+            </div>
 
                 {/* Troubleshooting Methodology */}
                 <div className="border-t border-cyan-500/20 pt-8">
