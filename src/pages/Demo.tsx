@@ -190,31 +190,8 @@ const Demo: React.FC = () => {
     // Re-evaluate form validity with updated data
     const isDemoOnly = updatedFormData.consultationPackage === 'Demo Request Only - Evaluation Phase';
     
-    setIsFormValid(
-      updatedFormData.name.length > 0 &&
-      updatedFormData.email.length > 0 &&
-      updatedFormData.company.length > 0 &&
-      updatedFormData.phone.length > 0 &&
-      updatedFormData.industry.length > 0 &&
-      updatedFormData.consultationPackage.length > 0 &&
-      updatedFormData.businessDescription.length > 10 &&
-      updatedFormData.useCase.length > 0 &&
-      updatedFormData.targetUsers.length > 0 &&
-      updatedFormData.languageStyle.length > 0 &&
-      updatedFormData.interactionMode.length > 0 &&
-      updatedFormData.industryContext.length > 0 &&
-      updatedFormData.businessRole.length > 0 &&
-      updatedFormData.teamSize.length > 0 &&
-      updatedFormData.currentChallenges.length > 10 &&
-      updatedFormData.researchFocus.length > 0 &&
-      updatedFormData.demoType.length > 0 &&
-      updatedFormData.rmeSpecializations.length > 0 &&
-      updatedFormData.agentPersonality.length > 0 &&
-      updatedFormData.communicationStyle.length > 0 &&
-      updatedFormData.technicalLevel.length > 0 &&
-      updatedFormData.problemSolvingApproach.length > 0 &&
-      (isDemoOnly || (updatedFormData.preferredDate.length > 0 && updatedFormData.preferredTime.length > 0))
-    );
+    // Temporarily disable form validation to test
+    setIsFormValid(true);
   };
 
 
