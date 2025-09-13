@@ -141,6 +141,54 @@ const getFilteredSpecializations = (specializations: string[], query: string): s
   );
 };
 
+// Data for all searchable sections
+const sectionData = {
+  specializations: [
+    'Equipment Manuals', 'Technical Specifications', 'Service Bulletins', 'Training Materials',
+    'Historical Service Records', 'Customer Feedback', 'Industry Standards', 'Regulatory Guidelines',
+    'Best Practices', 'Troubleshooting Guides', 'Parts Catalogs', 'Warranty Information',
+    'Safety Procedures', 'Compliance Documentation', 'Software Documentation', 'Video Tutorials'
+  ],
+  performanceGoals: [
+    'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction', 'Minimize Equipment Downtime',
+    'Reduce Parts Inventory', 'Improve Technician Efficiency', 'Enhance Safety Compliance', 'Reduce Warranty Claims',
+    'Improve Documentation', 'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling',
+    'Enhance Training', 'Reduce Errors', 'Improve Communication', 'Increase Repeat Business'
+  ],
+  integrationRequirements: [
+    'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
+    'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
+    'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
+    'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations'
+  ],
+  complianceNeeds: [
+    'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
+    'Environmental Regulations', 'Safety Standards', 'Quality Certifications', 'Industry Standards',
+    'Local Regulations', 'International Standards', 'Audit Requirements', 'Documentation Standards',
+    'Training Requirements', 'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements'
+  ],
+  reportingNeeds: [
+    'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
+    'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
+    'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
+    'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis'
+  ],
+  troubleshootingMethodology: [
+    'Systematic Diagnosis', 'Symptom-Based Analysis', 'Component Isolation', 'Signal Tracing',
+    'Voltage/Current Analysis', 'Temperature Analysis', 'Vibration Analysis', 'Acoustic Analysis',
+    'Pressure Analysis', 'Flow Analysis', 'Chemical Analysis', 'Visual Inspection',
+    'Functional Testing', 'Load Testing', 'Stress Testing', 'Environmental Testing',
+    'Historical Analysis', 'Comparative Analysis', 'Statistical Analysis', 'Expert System Rules'
+  ],
+  predictiveCapabilities: [
+    'Failure Prediction', 'Maintenance Scheduling', 'Performance Forecasting', 'Demand Forecasting',
+    'Cost Prediction', 'Risk Prediction', 'Quality Prediction', 'Efficiency Prediction',
+    'Lifespan Prediction', 'Downtime Prediction', 'Parts Usage Prediction', 'Energy Consumption Prediction',
+    'Temperature Prediction', 'Pressure Prediction', 'Vibration Prediction', 'Noise Prediction',
+    'Wear Prediction', 'Corrosion Prediction', 'Fatigue Prediction', 'Reliability Prediction'
+  ]
+};
+
 const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -190,6 +238,15 @@ const Demo: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchQueries, setSearchQueries] = useState<{[key: string]: string}>({
+    specializations: '',
+    performanceGoals: '',
+    integrationRequirements: '',
+    complianceNeeds: '',
+    reportingNeeds: '',
+    troubleshootingMethodology: '',
+    predictiveCapabilities: ''
+  });
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -922,77 +979,174 @@ const Demo: React.FC = () => {
                     Specializations & Performance Goals
                   </h4>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Specializations (Select all that apply)
-                      </label>
-                      <div className="space-y-2">
-                        {[
-                          'Equipment Manuals', 'Technical Specifications', 'Service Bulletins', 'Training Materials',
-                          'Historical Service Records', 'Customer Feedback', 'Industry Standards', 'Regulatory Guidelines',
-                          'Best Practices', 'Troubleshooting Guides', 'Parts Catalogs', 'Warranty Information',
-                          'Safety Procedures', 'Compliance Documentation', 'Software Documentation', 'Video Tutorials'
-                        ].map((source) => (
-                          <label key={source} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              checked={formData.specializations.includes(source)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    specializations: [...prev.specializations, source]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    specializations: prev.specializations.filter(s => s !== source)
-                                  }));
-                                }
-                              }}
-                              className="mr-3 text-yellow-500 focus:ring-yellow-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{source}</span>
-                          </label>
-                        ))}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Specializations */}
+                    <div className="space-y-4">
+                      <h5 className="text-lg font-mono font-semibold text-yellow-300">
+                        Specializations
+                      </h5>
+                      
+                      {/* Search Bar */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={searchQueries.specializations}
+                          onChange={(e) => setSearchQueries(prev => ({ ...prev, specializations: e.target.value }))}
+                          placeholder="Search specializations (e.g., 'equipment', 'safety', 'training')..."
+                          className="w-full p-3 bg-gray-800/50 border border-yellow-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-yellow-400 pr-10"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400">
+                          🔍
+                        </div>
+                      </div>
+
+                      {/* Selected Items */}
+                      {formData.specializations.length > 0 && (
+                        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
+                          <h6 className="text-sm font-mono font-semibold text-yellow-300 mb-2">
+                            Selected ({formData.specializations.length})
+                          </h6>
+                          <div className="flex flex-wrap gap-1">
+                            {formData.specializations.map((item) => (
+                              <span
+                                key={item}
+                                className="inline-flex items-center px-2 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded text-xs font-mono text-yellow-300"
+                              >
+                                {item}
+                                <button
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      specializations: prev.specializations.filter(s => s !== item)
+                                    }));
+                                  }}
+                                  className="ml-1 text-yellow-400 hover:text-yellow-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Search Results */}
+                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                        <div className="space-y-1">
+                          {getFilteredSpecializations(sectionData.specializations, searchQueries.specializations).map((item) => (
+                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.specializations.includes(item)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      specializations: [...prev.specializations, item]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      specializations: prev.specializations.filter(s => s !== item)
+                                    }));
+                                  }
+                                }}
+                                className="mr-2 text-yellow-500 focus:ring-yellow-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{item}</span>
+                            </label>
+                          ))}
+                          {getFilteredSpecializations(sectionData.specializations, searchQueries.specializations).length === 0 && searchQueries.specializations && (
+                            <p className="text-sm text-gray-400 font-mono text-center py-2">
+                              No specializations found for "{searchQueries.specializations}"
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Performance Goals (Select all that apply)
-                      </label>
-                      <div className="space-y-2">
-                        {[
-                          'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction',
-                          'Minimize Equipment Downtime', 'Reduce Parts Inventory', 'Improve Technician Efficiency',
-                          'Enhance Safety Compliance', 'Reduce Warranty Claims', 'Improve Documentation',
-                          'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling', 'Enhance Training',
-                          'Reduce Errors', 'Improve Communication', 'Increase Repeat Business'
-                        ].map((goal) => (
-                          <label key={goal} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              checked={formData.performanceGoals.includes(goal)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    performanceGoals: [...prev.performanceGoals, goal]
-                                  }));
-                                } else {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    performanceGoals: prev.performanceGoals.filter(g => g !== goal)
-                                  }));
-                                }
-                              }}
-                              className="mr-3 text-yellow-500 focus:ring-yellow-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{goal}</span>
-                          </label>
-                        ))}
+                    {/* Performance Goals */}
+                    <div className="space-y-4">
+                      <h5 className="text-lg font-mono font-semibold text-yellow-300">
+                        Performance Goals
+                      </h5>
+                      
+                      {/* Search Bar */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={searchQueries.performanceGoals}
+                          onChange={(e) => setSearchQueries(prev => ({ ...prev, performanceGoals: e.target.value }))}
+                          placeholder="Search goals (e.g., 'reduce', 'improve', 'increase')..."
+                          className="w-full p-3 bg-gray-800/50 border border-yellow-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-yellow-400 pr-10"
+                        />
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400">
+                          🔍
+                        </div>
+                      </div>
+
+                      {/* Selected Items */}
+                      {formData.performanceGoals.length > 0 && (
+                        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
+                          <h6 className="text-sm font-mono font-semibold text-yellow-300 mb-2">
+                            Selected ({formData.performanceGoals.length})
+                          </h6>
+                          <div className="flex flex-wrap gap-1">
+                            {formData.performanceGoals.map((item) => (
+                              <span
+                                key={item}
+                                className="inline-flex items-center px-2 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded text-xs font-mono text-yellow-300"
+                              >
+                                {item}
+                                <button
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      performanceGoals: prev.performanceGoals.filter(g => g !== item)
+                                    }));
+                                  }}
+                                  className="ml-1 text-yellow-400 hover:text-yellow-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Search Results */}
+                      <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-3 max-h-48 overflow-y-auto">
+                        <div className="space-y-1">
+                          {getFilteredSpecializations(sectionData.performanceGoals, searchQueries.performanceGoals).map((item) => (
+                            <label key={item} className="flex items-center p-1 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.performanceGoals.includes(item)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      performanceGoals: [...prev.performanceGoals, item]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      performanceGoals: prev.performanceGoals.filter(g => g !== item)
+                                    }));
+                                  }
+                                }}
+                                className="mr-2 text-yellow-500 focus:ring-yellow-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{item}</span>
+                            </label>
+                          ))}
+                          {getFilteredSpecializations(sectionData.performanceGoals, searchQueries.performanceGoals).length === 0 && searchQueries.performanceGoals && (
+                            <p className="text-sm text-gray-400 font-mono text-center py-2">
+                              No goals found for "{searchQueries.performanceGoals}"
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
