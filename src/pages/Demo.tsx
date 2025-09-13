@@ -75,14 +75,14 @@ const Demo: React.FC = () => {
     setDragActive(false);
     
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const newFiles = Array.from(e.dataTransfer.files);
+      const newFiles = Array.from(e.dataTransfer.files) as File[];
       setUploadedFiles(prev => [...prev, ...newFiles]);
     }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const newFiles = Array.from(e.target.files);
+      const newFiles = Array.from(e.target.files) as File[];
       setUploadedFiles(prev => [...prev, ...newFiles]);
     }
   };
@@ -981,7 +981,6 @@ const Demo: React.FC = () => {
                       ))}
                 </div>
               </div>
-            </div>
 
             {/* Document Upload Section */}
             <div className="border-t border-cyan-500/20 pt-8">
@@ -1107,7 +1106,7 @@ const Demo: React.FC = () => {
             </div>
 
             {/* Advanced AI & Analytics Capabilities */}
-                <div className="border-t border-cyan-500/20 pt-8">
+            <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
                     Advanced AI & Analytics Capabilities
                   </h4>
@@ -1243,6 +1242,7 @@ const Demo: React.FC = () => {
                     </div>
                   </div>
                 </div>
+              </div>
 
                 <div className="text-center">
                   <button
@@ -1262,7 +1262,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-                  </div>
+            </div>
           </div>
         </div>
       </section>
