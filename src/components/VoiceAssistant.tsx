@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
-import { getVapiMCPClient } from '../lib/vapiMCP';
+import { Vapi } from '@vapi-ai/web';
 
 const VoiceAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [vapiMCP, setVapiMCP] = useState<any>(null);
+  const [vapi, setVapi] = useState<Vapi | null>(null);
 
   useEffect(() => {
-    const initializeVapiMCP = async () => {
+    const initializeVapi = async () => {
       try {
-        const client = getVapiMCPClient();
-        await client.initialize();
-        setVapiMCP(client);
+        // Initialize VAPI with your API key and assistant ID
+        const vapiInstance = new Vapi(import.meta.env.VITE_VAPI_API_KEY || 'your-api-key-here');
+        setVapi(vapiInstance);
       } catch (error) {
-        console.error('Failed to initialize VAPI MCP:', error);
+        console.error('Failed to initialize VAPI:', error);
         setError('Failed to initialize voice assistant');
       }
     };
 
-    initializeVapiMCP();
+    initializeVapi();
   }, []);
 
   const handleStartCall = async () => {
-    if (!vapiMCP) {
+    if (!vapi) {
       setError('Voice assistant not initialized. Please refresh the page.');
       return;
     }
@@ -36,16 +36,16 @@ const VoiceAssistant: React.FC = () => {
       
       if (isCallActive) {
         // Stop the call if it's active
-        await vapiMCP.stopCall();
+        vapi.stop();
         setIsCallActive(false);
         return;
       }
       
-      // Start the call using MCP
-      console.log('Starting VAPI MCP call...');
-      await vapiMCP.startCall();
+      // Start the call using VAPI web SDK
+      console.log('Starting VAPI call...');
+      await vapi.start(import.meta.env.VITE_VAPI_ASSISTANT_ID || 'your-assistant-id-here');
       setIsCallActive(true);
-      console.log('VAPI MCP call started successfully');
+      console.log('VAPI call started successfully');
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
@@ -55,9 +55,9 @@ const VoiceAssistant: React.FC = () => {
   };
 
   const handleStopCall = async () => {
-    if (vapiMCP) {
+    if (vapi) {
       try {
-        await vapiMCP.stopCall();
+        vapi.stop();
         setIsCallActive(false);
       } catch (error) {
         console.error('Error stopping call:', error);

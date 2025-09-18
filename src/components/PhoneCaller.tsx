@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, PhoneOff, PhoneCall, Users, Clock, CheckCircle, XCircle } from 'lucide-react';
-import { VapiMCPClient, getVapiMCPClient, CallData } from '../lib/vapiMCP';
+import { Vapi } from '@vapi-ai/web';
+
+interface CallData {
+  id: string;
+  phoneNumber: string;
+  purpose: string;
+  status: 'initiated' | 'ringing' | 'answered' | 'completed' | 'failed';
+  timestamp: Date;
+}
 
 interface PhoneCallerProps {
   className?: string;
@@ -19,26 +27,25 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [callPurpose, setCallPurpose] = useState('');
-  const [vapiMCP, setVapiMCP] = useState<VapiMCPClient | null>(null);
+  const [vapi, setVapi] = useState<Vapi | null>(null);
   const [recentCalls, setRecentCalls] = useState<CallData[]>([]);
 
   useEffect(() => {
-    const initializeVapiMCP = async () => {
+    const initializeVapi = async () => {
       try {
-        const client = getVapiMCPClient();
-        await client.initialize();
-        setVapiMCP(client);
+        const vapiInstance = new Vapi(import.meta.env.VITE_VAPI_API_KEY || 'your-api-key-here');
+        setVapi(vapiInstance);
       } catch (error) {
-        console.error('Failed to initialize VAPI MCP:', error);
+        console.error('Failed to initialize VAPI:', error);
         setError('Failed to initialize phone calling system');
       }
     };
 
-    initializeVapiMCP();
+    initializeVapi();
   }, []);
 
   const handleStartCall = async () => {
-    if (!vapiMCP) {
+    if (!vapi) {
       setError('Phone calling system not initialized');
       return;
     }
@@ -53,13 +60,19 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
       setError(null);
 
       // Start voice call
-      await vapiMCP.startCall();
+      await vapi.start(import.meta.env.VITE_VAPI_ASSISTANT_ID || 'your-assistant-id-here');
       setIsCallActive(true);
 
-      // Initiate phone call
-      const callData = await vapiMCP.makePhoneCall(phoneNumber, callPurpose);
-      setRecentCalls(prev => [callData, ...prev.slice(0, 4)]); // Keep last 5 calls
+      // Create call data for tracking
+      const callData: CallData = {
+        id: `call-${Date.now()}`,
+        phoneNumber,
+        purpose: callPurpose,
+        status: 'initiated',
+        timestamp: new Date()
+      };
       
+      setRecentCalls(prev => [callData, ...prev.slice(0, 4)]); // Keep last 5 calls
       onCallInitiated?.(callData);
       
     } catch (error: any) {
@@ -71,10 +84,10 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
   };
 
   const handleEndCall = async () => {
-    if (!vapiMCP) return;
+    if (!vapi) return;
 
     try {
-      await vapiMCP.stopCall();
+      vapi.stop();
       setIsCallActive(false);
       
       // Update the most recent call status

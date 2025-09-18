@@ -13,7 +13,6 @@ const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
-const VapiMCPConfig = React.lazy(() => import('./components/VapiMCPConfig'));
 
 // Loading component
 const LoadingSpinner = () => (
