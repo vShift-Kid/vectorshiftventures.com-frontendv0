@@ -23,8 +23,11 @@ const VoiceAssistant: React.FC = () => {
         }
         
         // Initialize VAPI with your API key
+        console.log('Initializing VAPI with API key:', apiKey.substring(0, 8) + '...');
         const vapiInstance = new Vapi(apiKey);
         console.log('VAPI instance created:', vapiInstance);
+        console.log('VAPI instance type:', typeof vapiInstance);
+        console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
         
         // Add event listeners
         vapiInstance.on('call-start', () => {
@@ -94,8 +97,11 @@ const VoiceAssistant: React.FC = () => {
       
       console.log('Starting VAPI call...');
       console.log('Assistant ID:', assistantId);
+      console.log('VAPI instance:', vapi);
+      console.log('VAPI start method:', typeof vapi.start);
       
       // Start the call using VAPI web SDK
+      console.log('Calling vapi.start()...');
       await vapi.start(assistantId);
       console.log('VAPI call started successfully');
       
