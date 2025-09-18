@@ -16,6 +16,8 @@ const VoiceAssistant: React.FC = () => {
   useEffect(() => {
     const initializeVapi = async () => {
       try {
+        console.log('VoiceAssistant: Starting initialization...');
+        
         if (!apiKey || apiKey === 'your-api-key-here') {
           console.log('VAPI API key not configured');
           setError('Voice assistant not configured. Please contact support.');
@@ -24,10 +26,17 @@ const VoiceAssistant: React.FC = () => {
         
         // Initialize VAPI with your API key
         console.log('Initializing VAPI with API key:', apiKey.substring(0, 8) + '...');
-        const vapiInstance = new Vapi(apiKey);
-        console.log('VAPI instance created:', vapiInstance);
-        console.log('VAPI instance type:', typeof vapiInstance);
-        console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
+        
+        let vapiInstance;
+        try {
+          vapiInstance = new Vapi(apiKey);
+          console.log('VAPI instance created:', vapiInstance);
+          console.log('VAPI instance type:', typeof vapiInstance);
+          console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
+        } catch (vapiError) {
+          console.error('VAPI constructor error:', vapiError);
+          throw vapiError;
+        }
         
         // Add event listeners
         vapiInstance.on('call-start', () => {
@@ -61,12 +70,77 @@ const VoiceAssistant: React.FC = () => {
         console.log('✅ VAPI instance created successfully');
       } catch (error) {
         console.error('Failed to initialize VAPI:', error);
-        setError('Failed to initialize voice assistant');
+        setError(`Failed to initialize voice assistant: ${error.message || 'Unknown error'}`);
       }
     };
 
     initializeVapi();
   }, [apiKey]);
+
+  // Add a simple fallback if VAPI fails to initialize
+  if (error && !vapi) {
+    return (
+      <>
+        {/* Floating Action Button */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+          >
+            <MessageSquare className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Error Panel */}
+        {isOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                      <MessageSquare className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-mono font-semibold">Talk Now</h3>
+                      <p className="text-red-100 text-sm">Voice Assistant</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center">
+                    <MessageSquare className="w-8 h-8 text-red-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-mono font-semibold mb-2">Voice Assistant Unavailable</h4>
+                    <p className="text-gray-400 font-mono text-sm mb-4">
+                      {error}
+                    </p>
+                    <button
+                      onClick={() => window.location.reload()}
+                      className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg font-mono text-sm"
+                    >
+                      Refresh Page
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
 
   const handleStartCall = async () => {
     if (!vapi) {
