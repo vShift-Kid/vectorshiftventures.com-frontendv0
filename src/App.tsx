@@ -13,6 +13,7 @@ const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
+const VapiTest = React.lazy(() => import('./components/VapiTest'));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -39,6 +40,7 @@ function App() {
             </Routes>
             <Chatbot />
             <PhoneCaller />
+            <VapiTest />
           </Suspense>
           <StickyCTA />
         </div>
