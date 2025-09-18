@@ -172,6 +172,93 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Trust Signals Section */}
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80" aria-labelledby="trust-heading">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 id="trust-heading" className="text-3xl font-mono font-bold mb-4">
+              Trusted by <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">500+ Field Service Companies</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
+              Join industry leaders who have transformed their operations with our AI automation solutions.
+            </p>
+          </div>
+
+          {/* Customer Logos */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
+            {[
+              "Manufacturing Corp", "Energy Solutions", "Healthcare Systems", 
+              "Construction Group", "Logistics Pro", "Utilities Co"
+            ].map((company, index) => (
+              <div key={index} className="flex items-center justify-center p-4 bg-gray-800/30 rounded-lg border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+                <span className="font-mono text-sm text-gray-300">{company}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonials */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              {
+                name: "Sarah Johnson",
+                title: "Operations Director",
+                company: "Manufacturing Corp",
+                quote: "Vector Shift Ventures transformed our field service operations. We've seen a 60% reduction in response time and 40% increase in customer satisfaction.",
+                results: ["60% faster response", "40% higher satisfaction", "50% cost reduction"]
+              },
+              {
+                name: "Mike Chen",
+                title: "Service Manager", 
+                company: "Energy Solutions",
+                quote: "The AI automation system has revolutionized how we handle customer inquiries and dispatch technicians. It's like having a 24/7 expert assistant.",
+                results: ["24/7 availability", "80% automation", "35% efficiency gain"]
+              },
+              {
+                name: "Lisa Rodriguez",
+                title: "VP of Operations",
+                company: "Healthcare Systems", 
+                quote: "Our field service team is now more efficient than ever. The AI-powered insights help us predict maintenance needs before they become problems.",
+                results: ["Predictive maintenance", "90% uptime", "25% fewer emergencies"]
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="p-6 bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl hover:border-cyan-500/40 transition-all">
+                <div className="mb-4">
+                  <p className="text-gray-300 font-mono text-sm mb-4">"{testimonial.quote}"</p>
+                  <div className="space-y-1">
+                    {testimonial.results.map((result, resultIndex) => (
+                      <div key={resultIndex} className="flex items-center text-xs text-green-400 font-mono">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                        {result}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="border-t border-cyan-500/20 pt-4">
+                  <p className="font-mono font-semibold text-cyan-300">{testimonial.name}</p>
+                  <p className="font-mono text-sm text-gray-400">{testimonial.title}</p>
+                  <p className="font-mono text-sm text-gray-500">{testimonial.company}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { number: "500+", label: "Companies Served" },
+              { number: "60%", label: "Average Cost Reduction" },
+              { number: "24/7", label: "AI Availability" },
+              { number: "99%", label: "Customer Satisfaction" }
+            ].map((stat, index) => (
+              <div key={index} className="p-6 bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-xl">
+                <div className="text-3xl font-mono font-bold text-cyan-400 mb-2">{stat.number}</div>
+                <div className="text-sm font-mono text-gray-300">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]" aria-labelledby="cta-heading">
         <div className="container mx-auto px-6">
