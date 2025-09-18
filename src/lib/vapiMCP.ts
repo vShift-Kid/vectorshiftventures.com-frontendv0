@@ -10,6 +10,24 @@ export interface VapiMCPConfig {
   enablePhoneCalls?: boolean;
   enableSMS?: boolean;
   enableEmail?: boolean;
+  // VAPI MCP specific configuration
+  mcpTools?: MCPToolConfig[];
+  protocol?: 'shttp' | 'sse';
+  customHeaders?: Record<string, string>;
+}
+
+export interface MCPToolConfig {
+  type: 'mcp';
+  function: {
+    name: string;
+  };
+  server: {
+    url: string;
+    headers?: Record<string, string>;
+  };
+  metadata?: {
+    protocol?: 'shttp' | 'sse';
+  };
 }
 
 export interface CallData {
@@ -40,6 +58,7 @@ export class VapiMCPClient {
       enablePhoneCalls: true,
       enableSMS: false,
       enableEmail: false,
+      protocol: 'shttp', // Use Streamable HTTP by default
       ...config
     };
   }
@@ -140,12 +159,44 @@ export class VapiMCPClient {
       throw new Error('VAPI MCP Client not initialized');
     }
 
+    // VAPI will automatically fetch MCP tools from the configured MCP server
+    // The MCP tools are configured in the VAPI dashboard, not here
     const config = {
-      assistantId: assistantId || this.config.assistantId,
-      tools: this.mcpTools
+      assistantId: assistantId || this.config.assistantId
     };
 
     await this.vapi.start(config);
+  }
+
+  /**
+   * Get MCP tool configuration for VAPI dashboard
+   * This should be used to configure tools in the VAPI dashboard
+   */
+  getMCPToolConfiguration(): MCPToolConfig {
+    return {
+      type: 'mcp',
+      function: {
+        name: 'mcpTools'
+      },
+      server: {
+        url: this.config.mcpServerUrl!,
+        headers: this.config.customHeaders
+      },
+      metadata: {
+        protocol: this.config.protocol
+      }
+    };
+  }
+
+  /**
+   * Configure MCP providers (Zapier, Make, Composio)
+   */
+  configureMCPProvider(provider: 'zapier' | 'make' | 'composio', serverUrl: string, customHeaders?: Record<string, string>): void {
+    this.config.mcpServerUrl = serverUrl;
+    this.config.customHeaders = customHeaders;
+    
+    console.log(`MCP Provider configured: ${provider}`);
+    console.log(`Server URL: ${serverUrl}`);
   }
 
   async stopCall(): Promise<void> {
