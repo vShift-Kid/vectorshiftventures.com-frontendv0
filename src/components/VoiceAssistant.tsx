@@ -12,7 +12,9 @@ const VoiceAssistant: React.FC = () => {
   useEffect(() => {
     const initializeVapi = async () => {
       try {
-        const apiKey = import.meta.env.VITE_VAPI_API_KEY;
+        const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
+        console.log('Voice Assistant - API Key:', apiKey ? 'Set' : 'Not Set');
+        
         if (!apiKey || apiKey === 'your-api-key-here') {
           console.log('VAPI API key not configured');
           setError('Voice assistant not configured. Please contact support.');
@@ -50,7 +52,9 @@ const VoiceAssistant: React.FC = () => {
       
       // Start the call using VAPI web SDK
       console.log('Starting VAPI call...');
-      await vapi.start(import.meta.env.VITE_VAPI_ASSISTANT_ID || 'your-assistant-id-here');
+      const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
+      console.log('Voice Assistant - Assistant ID:', assistantId ? 'Set' : 'Not Set');
+      await vapi.start(assistantId);
       setIsCallActive(true);
       console.log('VAPI call started successfully');
       

@@ -45,7 +45,10 @@ const Chatbot: React.FC = () => {
   useEffect(() => {
     const initializeVapi = async () => {
       try {
-        const apiKey = import.meta.env.VITE_VAPI_API_KEY;
+        const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
+        console.log('VAPI API Key:', apiKey ? 'Set' : 'Not Set');
+        console.log('Environment check:', import.meta.env.VITE_VAPI_API_KEY);
+        
         if (!apiKey || apiKey === 'your-api-key-here') {
           console.log('VAPI API key not configured for chat');
           setError('Chat assistant not configured. Please contact support.');
@@ -116,7 +119,10 @@ const Chatbot: React.FC = () => {
       
       // Start the call
       console.log('Starting Vapi call...');
-      const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID;
+      const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
+      console.log('Assistant ID:', assistantId ? 'Set' : 'Not Set');
+      console.log('Environment check:', import.meta.env.VITE_VAPI_ASSISTANT_ID);
+      
       if (!assistantId || assistantId === 'your-assistant-id-here') {
         setError('Assistant not configured. Please contact support.');
         setIsLoading(false);
