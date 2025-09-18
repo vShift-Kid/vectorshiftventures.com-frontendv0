@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
-import { Vapi } from '@vapi-ai/web';
+import Vapi from '@vapi-ai/web';
 
 const VoiceAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

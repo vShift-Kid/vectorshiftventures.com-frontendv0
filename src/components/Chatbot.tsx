@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Mic, MicOff } from 'lucide-react';
-import { Vapi } from '@vapi-ai/web';
+import Vapi from '@vapi-ai/web';
 
 interface Message {
   id: string;

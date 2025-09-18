@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, PhoneOff, PhoneCall, Users, Clock, CheckCircle, XCircle } from 'lucide-react';
-import { Vapi } from '@vapi-ai/web';
+import Vapi from '@vapi-ai/web';
 
 interface CallData {
   id: string;

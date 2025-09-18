@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Vapi } from '@vapi-ai/web';
+import Vapi from '@vapi-ai/web';
 
 const VapiTest: React.FC = () => {
   const [envVars, setEnvVars] = useState<any>({});
