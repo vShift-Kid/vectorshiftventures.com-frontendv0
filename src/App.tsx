@@ -39,7 +39,6 @@ function App() {
             </Routes>
             <Chatbot />
             <PhoneCaller />
-            <VapiMCPConfig />
           </Suspense>
           <StickyCTA />
         </div>
