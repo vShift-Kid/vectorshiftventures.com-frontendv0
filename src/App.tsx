@@ -12,6 +12,7 @@ const Consultation = React.lazy(() => import('./pages/Consultation'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
+const VoiceAssistant = React.lazy(() => import('./components/VoiceAssistant'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
 const VapiTest = React.lazy(() => import('./components/VapiTest'));
 
@@ -39,6 +40,7 @@ function App() {
               <Route path="/:slug" element={<CompanyPage />} />
             </Routes>
             <Chatbot />
+            <VoiceAssistant />
             <PhoneCaller />
             <VapiTest />
           </Suspense>

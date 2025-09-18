@@ -262,9 +262,9 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
                   <div className="w-16 h-16 mx-auto bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center">
                     <PhoneCall className="w-8 h-8 text-green-400" />
                   </div>
-                  <h4 className="text-white font-mono font-semibold mt-3 mb-2">Make a Phone Call</h4>
+                  <h4 className="text-white font-mono font-semibold mt-3 mb-2">Call Someone</h4>
                   <p className="text-gray-400 font-mono text-sm">
-                    Enter a phone number to start a voice conversation with our AI assistant.
+                    Enter a phone number to have our AI assistant call them directly.
                   </p>
                 </div>
 

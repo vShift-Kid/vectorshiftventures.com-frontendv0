@@ -160,9 +160,9 @@ const VoiceAssistant: React.FC = () => {
                   <Mic className="w-8 h-8 text-cyan-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-mono font-semibold mb-2">Try Our Voice Assistant</h4>
+                  <h4 className="text-white font-mono font-semibold mb-2">Talk Now - Voice Assistant</h4>
                   <p className="text-gray-400 font-mono text-sm">
-                    Speak with our AI assistant about VectorShift Ventures services, automation solutions, and business consultations.
+                    Speak directly with our AI assistant using your microphone. Ask about our services, get quotes, or schedule consultations.
                   </p>
                 </div>
               </div>
@@ -212,8 +212,8 @@ const VoiceAssistant: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center space-x-2">
-                    <Phone className="w-4 h-4" />
-                    <span>Start Voice Conversation</span>
+                    <Mic className="w-4 h-4" />
+                    <span>Talk Now</span>
                   </div>
                 )}
               </button>
@@ -224,7 +224,7 @@ const VoiceAssistant: React.FC = () => {
               <p className="text-gray-500 font-mono text-xs">
                 {isCallActive 
                   ? "Speak naturally and ask about our services"
-                  : "Click to start a voice conversation with our AI assistant"
+                  : "Talk directly with our AI assistant using your microphone"
                 }
               </p>
             </div>
