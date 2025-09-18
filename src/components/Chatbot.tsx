@@ -1,17 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Mic, MicOff } from 'lucide-react';
-
-// Initialize Vapi with the public key
-const vapiKey = '349dbab8-5f4e-4c16-a1a7-5dce7e63d512';
-const assistantId = '94189137-6370-4561-a03f-a69e22fd29de';
-
-// Dynamic import of Vapi to avoid SSR issues
-let Vapi: any = null;
-if (typeof window !== 'undefined') {
-  import('@vapi-ai/web').then((module) => {
-    Vapi = module.default;
-  });
-}
+import { Vapi } from '@vapi-ai/web';
 
 interface Message {
   id: string;
@@ -25,7 +14,7 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm your VectorShift Ventures AI assistant. I can help you learn about our services, schedule appointments, and answer your business questions. How can I assist you today?",
+      text: "Hi! I'm your VectorShift Ventures AI assistant. I specialize in field service management solutions including scheduling, tracking, dispatch, and customer support automation. I can help you learn about our services, schedule appointments, and answer your field service questions. How can I assist you today?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -54,8 +43,16 @@ const Chatbot: React.FC = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && Vapi) {
-      const vapiInstance = new Vapi(vapiKey);
+    const initializeVapi = async () => {
+      try {
+        const apiKey = import.meta.env.VITE_VAPI_API_KEY;
+        if (!apiKey || apiKey === 'your-api-key-here') {
+          console.log('VAPI API key not configured for chat');
+          setError('Chat assistant not configured. Please contact support.');
+          return;
+        }
+        
+        const vapiInstance = new Vapi(apiKey);
       
       // Set up event listeners
       vapiInstance.on('call-start', () => {
@@ -91,8 +88,14 @@ const Chatbot: React.FC = () => {
         setIsLoading(false);
       });
 
-      setVapi(vapiInstance);
-    }
+        setVapi(vapiInstance);
+      } catch (error) {
+        console.error('Failed to initialize VAPI:', error);
+        setError('Failed to initialize chat assistant');
+      }
+    };
+
+    initializeVapi();
   }, []);
 
   const handleStartVoiceCall = async () => {
@@ -113,7 +116,14 @@ const Chatbot: React.FC = () => {
       
       // Start the call
       console.log('Starting Vapi call...');
-      await vapi.start();
+      const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID;
+      if (!assistantId || assistantId === 'your-assistant-id-here') {
+        setError('Assistant not configured. Please contact support.');
+        setIsLoading(false);
+        return;
+      }
+      
+      await vapi.start(assistantId);
       console.log('Vapi call started successfully');
       
     } catch (error: any) {
@@ -155,46 +165,73 @@ const Chatbot: React.FC = () => {
   const generateBotResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
-    // Business services and capabilities
+    // Field service management focus
     if (input.includes('service') || input.includes('what do you do') || input.includes('offer')) {
-      return "We specialize in business automation solutions including lead generation systems, AI chatbots, customer service automation, and social media management. Our goal is to help businesses streamline operations and grow efficiently. Would you like to learn more about any specific service?";
+      return "We specialize in field service management automation solutions including mobile workforce management, customer scheduling systems, real-time tracking, automated dispatch, and AI-powered customer support. Our goal is to help field service businesses streamline operations and boost efficiency. Would you like to learn more about any specific solution?";
     }
     
-    if (input.includes('lead generation') || input.includes('leads')) {
-      return "Our lead generation systems help businesses capture and nurture potential customers automatically. We can help you identify opportunities in your market and create systems to convert them. Check out our Services page for more details!";
+    if (input.includes('field service') || input.includes('field management')) {
+      return "Our field service management solutions help you manage your mobile workforce, schedule appointments, track technicians in real-time, and automate customer communications. We serve industries like HVAC, plumbing, electrical, security, and telecommunications. Check out our Services page for detailed information!";
     }
     
-    if (input.includes('chatbot') || input.includes('ai chat') || input.includes('bot')) {
-      return "We create custom AI chatbots that can handle customer inquiries, qualify leads, and provide 24/7 support. These are trained specifically on your business information. Visit our Demo page to see how this works!";
+    if (input.includes('scheduling') || input.includes('appointments') || input.includes('booking')) {
+      return "Our scheduling system allows customers to book appointments online, automatically dispatches technicians, and sends real-time updates. It integrates with your existing calendar and can handle complex scheduling rules. Would you like to see a demo?";
+    }
+    
+    if (input.includes('tracking') || input.includes('gps') || input.includes('location')) {
+      return "Our real-time tracking system shows you exactly where your technicians are, estimates arrival times, and helps optimize routes. Customers can track their service appointments in real-time. This improves customer satisfaction and operational efficiency.";
+    }
+    
+    if (input.includes('dispatch') || input.includes('work orders') || input.includes('jobs')) {
+      return "Our automated dispatch system intelligently assigns work orders to the best available technician based on location, skills, and workload. It reduces manual coordination and ensures optimal resource utilization.";
+    }
+    
+    if (input.includes('customer support') || input.includes('support') || input.includes('help')) {
+      return "We provide AI-powered customer support that can handle inquiries 24/7, schedule appointments, provide status updates, and escalate complex issues to human agents. This reduces response times and improves customer satisfaction.";
+    }
+    
+    if (input.includes('pricing') || input.includes('cost') || input.includes('price')) {
+      return "Our pricing is based on the number of technicians and features you need. We offer flexible plans from basic packages to enterprise solutions. I'd be happy to connect you with our sales team for a detailed quote based on your specific requirements.";
+    }
+    
+    if (input.includes('demo') || input.includes('trial') || input.includes('test')) {
+      return "Absolutely! We offer free demos and pilot programs. You can request a demo on our website, and we'll show you exactly how our solutions work with your specific business needs. Would you like me to help you schedule a demo?";
+    }
+    
+    if (input.includes('integration') || input.includes('existing') || input.includes('current system')) {
+      return "Our solutions integrate seamlessly with your existing systems including CRM, accounting software, and other business tools. We provide custom integrations to ensure everything works together smoothly.";
+    }
+    
+    if (input.includes('industries') || input.includes('who do you serve') || input.includes('clients')) {
+      return "We serve a wide range of field service industries including HVAC, plumbing, electrical, security, telecommunications, healthcare, manufacturing, and any business that provides on-site services. Our solutions are customizable for different industry needs.";
     }
     
     if (input.includes('customer service') || input.includes('support')) {
       return "Our customer service automation includes AI chatbots and voice callers that can handle common inquiries, reducing response times and improving customer satisfaction. This frees up your team to focus on complex issues.";
     }
     
-    if (input.includes('social media') || input.includes('reputation')) {
-      return "We help businesses manage their online presence and reputation through automated social media management and monitoring systems. This ensures consistent brand messaging and quick response to customer feedback.";
+    if (input.includes('mobile app') || input.includes('technician app') || input.includes('field app')) {
+      return "Our mobile app for technicians provides real-time job updates, GPS navigation, customer information, and the ability to update job status on the go. It works offline and syncs when connected, ensuring technicians always have the information they need.";
     }
     
-    // Pricing and consultation
-    if (input.includes('price') || input.includes('cost') || input.includes('quote') || input.includes('how much')) {
-      return "We offer free consultations to understand your specific needs and provide custom solutions. Pricing varies based on your requirements and the complexity of the automation needed. Would you like to book a consultation?";
-    }
-    
-    if (input.includes('consultation') || input.includes('meet') || input.includes('demo') || input.includes('talk')) {
-      return "Great! We offer free consultations where we'll analyze your business needs and create a custom automation strategy. You can book a consultation through our Consultation page, or try our Demo page to see our process in action!";
+    if (input.includes('reporting') || input.includes('analytics') || input.includes('data')) {
+      return "Our reporting and analytics dashboard gives you insights into technician performance, customer satisfaction, job completion rates, and operational efficiency. You can track KPIs and make data-driven decisions to improve your business.";
     }
     
     if (input.includes('voice') || input.includes('speak') || input.includes('call')) {
       return "I can help you with voice conversations! Click the microphone button to start a voice call with our AI assistant. You can ask questions, schedule appointments, and get instant answers through natural conversation.";
     }
     
-    if (input.includes('custom') || input.includes('personalized') || input.includes('demo')) {
-      return "We can create custom AI voice assistants and websites specifically for your business! Visit our Demo page to learn more about our custom demo creation process and how we can tailor solutions to your needs.";
+    if (input.includes('consultation') || input.includes('meet') || input.includes('demo') || input.includes('talk')) {
+      return "Great! We offer free consultations where we'll analyze your field service business needs and create a custom automation strategy. You can book a consultation through our Consultation page, or try our Demo page to see our solutions in action!";
+    }
+    
+    if (input.includes('custom') || input.includes('personalized') || input.includes('tailored')) {
+      return "We create custom field service management solutions tailored to your specific industry and business needs. Our solutions integrate with your existing systems and can be customized for your unique workflows and requirements.";
     }
     
     // Default response
-    return "I'm here to help you learn about VectorShift Ventures services and automation solutions. You can ask me about our services, pricing, or click the microphone button to start a voice conversation. What would you like to know?";
+    return "I'm here to help you learn about VectorShift Ventures field service management solutions. You can ask me about scheduling, tracking, dispatch, customer support, or click the microphone button to start a voice conversation. What would you like to know?";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
