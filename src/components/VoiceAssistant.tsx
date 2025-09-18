@@ -24,6 +24,8 @@ const VoiceAssistant: React.FC = () => {
         // Initialize VAPI with your API key and assistant ID
         const vapiInstance = new Vapi(apiKey);
         console.log('VAPI instance created:', vapiInstance);
+        console.log('VAPI constructor:', Vapi);
+        console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
         
         // Add event listeners for debugging
         vapiInstance.on('call-start', () => {
@@ -42,7 +44,28 @@ const VoiceAssistant: React.FC = () => {
         vapiInstance.on('error', (e: any) => {
           console.error('❌ VAPI error:', e);
           console.error('❌ Error details:', JSON.stringify(e, null, 2));
-          setError(`VAPI Error: ${e.error?.message || e.message || e.errorMsg || 'Unknown error'}`);
+          
+          // Handle specific error types
+          let errorMessage = 'Unknown error';
+          if (e.error) {
+            if (e.error.type === 'permission-denied') {
+              errorMessage = 'Microphone permission denied. Please allow microphone access and try again.';
+            } else if (e.error.type === 'not-found') {
+              errorMessage = 'No microphone found. Please connect a microphone and try again.';
+            } else if (e.error.type === 'assistant-not-found') {
+              errorMessage = 'Assistant not found. Please check the assistant configuration.';
+            } else if (e.error.type === 'invalid-assistant') {
+              errorMessage = 'Invalid assistant configuration. Please contact support.';
+            } else {
+              errorMessage = e.error.message || e.error.type || 'Unknown VAPI error';
+            }
+          } else if (e.message) {
+            errorMessage = e.message;
+          } else if (e.errorMsg) {
+            errorMessage = e.errorMsg;
+          }
+          
+          setError(`VAPI Error: ${errorMessage}`);
           setIsLoading(false);
         });
         
@@ -101,6 +124,16 @@ const VoiceAssistant: React.FC = () => {
       
       console.log('VAPI instance ready, starting call...');
       console.log('Assistant ID being used:', assistantId);
+      
+      // Check microphone permissions first
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log('Microphone permission granted');
+        stream.getTracks().forEach(track => track.stop()); // Stop the test stream
+      } catch (micError) {
+        console.error('Microphone permission error:', micError);
+        throw new Error('Microphone permission denied. Please allow microphone access and try again.');
+      }
       
       // Add a timeout to catch hanging calls
       const startPromise = vapi.start(assistantId);
