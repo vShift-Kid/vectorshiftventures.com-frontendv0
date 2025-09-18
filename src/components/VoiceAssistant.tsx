@@ -7,6 +7,7 @@ const VoiceAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [callId, setCallId] = useState<string | null>(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   // Simple initialization - no complex VAPI setup needed
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
@@ -18,12 +19,25 @@ const VoiceAssistant: React.FC = () => {
       return;
     }
 
+    if (!phoneNumber.trim()) {
+      setError('Please enter your phone number');
+      return;
+    }
+
+    // Validate phone number format (E.164)
+    const phoneRegex = /^\+[1-9]\d{1,14}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      setError('Please enter a valid phone number in international format (e.g., +1234567890)');
+      return;
+    }
+
     try {
       setIsLoading(true);
       setError(null);
 
       console.log('Starting voice call via VAPI API...');
       console.log('Assistant ID:', assistantId);
+      console.log('Phone Number:', phoneNumber);
 
       // Make API call to VAPI to start a voice call
       const response = await fetch('https://api.vapi.ai/call', {
@@ -34,9 +48,8 @@ const VoiceAssistant: React.FC = () => {
         },
         body: JSON.stringify({
           assistantId: assistantId,
-          // For web-based calls, we can use a test number or let VAPI handle it
           customer: {
-            number: '+1234567890' // This will be a test call
+            number: phoneNumber
           }
         })
       });
@@ -132,14 +145,30 @@ const VoiceAssistant: React.FC = () => {
             {/* Content */}
             <div className="p-6">
               {!isCallActive && (
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                    <Phone className="w-8 h-8 text-cyan-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-mono font-semibold mb-2">Talk Now - Voice Assistant</h4>
+                <div className="space-y-4">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                      <Phone className="w-8 h-8 text-cyan-400" />
+                    </div>
+                    <h4 className="text-white font-mono font-semibold mt-3 mb-2">Talk Now - Voice Assistant</h4>
                     <p className="text-gray-400 font-mono text-sm">
-                      Start a voice conversation with our AI assistant. The AI will call you directly.
+                      Enter your phone number and our AI assistant will call you directly.
+                    </p>
+                  </div>
+                  
+                  {/* Phone Number Input */}
+                  <div className="space-y-2">
+                    <label className="text-gray-300 font-mono text-sm">Your Phone Number</label>
+                    <input
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      placeholder="+1234567890 (international format)"
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-cyan-400"
+                      disabled={isLoading}
+                    />
+                    <p className="text-gray-500 font-mono text-xs">
+                      Include country code (e.g., +1 for US, +44 for UK)
                     </p>
                   </div>
                 </div>
