@@ -23,6 +23,7 @@ const VoiceAssistant: React.FC = () => {
         
         // Initialize VAPI with your API key and assistant ID
         const vapiInstance = new Vapi(apiKey);
+        console.log('VAPI instance created:', vapiInstance);
         
         // Add event listeners for debugging
         vapiInstance.on('call-start', () => {
@@ -51,6 +52,13 @@ const VoiceAssistant: React.FC = () => {
         
         vapiInstance.on('speech-end', () => {
           console.log('🔇 Assistant finished speaking');
+        });
+        
+        // Test if VAPI methods are available
+        console.log('VAPI methods available:', {
+          start: typeof vapiInstance.start,
+          stop: typeof vapiInstance.stop,
+          on: typeof vapiInstance.on
         });
         
         setVapi(vapiInstance);
@@ -92,7 +100,15 @@ const VoiceAssistant: React.FC = () => {
       }
       
       console.log('VAPI instance ready, starting call...');
-      await vapi.start(assistantId);
+      console.log('Assistant ID being used:', assistantId);
+      
+      // Add a timeout to catch hanging calls
+      const startPromise = vapi.start(assistantId);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('VAPI start timeout after 10 seconds')), 10000)
+      );
+      
+      await Promise.race([startPromise, timeoutPromise]);
       setIsCallActive(true);
       console.log('VAPI call started successfully');
       

@@ -40,6 +40,12 @@ const VapiTest: React.FC = () => {
       // Test if we can access VAPI methods
       if (typeof vapi.start === 'function') {
         console.log('VAPI start method available');
+        
+        // Test if we can call start with a test assistant ID
+        const testAssistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
+        console.log('Testing VAPI start with assistant ID:', testAssistantId);
+        
+        // Just test the method exists, don't actually start a call
         setVapiTestStatus('SUCCESS');
         console.log('✅ VAPI connection test successful');
       } else {
