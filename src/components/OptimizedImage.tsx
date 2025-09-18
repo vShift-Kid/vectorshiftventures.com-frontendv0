@@ -38,6 +38,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   const handleError = () => {
     console.log('Image failed to load:', src);
+    console.log('WebP src:', webpSrc);
+    console.log('AVIF src:', avifSrc);
     setImageError(true);
   };
 

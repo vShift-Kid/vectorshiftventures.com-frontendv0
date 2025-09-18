@@ -24,9 +24,10 @@ const Navigation: React.FC = () => {
             <OptimizedImage 
               src="/VsVLogo.png" 
               alt="Vector Shift Ventures LLC" 
-              className="h-10 w-10" 
+              className="h-12 w-12 rounded-lg border border-cyan-500/30" 
               lazy={false}
-              placeholder="#0A0B1E"
+              priority={true}
+              fallback="/VsVLogo.png"
             />
             <Link to="/" className="flex flex-col">
               <div className="flex items-center">
