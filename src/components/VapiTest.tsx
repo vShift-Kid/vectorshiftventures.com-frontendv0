@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Vapi from '@vapi-ai/web';
 
 const VapiTest: React.FC = () => {
   const [envVars, setEnvVars] = useState<any>({});
@@ -32,24 +31,28 @@ const VapiTest: React.FC = () => {
       setVapiError('');
       
       const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
-      console.log('Testing VAPI initialization with key:', apiKey.substring(0, 8) + '...');
+      const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
       
-      const vapi = new Vapi(apiKey);
-      console.log('VAPI instance created successfully');
+      console.log('Testing VAPI API connection...');
+      console.log('API Key:', apiKey.substring(0, 8) + '...');
+      console.log('Assistant ID:', assistantId);
       
-      // Test if we can access VAPI methods
-      if (typeof vapi.start === 'function') {
-        console.log('VAPI start method available');
-        
-        // Test if we can call start with a test assistant ID
-        const testAssistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
-        console.log('Testing VAPI start with assistant ID:', testAssistantId);
-        
-        // Just test the method exists, don't actually start a call
+      // Test VAPI API connection by making a simple request
+      const response = await fetch('https://api.vapi.ai/assistant', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('VAPI API connection successful:', data);
         setVapiTestStatus('SUCCESS');
-        console.log('✅ VAPI connection test successful');
+        console.log('✅ VAPI API connection test successful');
       } else {
-        throw new Error('VAPI start method not available');
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
       
     } catch (error: any) {
