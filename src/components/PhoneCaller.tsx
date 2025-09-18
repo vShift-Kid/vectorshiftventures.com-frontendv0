@@ -33,7 +33,14 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
   useEffect(() => {
     const initializeVapi = async () => {
       try {
-        const vapiInstance = new Vapi(import.meta.env.VITE_VAPI_API_KEY || 'your-api-key-here');
+        const apiKey = import.meta.env.VITE_VAPI_API_KEY;
+        if (!apiKey || apiKey === 'your-api-key-here') {
+          console.log('VAPI API key not configured');
+          setError('Phone calling system not configured. Please contact support.');
+          return;
+        }
+        
+        const vapiInstance = new Vapi(apiKey);
         setVapi(vapiInstance);
       } catch (error) {
         console.error('Failed to initialize VAPI:', error);

@@ -12,8 +12,15 @@ const VoiceAssistant: React.FC = () => {
   useEffect(() => {
     const initializeVapi = async () => {
       try {
+        const apiKey = import.meta.env.VITE_VAPI_API_KEY;
+        if (!apiKey || apiKey === 'your-api-key-here') {
+          console.log('VAPI API key not configured');
+          setError('Voice assistant not configured. Please contact support.');
+          return;
+        }
+        
         // Initialize VAPI with your API key and assistant ID
-        const vapiInstance = new Vapi(import.meta.env.VITE_VAPI_API_KEY || 'your-api-key-here');
+        const vapiInstance = new Vapi(apiKey);
         setVapi(vapiInstance);
       } catch (error) {
         console.error('Failed to initialize VAPI:', error);
