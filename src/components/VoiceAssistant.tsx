@@ -23,7 +23,37 @@ const VoiceAssistant: React.FC = () => {
         
         // Initialize VAPI with your API key and assistant ID
         const vapiInstance = new Vapi(apiKey);
+        
+        // Add event listeners for debugging
+        vapiInstance.on('call-start', () => {
+          console.log('✅ VAPI call started successfully');
+          setIsCallActive(true);
+          setIsLoading(false);
+          setError(null);
+        });
+        
+        vapiInstance.on('call-end', () => {
+          console.log('📞 VAPI call ended');
+          setIsCallActive(false);
+          setIsLoading(false);
+        });
+        
+        vapiInstance.on('error', (e: any) => {
+          console.error('❌ VAPI error:', e);
+          setError(`VAPI Error: ${e.error?.message || e.message || 'Unknown error'}`);
+          setIsLoading(false);
+        });
+        
+        vapiInstance.on('speech-start', () => {
+          console.log('🎤 Assistant started speaking');
+        });
+        
+        vapiInstance.on('speech-end', () => {
+          console.log('🔇 Assistant finished speaking');
+        });
+        
         setVapi(vapiInstance);
+        console.log('✅ VAPI instance created successfully');
       } catch (error) {
         console.error('Failed to initialize VAPI:', error);
         setError('Failed to initialize voice assistant');
@@ -60,7 +90,18 @@ const VoiceAssistant: React.FC = () => {
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
-      setError('Failed to start conversation. Please try again.');
+      
+      // Handle specific error types
+      if (error.name === 'NotAllowedError' || error.message?.includes('permission')) {
+        setError('Microphone permission denied. Please allow microphone access and try again.');
+      } else if (error.name === 'NotFoundError' || error.message?.includes('microphone')) {
+        setError('No microphone found. Please connect a microphone and try again.');
+      } else if (error.message?.includes('HTTPS')) {
+        setError('Voice calls require HTTPS. Please use the secure version of this site.');
+      } else {
+        setError(`Failed to start conversation: ${error.message || 'Unknown error'}`);
+      }
+      
       setIsLoading(false);
     }
   };
