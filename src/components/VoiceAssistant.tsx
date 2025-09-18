@@ -1,33 +1,73 @@
-import React, { useState } from 'react';
-import { MessageSquare, Phone, PhoneOff } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageSquare, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
+import Vapi from '@vapi-ai/web';
 
 const VoiceAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [callId, setCallId] = useState<string | null>(null);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [vapi, setVapi] = useState<Vapi | null>(null);
 
   // Simple initialization - no complex VAPI setup needed
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
 
+  useEffect(() => {
+    const initializeVapi = async () => {
+      try {
+        if (!apiKey || apiKey === 'your-api-key-here') {
+          console.log('VAPI API key not configured');
+          setError('Voice assistant not configured. Please contact support.');
+          return;
+        }
+        
+        // Initialize VAPI with your API key
+        const vapiInstance = new Vapi(apiKey);
+        console.log('VAPI instance created:', vapiInstance);
+        
+        // Add event listeners
+        vapiInstance.on('call-start', () => {
+          console.log('✅ VAPI call started successfully');
+          setIsCallActive(true);
+          setIsLoading(false);
+          setError(null);
+        });
+        
+        vapiInstance.on('call-end', () => {
+          console.log('📞 VAPI call ended');
+          setIsCallActive(false);
+          setIsLoading(false);
+        });
+        
+        vapiInstance.on('error', (e: any) => {
+          console.error('❌ VAPI error:', e);
+          setError(`VAPI Error: ${e.error?.message || e.message || 'Unknown error'}`);
+          setIsLoading(false);
+        });
+        
+        vapiInstance.on('speech-start', () => {
+          console.log('🎤 Assistant started speaking');
+        });
+        
+        vapiInstance.on('speech-end', () => {
+          console.log('🔇 Assistant finished speaking');
+        });
+        
+        setVapi(vapiInstance);
+        console.log('✅ VAPI instance created successfully');
+      } catch (error) {
+        console.error('Failed to initialize VAPI:', error);
+        setError('Failed to initialize voice assistant');
+      }
+    };
+
+    initializeVapi();
+  }, [apiKey]);
+
   const handleStartCall = async () => {
-    if (!apiKey || apiKey === 'your-api-key-here') {
-      setError('Voice assistant not configured. Please contact support.');
-      return;
-    }
-
-    if (!phoneNumber.trim()) {
-      setError('Please enter your phone number');
-      return;
-    }
-
-    // Validate phone number format (E.164)
-    const phoneRegex = /^\+[1-9]\d{1,14}$/;
-    if (!phoneRegex.test(phoneNumber)) {
-      setError('Please enter a valid phone number in international format (e.g., +1234567890)');
+    if (!vapi) {
+      setError('Voice assistant not initialized. Please refresh the page.');
       return;
     }
 
@@ -35,71 +75,62 @@ const VoiceAssistant: React.FC = () => {
       setIsLoading(true);
       setError(null);
 
-      console.log('Starting voice call via VAPI API...');
-      console.log('Assistant ID:', assistantId);
-      console.log('Phone Number:', phoneNumber);
-
-      // Make API call to VAPI to start a voice call
-      const response = await fetch('https://api.vapi.ai/call', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          assistantId: assistantId,
-          customer: {
-            number: phoneNumber
-          }
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP ${response.status}`);
+      if (isCallActive) {
+        // Stop the call if it's active
+        vapi.stop();
+        setIsCallActive(false);
+        return;
       }
 
-      const callResult = await response.json();
-      console.log('Voice call initiated:', callResult);
+      // Check microphone permissions first
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log('Microphone permission granted');
+        stream.getTracks().forEach(track => track.stop()); // Stop the test stream
+      } catch (micError) {
+        console.error('Microphone permission error:', micError);
+        throw new Error('Microphone permission denied. Please allow microphone access and try again.');
+      }
       
-      setCallId(callResult.id);
-      setIsCallActive(true);
-      console.log('Voice call started successfully');
+      console.log('Starting VAPI call...');
+      console.log('Assistant ID:', assistantId);
+      
+      // Start the call using VAPI web SDK
+      await vapi.start(assistantId);
+      console.log('VAPI call started successfully');
       
     } catch (error: any) {
-      console.error('Error starting voice call:', error);
-      setError(`Failed to start voice call: ${error.message || 'Unknown error'}`);
-    } finally {
+      console.error('Error in voice call:', error);
+      
+      // Handle specific error types
+      if (error.name === 'NotAllowedError' || error.message?.includes('permission')) {
+        setError('Microphone permission denied. Please allow microphone access and try again.');
+      } else if (error.name === 'NotFoundError' || error.message?.includes('microphone')) {
+        setError('No microphone found. Please connect a microphone and try again.');
+      } else if (error.message?.includes('HTTPS')) {
+        setError('Voice calls require HTTPS. Please use the secure version of this site.');
+      } else if (error.message?.includes('assistant')) {
+        setError('Assistant configuration error. Please contact support.');
+      } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
+        setError('Network error. Please check your connection and try again.');
+      } else {
+        setError(`Failed to start conversation: ${error.message || error.errorMsg || 'Unknown error'}`);
+      }
+      
       setIsLoading(false);
     }
   };
 
   const handleStopCall = async () => {
-    if (!callId) return;
-
-    try {
-      // End the call via VAPI API
-      const response = await fetch(`https://api.vapi.ai/call/${callId}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          status: 'ended'
-        })
-      });
-
-      if (response.ok) {
-        console.log('Call ended successfully');
+    if (vapi) {
+      try {
+        vapi.stop();
         setIsCallActive(false);
-        setCallId(null);
+        console.log('Call ended by user');
+      } catch (error) {
+        console.error('Error ending call:', error);
+        setError('Failed to end call');
       }
-    } catch (error) {
-      console.error('Error ending call:', error);
-      // Still update UI even if API call fails
-      setIsCallActive(false);
-      setCallId(null);
     }
   };
 
@@ -145,30 +176,14 @@ const VoiceAssistant: React.FC = () => {
             {/* Content */}
             <div className="p-6">
               {!isCallActive && (
-                <div className="space-y-4">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                      <Phone className="w-8 h-8 text-cyan-400" />
-                    </div>
-                    <h4 className="text-white font-mono font-semibold mt-3 mb-2">Talk Now - Voice Assistant</h4>
-                    <p className="text-gray-400 font-mono text-sm">
-                      Enter your phone number and our AI assistant will call you directly.
-                    </p>
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                    <Mic className="w-8 h-8 text-cyan-400" />
                   </div>
-                  
-                  {/* Phone Number Input */}
-                  <div className="space-y-2">
-                    <label className="text-gray-300 font-mono text-sm">Your Phone Number</label>
-                    <input
-                      type="tel"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      placeholder="+1234567890 (international format)"
-                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-cyan-400"
-                      disabled={isLoading}
-                    />
-                    <p className="text-gray-500 font-mono text-xs">
-                      Include country code (e.g., +1 for US, +44 for UK)
+                  <div>
+                    <h4 className="text-white font-mono font-semibold mb-2">Talk Now - Voice Assistant</h4>
+                    <p className="text-gray-400 font-mono text-sm">
+                      Speak directly with our AI assistant using your microphone. The AI will connect you to a phone agent.
                     </p>
                   </div>
                 </div>
@@ -177,18 +192,13 @@ const VoiceAssistant: React.FC = () => {
               {isCallActive && (
                 <div className="text-center space-y-4">
                   <div className="w-16 h-16 mx-auto bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center animate-pulse">
-                    <PhoneOff className="w-8 h-8 text-green-400" />
+                    <MicOff className="w-8 h-8 text-green-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-mono font-semibold mb-2">Call Active</h4>
+                    <h4 className="text-white font-mono font-semibold mb-2">Conversation Active</h4>
                     <p className="text-gray-400 font-mono text-sm">
-                      Your AI assistant is calling you. Answer the phone to start the conversation.
+                      Speak naturally with our AI assistant. The AI will connect you to a phone agent.
                     </p>
-                    {callId && (
-                      <p className="text-gray-500 font-mono text-xs mt-2">
-                        Call ID: {callId.substring(0, 8)}...
-                      </p>
-                    )}
                   </div>
                 </div>
               )}
@@ -218,12 +228,12 @@ const VoiceAssistant: React.FC = () => {
                     </div>
                   ) : isCallActive ? (
                     <div className="flex items-center justify-center space-x-2">
-                      <PhoneOff className="w-4 h-4" />
+                      <MicOff className="w-4 h-4" />
                       <span>End Call</span>
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-2">
-                      <Phone className="w-4 h-4" />
+                      <Mic className="w-4 h-4" />
                       <span>Start Voice Call</span>
                     </div>
                   )}
@@ -234,8 +244,8 @@ const VoiceAssistant: React.FC = () => {
               <div className="mt-4 text-center">
                 <p className="text-gray-500 font-mono text-xs">
                   {isCallActive 
-                    ? "Answer your phone to speak with the AI assistant"
-                    : "Click to have our AI assistant call you directly"
+                    ? "Speak naturally and ask about our services"
+                    : "Click to start a voice conversation with our AI assistant"
                   }
                 </p>
               </div>
