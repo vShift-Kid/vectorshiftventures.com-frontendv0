@@ -52,13 +52,15 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
   }, []);
 
   const handleStartCall = async () => {
-    if (!vapi) {
-      setError('Phone calling system not initialized');
+    if (!phoneNumber.trim()) {
+      setError('Please enter a phone number');
       return;
     }
 
-    if (!phoneNumber.trim()) {
-      setError('Please enter a phone number');
+    // Validate phone number format (should be in E.164 format)
+    const phoneRegex = /^\+[1-9]\d{1,14}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      setError('Please enter a valid phone number in international format (e.g., +1234567890)');
       return;
     }
 
@@ -66,10 +68,8 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
       setIsLoading(true);
       setError(null);
 
-      // Start voice call
-      await vapi.start(import.meta.env.VITE_VAPI_ASSISTANT_ID || 'your-assistant-id-here');
-      setIsCallActive(true);
-
+      console.log('Starting phone call to:', phoneNumber);
+      
       // Create call data for tracking
       const callData: CallData = {
         id: `call-${Date.now()}`,
@@ -81,20 +81,64 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
       
       setRecentCalls(prev => [callData, ...prev.slice(0, 4)]); // Keep last 5 calls
       onCallInitiated?.(callData);
+
+      // Make actual phone call using VAPI API
+      const response = await fetch('https://api.vapi.ai/call', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5'}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          assistantId: import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084',
+          customer: {
+            number: phoneNumber
+          },
+          phoneNumberId: null // Use default phone number
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP ${response.status}`);
+      }
+
+      const callResult = await response.json();
+      console.log('Phone call initiated:', callResult);
+      
+      // Update call data with VAPI call ID
+      callData.id = callResult.id;
+      callData.status = 'ringing';
+      
+      setRecentCalls(prev => {
+        const updated = [...prev];
+        updated[0] = callData;
+        return updated;
+      });
+      
+      setIsCallActive(true);
       
     } catch (error: any) {
-      console.error('Error starting call:', error);
-      setError(error.message || 'Failed to start call');
+      console.error('Error starting phone call:', error);
+      setError(`Failed to start call: ${error.message || 'Unknown error'}`);
+      
+      // Update call status to failed
+      setRecentCalls(prev => {
+        const updated = [...prev];
+        if (updated[0]) {
+          updated[0].status = 'failed';
+        }
+        return updated;
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleEndCall = async () => {
-    if (!vapi) return;
-
     try {
-      vapi.stop();
+      // For phone calls, we can't directly end them from the frontend
+      // The call will end when the customer hangs up or the agent ends it
       setIsCallActive(false);
       
       // Update the most recent call status
@@ -107,6 +151,8 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
         return updated;
       });
       
+      console.log('Call ended by user');
+      
     } catch (error) {
       console.error('Error ending call:', error);
       setError('Failed to end call');
@@ -114,19 +160,30 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
   };
 
   const formatPhoneNumber = (value: string) => {
-    // Remove all non-numeric characters
-    const cleaned = value.replace(/\D/g, '');
+    // Remove all non-numeric characters except +
+    const cleaned = value.replace(/[^\d+]/g, '');
     
-    // Format as (XXX) XXX-XXXX
-    if (cleaned.length >= 10) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
-    } else if (cleaned.length >= 6) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-    } else if (cleaned.length >= 3) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
-    } else {
+    // If it starts with +, keep it as international format
+    if (cleaned.startsWith('+')) {
       return cleaned;
     }
+    
+    // If it's 10 digits, assume US number and add +1
+    if (cleaned.length === 10) {
+      return `+1${cleaned}`;
+    }
+    
+    // If it's 11 digits and starts with 1, add +
+    if (cleaned.length === 11 && cleaned.startsWith('1')) {
+      return `+${cleaned}`;
+    }
+    
+    // Otherwise, add + if it doesn't start with +
+    if (!cleaned.startsWith('+')) {
+      return `+${cleaned}`;
+    }
+    
+    return cleaned;
   };
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -218,7 +275,7 @@ const PhoneCaller: React.FC<PhoneCallerProps> = ({
                     type="tel"
                     value={phoneNumber}
                     onChange={handlePhoneNumberChange}
-                    placeholder="(555) 123-4567"
+                    placeholder="+1234567890 (international format)"
                     className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-green-400"
                     disabled={isLoading}
                   />
