@@ -1,69 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
-
-// Initialize Vapi with the public key
-const vapiKey = '349dbab8-5f4e-4c16-a1a7-5dce7e63d512';
-const assistantId = '94189137-6370-4561-a03f-a69e22fd29de';
-
-// Dynamic import of Vapi to avoid SSR issues
-let Vapi: any = null;
-if (typeof window !== 'undefined') {
-  import('@vapi-ai/web').then((module) => {
-    Vapi = module.default;
-  });
-}
+import { getVapiMCPClient } from '../lib/vapiMCP';
 
 const VoiceAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [vapi, setVapi] = useState<any>(null);
+  const [vapiMCP, setVapiMCP] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && Vapi) {
-      const vapiInstance = new Vapi(vapiKey);
-      
-      // Set up event listeners
-      vapiInstance.on('call-start', () => {
-        console.log('Call started');
-        setIsCallActive(true);
-        setIsLoading(false);
-        setError(null);
-      });
+    const initializeVapiMCP = async () => {
+      try {
+        const client = getVapiMCPClient();
+        await client.initialize();
+        setVapiMCP(client);
+      } catch (error) {
+        console.error('Failed to initialize VAPI MCP:', error);
+        setError('Failed to initialize voice assistant');
+      }
+    };
 
-      vapiInstance.on('call-end', () => {
-        console.log('Call ended');
-        setIsCallActive(false);
-        setIsLoading(false);
-      });
-
-      vapiInstance.on('speech-start', () => {
-        console.log('Assistant started speaking');
-      });
-
-      vapiInstance.on('speech-end', () => {
-        console.log('Assistant finished speaking');
-      });
-
-      vapiInstance.on('error', (e: any) => {
-        console.error('Vapi error:', e);
-        if (e.error?.type === 'permission-denied') {
-          setError('Microphone permission denied. Please allow microphone access.');
-        } else if (e.error?.type === 'not-found') {
-          setError('No microphone found. Please connect a microphone and try again.');
-        } else {
-          setError(`Error: ${e.errorMsg || 'Unknown error occurred'}`);
-        }
-        setIsLoading(false);
-      });
-
-      setVapi(vapiInstance);
-    }
+    initializeVapiMCP();
   }, []);
 
   const handleStartCall = async () => {
-    if (!vapi) {
+    if (!vapiMCP) {
       setError('Voice assistant not initialized. Please refresh the page.');
       return;
     }
@@ -74,14 +36,16 @@ const VoiceAssistant: React.FC = () => {
       
       if (isCallActive) {
         // Stop the call if it's active
-        await vapi.stop();
+        await vapiMCP.stopCall();
+        setIsCallActive(false);
         return;
       }
       
-      // Start the call
-      console.log('Starting Vapi call...');
-      await vapi.start();
-      console.log('Vapi call started successfully');
+      // Start the call using MCP
+      console.log('Starting VAPI MCP call...');
+      await vapiMCP.startCall();
+      setIsCallActive(true);
+      console.log('VAPI MCP call started successfully');
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
@@ -91,9 +55,10 @@ const VoiceAssistant: React.FC = () => {
   };
 
   const handleStopCall = async () => {
-    if (vapi) {
+    if (vapiMCP) {
       try {
-        await vapi.stop();
+        await vapiMCP.stopCall();
+        setIsCallActive(false);
       } catch (error) {
         console.error('Error stopping call:', error);
       }
