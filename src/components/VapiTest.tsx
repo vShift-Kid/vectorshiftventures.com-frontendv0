@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Vapi } from '@vapi-ai/web';
 
 const VapiTest: React.FC = () => {
   const [envVars, setEnvVars] = useState<any>({});
   const [error, setError] = useState<string | null>(null);
+  const [vapiTestStatus, setVapiTestStatus] = useState('NOT_TESTED');
+  const [vapiError, setVapiError] = useState('');
 
   useEffect(() => {
     // Check environment variables
@@ -23,6 +26,33 @@ const VapiTest: React.FC = () => {
     }
   }, []);
 
+  const testVapiConnection = async () => {
+    try {
+      setVapiTestStatus('TESTING');
+      setVapiError('');
+      
+      const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
+      console.log('Testing VAPI initialization with key:', apiKey.substring(0, 8) + '...');
+      
+      const vapi = new Vapi(apiKey);
+      console.log('VAPI instance created successfully');
+      
+      // Test if we can access VAPI methods
+      if (typeof vapi.start === 'function') {
+        console.log('VAPI start method available');
+        setVapiTestStatus('SUCCESS');
+        console.log('✅ VAPI connection test successful');
+      } else {
+        throw new Error('VAPI start method not available');
+      }
+      
+    } catch (error: any) {
+      console.error('VAPI test error:', error);
+      setVapiTestStatus('ERROR');
+      setVapiError(error.message || 'Unknown error');
+    }
+  };
+
   return (
     <div className="fixed top-4 right-4 bg-black/80 text-white p-4 rounded-lg max-w-sm z-50">
       <h3 className="font-mono font-bold mb-2">VAPI Debug Info</h3>
@@ -35,6 +65,17 @@ const VapiTest: React.FC = () => {
         </div>
         <div className="text-gray-400">
           Assistant ID: {envVars.assistantId?.substring(0, 8)}...
+        </div>
+        
+        <div className="mt-3 pt-2 border-t border-gray-600">
+          <button 
+            onClick={testVapiConnection}
+            className="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-xs mb-2 w-full"
+          >
+            Test VAPI Connection
+          </button>
+          <div>VAPI Test: <span className={vapiTestStatus === 'SUCCESS' ? 'text-green-400' : vapiTestStatus === 'ERROR' ? 'text-red-400' : 'text-yellow-400'}>{vapiTestStatus}</span></div>
+          {vapiError && <div className="text-red-400 text-xs mt-1">Error: {vapiError}</div>}
         </div>
       </div>
     </div>
