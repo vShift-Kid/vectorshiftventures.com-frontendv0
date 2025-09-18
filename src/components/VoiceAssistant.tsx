@@ -40,7 +40,8 @@ const VoiceAssistant: React.FC = () => {
         
         vapiInstance.on('error', (e: any) => {
           console.error('❌ VAPI error:', e);
-          setError(`VAPI Error: ${e.error?.message || e.message || 'Unknown error'}`);
+          console.error('❌ Error details:', JSON.stringify(e, null, 2));
+          setError(`VAPI Error: ${e.error?.message || e.message || e.errorMsg || 'Unknown error'}`);
           setIsLoading(false);
         });
         
@@ -84,12 +85,20 @@ const VoiceAssistant: React.FC = () => {
       console.log('Starting VAPI call...');
       const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
       console.log('Voice Assistant - Assistant ID:', assistantId ? 'Set' : 'Not Set');
+      
+      // Test VAPI instance before starting
+      if (!vapi || typeof vapi.start !== 'function') {
+        throw new Error('VAPI instance not properly initialized');
+      }
+      
+      console.log('VAPI instance ready, starting call...');
       await vapi.start(assistantId);
       setIsCallActive(true);
       console.log('VAPI call started successfully');
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       
       // Handle specific error types
       if (error.name === 'NotAllowedError' || error.message?.includes('permission')) {
@@ -98,8 +107,12 @@ const VoiceAssistant: React.FC = () => {
         setError('No microphone found. Please connect a microphone and try again.');
       } else if (error.message?.includes('HTTPS')) {
         setError('Voice calls require HTTPS. Please use the secure version of this site.');
+      } else if (error.message?.includes('assistant')) {
+        setError('Assistant configuration error. Please contact support.');
+      } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
+        setError('Network error. Please check your connection and try again.');
       } else {
-        setError(`Failed to start conversation: ${error.message || 'Unknown error'}`);
+        setError(`Failed to start conversation: ${error.message || error.errorMsg || 'Unknown error'}`);
       }
       
       setIsLoading(false);
