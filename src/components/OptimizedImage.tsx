@@ -37,6 +37,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const avifSrc = getOptimizedSrc(src, 'avif');
 
   const handleError = () => {
+    console.log('Image failed to load:', src);
     setImageError(true);
   };
 
@@ -44,18 +45,30 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     setIsLoaded(true);
   };
 
-  if (imageError && fallback) {
-    return (
-      <img
-        src={fallback}
-        alt={alt}
-        className={className}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        onError={() => setImageError(true)}
-      />
-    );
+  if (imageError) {
+    if (fallback) {
+      return (
+        <img
+          src={fallback}
+          alt={alt}
+          className={className}
+          width={width}
+          height={height}
+          loading={priority ? 'eager' : 'lazy'}
+          onError={() => setImageError(true)}
+        />
+      );
+    } else {
+      // Fallback to a simple div with text or icon
+      return (
+        <div 
+          className={`${className} bg-gray-600 flex items-center justify-center text-white font-bold`}
+          style={{ width: width, height: height }}
+        >
+          {alt.charAt(0).toUpperCase()}
+        </div>
+      );
+    }
   }
 
   return (
