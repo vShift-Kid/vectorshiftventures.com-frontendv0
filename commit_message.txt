@@ -1,15 +1,13 @@
-[Cursor] Enhanced Error Handling for VAPI Call Start Failures
+[Cursor] Add Assistant Validation and Enhanced Object Response Error Handling
 
-- Add comprehensive error logging for call-start-failed events with full JSON details
-- Add try-catch around vapi.start() to capture API-level errors
-- Add VAPI API key validation test before starting calls
-- Improve VAPI instance state checking and validation
-- Add better error handling for VAPI stop operations
-- Add detailed configuration testing and logging
+- Add assistant ID validation against VAPI API to check if assistant exists
+- Add specific error handling for "object response" errors
+- Add detailed assistant listing to help identify configuration issues
+- Add better error messages for API configuration problems
+- Add assistant count and availability checking
 
 Improvements:
-- Better error diagnostics for "object response" errors
-- API key validation before attempting calls
-- More detailed error logging for debugging
-- Improved VAPI state management
-- Better handling of already-started calls
+- Validates that the assistant ID actually exists in the VAPI account
+- Shows available assistants if the configured one is not found
+- Better error messages for object response errors
+- More comprehensive API validation before starting calls

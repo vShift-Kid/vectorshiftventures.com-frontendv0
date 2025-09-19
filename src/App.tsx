@@ -12,7 +12,7 @@ const Consultation = React.lazy(() => import('./pages/Consultation'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
-const VoiceAssistant = React.lazy(() => import('./components/VoiceAssistant'));
+const VoiceAssistant = React.lazy(() => import('./components/VoiceAssistantSimple'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
 const EnhancedPhoneCaller = React.lazy(() => import('./components/EnhancedPhoneCaller'));
 const CallAnalytics = React.lazy(() => import('./components/CallAnalytics'));
