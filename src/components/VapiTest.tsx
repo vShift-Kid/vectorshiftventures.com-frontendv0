@@ -10,12 +10,15 @@ const VapiTest: React.FC = () => {
     // Check environment variables
     const apiKey = import.meta.env.VITE_VAPI_API_KEY;
     const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID;
+    const phoneNumberId = import.meta.env.VITE_VAPI_PHONE_NUMBER_ID;
     
     setEnvVars({
       apiKey: apiKey || 'NOT_SET',
       assistantId: assistantId || 'NOT_SET',
+      phoneNumberId: phoneNumberId || 'NOT_SET',
       apiKeyLength: apiKey ? apiKey.length : 0,
-      assistantIdLength: assistantId ? assistantId.length : 0
+      assistantIdLength: assistantId ? assistantId.length : 0,
+      phoneNumberIdLength: phoneNumberId ? phoneNumberId.length : 0
     });
 
     if (!apiKey || apiKey === 'your-api-key-here') {
@@ -68,6 +71,8 @@ const VapiTest: React.FC = () => {
       <div className="text-xs space-y-1">
         <div>API Key: {envVars.apiKeyLength > 0 ? `Set (${envVars.apiKeyLength} chars)` : 'NOT_SET'}</div>
         <div>Assistant ID: {envVars.assistantIdLength > 0 ? `Set (${envVars.assistantIdLength} chars)` : 'NOT_SET'}</div>
+        <div>Phone Number ID: {envVars.phoneNumberIdLength > 0 ? `Set (${envVars.phoneNumberIdLength} chars)` : 'NOT_SET'}</div>
+        <div className="text-green-400 font-semibold">Phone: +13134899078</div>
         {error && <div className="text-red-400">Error: {error}</div>}
         <div className="text-gray-400 mt-2">
           API Key starts with: {envVars.apiKey?.substring(0, 8)}...

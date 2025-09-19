@@ -45,6 +45,7 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
   const phoneNumberId = import.meta.env.VITE_VAPI_PHONE_NUMBER_ID || '27c6a53f-04fe-485e-b591-f0ef230aec57';
+  const vapiPhoneNumber = '+13134899078'; // Our VAPI phone number for outbound calls
 
   // Load recent calls from localStorage on mount
   useEffect(() => {
@@ -367,9 +368,21 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
                     <PhoneCall className="w-8 h-8 text-green-400" />
                   </div>
                   <h4 className="text-white font-mono font-semibold mt-3 mb-2">AI Sales Agent Call</h4>
-                  <p className="text-gray-400 font-mono text-sm">
+                  <p className="text-gray-400 font-mono text-sm mb-3">
                     Our AI sales agent will call and engage with potential customers about our AI automation solutions.
                   </p>
+                  <div className="bg-gray-800/50 rounded-lg p-3 mb-4">
+                    <p className="text-green-400 font-mono text-sm font-semibold">Calling From:</p>
+                    <p className="text-white font-mono text-lg">{vapiPhoneNumber}</p>
+                    <p className="text-gray-500 font-mono text-xs">VectorShift Ventures AI</p>
+                    <a 
+                      href={`tel:${vapiPhoneNumber}`}
+                      className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-mono text-xs mt-1"
+                    >
+                      <Phone className="w-3 h-3" />
+                      Tap to call us directly
+                    </a>
+                  </div>
                 </div>
 
                 {/* Phone Number Input */}
