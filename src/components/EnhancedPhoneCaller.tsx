@@ -87,9 +87,9 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
     }
 
     // Validate phone number format (should be in E.164 format)
-    const phoneRegex = /^\+[1-9]\d{1,14}$/;
+    const phoneRegex = /^\+[1-9]\d{6,14}$/; // 7-15 digits total (1-15 after +)
     if (!phoneRegex.test(phoneNumber)) {
-      setError('Please enter a valid phone number in international format (e.g., +1234567890)');
+      setError('Please enter a valid phone number in international format (e.g., +1234567890). Must be 7-15 digits after the country code.');
       return;
     }
 
@@ -123,15 +123,13 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
           phoneNumberId: phoneNumberId,
           customer: {
             number: phoneNumber
-          },
-          // Add webhook URL for real-time updates
-          webhookUrl: `${webhookUrl}/webhook/vapi`,
-          // Add custom metadata
-          metadata: {
-            purpose: callPurpose,
-            source: 'website',
-            timestamp: new Date().toISOString()
           }
+          // Note: webhookUrl should be configured in VAPI dashboard, not in call request
+          // metadata: {
+          //   purpose: callPurpose,
+          //   source: 'website',
+          //   timestamp: new Date().toISOString()
+          // }
         })
       });
 
@@ -255,23 +253,27 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
     // Remove all non-numeric characters except +
     const cleaned = value.replace(/[^\d+]/g, '');
     
-    // If it starts with +, keep it as international format
+    // If it starts with +, validate and return
     if (cleaned.startsWith('+')) {
-      return cleaned;
+      // Ensure it has at least 7 digits and max 15 digits (E.164 standard)
+      const digits = cleaned.substring(1);
+      if (digits.length >= 7 && digits.length <= 15) {
+        return cleaned;
+      }
     }
     
     // If it's 10 digits, assume US number and add +1
-    if (cleaned.length === 10) {
+    if (cleaned.length === 10 && /^\d{10}$/.test(cleaned)) {
       return `+1${cleaned}`;
     }
     
     // If it's 11 digits and starts with 1, add +
-    if (cleaned.length === 11 && cleaned.startsWith('1')) {
+    if (cleaned.length === 11 && /^1\d{10}$/.test(cleaned)) {
       return `+${cleaned}`;
     }
     
-    // Otherwise, add + if it doesn't start with +
-    if (!cleaned.startsWith('+')) {
+    // For other cases, add + if it doesn't start with +
+    if (!cleaned.startsWith('+') && cleaned.length >= 7 && cleaned.length <= 15) {
       return `+${cleaned}`;
     }
     
@@ -396,6 +398,16 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
                     className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-green-400"
                     disabled={isLoading}
                   />
+                  <div className="text-gray-500 font-mono text-xs mt-1">
+                    Examples: +13134899078, +15551234567, +44123456789
+                  </div>
+                  <button
+                    onClick={() => setPhoneNumber('+13134899078')}
+                    className="text-blue-400 hover:text-blue-300 font-mono text-xs mt-1"
+                    disabled={isLoading}
+                  >
+                    Use test number (+13134899078)
+                  </button>
                 </div>
 
                 {/* Call Purpose Input */}

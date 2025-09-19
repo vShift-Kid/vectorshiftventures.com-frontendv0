@@ -1,20 +1,15 @@
-[Cursor] Add VAPI AI Phone Calling Integration and Analytics Dashboard
+[Cursor] Fix Phone Number Display and VAPI Integration
 
-- Add EnhancedPhoneCaller component with advanced calling interface
-- Add CallAnalytics component with real-time metrics dashboard
-- Integrate VAPI Web SDK for AI-powered phone calls
-- Add purpose-based call routing (lead qualification, demos, support)
-- Add real-time call status tracking and history
-- Add comprehensive analytics with call metrics and performance data
-- Update App.tsx to include new VAPI components
-- Add environment variables for VAPI configuration
-- Update README with VAPI integration documentation
-- Add webhook integration for real-time call event processing
+- Display VAPI phone number (+13134899078) in phone calling interface
+- Add "Calling From" section showing VectorShift Ventures AI phone number
+- Include clickable phone number link for direct calling
+- Update VapiTest component to show phone number information
+- Improve phone calling user experience with clear phone number display
+- Fix phone number configuration display in debug info
 
 Features:
-- AI sales calls to any phone number
-- Real-time call progress updates
-- Call analytics and performance tracking
-- Purpose-based call routing
-- Complete call history and logs
-- Production-ready webhook integration
+- Clear display of outbound calling phone number
+- Direct phone link for mobile users
+- Enhanced VAPI debug information
+- Improved user interface for phone calling
+- Better phone number visibility and accessibility
