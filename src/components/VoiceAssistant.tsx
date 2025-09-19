@@ -9,38 +9,38 @@ const VoiceAssistant: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [vapi, setVapi] = useState<Vapi | null>(null);
 
-  // Simple initialization - no complex VAPI setup needed
+  // VAPI Configuration
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
 
   useEffect(() => {
     const initializeVapi = async () => {
       try {
-        console.log('VoiceAssistant: Starting initialization...');
+        console.log('VoiceAssistant: Initializing VAPI...');
+        console.log('VAPI constructor:', typeof Vapi);
+        console.log('API Key available:', !!apiKey);
         
         if (!apiKey || apiKey === 'your-api-key-here') {
-          console.log('VAPI API key not configured');
+          console.error('VAPI API key not configured');
           setError('Voice assistant not configured. Please contact support.');
           return;
         }
         
-        // Initialize VAPI with your API key
-        console.log('Initializing VAPI with API key:', apiKey.substring(0, 8) + '...');
-        
-        let vapiInstance;
-        try {
-          vapiInstance = new Vapi(apiKey);
-          console.log('VAPI instance created:', vapiInstance);
-          console.log('VAPI instance type:', typeof vapiInstance);
-          console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
-        } catch (vapiError) {
-          console.error('VAPI constructor error:', vapiError);
-          throw vapiError;
+        // Check if VAPI is available
+        if (typeof Vapi !== 'function') {
+          throw new Error('VAPI Web SDK not loaded properly');
         }
+        
+        // Initialize VAPI with API key
+        console.log('Creating VAPI instance with API key:', apiKey.substring(0, 8) + '...');
+        
+        const vapiInstance = new Vapi(apiKey);
+        console.log('VAPI instance created successfully:', vapiInstance);
+        console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
         
         // Add event listeners
         vapiInstance.on('call-start', () => {
-          console.log('✅ VAPI call started successfully');
+          console.log('✅ VAPI call started');
           setIsCallActive(true);
           setIsLoading(false);
           setError(null);
@@ -52,10 +52,11 @@ const VoiceAssistant: React.FC = () => {
           setIsLoading(false);
         });
         
-        vapiInstance.on('error', (e: any) => {
-          console.error('❌ VAPI error:', e);
-          setError(`VAPI Error: ${e.error?.message || e.message || 'Unknown error'}`);
+        vapiInstance.on('error', (error: any) => {
+          console.error('❌ VAPI error:', error);
+          setError(`Voice assistant error: ${error.error?.message || error.message || 'Unknown error'}`);
           setIsLoading(false);
+          setIsCallActive(false);
         });
         
         vapiInstance.on('speech-start', () => {
@@ -67,8 +68,9 @@ const VoiceAssistant: React.FC = () => {
         });
         
         setVapi(vapiInstance);
-        console.log('✅ VAPI instance created successfully');
-      } catch (error) {
+        console.log('✅ VAPI initialized successfully');
+        
+      } catch (error: any) {
         console.error('Failed to initialize VAPI:', error);
         setError(`Failed to initialize voice assistant: ${error.message || 'Unknown error'}`);
       }
@@ -76,71 +78,6 @@ const VoiceAssistant: React.FC = () => {
 
     initializeVapi();
   }, [apiKey]);
-
-  // Add a simple fallback if VAPI fails to initialize
-  if (error && !vapi) {
-    return (
-      <>
-        {/* Floating Action Button */}
-        <div className="fixed bottom-6 right-6 z-50">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-          >
-            <MessageSquare className="w-6 h-6" />
-          </button>
-        </div>
-
-        {/* Error Panel */}
-        {isOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
-              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                      <MessageSquare className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-mono font-semibold">Talk Now</h3>
-                      <p className="text-red-100 text-sm">Voice Assistant</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="text-white hover:text-gray-200 transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center">
-                    <MessageSquare className="w-8 h-8 text-red-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-mono font-semibold mb-2">Voice Assistant Unavailable</h4>
-                    <p className="text-gray-400 font-mono text-sm mb-4">
-                      {error}
-                    </p>
-                    <button
-                      onClick={() => window.location.reload()}
-                      className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg font-mono text-sm"
-                    >
-                      Refresh Page
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </>
-    );
-  }
 
   const handleStartCall = async () => {
     if (!vapi) {
@@ -154,13 +91,16 @@ const VoiceAssistant: React.FC = () => {
 
       if (isCallActive) {
         // Stop the call if it's active
+        console.log('Stopping VAPI call...');
         vapi.stop();
         setIsCallActive(false);
+        setIsLoading(false);
         return;
       }
 
       // Check microphone permissions first
       try {
+        console.log('Checking microphone permissions...');
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         console.log('Microphone permission granted');
         stream.getTracks().forEach(track => track.stop()); // Stop the test stream
@@ -169,15 +109,16 @@ const VoiceAssistant: React.FC = () => {
         throw new Error('Microphone permission denied. Please allow microphone access and try again.');
       }
       
-      console.log('Starting VAPI call...');
-      console.log('Assistant ID:', assistantId);
-      console.log('VAPI instance:', vapi);
-      console.log('VAPI start method:', typeof vapi.start);
+      console.log('Starting VAPI call with assistant ID:', assistantId);
+      console.log('VAPI start method available:', typeof vapi.start);
       
       // Start the call using VAPI web SDK
-      console.log('Calling vapi.start()...');
+      if (typeof vapi.start !== 'function') {
+        throw new Error('VAPI start method not available');
+      }
+      
       await vapi.start(assistantId);
-      console.log('VAPI call started successfully');
+      console.log('VAPI call start request sent');
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
@@ -204,8 +145,10 @@ const VoiceAssistant: React.FC = () => {
   const handleStopCall = async () => {
     if (vapi) {
       try {
+        console.log('Stopping VAPI call...');
         vapi.stop();
         setIsCallActive(false);
+        setIsLoading(false);
         console.log('Call ended by user');
       } catch (error) {
         console.error('Error ending call:', error);
@@ -263,7 +206,7 @@ const VoiceAssistant: React.FC = () => {
                   <div>
                     <h4 className="text-white font-mono font-semibold mb-2">Talk Now - Voice Assistant</h4>
                     <p className="text-gray-400 font-mono text-sm">
-                      Speak directly with our AI assistant using your microphone. The AI will connect you to a phone agent.
+                      Speak directly with our AI assistant using your microphone. Ask about our AI automation solutions.
                     </p>
                   </div>
                 </div>
@@ -277,7 +220,7 @@ const VoiceAssistant: React.FC = () => {
                   <div>
                     <h4 className="text-white font-mono font-semibold mb-2">Conversation Active</h4>
                     <p className="text-gray-400 font-mono text-sm">
-                      Speak naturally with our AI assistant. The AI will connect you to a phone agent.
+                      Speak naturally with our AI assistant. Ask about our services, pricing, or schedule a demo.
                     </p>
                   </div>
                 </div>
@@ -287,6 +230,12 @@ const VoiceAssistant: React.FC = () => {
               {error && (
                 <div className="mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
                   <p className="text-red-400 font-mono text-sm">{error}</p>
+                  <button
+                    onClick={() => setError(null)}
+                    className="text-red-300 hover:text-red-200 font-mono text-xs mt-2"
+                  >
+                    Dismiss
+                  </button>
                 </div>
               )}
 
@@ -294,7 +243,7 @@ const VoiceAssistant: React.FC = () => {
               <div className="mt-6">
                 <button
                   onClick={isCallActive ? handleStopCall : handleStartCall}
-                  disabled={isLoading}
+                  disabled={isLoading || !vapi}
                   className={`w-full py-3 px-6 rounded-lg font-mono font-semibold transition-all duration-300 ${
                     isCallActive
                       ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white'
@@ -324,11 +273,20 @@ const VoiceAssistant: React.FC = () => {
               <div className="mt-4 text-center">
                 <p className="text-gray-500 font-mono text-xs">
                   {isCallActive 
-                    ? "Speak naturally and ask about our services"
+                    ? "Speak naturally and ask about our AI automation services"
                     : "Click to start a voice conversation with our AI assistant"
                   }
                 </p>
               </div>
+
+              {/* Debug Info */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="mt-4 p-2 bg-gray-800/50 rounded text-xs text-gray-400">
+                  <div>VAPI Status: {vapi ? 'Initialized' : 'Not initialized'}</div>
+                  <div>Assistant ID: {assistantId.substring(0, 8)}...</div>
+                  <div>API Key: {apiKey.substring(0, 8)}...</div>
+                </div>
+              )}
             </div>
           </div>
         </div>

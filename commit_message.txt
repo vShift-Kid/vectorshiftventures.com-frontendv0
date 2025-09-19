@@ -1,15 +1,13 @@
-[Cursor] Fix Phone Number Display and VAPI Integration
+[Cursor] Fix VAPI Call Request and Phone Number Validation
 
-- Display VAPI phone number (+13134899078) in phone calling interface
-- Add "Calling From" section showing VectorShift Ventures AI phone number
-- Include clickable phone number link for direct calling
-- Update VapiTest component to show phone number information
-- Improve phone calling user experience with clear phone number display
-- Fix phone number configuration display in debug info
+- Remove webhookUrl from VAPI call request (should be configured in dashboard)
+- Improve phone number validation with better E.164 format checking
+- Add phone number examples and test number button
+- Fix phone number formatting to ensure proper E.164 format
+- Remove metadata from call request to avoid API errors
 
-Features:
-- Clear display of outbound calling phone number
-- Direct phone link for mobile users
-- Enhanced VAPI debug information
-- Improved user interface for phone calling
-- Better phone number visibility and accessibility
+Fixes:
+- "property webhookUrl should not exist" error
+- "customer.number must be a valid phone number in the E.164 format" error
+- Improved phone number validation and formatting
+- Added helpful examples and test number for users
