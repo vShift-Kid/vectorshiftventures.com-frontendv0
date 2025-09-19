@@ -52,6 +52,28 @@ const VoiceAssistant: React.FC = () => {
           setIsLoading(false);
         });
         
+        vapiInstance.on('call-start-progress', (event: any) => {
+          console.log('📞 Call start progress:', event);
+          if (event.status === 'failed') {
+            setError(`Call start failed at stage: ${event.stage}`);
+            setIsLoading(false);
+          }
+        });
+        
+        vapiInstance.on('call-start-success', (event: any) => {
+          console.log('✅ Call start success:', event);
+          setIsCallActive(true);
+          setIsLoading(false);
+          setError(null);
+        });
+        
+        vapiInstance.on('call-start-failed', (event: any) => {
+          console.error('❌ Call start failed:', event);
+          setError(`Call start failed: ${event.error}`);
+          setIsLoading(false);
+          setIsCallActive(false);
+        });
+        
         vapiInstance.on('error', (error: any) => {
           console.error('❌ VAPI error:', error);
           setError(`Voice assistant error: ${error.error?.message || error.message || 'Unknown error'}`);
@@ -65,6 +87,10 @@ const VoiceAssistant: React.FC = () => {
         
         vapiInstance.on('speech-end', () => {
           console.log('🔇 Assistant finished speaking');
+        });
+        
+        vapiInstance.on('message', (message: any) => {
+          console.log('📨 VAPI message:', message);
         });
         
         setVapi(vapiInstance);
@@ -98,6 +124,13 @@ const VoiceAssistant: React.FC = () => {
         return;
       }
 
+      // Check if VAPI is already started (prevent double start)
+      if ((vapi as any).started) {
+        console.log('VAPI call already started, stopping first...');
+        vapi.stop();
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait a bit
+      }
+
       // Check microphone permissions first
       try {
         console.log('Checking microphone permissions...');
@@ -117,8 +150,13 @@ const VoiceAssistant: React.FC = () => {
         throw new Error('VAPI start method not available');
       }
       
-      await vapi.start(assistantId);
-      console.log('VAPI call start request sent');
+      // The start method returns a Promise<Call | null>
+      const callResult = await vapi.start(assistantId);
+      console.log('VAPI call started successfully:', callResult);
+      
+      if (!callResult) {
+        throw new Error('Failed to start call - no call object returned');
+      }
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
