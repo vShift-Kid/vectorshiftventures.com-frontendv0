@@ -14,6 +14,8 @@ const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
 const VoiceAssistant = React.lazy(() => import('./components/VoiceAssistant'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
+const EnhancedPhoneCaller = React.lazy(() => import('./components/EnhancedPhoneCaller'));
+const CallAnalytics = React.lazy(() => import('./components/CallAnalytics'));
 const VapiTest = React.lazy(() => import('./components/VapiTest'));
 
 // Loading component
@@ -42,6 +44,8 @@ function App() {
             <Chatbot />
             <VoiceAssistant />
             <PhoneCaller />
+            <EnhancedPhoneCaller />
+            <CallAnalytics />
             <VapiTest />
           </Suspense>
           <StickyCTA />
