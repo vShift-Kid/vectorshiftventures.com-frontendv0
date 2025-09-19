@@ -44,7 +44,7 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
   // VAPI Configuration
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
-  const phoneNumberId = import.meta.env.VITE_VAPI_PHONE_NUMBER_ID || '27c6a53f-04fe-485e-b591-f0ef230aec57';
+  const phoneNumberId = import.meta.env.VITE_VAPI_PHONE_NUMBER_ID || '59e6d346-2976-4ff4-86d3-d99fcf69df99';
   const vapiPhoneNumber = '+18339572961'; // Our VAPI phone number for outbound calls
 
   // Load recent calls from localStorage on mount
