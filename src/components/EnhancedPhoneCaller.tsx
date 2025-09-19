@@ -45,7 +45,7 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
   const phoneNumberId = import.meta.env.VITE_VAPI_PHONE_NUMBER_ID || '27c6a53f-04fe-485e-b591-f0ef230aec57';
-  const vapiPhoneNumber = '+13134899078'; // Our VAPI phone number for outbound calls
+  const vapiPhoneNumber = '+18339572961'; // Our VAPI phone number for outbound calls
 
   // Load recent calls from localStorage on mount
   useEffect(() => {
@@ -399,14 +399,14 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
                     disabled={isLoading}
                   />
                   <div className="text-gray-500 font-mono text-xs mt-1">
-                    Examples: +13134899078, +15551234567, +44123456789
+                    Examples: +18339572961, +15551234567, +44123456789
                   </div>
                   <button
-                    onClick={() => setPhoneNumber('+13134899078')}
+                    onClick={() => setPhoneNumber('+18339572961')}
                     className="text-blue-400 hover:text-blue-300 font-mono text-xs mt-1"
                     disabled={isLoading}
                   >
-                    Use test number (+13134899078)
+                    Use test number (+18339572961)
                   </button>
                 </div>
 
