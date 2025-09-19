@@ -114,10 +114,23 @@ const VoiceAssistant: React.FC = () => {
           throw new Error('VAPI Web SDK not loaded properly');
         }
         
-        // Initialize VAPI with API key
+        // Initialize VAPI with API key and audio configuration
         addDebugLog(`Creating VAPI instance with API key: ${apiKey.substring(0, 8)}...`);
         
-        const vapiInstance = new Vapi(apiKey);
+        const vapiInstance = new Vapi(apiKey, {
+          // Enable audio output
+          audio: {
+            output: {
+              enabled: true,
+              deviceId: 'default'
+            },
+            input: {
+              enabled: true,
+              deviceId: 'default'
+            }
+          }
+        });
+        
         addDebugLog('VAPI instance created successfully');
         addDebugLog(`VAPI instance methods: ${Object.getOwnPropertyNames(vapiInstance).length} methods`);
         
@@ -174,7 +187,7 @@ const VoiceAssistant: React.FC = () => {
         });
         
         vapiInstance.on('speech-start', () => {
-          addDebugLog('🎤 Assistant started speaking');
+          addDebugLog('🎤 Assistant started speaking - you should hear audio now');
         });
         
         vapiInstance.on('speech-end', () => {
@@ -185,8 +198,25 @@ const VoiceAssistant: React.FC = () => {
           addDebugLog(`📨 VAPI message: ${message.type || 'unknown'}`);
         });
         
+        // Add audio-specific event listeners
+        vapiInstance.on('audio-output-start', () => {
+          addDebugLog('🔊 Audio output started - check your speakers/headphones');
+        });
+        
+        vapiInstance.on('audio-output-end', () => {
+          addDebugLog('🔇 Audio output ended');
+        });
+        
+        vapiInstance.on('audio-input-start', () => {
+          addDebugLog('🎤 Audio input started - microphone is active');
+        });
+        
+        vapiInstance.on('audio-input-end', () => {
+          addDebugLog('🔇 Audio input ended');
+        });
+        
         setVapi(vapiInstance);
-        addDebugLog('✅ VAPI initialized successfully');
+        addDebugLog('✅ VAPI initialized successfully with audio configuration');
         
       } catch (error: any) {
         addDebugLog(`❌ Failed to initialize VAPI: ${error.message || 'Unknown error'}`);
@@ -230,16 +260,29 @@ const VoiceAssistant: React.FC = () => {
         }
       }
 
-      // Check microphone permissions first
-      try {
-        addDebugLog('Checking microphone permissions...');
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        addDebugLog('✅ Microphone permission granted');
-        stream.getTracks().forEach(track => track.stop()); // Stop the test stream
-      } catch (micError) {
-        addDebugLog(`❌ Microphone permission error: ${micError.message}`);
-        throw new Error('Microphone permission denied. Please allow microphone access and try again.');
-      }
+             // Check microphone permissions and audio devices
+             try {
+               addDebugLog('Checking microphone permissions...');
+               const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+               addDebugLog('✅ Microphone permission granted');
+               
+               // Check available audio devices
+               const devices = await navigator.mediaDevices.enumerateDevices();
+               const audioInputs = devices.filter(device => device.kind === 'audioinput');
+               const audioOutputs = devices.filter(device => device.kind === 'audiooutput');
+               
+               addDebugLog(`🎤 Available microphones: ${audioInputs.length}`);
+               addDebugLog(`🔊 Available speakers: ${audioOutputs.length}`);
+               
+               if (audioOutputs.length === 0) {
+                 addDebugLog('⚠️ No audio output devices found - you may not hear anything');
+               }
+               
+               stream.getTracks().forEach(track => track.stop()); // Stop the test stream
+             } catch (micError) {
+               addDebugLog(`❌ Microphone permission error: ${micError.message}`);
+               throw new Error('Microphone permission denied. Please allow microphone access and try again.');
+             }
       
       addDebugLog(`Starting VAPI call with assistant ID: ${assistantId}`);
       addDebugLog(`VAPI start method available: ${typeof vapi.start}`);
@@ -404,15 +447,43 @@ const VoiceAssistant: React.FC = () => {
   const handleStopCall = async () => {
     if (vapi) {
       try {
-        console.log('Stopping VAPI call...');
+        addDebugLog('Stopping VAPI call...');
         vapi.stop();
         setIsCallActive(false);
         setIsLoading(false);
-        console.log('Call ended by user');
-      } catch (error) {
-        console.error('Error ending call:', error);
+        addDebugLog('Call ended by user');
+      } catch (error: any) {
+        addDebugLog(`❌ Error ending call: ${error.message}`);
         setError('Failed to end call');
       }
+    }
+  };
+
+  const testAudio = async () => {
+    try {
+      addDebugLog('🔊 Testing audio output...');
+      
+      // Create a simple audio test
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      
+      oscillator.start();
+      addDebugLog('🔊 Playing test tone (440Hz) - you should hear a beep');
+      
+      setTimeout(() => {
+        oscillator.stop();
+        addDebugLog('🔊 Test tone finished');
+      }, 1000);
+      
+    } catch (error: any) {
+      addDebugLog(`❌ Audio test failed: ${error.message}`);
     }
   };
 
@@ -536,6 +607,13 @@ const VoiceAssistant: React.FC = () => {
                     : "Click to start a voice conversation with our AI assistant"
                   }
                 </p>
+                {isCallActive && (
+                  <div className="mt-2 p-2 bg-blue-500/10 border border-blue-500/30 rounded text-xs">
+                    <p className="text-blue-300 font-mono">
+                      🔊 If you can't hear the AI, check your speakers/headphones and volume
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Debug Panel */}
@@ -569,12 +647,20 @@ const VoiceAssistant: React.FC = () => {
                       )}
                     </div>
                     
-                    <button
-                      onClick={() => setDebugLogs([])}
-                      className="mt-2 px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs"
-                    >
-                      Clear Logs
-                    </button>
+                    <div className="mt-2 space-x-2">
+                      <button
+                        onClick={() => setDebugLogs([])}
+                        className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs"
+                      >
+                        Clear Logs
+                      </button>
+                      <button
+                        onClick={testAudio}
+                        className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs"
+                      >
+                        Test Audio
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
