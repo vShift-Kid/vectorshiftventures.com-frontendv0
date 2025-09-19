@@ -98,6 +98,13 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
       setError(null);
 
       console.log('🚀 Starting enhanced phone call to:', phoneNumber);
+      console.log('📱 Phone number validation:', {
+        phoneNumber,
+        length: phoneNumber.length,
+        startsWithPlus: phoneNumber.startsWith('+'),
+        isValidFormat: /^\+[1-9]\d{6,14}$/.test(phoneNumber),
+        digitsAfterPlus: phoneNumber.substring(1)
+      });
       
       // Create call data for tracking
       const callData: CallData = {
@@ -112,29 +119,28 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
       onCallInitiated?.(callData);
 
       // Make phone call using VAPI API with enhanced configuration
+      const requestBody = {
+        assistantId: assistantId,
+        phoneNumberId: phoneNumberId,
+        customer: {
+          number: phoneNumber
+        }
+      };
+      
+      console.log('📞 API Request Body:', JSON.stringify(requestBody, null, 2));
+      
       const response = await fetch('https://api.vapi.ai/call', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          assistantId: assistantId,
-          phoneNumberId: phoneNumberId,
-          customer: {
-            number: phoneNumber
-          }
-          // Note: webhookUrl should be configured in VAPI dashboard, not in call request
-          // metadata: {
-          //   purpose: callPurpose,
-          //   source: 'website',
-          //   timestamp: new Date().toISOString()
-          // }
-        })
+        body: JSON.stringify(requestBody)
       });
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('❌ API Error Response:', errorData);
         throw new Error(errorData.message || `HTTP ${response.status}`);
       }
 
