@@ -151,15 +151,28 @@ const VoiceAssistant: React.FC = () => {
       }
       
       // The start method returns a Promise<Call | null>
-      const callResult = await vapi.start(assistantId);
+      console.log('Calling vapi.start() with assistantId:', assistantId);
+      
+      // Add timeout to prevent hanging
+      const startPromise = vapi.start(assistantId);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Call start timeout after 30 seconds')), 30000)
+      );
+      
+      const callResult = await Promise.race([startPromise, timeoutPromise]);
       console.log('VAPI call started successfully:', callResult);
       
       if (!callResult) {
-        throw new Error('Failed to start call - no call object returned');
+        console.warn('VAPI start returned null - this might be normal if call is already active');
+        // Don't throw error here as VAPI might return null in some cases
       }
       
     } catch (error: any) {
       console.error('Error in voice call:', error);
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       
       // Handle specific error types
       if (error.name === 'NotAllowedError' || error.message?.includes('permission')) {
@@ -172,6 +185,10 @@ const VoiceAssistant: React.FC = () => {
         setError('Assistant configuration error. Please contact support.');
       } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
         setError('Network error. Please check your connection and try again.');
+      } else if (error.message?.includes('validation-error')) {
+        setError(`Validation error: ${error.message}`);
+      } else if (error.message?.includes('already-started')) {
+        setError('Call is already in progress. Please wait for it to end.');
       } else {
         setError(`Failed to start conversation: ${error.message || error.errorMsg || 'Unknown error'}`);
       }
@@ -323,6 +340,22 @@ const VoiceAssistant: React.FC = () => {
                   <div>VAPI Status: {vapi ? 'Initialized' : 'Not initialized'}</div>
                   <div>Assistant ID: {assistantId.substring(0, 8)}...</div>
                   <div>API Key: {apiKey.substring(0, 8)}...</div>
+                  <div>Call Active: {isCallActive ? 'Yes' : 'No'}</div>
+                  <div>Loading: {isLoading ? 'Yes' : 'No'}</div>
+                  <button
+                    onClick={() => {
+                      console.log('=== VAPI Debug Info ===');
+                      console.log('VAPI instance:', vapi);
+                      console.log('VAPI methods:', vapi ? Object.getOwnPropertyNames(vapi) : 'N/A');
+                      console.log('VAPI started:', vapi ? (vapi as any).started : 'N/A');
+                      console.log('Assistant ID:', assistantId);
+                      console.log('API Key:', apiKey.substring(0, 8) + '...');
+                      console.log('========================');
+                    }}
+                    className="mt-2 px-2 py-1 bg-blue-600 text-white rounded text-xs"
+                  >
+                    Debug VAPI
+                  </button>
                 </div>
               )}
             </div>
