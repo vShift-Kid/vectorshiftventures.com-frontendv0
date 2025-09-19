@@ -49,6 +49,14 @@ const VoiceAssistant: React.FC = () => {
         addDebugLog('VAPI instance created successfully');
         addDebugLog(`VAPI instance methods: ${Object.getOwnPropertyNames(vapiInstance).length} methods`);
         
+        // Check if VAPI is properly initialized
+        if (!vapiInstance || typeof vapiInstance.start !== 'function') {
+          addDebugLog('❌ VAPI instance not properly initialized');
+          throw new Error('VAPI instance not properly initialized');
+        }
+        
+        addDebugLog('✅ VAPI instance validation passed');
+        
         // Add event listeners
         vapiInstance.on('call-start', () => {
           addDebugLog('✅ VAPI call started');
@@ -159,6 +167,12 @@ const VoiceAssistant: React.FC = () => {
       addDebugLog(`Starting VAPI call with assistant ID: ${assistantId}`);
       addDebugLog(`VAPI start method available: ${typeof vapi.start}`);
       
+      // Validate assistant ID
+      if (!assistantId || assistantId === 'your-assistant-id-here') {
+        addDebugLog('❌ Assistant ID not configured');
+        throw new Error('Assistant ID not configured. Please check your environment variables.');
+      }
+      
       // Start the call using VAPI web SDK
       if (typeof vapi.start !== 'function') {
         addDebugLog('❌ VAPI start method not available');
@@ -168,19 +182,60 @@ const VoiceAssistant: React.FC = () => {
       // The start method returns a Promise<Call | null>
       addDebugLog(`Calling vapi.start() with assistantId: ${assistantId}`);
       
-      // Add timeout to prevent hanging
-      const startPromise = vapi.start(assistantId);
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Call start timeout after 30 seconds')), 30000)
-      );
+      // Start the call and wait for events instead of relying on return value
+      addDebugLog('Setting up call start event listeners...');
       
-      const callResult = await Promise.race([startPromise, timeoutPromise]);
-      addDebugLog(`VAPI call started successfully: ${callResult ? 'Yes' : 'No'}`);
+      // Wait for either call-start event or timeout
+      const callStartPromise = new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          addDebugLog('❌ Call start timeout after 30 seconds');
+          reject(new Error('Call start timeout after 30 seconds'));
+        }, 30000);
+        
+        const onCallStart = () => {
+          addDebugLog('✅ Call start event received');
+          clearTimeout(timeout);
+          vapi.off('call-start', onCallStart);
+          vapi.off('call-start-failed', onCallFailed);
+          vapi.off('call-start-progress', onCallProgress);
+          resolve(true);
+        };
+        
+        const onCallFailed = (event: any) => {
+          addDebugLog(`❌ Call start failed event: ${event.error}`);
+          clearTimeout(timeout);
+          vapi.off('call-start', onCallStart);
+          vapi.off('call-start-failed', onCallFailed);
+          vapi.off('call-start-progress', onCallProgress);
+          reject(new Error(`Call start failed: ${event.error}`));
+        };
+        
+        const onCallProgress = (event: any) => {
+          addDebugLog(`📞 Call progress: ${event.stage} - ${event.status}`);
+          if (event.status === 'failed') {
+            addDebugLog(`❌ Call failed at stage: ${event.stage}`);
+            clearTimeout(timeout);
+            vapi.off('call-start', onCallStart);
+            vapi.off('call-start-failed', onCallFailed);
+            vapi.off('call-start-progress', onCallProgress);
+            reject(new Error(`Call failed at stage: ${event.stage}`));
+          }
+        };
+        
+        vapi.on('call-start', onCallStart);
+        vapi.on('call-start-failed', onCallFailed);
+        vapi.on('call-start-progress', onCallProgress);
+      });
       
-      if (!callResult) {
-        addDebugLog('⚠️ VAPI start returned null - this might be normal');
-        // Don't throw error here as VAPI might return null in some cases
-      }
+      // Start the call
+      addDebugLog('Calling vapi.start()...');
+      const startResult = await vapi.start(assistantId);
+      addDebugLog(`VAPI start() returned: ${startResult ? 'Call object' : 'null'}`);
+      
+      // Wait for the call-start event
+      addDebugLog('Waiting for call-start event...');
+      await callStartPromise;
+      addDebugLog('✅ Call is now active');
       
     } catch (error: any) {
       addDebugLog(`❌ Error in voice call: ${error.message || 'Unknown error'}`);
