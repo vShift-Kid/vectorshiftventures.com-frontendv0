@@ -203,6 +203,17 @@ const VoiceAssistant: React.FC = () => {
         
         if (testResponse.ok) {
           addDebugLog('✅ VAPI API key is valid');
+          const assistants = await testResponse.json();
+          addDebugLog(`Found ${assistants.length || 0} assistants`);
+          
+          // Check if our assistant ID exists
+          const ourAssistant = assistants.find((a: any) => a.id === assistantId);
+          if (ourAssistant) {
+            addDebugLog(`✅ Assistant ${assistantId} found and active`);
+          } else {
+            addDebugLog(`❌ Assistant ${assistantId} not found in account`);
+            addDebugLog(`Available assistants: ${assistants.map((a: any) => a.id).join(', ')}`);
+          }
         } else {
           addDebugLog(`❌ VAPI API key test failed: ${testResponse.status} ${testResponse.statusText}`);
           const errorText = await testResponse.text();
@@ -303,6 +314,12 @@ const VoiceAssistant: React.FC = () => {
       } else if (error.message?.includes('already-started')) {
         addDebugLog('❌ Call already in progress');
         setError('Call is already in progress. Please wait for it to end.');
+      } else if (error.message?.includes('object response')) {
+        addDebugLog('❌ Object response error - likely API configuration issue');
+        setError('API configuration error. Please check your VAPI settings and try again.');
+      } else if (error.message?.includes('Call start failed')) {
+        addDebugLog(`❌ Call start failed: ${error.message}`);
+        setError(`Call failed to start: ${error.message}`);
       } else {
         addDebugLog(`❌ Unknown error: ${error.message || error.errorMsg || 'Unknown error'}`);
         setError(`Failed to start conversation: ${error.message || error.errorMsg || 'Unknown error'}`);
