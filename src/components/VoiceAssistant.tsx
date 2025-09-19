@@ -149,8 +149,13 @@ const VoiceAssistant: React.FC = () => {
       // Check if VAPI is already started (prevent double start)
       if ((vapi as any).started) {
         addDebugLog('VAPI call already started, stopping first...');
-        vapi.stop();
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait a bit
+        try {
+          vapi.stop();
+          addDebugLog('VAPI call stopped successfully');
+          await new Promise(resolve => setTimeout(resolve, 2000)); // Wait longer
+        } catch (stopError: any) {
+          addDebugLog(`Warning: Error stopping VAPI call: ${stopError.message}`);
+        }
       }
 
       // Check microphone permissions first
@@ -179,6 +184,34 @@ const VoiceAssistant: React.FC = () => {
         throw new Error('VAPI start method not available');
       }
       
+      // Test VAPI configuration
+      addDebugLog('Testing VAPI configuration...');
+      addDebugLog(`API Key: ${apiKey.substring(0, 8)}...`);
+      addDebugLog(`Assistant ID: ${assistantId}`);
+      addDebugLog(`VAPI instance: ${vapi ? 'Available' : 'Not available'}`);
+      addDebugLog(`VAPI started state: ${(vapi as any).started ? 'Already started' : 'Not started'}`);
+      
+      // Test API key validity
+      try {
+        addDebugLog('Testing VAPI API key...');
+        const testResponse = await fetch('https://api.vapi.ai/assistant', {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (testResponse.ok) {
+          addDebugLog('✅ VAPI API key is valid');
+        } else {
+          addDebugLog(`❌ VAPI API key test failed: ${testResponse.status} ${testResponse.statusText}`);
+          const errorText = await testResponse.text();
+          addDebugLog(`Error details: ${errorText}`);
+        }
+      } catch (apiError: any) {
+        addDebugLog(`❌ VAPI API test error: ${apiError.message}`);
+      }
+      
       // The start method returns a Promise<Call | null>
       addDebugLog(`Calling vapi.start() with assistantId: ${assistantId}`);
       
@@ -202,12 +235,12 @@ const VoiceAssistant: React.FC = () => {
         };
         
         const onCallFailed = (event: any) => {
-          addDebugLog(`❌ Call start failed event: ${event.error}`);
+          addDebugLog(`❌ Call start failed event: ${JSON.stringify(event, null, 2)}`);
           clearTimeout(timeout);
           vapi.off('call-start', onCallStart);
           vapi.off('call-start-failed', onCallFailed);
           vapi.off('call-start-progress', onCallProgress);
-          reject(new Error(`Call start failed: ${event.error}`));
+          reject(new Error(`Call start failed: ${event.error || JSON.stringify(event)}`));
         };
         
         const onCallProgress = (event: any) => {
@@ -229,8 +262,14 @@ const VoiceAssistant: React.FC = () => {
       
       // Start the call
       addDebugLog('Calling vapi.start()...');
-      const startResult = await vapi.start(assistantId);
-      addDebugLog(`VAPI start() returned: ${startResult ? 'Call object' : 'null'}`);
+      let startResult;
+      try {
+        startResult = await vapi.start(assistantId);
+        addDebugLog(`VAPI start() returned: ${startResult ? 'Call object' : 'null'}`);
+      } catch (startError: any) {
+        addDebugLog(`❌ VAPI start() threw error: ${JSON.stringify(startError, null, 2)}`);
+        throw new Error(`VAPI start failed: ${startError.message || JSON.stringify(startError)}`);
+      }
       
       // Wait for the call-start event
       addDebugLog('Waiting for call-start event...');
