@@ -1,0 +1,14 @@
+[Cursor] Add Comprehensive VAPI Voice Assistant Debugging
+
+- Add detailed error logging with error name, message, stack, and JSON details
+- Add timeout protection for VAPI start method (30 seconds)
+- Improve error handling for validation errors and already-started calls
+- Add development debug panel with VAPI status and debug button
+- Add comprehensive console logging for VAPI initialization and calls
+- Handle VAPI start returning null (which might be normal)
+
+Improvements:
+- Better error diagnostics and debugging information
+- Timeout protection to prevent hanging calls
+- Development debug tools for troubleshooting
+- More specific error messages for different failure types

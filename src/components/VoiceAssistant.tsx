@@ -8,96 +8,108 @@ const VoiceAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [vapi, setVapi] = useState<Vapi | null>(null);
+  const [debugLogs, setDebugLogs] = useState<string[]>([]);
+  const [showDebug, setShowDebug] = useState(false);
 
   // VAPI Configuration
   const apiKey = import.meta.env.VITE_VAPI_API_KEY || 'e68bd505-55f0-450a-8993-f4f28c0226b5';
   const assistantId = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b8ddcdb9-1bb5-4cef-8a09-69c386230084';
 
+  // Debug logging function
+  const addDebugLog = (message: string) => {
+    const timestamp = new Date().toLocaleTimeString();
+    const logMessage = `[${timestamp}] ${message}`;
+    console.log(logMessage);
+    setDebugLogs(prev => [...prev.slice(-9), logMessage]); // Keep last 10 logs
+  };
+
   useEffect(() => {
     const initializeVapi = async () => {
       try {
-        console.log('VoiceAssistant: Initializing VAPI...');
-        console.log('VAPI constructor:', typeof Vapi);
-        console.log('API Key available:', !!apiKey);
+        addDebugLog('VoiceAssistant: Initializing VAPI...');
+        addDebugLog(`VAPI constructor: ${typeof Vapi}`);
+        addDebugLog(`API Key available: ${!!apiKey}`);
         
         if (!apiKey || apiKey === 'your-api-key-here') {
-          console.error('VAPI API key not configured');
+          addDebugLog('ERROR: VAPI API key not configured');
           setError('Voice assistant not configured. Please contact support.');
           return;
         }
         
         // Check if VAPI is available
         if (typeof Vapi !== 'function') {
+          addDebugLog('ERROR: VAPI Web SDK not loaded properly');
           throw new Error('VAPI Web SDK not loaded properly');
         }
         
         // Initialize VAPI with API key
-        console.log('Creating VAPI instance with API key:', apiKey.substring(0, 8) + '...');
+        addDebugLog(`Creating VAPI instance with API key: ${apiKey.substring(0, 8)}...`);
         
         const vapiInstance = new Vapi(apiKey);
-        console.log('VAPI instance created successfully:', vapiInstance);
-        console.log('VAPI instance methods:', Object.getOwnPropertyNames(vapiInstance));
+        addDebugLog('VAPI instance created successfully');
+        addDebugLog(`VAPI instance methods: ${Object.getOwnPropertyNames(vapiInstance).length} methods`);
         
         // Add event listeners
         vapiInstance.on('call-start', () => {
-          console.log('✅ VAPI call started');
+          addDebugLog('✅ VAPI call started');
           setIsCallActive(true);
           setIsLoading(false);
           setError(null);
         });
         
         vapiInstance.on('call-end', () => {
-          console.log('📞 VAPI call ended');
+          addDebugLog('📞 VAPI call ended');
           setIsCallActive(false);
           setIsLoading(false);
         });
         
         vapiInstance.on('call-start-progress', (event: any) => {
-          console.log('📞 Call start progress:', event);
+          addDebugLog(`📞 Call start progress: ${event.stage} - ${event.status}`);
           if (event.status === 'failed') {
+            addDebugLog(`❌ Call start failed at stage: ${event.stage}`);
             setError(`Call start failed at stage: ${event.stage}`);
             setIsLoading(false);
           }
         });
         
         vapiInstance.on('call-start-success', (event: any) => {
-          console.log('✅ Call start success:', event);
+          addDebugLog('✅ Call start success');
           setIsCallActive(true);
           setIsLoading(false);
           setError(null);
         });
         
         vapiInstance.on('call-start-failed', (event: any) => {
-          console.error('❌ Call start failed:', event);
+          addDebugLog(`❌ Call start failed: ${event.error}`);
           setError(`Call start failed: ${event.error}`);
           setIsLoading(false);
           setIsCallActive(false);
         });
         
         vapiInstance.on('error', (error: any) => {
-          console.error('❌ VAPI error:', error);
+          addDebugLog(`❌ VAPI error: ${error.error?.message || error.message || 'Unknown error'}`);
           setError(`Voice assistant error: ${error.error?.message || error.message || 'Unknown error'}`);
           setIsLoading(false);
           setIsCallActive(false);
         });
         
         vapiInstance.on('speech-start', () => {
-          console.log('🎤 Assistant started speaking');
+          addDebugLog('🎤 Assistant started speaking');
         });
         
         vapiInstance.on('speech-end', () => {
-          console.log('🔇 Assistant finished speaking');
+          addDebugLog('🔇 Assistant finished speaking');
         });
         
         vapiInstance.on('message', (message: any) => {
-          console.log('📨 VAPI message:', message);
+          addDebugLog(`📨 VAPI message: ${message.type || 'unknown'}`);
         });
         
         setVapi(vapiInstance);
-        console.log('✅ VAPI initialized successfully');
+        addDebugLog('✅ VAPI initialized successfully');
         
       } catch (error: any) {
-        console.error('Failed to initialize VAPI:', error);
+        addDebugLog(`❌ Failed to initialize VAPI: ${error.message || 'Unknown error'}`);
         setError(`Failed to initialize voice assistant: ${error.message || 'Unknown error'}`);
       }
     };
@@ -107,6 +119,7 @@ const VoiceAssistant: React.FC = () => {
 
   const handleStartCall = async () => {
     if (!vapi) {
+      addDebugLog('❌ Voice assistant not initialized');
       setError('Voice assistant not initialized. Please refresh the page.');
       return;
     }
@@ -114,10 +127,11 @@ const VoiceAssistant: React.FC = () => {
     try {
       setIsLoading(true);
       setError(null);
+      addDebugLog('🚀 Starting voice call...');
 
       if (isCallActive) {
         // Stop the call if it's active
-        console.log('Stopping VAPI call...');
+        addDebugLog('Stopping VAPI call...');
         vapi.stop();
         setIsCallActive(false);
         setIsLoading(false);
@@ -126,32 +140,33 @@ const VoiceAssistant: React.FC = () => {
 
       // Check if VAPI is already started (prevent double start)
       if ((vapi as any).started) {
-        console.log('VAPI call already started, stopping first...');
+        addDebugLog('VAPI call already started, stopping first...');
         vapi.stop();
         await new Promise(resolve => setTimeout(resolve, 1000)); // Wait a bit
       }
 
       // Check microphone permissions first
       try {
-        console.log('Checking microphone permissions...');
+        addDebugLog('Checking microphone permissions...');
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        console.log('Microphone permission granted');
+        addDebugLog('✅ Microphone permission granted');
         stream.getTracks().forEach(track => track.stop()); // Stop the test stream
       } catch (micError) {
-        console.error('Microphone permission error:', micError);
+        addDebugLog(`❌ Microphone permission error: ${micError.message}`);
         throw new Error('Microphone permission denied. Please allow microphone access and try again.');
       }
       
-      console.log('Starting VAPI call with assistant ID:', assistantId);
-      console.log('VAPI start method available:', typeof vapi.start);
+      addDebugLog(`Starting VAPI call with assistant ID: ${assistantId}`);
+      addDebugLog(`VAPI start method available: ${typeof vapi.start}`);
       
       // Start the call using VAPI web SDK
       if (typeof vapi.start !== 'function') {
+        addDebugLog('❌ VAPI start method not available');
         throw new Error('VAPI start method not available');
       }
       
       // The start method returns a Promise<Call | null>
-      console.log('Calling vapi.start() with assistantId:', assistantId);
+      addDebugLog(`Calling vapi.start() with assistantId: ${assistantId}`);
       
       // Add timeout to prevent hanging
       const startPromise = vapi.start(assistantId);
@@ -160,36 +175,42 @@ const VoiceAssistant: React.FC = () => {
       );
       
       const callResult = await Promise.race([startPromise, timeoutPromise]);
-      console.log('VAPI call started successfully:', callResult);
+      addDebugLog(`VAPI call started successfully: ${callResult ? 'Yes' : 'No'}`);
       
       if (!callResult) {
-        console.warn('VAPI start returned null - this might be normal if call is already active');
+        addDebugLog('⚠️ VAPI start returned null - this might be normal');
         // Don't throw error here as VAPI might return null in some cases
       }
       
     } catch (error: any) {
-      console.error('Error in voice call:', error);
-      console.error('Error name:', error.name);
-      console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
-      console.error('Error details:', JSON.stringify(error, null, 2));
+      addDebugLog(`❌ Error in voice call: ${error.message || 'Unknown error'}`);
+      addDebugLog(`Error name: ${error.name || 'Unknown'}`);
+      addDebugLog(`Error details: ${JSON.stringify(error, null, 2).substring(0, 200)}...`);
       
       // Handle specific error types
       if (error.name === 'NotAllowedError' || error.message?.includes('permission')) {
+        addDebugLog('❌ Microphone permission denied');
         setError('Microphone permission denied. Please allow microphone access and try again.');
       } else if (error.name === 'NotFoundError' || error.message?.includes('microphone')) {
+        addDebugLog('❌ No microphone found');
         setError('No microphone found. Please connect a microphone and try again.');
       } else if (error.message?.includes('HTTPS')) {
+        addDebugLog('❌ HTTPS required');
         setError('Voice calls require HTTPS. Please use the secure version of this site.');
       } else if (error.message?.includes('assistant')) {
+        addDebugLog('❌ Assistant configuration error');
         setError('Assistant configuration error. Please contact support.');
       } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
+        addDebugLog('❌ Network error');
         setError('Network error. Please check your connection and try again.');
       } else if (error.message?.includes('validation-error')) {
+        addDebugLog(`❌ Validation error: ${error.message}`);
         setError(`Validation error: ${error.message}`);
       } else if (error.message?.includes('already-started')) {
+        addDebugLog('❌ Call already in progress');
         setError('Call is already in progress. Please wait for it to end.');
       } else {
+        addDebugLog(`❌ Unknown error: ${error.message || error.errorMsg || 'Unknown error'}`);
         setError(`Failed to start conversation: ${error.message || error.errorMsg || 'Unknown error'}`);
       }
       
@@ -334,30 +355,46 @@ const VoiceAssistant: React.FC = () => {
                 </p>
               </div>
 
-              {/* Debug Info */}
-              {process.env.NODE_ENV === 'development' && (
-                <div className="mt-4 p-2 bg-gray-800/50 rounded text-xs text-gray-400">
-                  <div>VAPI Status: {vapi ? 'Initialized' : 'Not initialized'}</div>
-                  <div>Assistant ID: {assistantId.substring(0, 8)}...</div>
-                  <div>API Key: {apiKey.substring(0, 8)}...</div>
-                  <div>Call Active: {isCallActive ? 'Yes' : 'No'}</div>
-                  <div>Loading: {isLoading ? 'Yes' : 'No'}</div>
-                  <button
-                    onClick={() => {
-                      console.log('=== VAPI Debug Info ===');
-                      console.log('VAPI instance:', vapi);
-                      console.log('VAPI methods:', vapi ? Object.getOwnPropertyNames(vapi) : 'N/A');
-                      console.log('VAPI started:', vapi ? (vapi as any).started : 'N/A');
-                      console.log('Assistant ID:', assistantId);
-                      console.log('API Key:', apiKey.substring(0, 8) + '...');
-                      console.log('========================');
-                    }}
-                    className="mt-2 px-2 py-1 bg-blue-600 text-white rounded text-xs"
-                  >
-                    Debug VAPI
-                  </button>
-                </div>
-              )}
+              {/* Debug Panel */}
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowDebug(!showDebug)}
+                  className="w-full py-2 px-3 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs font-mono"
+                >
+                  {showDebug ? 'Hide' : 'Show'} Debug Logs
+                </button>
+                
+                {showDebug && (
+                  <div className="mt-2 p-3 bg-gray-800/50 rounded text-xs text-gray-300 max-h-40 overflow-y-auto">
+                    <div className="mb-2 font-semibold text-white">Debug Information:</div>
+                    <div>VAPI Status: {vapi ? 'Initialized' : 'Not initialized'}</div>
+                    <div>Assistant ID: {assistantId.substring(0, 8)}...</div>
+                    <div>API Key: {apiKey.substring(0, 8)}...</div>
+                    <div>Call Active: {isCallActive ? 'Yes' : 'No'}</div>
+                    <div>Loading: {isLoading ? 'Yes' : 'No'}</div>
+                    
+                    <div className="mt-3 font-semibold text-white">Recent Logs:</div>
+                    <div className="space-y-1 mt-1">
+                      {debugLogs.length === 0 ? (
+                        <div className="text-gray-500">No logs yet...</div>
+                      ) : (
+                        debugLogs.map((log, index) => (
+                          <div key={index} className="text-xs font-mono break-words">
+                            {log}
+                          </div>
+                        ))
+                      )}
+                    </div>
+                    
+                    <button
+                      onClick={() => setDebugLogs([])}
+                      className="mt-2 px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs"
+                    >
+                      Clear Logs
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
