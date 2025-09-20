@@ -37,6 +37,13 @@ jobs:
       - name: Build project
         run: npm run build
         
+      - name: Verify build
+        run: |
+          echo "Build completed successfully"
+          ls -la dist/
+          echo "Files in dist directory:"
+          find dist/ -type f | head -10
+        
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
