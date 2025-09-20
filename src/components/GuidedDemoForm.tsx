@@ -79,6 +79,13 @@ const steps = [
   },
   { 
     id: 6, 
+    title: 'Documents (Optional)', 
+    icon: Upload, 
+    description: 'Upload custom documents for your demo',
+    color: 'indigo'
+  },
+  { 
+    id: 7, 
     title: 'Review & Submit', 
     icon: CheckCircle, 
     description: 'Review your information and submit',
@@ -153,7 +160,14 @@ const GuidedDemoForm: React.FC = () => {
       case 5:
         return formData.rmeSpecializations.length > 0;
       case 6:
-        return true; // Review step
+        return true; // Documents step is optional
+      case 7:
+        // For demo-only requests, scheduling is optional
+        if (formData.consultationPackage === 'Demo Request Only - Evaluation Phase') {
+          return true; // No scheduling required for demo-only
+        }
+        // For other packages, require scheduling
+        return formData.preferredDate.length > 0 && formData.preferredTime.length > 0;
       default:
         return false;
     }
@@ -766,8 +780,135 @@ const GuidedDemoForm: React.FC = () => {
                   </div>
                 )}
 
-                {/* Step 6: Review */}
+                {/* Step 6: Document Upload */}
                 {currentStep === 6 && (
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-mono font-bold mb-6 text-indigo-400">
+                      Document Upload (Optional)
+                    </h3>
+                    
+                    <div className="bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-6">
+                      <h4 className="text-lg font-mono font-semibold text-indigo-300 mb-4">
+                        📋 Upload Custom Documents for Your Demo
+                      </h4>
+                      <p className="text-gray-300 font-mono text-sm mb-4">
+                        Upload documents that you'd like your AI demo to have knowledge about. This helps us create a more personalized and relevant demo experience.
+                      </p>
+                      
+                      <div className="space-y-4">
+                        <div
+                          className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                            formData.uploadedFiles.length > 0
+                              ? 'border-indigo-400 bg-indigo-400/10'
+                              : 'border-indigo-500/30 hover:border-indigo-500/50'
+                          }`}
+                        >
+                          <Upload className="w-12 h-12 text-indigo-400 mx-auto mb-4" />
+                          <p className="text-lg font-mono text-gray-300 mb-2">
+                            {formData.uploadedFiles.length > 0 
+                              ? `${formData.uploadedFiles.length} file(s) uploaded`
+                              : 'Drag and drop files here or click to browse'
+                            }
+                          </p>
+                          <p className="text-sm text-gray-400 mb-4">
+                            Supported formats: PDF, DOC, DOCX, TXT, MD, CSV, XLSX, PPTX
+                          </p>
+                          <input
+                            type="file"
+                            multiple
+                            accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.pptx"
+                            onChange={(e) => {
+                              if (e.target.files) {
+                                const newFiles = Array.from(e.target.files);
+                                updateFormData('uploadedFiles', [...formData.uploadedFiles, ...newFiles]);
+                              }
+                            }}
+                            className="hidden"
+                            id="file-upload"
+                          />
+                          <label
+                            htmlFor="file-upload"
+                            className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-mono rounded-lg cursor-pointer transition-colors"
+                          >
+                            Choose Files
+                          </label>
+                        </div>
+
+                        {/* Uploaded Files List */}
+                        {formData.uploadedFiles.length > 0 && (
+                          <div className="space-y-2">
+                            <h5 className="text-sm font-mono font-semibold text-indigo-300">
+                              Uploaded Files ({formData.uploadedFiles.length})
+                            </h5>
+                            {formData.uploadedFiles.map((file, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3"
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <FileText className="w-4 h-4 text-indigo-400" />
+                                  <div>
+                                    <p className="text-sm font-mono text-gray-300">{file.name}</p>
+                                    <p className="text-xs text-gray-400">
+                                      {(file.size / 1024 / 1024).toFixed(2)} MB
+                                    </p>
+                                  </div>
+                                </div>
+                                <button
+                                  onClick={() => {
+                                    const newFiles = formData.uploadedFiles.filter((_, i) => i !== index);
+                                    updateFormData('uploadedFiles', newFiles);
+                                  }}
+                                  className="text-red-400 hover:text-red-300 transition-colors"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                      <h5 className="text-lg font-mono font-semibold text-blue-400 mb-4">
+                        💡 Recommended Documents
+                      </h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-mono">
+                        <div>
+                          <h6 className="font-semibold text-blue-300 mb-2">✅ Good to Upload:</h6>
+                          <ul className="text-gray-300 space-y-1">
+                            <li>• Equipment manuals & specifications</li>
+                            <li>• Service procedures & workflows</li>
+                            <li>• Training materials & guides</li>
+                            <li>• Company policies & standards</li>
+                            <li>• Technical documentation</li>
+                            <li>• FAQ documents</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h6 className="font-semibold text-red-300 mb-2">⚠️ Avoid Uploading:</h6>
+                          <ul className="text-gray-300 space-y-1">
+                            <li>• Personal or sensitive data</li>
+                            <li>• Financial records</li>
+                            <li>• Customer information</li>
+                            <li>• Proprietary trade secrets</li>
+                            <li>• Copyrighted materials</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-center">
+                      <p className="text-gray-400 font-mono text-sm">
+                        This step is optional. You can skip it and proceed to review your information.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 7: Review */}
+                {currentStep === 7 && (
                   <div className="space-y-6">
                     <h3 className="text-2xl font-mono font-bold mb-6 text-emerald-400">
                       Review Your Information
@@ -807,6 +948,25 @@ const GuidedDemoForm: React.FC = () => {
                         <p className="text-gray-300 font-mono">Research Focus: {formData.researchFocus}</p>
                         <p className="text-gray-300 font-mono">Selected: {formData.rmeSpecializations.join(', ')}</p>
                       </div>
+
+                      {formData.uploadedFiles.length > 0 && (
+                        <div className="bg-gray-800/30 rounded-lg p-4">
+                          <h4 className="font-mono font-semibold text-indigo-300 mb-2">Uploaded Documents ({formData.uploadedFiles.length})</h4>
+                          <ul className="text-gray-300 font-mono space-y-1">
+                            {formData.uploadedFiles.map((file, index) => (
+                              <li key={index}>• {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {formData.consultationPackage !== 'Demo Request Only - Evaluation Phase' && (
+                        <div className="bg-gray-800/30 rounded-lg p-4">
+                          <h4 className="font-mono font-semibold text-purple-300 mb-2">Scheduling</h4>
+                          <p className="text-gray-300 font-mono">Preferred Date: {formData.preferredDate || 'Not specified'}</p>
+                          <p className="text-gray-300 font-mono">Preferred Time: {formData.preferredTime || 'Not specified'}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
