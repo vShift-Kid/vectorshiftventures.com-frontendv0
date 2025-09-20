@@ -190,6 +190,82 @@ const getIndustrySpecificDemos = (industry: string) => {
   ];
 };
 
+// Dynamic technical specializations based on demo type and industry
+const getDynamicSpecializations = (demoType: string, industry: string) => {
+  const specializationGroups = {
+    // Field Service Operations
+    'field-service-technical': {
+      'field-technician-support': [
+        { category: 'Field Operations', items: ['Field Technician Support', 'Equipment Troubleshooting', 'Service Call Optimization', 'Emergency Response', 'Quality Inspection', 'Safety Compliance'] },
+        { category: 'Technical Support', items: ['Remote Diagnostics', 'Technical Documentation', 'Parts Management', 'Warranty Services', 'Maintenance Scheduling', 'Performance Monitoring'] },
+        { category: 'Customer Service', items: ['Customer Communication', 'Appointment Scheduling', 'Service History', 'Billing Support', 'Feedback Collection', 'Issue Resolution'] }
+      ],
+      'equipment-troubleshooting': [
+        { category: 'Diagnostic Systems', items: ['Equipment Diagnostics', 'Predictive Maintenance', 'Failure Analysis', 'Root Cause Analysis', 'Technical Troubleshooting', 'System Monitoring'] },
+        { category: 'Technical Resources', items: ['Technical Documentation', 'Knowledge Base', 'Service Manuals', 'Troubleshooting Guides', 'Parts Identification', 'Repair Procedures'] },
+        { category: 'Support Tools', items: ['Remote Assistance', 'Video Support', 'Screen Sharing', 'Technical Chat', 'Escalation Management', 'Expert Consultation'] }
+      ],
+      'service-call-optimization': [
+        { category: 'Scheduling & Routing', items: ['Route Optimization', 'Schedule Management', 'Resource Allocation', 'Capacity Planning', 'Time Management', 'Efficiency Tracking'] },
+        { category: 'Field Operations', items: ['Dispatch Management', 'Field Coordination', 'Service Prioritization', 'Work Order Management', 'Status Tracking', 'Progress Monitoring'] },
+        { category: 'Analytics & Reporting', items: ['Performance Analytics', 'Service Metrics', 'Cost Analysis', 'Efficiency Reports', 'Trend Analysis', 'KPI Tracking'] }
+      ]
+    },
+    // Engineering & Manufacturing
+    'engineering-design': {
+      'cad-integration': [
+        { category: 'Design Systems', items: ['CAD Integration', 'Design Automation', 'Model Optimization', 'Version Control', 'Collaboration Tools', 'Standards Compliance'] },
+        { category: 'Engineering Workflows', items: ['Design Validation', 'Technical Documentation', 'Project Management', 'Quality Control', 'Change Management', 'Review Processes'] },
+        { category: 'Technical Resources', items: ['Engineering Standards', 'Technical Specifications', 'Design Guidelines', 'Best Practices', 'Knowledge Management', 'Training Materials'] }
+      ],
+      'technical-documentation': [
+        { category: 'Document Management', items: ['Technical Writing', 'Document Generation', 'Version Control', 'Knowledge Base', 'Search Optimization', 'Content Management'] },
+        { category: 'Engineering Processes', items: ['Standards Compliance', 'Quality Documentation', 'Process Documentation', 'Procedure Management', 'Audit Support', 'Regulatory Compliance'] },
+        { category: 'Collaboration', items: ['Team Collaboration', 'Review Processes', 'Approval Workflows', 'Change Management', 'Communication Tools', 'Project Coordination'] }
+      ]
+    },
+    // Logistics & Supply Chain
+    'logistics-optimization': {
+      'route-optimization': [
+        { category: 'Route Planning', items: ['Route Optimization', 'Delivery Planning', 'Fleet Management', 'Driver Coordination', 'Traffic Analysis', 'Fuel Optimization'] },
+        { category: 'Supply Chain', items: ['Inventory Management', 'Warehouse Operations', 'Supplier Coordination', 'Demand Planning', 'Cost Optimization', 'Performance Monitoring'] },
+        { category: 'Analytics', items: ['Logistics Analytics', 'Performance Metrics', 'Cost Analysis', 'Efficiency Tracking', 'Trend Analysis', 'Predictive Analytics'] }
+      ],
+      'fleet-management': [
+        { category: 'Fleet Operations', items: ['Vehicle Tracking', 'Driver Management', 'Maintenance Scheduling', 'Fuel Management', 'Safety Monitoring', 'Compliance Tracking'] },
+        { category: 'Logistics', items: ['Route Planning', 'Delivery Optimization', 'Load Management', 'Dispatch Coordination', 'Status Tracking', 'Performance Monitoring'] },
+        { category: 'Analytics', items: ['Fleet Analytics', 'Cost Analysis', 'Efficiency Metrics', 'Safety Reports', 'Performance Tracking', 'Predictive Maintenance'] }
+      ]
+    },
+    // IT & Technology
+    'it-operations': {
+      'system-monitoring': [
+        { category: 'Infrastructure', items: ['System Monitoring', 'Performance Tracking', 'Resource Management', 'Capacity Planning', 'Health Monitoring', 'Alert Management'] },
+        { category: 'Security', items: ['Security Monitoring', 'Threat Detection', 'Vulnerability Assessment', 'Access Management', 'Compliance Monitoring', 'Incident Response'] },
+        { category: 'Operations', items: ['Automation Tools', 'Process Optimization', 'Workflow Management', 'Service Management', 'Change Management', 'Documentation'] }
+      ],
+      'cybersecurity': [
+        { category: 'Security Operations', items: ['Threat Detection', 'Incident Response', 'Vulnerability Management', 'Security Monitoring', 'Risk Assessment', 'Compliance Management'] },
+        { category: 'Access Control', items: ['Identity Management', 'Access Control', 'Authentication Systems', 'Authorization Management', 'User Provisioning', 'Security Policies'] },
+        { category: 'Analytics', items: ['Security Analytics', 'Threat Intelligence', 'Risk Analysis', 'Compliance Reporting', 'Security Metrics', 'Forensic Analysis'] }
+      ]
+    }
+  };
+
+  // Get industry-specific specializations
+  const industrySpecs = specializationGroups[industry as keyof typeof specializationGroups];
+  if (industrySpecs && industrySpecs[demoType as keyof typeof industrySpecs]) {
+    return industrySpecs[demoType as keyof typeof industrySpecs];
+  }
+
+  // Fallback to general specializations
+  return [
+    { category: 'Core Operations', items: ['Process Optimization', 'Workflow Automation', 'Performance Monitoring', 'Quality Control', 'Efficiency Management', 'Resource Optimization'] },
+    { category: 'Technical Support', items: ['Technical Documentation', 'Knowledge Management', 'Troubleshooting', 'Remote Support', 'Training Systems', 'Expert Consultation'] },
+    { category: 'Analytics & Reporting', items: ['Data Analytics', 'Performance Metrics', 'Trend Analysis', 'Predictive Analytics', 'Business Intelligence', 'Reporting Automation'] }
+  ];
+};
+
 const steps = [
   { 
     id: 1, 
@@ -301,16 +377,6 @@ const GuidedDemoForm: React.FC = () => {
     }
   }, [isSubmitted, redirectCountdown]);
 
-  // Business email validation
-  const isBusinessEmail = (email: string): boolean => {
-    const personalDomains = [
-      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 
-      'icloud.com', 'live.com', 'msn.com', 'protonmail.com', 'yandex.com',
-      'mail.com', 'zoho.com', 'fastmail.com', 'tutanota.com'
-    ];
-    const domain = email.split('@')[1]?.toLowerCase();
-    return domain && !personalDomains.includes(domain);
-  };
 
   const nextStep = () => {
     if (currentStep < steps.length && isStepValid(currentStep)) {
@@ -907,82 +973,130 @@ const GuidedDemoForm: React.FC = () => {
                       Technical Specializations
                     </h3>
                     
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Research Focus
-                      </label>
-                      <select
-                        value={formData.researchFocus}
-                        onChange={(e) => updateFormData('researchFocus', e.target.value)}
-                        className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
-                      >
-                        <option value="">Select research focus</option>
-                        <option value="field-service-optimization">Field Service Optimization</option>
-                        <option value="technical-documentation">Technical Documentation</option>
-                        <option value="logistics-efficiency">Logistics & Supply Chain Efficiency</option>
-                        <option value="quality-control">Quality Control & Compliance</option>
-                        <option value="predictive-maintenance">Predictive Maintenance</option>
-                        <option value="workflow-automation">Workflow Automation</option>
-                      </select>
+                    {/* Context Information */}
+                    {formData.demoType && formData.industry && (
+                      <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4 mb-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Target className="w-5 h-5 text-orange-400" />
+                          <h4 className="font-mono font-semibold text-orange-300">
+                            Specializations for Your Demo
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm">
+                          Based on your <strong>{formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong> demo 
+                          in <strong>{formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong>, 
+                          we've curated relevant technical specializations to enhance your AI solution.
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                          Research Focus
+                        </label>
+                        <select
+                          value={formData.researchFocus}
+                          onChange={(e) => updateFormData('researchFocus', e.target.value)}
+                          className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
+                        >
+                          <option value="">Select research focus</option>
+                          <option value="field-service-optimization">Field Service Optimization</option>
+                          <option value="technical-documentation">Technical Documentation</option>
+                          <option value="logistics-efficiency">Logistics & Supply Chain Efficiency</option>
+                          <option value="quality-control">Quality Control & Compliance</option>
+                          <option value="predictive-maintenance">Predictive Maintenance</option>
+                          <option value="workflow-automation">Workflow Automation</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                          Research Depth
+                        </label>
+                        <select
+                          value={formData.researchDepth}
+                          onChange={(e) => updateFormData('researchDepth', e.target.value)}
+                          className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
+                        >
+                          <option value="">Select research depth</option>
+                          <option value="overview">Overview - High-level analysis and recommendations</option>
+                          <option value="detailed">Detailed - In-depth analysis with specific solutions</option>
+                          <option value="comprehensive">Comprehensive - Complete analysis with implementation roadmap</option>
+                          <option value="custom">Custom - Tailored to specific requirements</option>
+                        </select>
+                      </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Research Depth
-                      </label>
-                      <select
-                        value={formData.researchDepth}
-                        onChange={(e) => updateFormData('researchDepth', e.target.value)}
-                        className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
-                      >
-                        <option value="">Select research depth</option>
-                        <option value="overview">Overview - High-level analysis and recommendations</option>
-                        <option value="detailed">Detailed - In-depth analysis with specific solutions</option>
-                        <option value="comprehensive">Comprehensive - Complete analysis with implementation roadmap</option>
-                        <option value="custom">Custom - Tailored to specific requirements</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-mono font-medium text-gray-300 mb-3">
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-4">
                         Select Technical Specializations (select at least one) *
                       </label>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {[
-                          'Field Technician Support',
-                          'Equipment Maintenance',
-                          'Technical Troubleshooting',
-                          'Service Call Optimization',
-                          'Quality Control',
-                          'Predictive Maintenance',
-                          'Technical Documentation',
-                          'CAD Integration',
-                          'Logistics Optimization',
-                          'Inventory Management',
-                          'Fleet Management',
-                          'Supply Chain Management',
-                          'IT Operations',
-                          'System Integration',
-                          'Cybersecurity',
-                          'Data Analytics'
-                        ].map((specialization) => (
-                          <label key={specialization} className="flex items-center p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={formData.rmeSpecializations.includes(specialization)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  updateFormData('rmeSpecializations', [...formData.rmeSpecializations, specialization]);
-                                } else {
-                                  updateFormData('rmeSpecializations', formData.rmeSpecializations.filter(s => s !== specialization));
-                                }
-                              }}
-                              className="mr-3 text-orange-500 focus:ring-orange-400"
-                            />
-                            <span className="text-sm font-mono text-gray-300">{specialization}</span>
-                          </label>
-                        ))}
-                      </div>
+                      
+                      {/* Dynamic Specializations */}
+                      {formData.demoType && formData.industry ? (
+                        <div className="space-y-6">
+                          {getDynamicSpecializations(formData.demoType, formData.industry).map((group, groupIndex) => (
+                            <div key={groupIndex} className="bg-gray-800/20 border border-orange-500/20 rounded-lg p-4">
+                              <h5 className="font-mono font-semibold text-orange-300 mb-3 text-sm">
+                                {group.category}
+                              </h5>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                {group.items.map((specialization) => (
+                                  <label key={specialization} className="flex items-center p-2 bg-gray-700/30 rounded hover:bg-gray-700/50 transition-colors cursor-pointer">
+                                    <input
+                                      type="checkbox"
+                                      checked={formData.rmeSpecializations.includes(specialization)}
+                                      onChange={(e) => {
+                                        if (e.target.checked) {
+                                          updateFormData('rmeSpecializations', [...formData.rmeSpecializations, specialization]);
+                                        } else {
+                                          updateFormData('rmeSpecializations', formData.rmeSpecializations.filter(s => s !== specialization));
+                                        }
+                                      }}
+                                      className="mr-2 text-orange-500 focus:ring-orange-400"
+                                    />
+                                    <span className="text-xs font-mono text-gray-300">{specialization}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="bg-gray-800/20 border border-orange-500/20 rounded-lg p-6 text-center">
+                          <p className="text-gray-400 font-mono text-sm">
+                            Please complete the previous steps to see relevant technical specializations for your demo.
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Selected Specializations Summary */}
+                      {formData.rmeSpecializations.length > 0 && (
+                        <div className="mt-4 bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                          <h5 className="font-mono font-semibold text-orange-300 mb-2 text-sm">
+                            Selected Specializations ({formData.rmeSpecializations.length})
+                          </h5>
+                          <div className="flex flex-wrap gap-2">
+                            {formData.rmeSpecializations.map((specialization) => (
+                              <span
+                                key={specialization}
+                                className="inline-flex items-center px-2 py-1 bg-orange-600/20 border border-orange-500/30 rounded text-xs font-mono text-orange-300"
+                              >
+                                {specialization}
+                                <button
+                                  onClick={() => {
+                                    updateFormData('rmeSpecializations', formData.rmeSpecializations.filter(s => s !== specialization));
+                                  }}
+                                  className="ml-1 text-orange-400 hover:text-orange-300"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
