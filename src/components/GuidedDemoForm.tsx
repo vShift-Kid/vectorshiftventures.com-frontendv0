@@ -256,6 +256,705 @@ const getIndustrySpecificDemos = (industry: string) => {
   ];
 };
 
+// Dynamic document recommendations based on demo type and industry
+const getRecommendedDocuments = (demoType: string, industry: string) => {
+  const documentRecommendations = {
+    'field-service-technical': {
+      'field-technician-support': {
+        recommended: [
+          'Equipment manuals and specifications',
+          'Service procedures and checklists',
+          'Troubleshooting guides and flowcharts',
+          'Safety protocols and procedures',
+          'Training materials for technicians',
+          'Customer service scripts and FAQs'
+        ],
+        required: true
+      },
+      'equipment-troubleshooting': {
+        recommended: [
+          'Equipment diagnostic procedures',
+          'Technical troubleshooting guides',
+          'Parts catalogs and specifications',
+          'Maintenance schedules and logs',
+          'Error code reference sheets',
+          'Repair history documentation'
+        ],
+        required: true
+      },
+      'service-call-optimization': {
+        recommended: [
+          'Service call procedures and workflows',
+          'Route optimization guidelines',
+          'Customer communication templates',
+          'Scheduling and dispatch procedures',
+          'Performance metrics and KPIs',
+          'Service level agreements (SLAs)'
+        ],
+        required: false
+      }
+    },
+    'engineering-design': {
+      'cad-integration': {
+        recommended: [
+          'CAD design standards and guidelines',
+          'Engineering specifications and requirements',
+          'Design review checklists',
+          'Project management templates',
+          'Technical drawing standards',
+          'Design collaboration procedures'
+        ],
+        required: true
+      },
+      'technical-documentation': {
+        recommended: [
+          'Technical writing guidelines and templates',
+          'Documentation standards and procedures',
+          'Knowledge base articles and FAQs',
+          'User manuals and guides',
+          'Process documentation',
+          'Version control procedures'
+        ],
+        required: true
+      }
+    },
+    'logistics-optimization': {
+      'route-optimization': {
+        recommended: [
+          'Route planning procedures and guidelines',
+          'Delivery schedules and time windows',
+          'Fleet management procedures',
+          'Customer delivery requirements',
+          'Traffic and weather considerations',
+          'Performance metrics and reporting'
+        ],
+        required: false
+      },
+      'fleet-management': {
+        recommended: [
+          'Vehicle maintenance schedules',
+          'Driver management procedures',
+          'Fleet tracking and monitoring systems',
+          'Fuel management procedures',
+          'Safety protocols and training',
+          'Compliance and regulatory requirements'
+        ],
+        required: false
+      }
+    },
+    'it-operations': {
+      'system-monitoring': {
+        recommended: [
+          'System monitoring procedures and alerts',
+          'Performance metrics and thresholds',
+          'Incident response procedures',
+          'System documentation and architecture',
+          'Monitoring tools and configurations',
+          'Escalation procedures and contacts'
+        ],
+        required: true
+      },
+      'cybersecurity': {
+        recommended: [
+          'Security policies and procedures',
+          'Incident response playbooks',
+          'Threat detection and monitoring procedures',
+          'Compliance requirements and checklists',
+          'Security training materials',
+          'Risk assessment documentation'
+        ],
+        required: true
+      }
+    },
+    'hr-operations': {
+      'hr-automation': {
+        recommended: [
+          'HR policies and procedures',
+          'Employee handbook and guidelines',
+          'Onboarding and offboarding procedures',
+          'Performance management templates',
+          'Benefits administration procedures',
+          'Compliance and regulatory requirements'
+        ],
+        required: false
+      },
+      'talent-acquisition': {
+        recommended: [
+          'Recruitment procedures and guidelines',
+          'Job descriptions and requirements',
+          'Interview processes and evaluation criteria',
+          'Onboarding procedures and checklists',
+          'Candidate communication templates',
+          'Recruitment metrics and reporting'
+        ],
+        required: false
+      }
+    },
+    'legal-operations': {
+      'legal-automation': {
+        recommended: [
+          'Legal procedures and workflows',
+          'Case management templates',
+          'Document review checklists',
+          'Compliance procedures and requirements',
+          'Legal research guidelines',
+          'Client communication templates'
+        ],
+        required: true
+      },
+      'contract-management': {
+        recommended: [
+          'Contract templates and clauses',
+          'Contract review procedures',
+          'Negotiation guidelines and strategies',
+          'Renewal and termination procedures',
+          'Risk assessment templates',
+          'Compliance requirements'
+        ],
+        required: true
+      }
+    }
+  };
+
+  const industryDocs = documentRecommendations[industry as keyof typeof documentRecommendations];
+  if (industryDocs && industryDocs[demoType as keyof typeof industryDocs]) {
+    return industryDocs[demoType as keyof typeof industryDocs];
+  }
+
+  // Default recommendations
+  return {
+    recommended: [
+      'Business procedures and workflows',
+      'Training materials and guides',
+      'Company policies and standards',
+      'Technical documentation',
+      'Process documentation',
+      'FAQ documents and knowledge base'
+    ],
+    required: false
+  };
+};
+
+// Dynamic AI agent configuration options based on demo type and industry
+const getDynamicAIConfig = (demoType: string, industry: string) => {
+  const aiConfigOptions = {
+    'field-service-technical': {
+      'field-technician-support': {
+        personalities: [
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' },
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'friendly', label: 'Friendly - Warm, approachable, conversational' }
+        ],
+        communicationStyles: [
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' },
+          { value: 'problem-focused', label: 'Problem-Focused - Identify issue, then solution' },
+          { value: 'solution-focused', label: 'Solution-Focused - Immediate answers, quick fixes' }
+        ],
+        technicalLevels: [
+          { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' },
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+          { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' },
+          { value: 'experience-based', label: 'Experience-Based - Past cases, lessons learned' }
+        ]
+      },
+      'equipment-troubleshooting': {
+        personalities: [
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' },
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' }
+        ],
+        communicationStyles: [
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' },
+          { value: 'problem-focused', label: 'Problem-Focused - Identify issue, then solution' }
+        ],
+        technicalLevels: [
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+          { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      }
+    },
+    'engineering-design': {
+      'cad-integration': {
+        personalities: [
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' },
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'consultative', label: 'Consultative - Advisory, solution-oriented, strategic' }
+        ],
+        communicationStyles: [
+          { value: 'overview-first', label: 'Overview First - Big picture, then details' },
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' }
+        ],
+        technicalLevels: [
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+          { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'creative', label: 'Creative - Innovative solutions, thinking outside the box' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      },
+      'technical-documentation': {
+        personalities: [
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' }
+        ],
+        communicationStyles: [
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' },
+          { value: 'overview-first', label: 'Overview First - Big picture, then details' }
+        ],
+        technicalLevels: [
+          { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' },
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      }
+    },
+    'logistics-optimization': {
+      'route-optimization': {
+        personalities: [
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'friendly', label: 'Friendly - Warm, approachable, conversational' },
+          { value: 'consultative', label: 'Consultative - Advisory, solution-oriented, strategic' }
+        ],
+        communicationStyles: [
+          { value: 'overview-first', label: 'Overview First - Big picture, then details' },
+          { value: 'solution-focused', label: 'Solution-Focused - Immediate answers, quick fixes' }
+        ],
+        technicalLevels: [
+          { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' },
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' },
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' }
+        ]
+      }
+    },
+    'it-operations': {
+      'system-monitoring': {
+        personalities: [
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' },
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' }
+        ],
+        communicationStyles: [
+          { value: 'problem-focused', label: 'Problem-Focused - Identify issue, then solution' },
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' }
+        ],
+        technicalLevels: [
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+          { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      },
+      'cybersecurity': {
+        personalities: [
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' }
+        ],
+        communicationStyles: [
+          { value: 'problem-focused', label: 'Problem-Focused - Identify issue, then solution' },
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' }
+        ],
+        technicalLevels: [
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+          { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      }
+    },
+    'hr-operations': {
+      'hr-automation': {
+        personalities: [
+          { value: 'friendly', label: 'Friendly - Warm, approachable, conversational' },
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'consultative', label: 'Consultative - Advisory, solution-oriented, strategic' }
+        ],
+        communicationStyles: [
+          { value: 'overview-first', label: 'Overview First - Big picture, then details' },
+          { value: 'solution-focused', label: 'Solution-Focused - Immediate answers, quick fixes' }
+        ],
+        technicalLevels: [
+          { value: 'beginner', label: 'Beginner - Basic concepts, simple explanations' },
+          { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'experience-based', label: 'Experience-Based - Past cases, lessons learned' },
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' }
+        ]
+      }
+    },
+    'legal-operations': {
+      'legal-automation': {
+        personalities: [
+          { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+          { value: 'consultative', label: 'Consultative - Advisory, solution-oriented, strategic' }
+        ],
+        communicationStyles: [
+          { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' },
+          { value: 'overview-first', label: 'Overview First - Big picture, then details' }
+        ],
+        technicalLevels: [
+          { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' },
+          { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' }
+        ],
+        problemSolvingApproaches: [
+          { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+          { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' }
+        ]
+      }
+    }
+  };
+
+  const industryConfig = aiConfigOptions[industry as keyof typeof aiConfigOptions];
+  if (industryConfig && industryConfig[demoType as keyof typeof industryConfig]) {
+    return industryConfig[demoType as keyof typeof industryConfig];
+  }
+
+  // Default configuration
+  return {
+    personalities: [
+      { value: 'professional', label: 'Professional - Formal, authoritative, expert tone' },
+      { value: 'friendly', label: 'Friendly - Warm, approachable, conversational' },
+      { value: 'technical', label: 'Technical - Precise, detailed, engineering-focused' },
+      { value: 'consultative', label: 'Consultative - Advisory, solution-oriented, strategic' }
+    ],
+    communicationStyles: [
+      { value: 'step-by-step', label: 'Step-by-Step - Detailed instructions, sequential guidance' },
+      { value: 'overview-first', label: 'Overview First - Big picture, then details' },
+      { value: 'problem-focused', label: 'Problem-Focused - Identify issue, then solution' },
+      { value: 'solution-focused', label: 'Solution-Focused - Immediate answers, quick fixes' }
+    ],
+    technicalLevels: [
+      { value: 'beginner', label: 'Beginner - Basic concepts, simple explanations' },
+      { value: 'intermediate', label: 'Intermediate - Some technical knowledge, moderate detail' },
+      { value: 'advanced', label: 'Advanced - High technical knowledge, detailed explanations' },
+      { value: 'expert', label: 'Expert - Deep technical expertise, complex problem solving' }
+    ],
+    problemSolvingApproaches: [
+      { value: 'systematic', label: 'Systematic - Methodical, step-by-step diagnosis' },
+      { value: 'creative', label: 'Creative - Innovative solutions, thinking outside the box' },
+      { value: 'data-driven', label: 'Data-Driven - Evidence-based, analytical approach' },
+      { value: 'experience-based', label: 'Experience-Based - Past cases, lessons learned' }
+    ]
+  };
+};
+
+// Dynamic team size options based on industry
+const getDynamicTeamSizes = (industry: string) => {
+  const teamSizeOptions = {
+    // Field Service Operations - typically smaller, specialized teams
+    'field-service-technical': [
+      { value: '1-5', label: '1-5 people (Small field team)' },
+      { value: '6-15', label: '6-15 people (Medium field team)' },
+      { value: '16-50', label: '16-50 people (Large field team)' },
+      { value: '51-100', label: '51-100 people (Enterprise field team)' },
+      { value: '100+', label: '100+ people (Multi-region field operations)' }
+    ],
+    'equipment-maintenance': [
+      { value: '1-10', label: '1-10 people (Maintenance crew)' },
+      { value: '11-25', label: '11-25 people (Maintenance department)' },
+      { value: '26-75', label: '26-75 people (Large maintenance team)' },
+      { value: '76-200', label: '76-200 people (Enterprise maintenance)' },
+      { value: '200+', label: '200+ people (Multi-facility maintenance)' }
+    ],
+    'technical-support': [
+      { value: '1-5', label: '1-5 people (Small support team)' },
+      { value: '6-20', label: '6-20 people (Medium support team)' },
+      { value: '21-50', label: '21-50 people (Large support team)' },
+      { value: '51-150', label: '51-150 people (Enterprise support)' },
+      { value: '150+', label: '150+ people (Global support center)' }
+    ],
+    'emergency-response': [
+      { value: '1-10', label: '1-10 people (Emergency crew)' },
+      { value: '11-30', label: '11-30 people (Emergency department)' },
+      { value: '31-100', label: '31-100 people (Large emergency team)' },
+      { value: '101-300', label: '101-300 people (Regional emergency)' },
+      { value: '300+', label: '300+ people (Multi-region emergency)' }
+    ],
+    // Engineering & Manufacturing - typically larger teams
+    'engineering-design': [
+      { value: '5-15', label: '5-15 people (Small engineering team)' },
+      { value: '16-40', label: '16-40 people (Medium engineering team)' },
+      { value: '41-100', label: '41-100 people (Large engineering team)' },
+      { value: '101-300', label: '101-300 people (Enterprise engineering)' },
+      { value: '300+', label: '300+ people (Global engineering)' }
+    ],
+    'manufacturing-operations': [
+      { value: '10-25', label: '10-25 people (Small manufacturing)' },
+      { value: '26-75', label: '26-75 people (Medium manufacturing)' },
+      { value: '76-200', label: '76-200 people (Large manufacturing)' },
+      { value: '201-500', label: '201-500 people (Enterprise manufacturing)' },
+      { value: '500+', label: '500+ people (Multi-plant operations)' }
+    ],
+    'technical-documentation': [
+      { value: '1-5', label: '1-5 people (Small documentation team)' },
+      { value: '6-15', label: '6-15 people (Medium documentation team)' },
+      { value: '16-40', label: '16-40 people (Large documentation team)' },
+      { value: '41-100', label: '41-100 people (Enterprise documentation)' },
+      { value: '100+', label: '100+ people (Global documentation)' }
+    ],
+    // Logistics & Supply Chain - varies widely
+    'logistics-optimization': [
+      { value: '5-20', label: '5-20 people (Small logistics team)' },
+      { value: '21-50', label: '21-50 people (Medium logistics team)' },
+      { value: '51-150', label: '51-150 people (Large logistics team)' },
+      { value: '151-400', label: '151-400 people (Enterprise logistics)' },
+      { value: '400+', label: '400+ people (Global supply chain)' }
+    ],
+    'fleet-management': [
+      { value: '3-15', label: '3-15 people (Small fleet team)' },
+      { value: '16-40', label: '16-40 people (Medium fleet team)' },
+      { value: '41-100', label: '41-100 people (Large fleet team)' },
+      { value: '101-300', label: '101-300 people (Enterprise fleet)' },
+      { value: '300+', label: '300+ people (Multi-region fleet)' }
+    ],
+    // IT & Technology - varies by company size
+    'it-operations': [
+      { value: '2-10', label: '2-10 people (Small IT team)' },
+      { value: '11-30', label: '11-30 people (Medium IT team)' },
+      { value: '31-75', label: '31-75 people (Large IT team)' },
+      { value: '76-200', label: '76-200 people (Enterprise IT)' },
+      { value: '200+', label: '200+ people (Global IT operations)' }
+    ],
+    'cybersecurity': [
+      { value: '1-5', label: '1-5 people (Small security team)' },
+      { value: '6-20', label: '6-20 people (Medium security team)' },
+      { value: '21-50', label: '21-50 people (Large security team)' },
+      { value: '51-150', label: '51-150 people (Enterprise security)' },
+      { value: '150+', label: '150+ people (Global security operations)' }
+    ],
+    // HR & Legal - typically smaller, specialized teams
+    'hr-operations': [
+      { value: '1-5', label: '1-5 people (Small HR team)' },
+      { value: '6-15', label: '6-15 people (Medium HR team)' },
+      { value: '16-40', label: '16-40 people (Large HR team)' },
+      { value: '41-100', label: '41-100 people (Enterprise HR)' },
+      { value: '100+', label: '100+ people (Global HR operations)' }
+    ],
+    'legal-operations': [
+      { value: '1-3', label: '1-3 people (Small legal team)' },
+      { value: '4-10', label: '4-10 people (Medium legal team)' },
+      { value: '11-25', label: '11-25 people (Large legal team)' },
+      { value: '26-75', label: '26-75 people (Enterprise legal)' },
+      { value: '75+', label: '75+ people (Global legal operations)' }
+    ]
+  };
+
+  return teamSizeOptions[industry as keyof typeof teamSizeOptions] || [
+    { value: '1-10', label: '1-10 people' },
+    { value: '11-50', label: '11-50 people' },
+    { value: '51-100', label: '51-100 people' },
+    { value: '101-500', label: '101-500 people' },
+    { value: '500+', label: '500+ people' }
+  ];
+};
+
+// Dynamic business challenges based on industry and team size
+const getDynamicChallenges = (industry: string, teamSize: string) => {
+  const challengeOptions = {
+    'field-service-technical': {
+      '1-5': [
+        'Limited technical expertise on-site',
+        'Difficulty accessing technical documentation',
+        'Challenges with remote troubleshooting',
+        'Inefficient scheduling and routing',
+        'Limited customer communication tools'
+      ],
+      '6-15': [
+        'Coordination between field teams',
+        'Standardizing technical procedures',
+        'Managing technical knowledge base',
+        'Customer service consistency',
+        'Performance tracking and reporting'
+      ],
+      '16-50': [
+        'Multi-location coordination',
+        'Technical training and certification',
+        'Equipment maintenance scheduling',
+        'Customer relationship management',
+        'Quality assurance and compliance'
+      ],
+      '51-100': [
+        'Enterprise-level technical operations',
+        'Advanced analytics and reporting',
+        'Integration with existing systems',
+        'Scalable technical processes',
+        'Customer experience optimization'
+      ],
+      '100+': [
+        'Global technical operations',
+        'Complex multi-region coordination',
+        'Advanced AI and automation',
+        'Enterprise integration',
+        'Strategic technical planning'
+      ]
+    },
+    'engineering-design': {
+      '5-15': [
+        'Design collaboration and version control',
+        'Technical documentation management',
+        'Design review processes',
+        'Integration with CAD systems',
+        'Project coordination'
+      ],
+      '16-40': [
+        'Cross-team design coordination',
+        'Design standards and compliance',
+        'Technical knowledge management',
+        'Design automation and optimization',
+        'Quality control processes'
+      ],
+      '41-100': [
+        'Large-scale design projects',
+        'Advanced design tools integration',
+        'Design analytics and reporting',
+        'Multi-disciplinary coordination',
+        'Design process optimization'
+      ],
+      '101-300': [
+        'Enterprise design operations',
+        'Global design collaboration',
+        'Advanced design automation',
+        'Design data analytics',
+        'Strategic design planning'
+      ],
+      '300+': [
+        'Global engineering operations',
+        'Complex multi-project coordination',
+        'Advanced AI design tools',
+        'Enterprise design integration',
+        'Strategic engineering planning'
+      ]
+    },
+    'manufacturing-operations': {
+      '10-25': [
+        'Production scheduling optimization',
+        'Quality control processes',
+        'Equipment maintenance coordination',
+        'Supply chain management',
+        'Safety compliance'
+      ],
+      '26-75': [
+        'Multi-shift coordination',
+        'Production analytics and reporting',
+        'Equipment monitoring and maintenance',
+        'Quality assurance systems',
+        'Workforce management'
+      ],
+      '76-200': [
+        'Large-scale production operations',
+        'Advanced manufacturing analytics',
+        'Supply chain optimization',
+        'Quality management systems',
+        'Process automation'
+      ],
+      '201-500': [
+        'Enterprise manufacturing operations',
+        'Advanced production planning',
+        'Global supply chain coordination',
+        'Manufacturing intelligence',
+        'Strategic production planning'
+      ],
+      '500+': [
+        'Global manufacturing operations',
+        'Complex multi-plant coordination',
+        'Advanced manufacturing AI',
+        'Enterprise manufacturing integration',
+        'Strategic manufacturing planning'
+      ]
+    }
+  };
+
+  const industryChallenges = challengeOptions[industry as keyof typeof challengeOptions];
+  if (industryChallenges) {
+    // Find the appropriate team size range
+    const teamSizeKey = Object.keys(industryChallenges).find(key => {
+      const [min, max] = key.split('-').map(Number);
+      const teamSizeNum = parseInt(teamSize);
+      return teamSizeNum >= min && (max === undefined || teamSizeNum <= max);
+    });
+    
+    if (teamSizeKey) {
+      return industryChallenges[teamSizeKey as keyof typeof industryChallenges];
+    }
+  }
+
+  // Default challenges
+  return [
+    'Process optimization and efficiency',
+    'Data management and analytics',
+    'Team coordination and communication',
+    'Quality control and compliance',
+    'Customer service and support'
+  ];
+};
+
+// Dynamic consultation packages based on demo type and industry
+const getDynamicConsultationPackages = (demoType: string, industry: string) => {
+  const packageOptions = {
+    'field-service-technical': {
+      'field-technician-support': [
+        { value: 'field-technician-demo', label: 'Field Technician AI Demo - Live technical support simulation' },
+        { value: 'field-operations-consultation', label: 'Field Operations Consultation - 60 min strategy session' },
+        { value: 'technical-implementation', label: 'Technical Implementation Plan - Custom deployment strategy' }
+      ],
+      'equipment-troubleshooting': [
+        { value: 'diagnostic-demo', label: 'Diagnostic AI Demo - Equipment troubleshooting simulation' },
+        { value: 'maintenance-consultation', label: 'Maintenance Strategy Consultation - 45 min planning session' },
+        { value: 'predictive-maintenance', label: 'Predictive Maintenance Setup - Implementation roadmap' }
+      ]
+    },
+    'engineering-design': {
+      'cad-integration': [
+        { value: 'cad-ai-demo', label: 'CAD Integration Demo - Live design assistance simulation' },
+        { value: 'engineering-consultation', label: 'Engineering Process Consultation - 60 min strategy session' },
+        { value: 'design-automation', label: 'Design Automation Setup - Custom workflow implementation' }
+      ],
+      'technical-documentation': [
+        { value: 'documentation-demo', label: 'Documentation AI Demo - Live document generation simulation' },
+        { value: 'documentation-consultation', label: 'Documentation Strategy Consultation - 45 min planning session' },
+        { value: 'knowledge-management', label: 'Knowledge Management Setup - Implementation roadmap' }
+      ]
+    },
+    'logistics-optimization': {
+      'route-optimization': [
+        { value: 'routing-demo', label: 'Route Optimization Demo - Live logistics simulation' },
+        { value: 'logistics-consultation', label: 'Logistics Strategy Consultation - 60 min planning session' },
+        { value: 'supply-chain-optimization', label: 'Supply Chain Optimization - Implementation roadmap' }
+      ]
+    }
+  };
+
+  const industryPackages = packageOptions[industry as keyof typeof packageOptions];
+  if (industryPackages && industryPackages[demoType as keyof typeof industryPackages]) {
+    return industryPackages[demoType as keyof typeof industryPackages];
+  }
+
+  // Default packages
+  return [
+    { value: 'general-demo', label: 'General AI Demo - Live automation simulation' },
+    { value: 'strategy-consultation', label: 'Strategy Consultation - 60 min planning session' },
+    { value: 'implementation-plan', label: 'Implementation Plan - Custom deployment strategy' }
+  ];
+};
+
 // Dynamic technical specializations based on demo type and industry
 const getDynamicSpecializations = (demoType: string, industry: string) => {
   const specializationGroups = {
@@ -516,9 +1215,18 @@ const GuidedDemoForm: React.FC = () => {
                formData.company.length > 0 && 
                formData.phone.length > 0;
       case 2:
-        return formData.industry.length > 0 && formData.businessDescription.length > 10;
+        return formData.industry.length > 0 && formData.businessDescription.length > 10 && formData.teamSize.length > 0;
       case 3:
-        return formData.demoType.length > 0;
+        if (!formData.demoType.length || !formData.consultationPackage.length) return false;
+        
+        // For demo-only requests, no scheduling required
+        if (formData.consultationPackage.includes('Demo Request Only')) return true;
+        
+        // For custom packages, no scheduling required
+        if (formData.consultationPackage === 'custom-package') return true;
+        
+        // For other packages, require scheduling
+        return formData.preferredDate.length > 0 && formData.preferredTime.length > 0;
       case 4:
         return formData.agentPersonality.length > 0 && formData.communicationStyle.length > 0 && formData.technicalLevel.length > 0;
       case 5:
@@ -868,34 +1576,74 @@ const GuidedDemoForm: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Team Size
+                          Team Size *
                         </label>
                         <select
                           value={formData.teamSize}
                           onChange={(e) => updateFormData('teamSize', e.target.value)}
+                          required
                           className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400"
                         >
                           <option value="">Select team size</option>
-                          <option value="1-5">1-5 people</option>
-                          <option value="6-20">6-20 people</option>
-                          <option value="21-50">21-50 people</option>
-                          <option value="51-100">51-100 people</option>
-                          <option value="101-500">101-500 people</option>
-                          <option value="500+">500+ people</option>
+                          {getDynamicTeamSizes(formData.industry).map((size) => (
+                            <option key={size.value} value={size.value}>
+                              {size.label}
+                            </option>
+                          ))}
                         </select>
+                        {formData.industry && (
+                          <p className="text-xs text-gray-400 font-mono mt-1">
+                            Team size options tailored for: {formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                          </p>
+                        )}
                       </div>
 
                       <div>
                         <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                           Current Challenges
                         </label>
-                        <textarea
-                          value={formData.currentChallenges}
-                          onChange={(e) => updateFormData('currentChallenges', e.target.value)}
-                          rows={3}
-                          className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400"
-                          placeholder="Describe your current challenges and pain points"
-                        />
+                        <div className="space-y-3">
+                          <textarea
+                            value={formData.currentChallenges}
+                            onChange={(e) => updateFormData('currentChallenges', e.target.value)}
+                            rows={3}
+                            className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400"
+                            placeholder="Describe your current challenges and pain points"
+                          />
+                          
+                          {/* Dynamic challenge suggestions */}
+                          {formData.industry && formData.teamSize && (
+                            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Target className="w-4 h-4 text-blue-400" />
+                                <h4 className="font-mono font-semibold text-blue-300 text-sm">
+                                  Common Challenges for Your Industry & Team Size
+                                </h4>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {getDynamicChallenges(formData.industry, formData.teamSize).map((challenge, index) => (
+                                  <button
+                                    key={index}
+                                    type="button"
+                                    onClick={() => {
+                                      const currentChallenges = formData.currentChallenges;
+                                      const newChallenges = currentChallenges 
+                                        ? `${currentChallenges}\n• ${challenge}`
+                                        : `• ${challenge}`;
+                                      updateFormData('currentChallenges', newChallenges);
+                                    }}
+                                    className="text-xs bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded px-2 py-1 text-blue-300 font-mono transition-colors"
+                                  >
+                                    + {challenge}
+                                  </button>
+                                ))}
+                              </div>
+                              <p className="text-xs text-gray-400 font-mono mt-2">
+                                Click any challenge above to add it to your description
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -949,55 +1697,112 @@ const GuidedDemoForm: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                        Consultation Package
+                        Consultation Package *
                       </label>
                       <select
                         value={formData.consultationPackage}
                         onChange={(e) => updateFormData('consultationPackage', e.target.value)}
+                        required
                         className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
                       >
                         <option value="">Select consultation package</option>
-                        <option value="Demo Request Only - Evaluation Phase">Demo Request Only - Evaluation Phase</option>
-                        <option value="Full Consultation - Strategy & Implementation">Full Consultation - Strategy & Implementation</option>
-                        <option value="Custom Package - Let's Discuss">Custom Package - Let's Discuss</option>
+                        {getDynamicConsultationPackages(formData.demoType, formData.industry).map((pkg) => (
+                          <option key={pkg.value} value={pkg.value}>
+                            {pkg.label}
+                          </option>
+                        ))}
+                        <option value="custom-package">Custom Package - Let's Discuss</option>
                       </select>
+                      {formData.demoType && formData.industry && (
+                        <p className="text-xs text-gray-400 font-mono mt-1">
+                          Packages tailored for: {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} in {formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Preferred Date
-                        </label>
-                        <input
-                          type="date"
-                          value={formData.preferredDate}
-                          onChange={(e) => updateFormData('preferredDate', e.target.value)}
-                          className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
-                        />
-                      </div>
+                    {/* Conditional scheduling based on consultation package */}
+                    {formData.consultationPackage && formData.consultationPackage !== 'custom-package' && !formData.consultationPackage.includes('Demo Request Only') && (
+                      <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Calendar className="w-5 h-5 text-purple-400" />
+                          <h4 className="font-mono font-semibold text-purple-300">
+                            Schedule Your Consultation
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm mb-4">
+                          Let's schedule your {formData.consultationPackage.toLowerCase()} session.
+                        </p>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                              Preferred Date *
+                            </label>
+                            <input
+                              type="date"
+                              value={formData.preferredDate}
+                              onChange={(e) => updateFormData('preferredDate', e.target.value)}
+                              min={new Date().toISOString().split('T')[0]}
+                              required
+                              className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                            />
+                          </div>
 
-                      <div>
-                        <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Preferred Time
-                        </label>
-                        <select
-                          value={formData.preferredTime}
-                          onChange={(e) => updateFormData('preferredTime', e.target.value)}
-                          className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
-                        >
-                          <option value="">Select preferred time</option>
-                          <option value="9:00 AM">9:00 AM</option>
-                          <option value="10:00 AM">10:00 AM</option>
-                          <option value="11:00 AM">11:00 AM</option>
-                          <option value="12:00 PM">12:00 PM</option>
-                          <option value="1:00 PM">1:00 PM</option>
-                          <option value="2:00 PM">2:00 PM</option>
-                          <option value="3:00 PM">3:00 PM</option>
-                          <option value="4:00 PM">4:00 PM</option>
-                          <option value="5:00 PM">5:00 PM</option>
-                        </select>
+                          <div>
+                            <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                              Preferred Time *
+                            </label>
+                            <select
+                              value={formData.preferredTime}
+                              onChange={(e) => updateFormData('preferredTime', e.target.value)}
+                              required
+                              className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                            >
+                              <option value="">Select preferred time</option>
+                              <option value="9:00 AM">9:00 AM</option>
+                              <option value="10:00 AM">10:00 AM</option>
+                              <option value="11:00 AM">11:00 AM</option>
+                              <option value="12:00 PM">12:00 PM</option>
+                              <option value="1:00 PM">1:00 PM</option>
+                              <option value="2:00 PM">2:00 PM</option>
+                              <option value="3:00 PM">3:00 PM</option>
+                              <option value="4:00 PM">4:00 PM</option>
+                              <option value="5:00 PM">5:00 PM</option>
+                            </select>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
+
+                    {/* Demo-only message */}
+                    {formData.consultationPackage && formData.consultationPackage.includes('Demo Request Only') && (
+                      <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CheckCircle className="w-5 h-5 text-green-400" />
+                          <h4 className="font-mono font-semibold text-green-300">
+                            Demo Request Only
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm">
+                          No scheduling required. We'll prepare your custom demo and contact you within 24 hours to provide access and discuss next steps.
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Custom package message */}
+                    {formData.consultationPackage === 'custom-package' && (
+                      <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MessageSquare className="w-5 h-5 text-yellow-400" />
+                          <h4 className="font-mono font-semibold text-yellow-300">
+                            Custom Package Request
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm">
+                          We'll contact you to discuss your specific needs and create a tailored package for your requirements.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1007,6 +1812,23 @@ const GuidedDemoForm: React.FC = () => {
                     <h3 className="text-2xl font-mono font-bold mb-6 text-green-400">
                       AI Agent Configuration
                     </h3>
+                    
+                    {/* Context Information */}
+                    {formData.demoType && formData.industry && (
+                      <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4 mb-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Settings className="w-5 h-5 text-green-400" />
+                          <h4 className="font-mono font-semibold text-green-300">
+                            AI Configuration for Your Demo
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm">
+                          Based on your <strong>{formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong> demo 
+                          in <strong>{formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong>, 
+                          we've curated AI agent options that work best for your specific use case.
+                        </p>
+                      </div>
+                    )}
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -1020,11 +1842,17 @@ const GuidedDemoForm: React.FC = () => {
                           className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
                         >
                           <option value="">Select agent personality</option>
-                          <option value="professional">Professional - Formal, authoritative, expert tone</option>
-                          <option value="friendly">Friendly - Warm, approachable, conversational</option>
-                          <option value="technical">Technical - Precise, detailed, engineering-focused</option>
-                          <option value="consultative">Consultative - Advisory, solution-oriented, strategic</option>
+                          {getDynamicAIConfig(formData.demoType, formData.industry).personalities.map((personality) => (
+                            <option key={personality.value} value={personality.value}>
+                              {personality.label}
+                            </option>
+                          ))}
                         </select>
+                        {formData.demoType && formData.industry && (
+                          <p className="text-xs text-gray-400 font-mono mt-1">
+                            Personality options tailored for: {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1038,11 +1866,17 @@ const GuidedDemoForm: React.FC = () => {
                           className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
                         >
                           <option value="">Select communication style</option>
-                          <option value="step-by-step">Step-by-Step - Detailed instructions, sequential guidance</option>
-                          <option value="overview-first">Overview First - Big picture, then details</option>
-                          <option value="problem-focused">Problem-Focused - Identify issue, then solution</option>
-                          <option value="solution-focused">Solution-Focused - Immediate answers, quick fixes</option>
+                          {getDynamicAIConfig(formData.demoType, formData.industry).communicationStyles.map((style) => (
+                            <option key={style.value} value={style.value}>
+                              {style.label}
+                            </option>
+                          ))}
                         </select>
+                        {formData.demoType && formData.industry && (
+                          <p className="text-xs text-gray-400 font-mono mt-1">
+                            Communication styles optimized for: {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1056,11 +1890,17 @@ const GuidedDemoForm: React.FC = () => {
                           className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
                         >
                           <option value="">Select technical level</option>
-                          <option value="beginner">Beginner - Basic concepts, simple explanations</option>
-                          <option value="intermediate">Intermediate - Some technical knowledge, moderate detail</option>
-                          <option value="advanced">Advanced - High technical knowledge, detailed explanations</option>
-                          <option value="expert">Expert - Deep technical expertise, complex problem solving</option>
+                          {getDynamicAIConfig(formData.demoType, formData.industry).technicalLevels.map((level) => (
+                            <option key={level.value} value={level.value}>
+                              {level.label}
+                            </option>
+                          ))}
                         </select>
+                        {formData.demoType && formData.industry && (
+                          <p className="text-xs text-gray-400 font-mono mt-1">
+                            Technical levels appropriate for: {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1073,11 +1913,17 @@ const GuidedDemoForm: React.FC = () => {
                           className="w-full p-3 bg-gray-800/50 border border-green-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-green-400"
                         >
                           <option value="">Select problem solving approach</option>
-                          <option value="systematic">Systematic - Methodical, step-by-step diagnosis</option>
-                          <option value="creative">Creative - Innovative solutions, thinking outside the box</option>
-                          <option value="data-driven">Data-Driven - Evidence-based, analytical approach</option>
-                          <option value="experience-based">Experience-Based - Past cases, lessons learned</option>
+                          {getDynamicAIConfig(formData.demoType, formData.industry).problemSolvingApproaches.map((approach) => (
+                            <option key={approach.value} value={approach.value}>
+                              {approach.label}
+                            </option>
+                          ))}
                         </select>
+                        {formData.demoType && formData.industry && (
+                          <p className="text-xs text-gray-400 font-mono mt-1">
+                            Problem-solving approaches suited for: {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -1308,38 +2154,56 @@ const GuidedDemoForm: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
-                      <h5 className="text-lg font-mono font-semibold text-blue-400 mb-4">
-                        💡 Recommended Documents
-                      </h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-mono">
-                        <div>
-                          <h6 className="font-semibold text-blue-300 mb-2">✅ Good to Upload:</h6>
-                          <ul className="text-gray-300 space-y-1">
-                            <li>• Equipment manuals & specifications</li>
-                            <li>• Service procedures & workflows</li>
-                            <li>• Training materials & guides</li>
-                            <li>• Company policies & standards</li>
-                            <li>• Technical documentation</li>
-                            <li>• FAQ documents</li>
-                          </ul>
+                    {/* Dynamic file recommendations based on demo type */}
+                    {formData.demoType && formData.industry && (
+                      <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                        <h5 className="text-lg font-mono font-semibold text-blue-400 mb-4">
+                          💡 Recommended Documents for {formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-mono">
+                          <div>
+                            <h6 className="font-semibold text-blue-300 mb-2">✅ Recommended for Your Demo:</h6>
+                            <ul className="text-gray-300 space-y-1">
+                              {getRecommendedDocuments(formData.demoType, formData.industry).recommended.map((doc, index) => (
+                                <li key={index}>• {doc}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h6 className="font-semibold text-red-300 mb-2">⚠️ Avoid Uploading:</h6>
+                            <ul className="text-gray-300 space-y-1">
+                              <li>• Personal or sensitive data</li>
+                              <li>• Financial records</li>
+                              <li>• Customer information</li>
+                              <li>• Proprietary trade secrets</li>
+                              <li>• Copyrighted materials</li>
+                            </ul>
+                          </div>
                         </div>
-                        <div>
-                          <h6 className="font-semibold text-red-300 mb-2">⚠️ Avoid Uploading:</h6>
-                          <ul className="text-gray-300 space-y-1">
-                            <li>• Personal or sensitive data</li>
-                            <li>• Financial records</li>
-                            <li>• Customer information</li>
-                            <li>• Proprietary trade secrets</li>
-                            <li>• Copyrighted materials</li>
-                          </ul>
-                        </div>
+                        
+                        {/* Conditional requirement message */}
+                        {getRecommendedDocuments(formData.demoType, formData.industry).required && (
+                          <div className="mt-4 bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+                            <div className="flex items-center gap-2 mb-2">
+                              <FileText className="w-5 h-5 text-yellow-400" />
+                              <h6 className="font-mono font-semibold text-yellow-300">
+                                Documents Required for Best Results
+                              </h6>
+                            </div>
+                            <p className="text-gray-300 font-mono text-sm">
+                              For optimal demo customization, we recommend uploading at least one document from the recommended list above.
+                            </p>
+                          </div>
+                        )}
                       </div>
-                    </div>
+                    )}
 
                     <div className="text-center">
                       <p className="text-gray-400 font-mono text-sm">
-                        This step is optional. You can skip it and proceed to review your information.
+                        {formData.demoType && getRecommendedDocuments(formData.demoType, formData.industry).required 
+                          ? "Uploading documents will significantly improve your demo quality."
+                          : "This step is optional. You can skip it and proceed to review your information."
+                        }
                       </p>
                     </div>
                   </div>
