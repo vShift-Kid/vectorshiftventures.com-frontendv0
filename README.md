@@ -1,250 +1,224 @@
-# VectorShift Ventures - AI Automation Solutions
+# 🎤 VAPI Unified Webhook System
 
-A modern, responsive website for VectorShift Ventures, showcasing AI automation solutions for field service businesses with integrated VAPI phone calling and analytics.
+A production-ready webhook system for handling both web voice calls and phone calls using VAPI's comprehensive SDK ecosystem.
 
 ## 🚀 Features
 
-### Website Features
-- **Modern Design**: Clean, professional interface with dark theme
-- **Responsive Layout**: Optimized for all devices
-- **AI Integration**: Voice assistant and chatbot capabilities
-- **Performance Optimized**: Fast loading with code splitting
-- **SEO Ready**: Meta tags and structured data
+- **Web Voice Calls**: Handle browser-based voice conversations
+- **Phone Calls**: Manage outbound and inbound phone calls
+- **Real-time Analytics**: Track call statistics and events
+- **Function Calls**: Support for VAPI assistant functions
+- **Production Ready**: Security, rate limiting, and monitoring
+- **Scalable**: Built for high-traffic applications
 
-### VAPI Integration
-- **AI Phone Calling**: Make intelligent sales calls to prospects
-- **Enhanced Phone Caller**: Advanced calling interface with purpose selection
-- **Call Analytics Dashboard**: Real-time metrics and performance tracking
-- **Webhook Integration**: Real-time call event processing
-- **Call History**: Complete call logs with status tracking
-
-## 🛠️ Tech Stack
-
-- **React 18**: Modern React with hooks and suspense
-- **TypeScript**: Type-safe development
-- **Vite**: Fast build tool and dev server
-- **Tailwind CSS**: Utility-first CSS framework
-- **React Router**: Client-side routing
-- **Lucide React**: Beautiful icons
-- **VAPI Web SDK**: AI phone calling integration
-
-## 🚀 Getting Started
-
-### Prerequisites
+## 📋 Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
-- VAPI API key and assistant ID
+- VAPI account with API key
+- VAPI assistant ID
+- VAPI phone number (for outbound calls)
 
-### Installation
+## 🛠️ Installation
 
-1. Clone the repository
 ```bash
-git clone <repository-url>
-cd vectorshiftventures
-```
+# Clone the repository
+git clone https://github.com/yourusername/vapi-webhook-system.git
+cd vapi-webhook-system
 
-2. Install dependencies
-```bash
+# Install dependencies
 npm install
+
+# Set environment variables
+cp .env.example .env
+# Edit .env with your VAPI credentials
 ```
 
-3. Set up environment variables
+## 🔧 Environment Variables
+
 ```bash
-# Create .env file
-VITE_VAPI_API_KEY=your_vapi_api_key
-VITE_VAPI_ASSISTANT_ID=your_assistant_id
-VITE_VAPI_PHONE_NUMBER_ID=your_phone_number_id
-VITE_WEBHOOK_URL=http://localhost:3001
+# Required
+VAPI_API_KEY=your-vapi-api-key
+VAPI_ASSISTANT_ID=your-assistant-id
+
+# Optional
+VAPI_PHONE_NUMBER_ID=your-phone-number-id
+NODE_ENV=production
+PORT=3001
+WEBHOOK_URL=https://your-domain.com
+ALLOWED_ORIGINS=https://your-frontend-domain.com
 ```
 
-4. Start development server
+## 🚀 Quick Start
+
+### Development
 ```bash
 npm run dev
 ```
 
-5. Open http://localhost:3000
-
-## 📞 VAPI Phone Calling
-
-### Features
-- **AI Sales Calls**: Intelligent conversations with prospects
-- **Purpose Selection**: Lead qualification, demos, support, complaints
-- **Real-Time Status**: Live call progress and updates
-- **Call Analytics**: Performance metrics and reporting
-- **Call History**: Complete logs with status tracking
-
-### Usage
-1. Click "Call Now" button (bottom left)
-2. Enter phone number in E.164 format (+1234567890)
-3. Select call purpose
-4. Watch real-time call updates
-5. View analytics dashboard (bottom right)
-
-## 📊 Analytics Dashboard
-
-### Metrics
-- Total calls and success rates
-- Average call duration
-- Calls by purpose and status
-- Recent call history
-- Real-time active call monitoring
-
-### Access
-- Click "Analytics" button (bottom right)
-- View real-time performance data
-- Monitor call trends and patterns
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run test` - Run tests with Vitest
-- `npm run test:ui` - Run tests with UI
-- `npm run test:coverage` - Run tests with coverage report
-- `npm run test:run` - Run tests once
-- `npm run type-check` - Run TypeScript type checking
-
-## 📁 Project Structure
-
+### Production
+```bash
+npm start
 ```
-src/
-├── components/
-│   ├── CallAnalytics.tsx      # Analytics dashboard
-│   ├── EnhancedPhoneCaller.tsx # Advanced phone calling
-│   ├── PhoneCaller.tsx        # Basic phone calling
-│   ├── VoiceAssistant.tsx     # Voice interaction
-│   ├── Chatbot.tsx            # AI chatbot
-│   └── ...                    # Other components
-├── pages/                     # Page components
-├── config/                    # Configuration files
-├── lib/                       # Utility libraries
-└── main.tsx                   # Application entry point
+
+## 📡 API Endpoints
+
+### Webhook
+- `POST /webhook/vapi` - Main VAPI webhook endpoint
+
+### Calls Management
+- `GET /api/calls` - Get all calls
+- `GET /api/calls/:id` - Get specific call
+- `POST /api/calls/outbound-phone` - Make outbound call
+- `POST /api/calls/web-voice` - Handle web voice call
+- `POST /api/calls/inbound-phone` - Handle inbound call
+
+### Analytics
+- `GET /api/stats` - Get call statistics
+- `GET /api/events` - Get webhook events
+
+### Health
+- `GET /health` - Health check
+- `GET /` - System info
+
+## 🔗 Frontend Integration
+
+This webhook system works with the VectorShift Ventures React frontend:
+
+```typescript
+// Make outbound phone call
+const response = await fetch('https://your-webhook-domain.com/api/calls/outbound-phone', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    customerNumber: '+1234567890',
+    assistantId: 'your-assistant-id'
+  })
+});
+
+// Get call statistics
+const stats = await fetch('https://your-webhook-domain.com/api/stats');
 ```
 
 ## 🚀 Deployment
 
-### Production Ready Features
-- ✅ **Performance Optimized**: Bundle splitting, lazy loading, image optimization
-- ✅ **SEO Enhanced**: Meta tags, structured data, sitemap, robots.txt
-- ✅ **Error Handling**: Global error boundary, user-friendly messages
-- ✅ **Analytics**: Google Analytics 4, custom tracking, performance monitoring
-- ✅ **Security**: Security headers, environment variable protection
-- ✅ **Testing**: Comprehensive test suite with Vitest and React Testing Library
-- ✅ **Mobile Optimized**: Responsive design, touch-friendly interfaces
+### Render (Recommended)
+1. Connect your GitHub repository
+2. Create Web Service
+3. Set environment variables
+4. Deploy automatically
 
-### Quick Deploy
-
-#### Netlify (Recommended)
-1. Connect your GitHub repository to Netlify
-2. Set build command: `npm ci && npm run build`
-3. Set publish directory: `dist`
-4. Configure environment variables in Netlify dashboard
-5. Deploy automatically on push to main branch
-
-#### Vercel
-1. Connect your GitHub repository to Vercel
-2. Vercel will auto-detect Vite configuration
-3. Configure environment variables in Vercel dashboard
-4. Deploy automatically on push to main branch
-
-#### Render
-1. Create a Static Site on Render
-2. Connect your GitHub repository
-3. Set build command: `npm ci && npm run build`
-4. Set publish directory: `dist`
-5. Configure environment variables
-
-### Production Configuration
-See [PRODUCTION_DEPLOYMENT_GUIDE.md](./PRODUCTION_DEPLOYMENT_GUIDE.md) for detailed production setup instructions.
-
-## 🔧 Environment Variables
-
-Create a `.env` file in the root directory:
-
+### Railway
 ```bash
-# VAPI Configuration
-VITE_VAPI_API_KEY=your_vapi_api_key
-VITE_VAPI_ASSISTANT_ID=your_assistant_id
-VITE_VAPI_PHONE_NUMBER_ID=your_phone_number_id
-
-# Webhook Configuration
-VITE_WEBHOOK_URL=your_webhook_url
-
-# Optional: Supabase Configuration
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+npm install -g @railway/cli
+railway login
+railway init
+railway up
 ```
 
-## 📞 VAPI Setup
+### Docker
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+EXPOSE 3001
+CMD ["npm", "start"]
+```
 
-### 1. Get VAPI Credentials
-1. Sign up at [VAPI Dashboard](https://dashboard.vapi.ai)
-2. Create an assistant
-3. Get your API key and assistant ID
-4. Purchase a phone number
+## 📊 Monitoring
 
-### 2. Configure Webhooks
-1. Set up webhook handler (see vapi-mcp-tools)
-2. Configure webhook URL in VAPI dashboard
-3. Test webhook integration
+### Health Check
+```bash
+curl https://your-domain.com/health
+```
 
-### 3. Test Integration
-1. Start webhook handler
-2. Test phone calling from website
-3. Verify analytics dashboard
+### Call Statistics
+```bash
+curl https://your-domain.com/api/stats
+```
 
-## 🔒 Security
+### Webhook Events
+```bash
+curl https://your-domain.com/api/events
+```
 
-- Environment variable protection
-- API key validation
-- Webhook security
-- Rate limiting
-- Input validation
+## 🔒 Security Features
 
-## 📈 Performance
+- **Helmet**: Security headers
+- **Rate Limiting**: 100 requests per 15 minutes
+- **CORS**: Configurable origins
+- **Input Validation**: Request validation
+- **Error Handling**: Secure error responses
 
-- Code splitting for faster loading
-- Lazy loading of components
-- Optimized images and assets
-- Real-time call processing
-- Efficient analytics
+## 📈 Scaling
 
-## 🐛 Troubleshooting
+### High Traffic
+- Upgrade to paid deployment plans
+- Add Redis for call data storage
+- Implement database persistence
+- Add load balancing
 
-### Common Issues
+### Enterprise
+- Add authentication/authorization
+- Implement user-specific rate limiting
+- Add audit logging
+- Set up monitoring and alerting
 
-1. **API Key Not Verified**
-   - Check environment variables
-   - Verify VAPI credentials
-   - Restart development server
+## 🛠️ Development
 
-2. **Phone Calls Not Working**
-   - Verify phone number format (E.164)
-   - Check VAPI assistant configuration
-   - Review call logs
+### Project Structure
+```
+vapi-mcp-tools/
+├── unified-webhook-system.js    # Development webhook system
+├── production-webhook-system.js # Production webhook system
+├── server-phone-calls.js        # Phone call management
+├── package.json                 # Dependencies
+├── render.yaml                  # Render deployment config
+├── railway.json                 # Railway deployment config
+└── README.md                    # This file
+```
 
-3. **Analytics Not Loading**
-   - Ensure webhook handler is running
-   - Check webhook URL configuration
-   - Verify API endpoints
+### Scripts
+```bash
+npm start          # Start production server
+npm run dev        # Start development server with nodemon
+npm test           # Test the system
+```
+
+## 🔧 Configuration
+
+### VAPI Webhook Setup
+1. Go to [VAPI Dashboard](https://dashboard.vapi.ai)
+2. Settings > Webhooks
+3. Add webhook URL: `https://your-domain.com/webhook/vapi`
+4. Select events: call-start, call-end, transcript, function-call, etc.
+
+### Function Calls
+The system supports these VAPI functions:
+- `lookup_order` - Order lookup
+- `schedule_appointment` - Appointment scheduling
+- `get_company_info` - Company information
+- `get_pricing` - Pricing information
 
 ## 📞 Support
 
-- VAPI Documentation: https://docs.vapi.ai
-- VAPI Support: support@vapi.ai
-- VectorShift Ventures: Contact through website
+- **Documentation**: [VAPI Docs](https://docs.vapi.ai)
+- **Issues**: GitHub Issues
+- **Email**: info@vectorshiftventures.com
 
 ## 📄 License
 
-This project is proprietary to VectorShift Ventures LLC.
+MIT License - see LICENSE file for details
 
 ## 🤝 Contributing
 
-This is an internal project. For contributions, contact the development team.
+1. Fork the repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Create Pull Request
 
 ---
 
-**VectorShift Ventures** - Transforming field service businesses with AI automation.
+**Built with ❤️ by VectorShift Ventures LLC**

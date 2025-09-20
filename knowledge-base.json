@@ -1,0 +1,143 @@
+{
+  "categories": {
+    "company_overview": [
+      {
+        "question": "What is Vector Shift Ventures?",
+        "answer": "Vector Shift Ventures is a field service management automation company that helps businesses streamline their mobile workforce operations. We provide AI-powered solutions including scheduling systems, real-time tracking, automated dispatch, and customer support automation.",
+        "tags": [
+          "company",
+          "overview",
+          "services"
+        ],
+        "id": "1758224982619iqlxh8pol",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "What industries do you serve?",
+        "answer": "We serve a wide range of field service industries including HVAC, plumbing, electrical, security, telecommunications, healthcare, manufacturing, and any business that provides on-site services. Our solutions are customizable for different industry needs.",
+        "tags": [
+          "industries",
+          "clients",
+          "services"
+        ],
+        "id": "1758224982619j0ijc8k5x",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      }
+    ],
+    "services": [
+      {
+        "question": "What services do you offer?",
+        "answer": "We offer comprehensive field service management solutions including mobile workforce management, customer scheduling systems, real-time GPS tracking, automated dispatch, AI-powered customer support, mobile apps for technicians, and detailed reporting and analytics.",
+        "tags": [
+          "services",
+          "solutions",
+          "features"
+        ],
+        "id": "1758224982619nm8k597rf",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "How does your scheduling system work?",
+        "answer": "Our scheduling system allows customers to book appointments online, automatically dispatches the best available technician based on location and skills, sends real-time updates to customers, and integrates with your existing calendar systems. It can handle complex scheduling rules and recurring appointments.",
+        "tags": [
+          "scheduling",
+          "appointments",
+          "dispatch"
+        ],
+        "id": "17582249826194n3cugu5f",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "What is real-time tracking?",
+        "answer": "Our real-time tracking system shows you exactly where your technicians are, estimates arrival times, helps optimize routes, and allows customers to track their service appointments in real-time. This improves customer satisfaction and operational efficiency.",
+        "tags": [
+          "tracking",
+          "GPS",
+          "location",
+          "efficiency"
+        ],
+        "id": "17582249826193699ixpqc",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      }
+    ],
+    "pricing": [
+      {
+        "question": "How much does it cost?",
+        "answer": "Our pricing is based on the number of technicians and features you need. We offer flexible plans from basic packages to enterprise solutions. We provide free consultations to understand your specific needs and create custom pricing. Would you like me to connect you with our sales team for a detailed quote?",
+        "tags": [
+          "pricing",
+          "cost",
+          "plans",
+          "quote"
+        ],
+        "id": "1758224982619bwo5oewsa",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "Do you offer free trials?",
+        "answer": "Yes! We offer free demos and pilot programs where you can test our solutions with your team. We also provide free consultations to analyze your business needs and create a custom automation strategy. This helps you see exactly how our solutions work for your specific business.",
+        "tags": [
+          "trial",
+          "demo",
+          "consultation",
+          "free"
+        ],
+        "id": "1758224982619vyzzdhpdm",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      }
+    ],
+    "technical": [
+      {
+        "question": "Do you integrate with existing systems?",
+        "answer": "Yes, our solutions integrate seamlessly with your existing systems including CRM, accounting software, and other business tools. We provide custom integrations to ensure everything works together smoothly and your team can continue using familiar tools.",
+        "tags": [
+          "integration",
+          "existing",
+          "systems",
+          "compatibility"
+        ],
+        "id": "1758224982619qxhwqy7ro",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "Is there a mobile app for technicians?",
+        "answer": "Yes, we provide a comprehensive mobile app for technicians that includes real-time job updates, GPS navigation, customer information, offline capability, and the ability to update job status on the go. It syncs when connected and ensures technicians always have the information they need.",
+        "tags": [
+          "mobile",
+          "app",
+          "technicians",
+          "offline"
+        ],
+        "id": "1758224982619hs3526t03",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      }
+    ],
+    "support": [
+      {
+        "question": "What kind of support do you provide?",
+        "answer": "We provide comprehensive support including 24/7 technical support, training for your team, regular updates, and ongoing consultation. Our support team is available to help with any questions or issues, and we provide regular check-ins to ensure everything is working optimally.",
+        "tags": [
+          "support",
+          "training",
+          "help",
+          "24/7"
+        ],
+        "id": "1758224982619c0e15hkz2",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      },
+      {
+        "question": "How quickly can you implement the system?",
+        "answer": "Implementation time varies based on your specific needs and complexity. Typically, basic setups can be running within 2-4 weeks, while more complex enterprise implementations may take 6-8 weeks. We work closely with you throughout the process to ensure smooth implementation.",
+        "tags": [
+          "implementation",
+          "timeline",
+          "setup",
+          "deployment"
+        ],
+        "id": "1758224982619t6xy66ph5",
+        "createdAt": "2025-09-18T19:49:42.619Z"
+      }
+    ]
+  },
+  "lastUpdated": "2025-09-18T19:49:42.619Z"
+}
