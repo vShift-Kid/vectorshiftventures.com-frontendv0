@@ -41,6 +41,154 @@ interface FormData {
   uploadedFiles: File[];
 }
 
+// Industry-specific demo options
+const getIndustrySpecificDemos = (industry: string) => {
+  const demoOptions = {
+    // Field Service Operations
+    'field-service-technical': [
+      { value: 'field-technician-support', label: 'Field Technician Support - AI assistant for technicians in the field' },
+      { value: 'equipment-troubleshooting', label: 'Equipment Troubleshooting - AI-powered diagnostic assistance' },
+      { value: 'service-call-optimization', label: 'Service Call Optimization - AI for scheduling and routing' },
+      { value: 'preventive-maintenance', label: 'Preventive Maintenance - AI for maintenance scheduling and alerts' },
+      { value: 'emergency-response', label: 'Emergency Response - AI for urgent service calls' },
+      { value: 'quality-inspection', label: 'Quality Inspection - AI for service quality monitoring' }
+    ],
+    'equipment-maintenance': [
+      { value: 'maintenance-scheduling', label: 'Maintenance Scheduling - AI for equipment maintenance planning' },
+      { value: 'predictive-maintenance', label: 'Predictive Maintenance - AI for failure prediction' },
+      { value: 'parts-management', label: 'Parts Management - AI for inventory and parts ordering' },
+      { value: 'work-order-tracking', label: 'Work Order Tracking - AI for job management' },
+      { value: 'equipment-diagnostics', label: 'Equipment Diagnostics - AI for technical troubleshooting' },
+      { value: 'compliance-monitoring', label: 'Compliance Monitoring - AI for safety and regulatory compliance' }
+    ],
+    'technical-support': [
+      { value: 'troubleshooting-assistant', label: 'Troubleshooting Assistant - AI for technical problem solving' },
+      { value: 'knowledge-base', label: 'Knowledge Base - AI for technical documentation access' },
+      { value: 'remote-diagnostics', label: 'Remote Diagnostics - AI for remote technical support' },
+      { value: 'escalation-management', label: 'Escalation Management - AI for support ticket routing' },
+      { value: 'training-assistant', label: 'Training Assistant - AI for technician training' },
+      { value: 'performance-analytics', label: 'Performance Analytics - AI for support metrics' }
+    ],
+    'emergency-response': [
+      { value: 'emergency-dispatch', label: 'Emergency Dispatch - AI for urgent call management' },
+      { value: 'priority-routing', label: 'Priority Routing - AI for emergency response optimization' },
+      { value: 'resource-allocation', label: 'Resource Allocation - AI for emergency resource management' },
+      { value: 'status-tracking', label: 'Status Tracking - AI for real-time emergency monitoring' },
+      { value: 'communication-coordination', label: 'Communication Coordination - AI for emergency communications' },
+      { value: 'incident-documentation', label: 'Incident Documentation - AI for emergency reporting' }
+    ],
+    // Engineering & Manufacturing
+    'engineering-design': [
+      { value: 'cad-integration', label: 'CAD Integration - AI for design assistance and optimization' },
+      { value: 'technical-documentation', label: 'Technical Documentation - AI for engineering documentation' },
+      { value: 'design-validation', label: 'Design Validation - AI for design review and validation' },
+      { value: 'standards-compliance', label: 'Standards Compliance - AI for engineering standards' },
+      { value: 'project-management', label: 'Project Management - AI for engineering project coordination' },
+      { value: 'innovation-assistant', label: 'Innovation Assistant - AI for design innovation and R&D' }
+    ],
+    'manufacturing-operations': [
+      { value: 'production-optimization', label: 'Production Optimization - AI for manufacturing efficiency' },
+      { value: 'quality-control', label: 'Quality Control - AI for manufacturing quality assurance' },
+      { value: 'supply-chain-integration', label: 'Supply Chain Integration - AI for manufacturing logistics' },
+      { value: 'equipment-monitoring', label: 'Equipment Monitoring - AI for production line monitoring' },
+      { value: 'safety-compliance', label: 'Safety Compliance - AI for manufacturing safety' },
+      { value: 'performance-analytics', label: 'Performance Analytics - AI for production metrics' }
+    ],
+    'technical-documentation': [
+      { value: 'document-generation', label: 'Document Generation - AI for technical writing' },
+      { value: 'knowledge-management', label: 'Knowledge Management - AI for technical knowledge base' },
+      { value: 'version-control', label: 'Version Control - AI for document versioning' },
+      { value: 'collaboration-tools', label: 'Collaboration Tools - AI for technical team collaboration' },
+      { value: 'compliance-tracking', label: 'Compliance Tracking - AI for documentation compliance' },
+      { value: 'search-optimization', label: 'Search Optimization - AI for technical document search' }
+    ],
+    'cad-integration': [
+      { value: 'design-automation', label: 'Design Automation - AI for CAD workflow automation' },
+      { value: 'model-optimization', label: 'Model Optimization - AI for CAD model optimization' },
+      { value: 'collaboration-platform', label: 'Collaboration Platform - AI for CAD team collaboration' },
+      { value: 'version-management', label: 'Version Management - AI for CAD version control' },
+      { value: 'standards-integration', label: 'Standards Integration - AI for CAD standards compliance' },
+      { value: 'rendering-assistance', label: 'Rendering Assistance - AI for CAD visualization' }
+    ],
+    // Logistics & Supply Chain
+    'logistics-optimization': [
+      { value: 'route-optimization', label: 'Route Optimization - AI for delivery route planning' },
+      { value: 'fleet-management', label: 'Fleet Management - AI for vehicle and driver management' },
+      { value: 'delivery-tracking', label: 'Delivery Tracking - AI for shipment monitoring' },
+      { value: 'capacity-planning', label: 'Capacity Planning - AI for logistics capacity optimization' },
+      { value: 'cost-optimization', label: 'Cost Optimization - AI for logistics cost reduction' },
+      { value: 'performance-monitoring', label: 'Performance Monitoring - AI for logistics metrics' }
+    ],
+    'inventory-management': [
+      { value: 'stock-optimization', label: 'Stock Optimization - AI for inventory level management' },
+      { value: 'demand-forecasting', label: 'Demand Forecasting - AI for inventory demand prediction' },
+      { value: 'reorder-automation', label: 'Reorder Automation - AI for automated reordering' },
+      { value: 'warehouse-optimization', label: 'Warehouse Optimization - AI for warehouse operations' },
+      { value: 'supplier-management', label: 'Supplier Management - AI for vendor coordination' },
+      { value: 'cost-analysis', label: 'Cost Analysis - AI for inventory cost optimization' }
+    ],
+    'fleet-management': [
+      { value: 'vehicle-tracking', label: 'Vehicle Tracking - AI for fleet monitoring' },
+      { value: 'maintenance-scheduling', label: 'Maintenance Scheduling - AI for fleet maintenance' },
+      { value: 'driver-management', label: 'Driver Management - AI for driver coordination' },
+      { value: 'fuel-optimization', label: 'Fuel Optimization - AI for fuel efficiency' },
+      { value: 'safety-monitoring', label: 'Safety Monitoring - AI for fleet safety' },
+      { value: 'compliance-tracking', label: 'Compliance Tracking - AI for fleet compliance' }
+    ],
+    'supply-chain': [
+      { value: 'supplier-coordination', label: 'Supplier Coordination - AI for vendor management' },
+      { value: 'demand-planning', label: 'Demand Planning - AI for supply chain forecasting' },
+      { value: 'risk-management', label: 'Risk Management - AI for supply chain risk assessment' },
+      { value: 'cost-optimization', label: 'Cost Optimization - AI for supply chain cost reduction' },
+      { value: 'visibility-tracking', label: 'Visibility Tracking - AI for supply chain transparency' },
+      { value: 'performance-analytics', label: 'Performance Analytics - AI for supply chain metrics' }
+    ],
+    // IT & Technology
+    'it-operations': [
+      { value: 'system-monitoring', label: 'System Monitoring - AI for IT infrastructure monitoring' },
+      { value: 'incident-management', label: 'Incident Management - AI for IT incident response' },
+      { value: 'automation-tools', label: 'Automation Tools - AI for IT process automation' },
+      { value: 'security-monitoring', label: 'Security Monitoring - AI for cybersecurity' },
+      { value: 'performance-optimization', label: 'Performance Optimization - AI for IT performance' },
+      { value: 'compliance-management', label: 'Compliance Management - AI for IT compliance' }
+    ],
+    'software-development': [
+      { value: 'code-assistance', label: 'Code Assistance - AI for development support' },
+      { value: 'testing-automation', label: 'Testing Automation - AI for software testing' },
+      { value: 'deployment-management', label: 'Deployment Management - AI for deployment automation' },
+      { value: 'bug-tracking', label: 'Bug Tracking - AI for issue management' },
+      { value: 'documentation-generation', label: 'Documentation Generation - AI for code documentation' },
+      { value: 'performance-analysis', label: 'Performance Analysis - AI for code performance' }
+    ],
+    'system-integration': [
+      { value: 'api-management', label: 'API Management - AI for API integration' },
+      { value: 'data-synchronization', label: 'Data Synchronization - AI for data integration' },
+      { value: 'workflow-automation', label: 'Workflow Automation - AI for process integration' },
+      { value: 'monitoring-dashboard', label: 'Monitoring Dashboard - AI for integration monitoring' },
+      { value: 'error-handling', label: 'Error Handling - AI for integration error management' },
+      { value: 'scalability-management', label: 'Scalability Management - AI for integration scaling' }
+    ],
+    'cybersecurity': [
+      { value: 'threat-detection', label: 'Threat Detection - AI for security threat monitoring' },
+      { value: 'incident-response', label: 'Incident Response - AI for security incident management' },
+      { value: 'compliance-monitoring', label: 'Compliance Monitoring - AI for security compliance' },
+      { value: 'vulnerability-assessment', label: 'Vulnerability Assessment - AI for security scanning' },
+      { value: 'access-management', label: 'Access Management - AI for user access control' },
+      { value: 'security-analytics', label: 'Security Analytics - AI for security metrics' }
+    ]
+  };
+
+  // Return specific demos for the industry, or default demos if not found
+  return demoOptions[industry as keyof typeof demoOptions] || [
+    { value: 'general-ai-assistant', label: 'General AI Assistant - AI for business automation' },
+    { value: 'workflow-optimization', label: 'Workflow Optimization - AI for process improvement' },
+    { value: 'data-analytics', label: 'Data Analytics - AI for business intelligence' },
+    { value: 'customer-support', label: 'Customer Support - AI for customer service' },
+    { value: 'document-management', label: 'Document Management - AI for document processing' },
+    { value: 'reporting-automation', label: 'Reporting Automation - AI for automated reporting' }
+  ];
+};
+
 const steps = [
   { 
     id: 1, 
@@ -126,7 +274,16 @@ const GuidedDemoForm: React.FC = () => {
   });
 
   const updateFormData = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const updatedData = { ...prev, [field]: value };
+      
+      // Reset demo type when industry changes
+      if (field === 'industry') {
+        updatedData.demoType = '';
+      }
+      
+      return updatedData;
+    });
   };
 
   const nextStep = () => {
@@ -536,9 +693,24 @@ const GuidedDemoForm: React.FC = () => {
                 {/* Step 3: Demo Type */}
                 {currentStep === 3 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-mono font-bold mb-6 text-purple-400">
-                      Demo Type Selection
-                    </h3>
+                  <h3 className="text-2xl font-mono font-bold mb-6 text-purple-400">
+                    Demo Type Selection
+                  </h3>
+                  
+                  {formData.industry && (
+                    <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Bot className="w-5 h-5 text-purple-400" />
+                        <h4 className="font-mono font-semibold text-purple-300">
+                          Industry-Specific Demo Options
+                        </h4>
+                      </div>
+                      <p className="text-gray-300 font-mono text-sm">
+                        Based on your selection of <strong>{formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong>, 
+                        we've tailored the demo options to match your industry's specific needs and use cases.
+                      </p>
+                    </div>
+                  )}
                     
                     <div>
                       <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
@@ -551,10 +723,17 @@ const GuidedDemoForm: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
                       >
                         <option value="">Select your preferred demo type</option>
-                        <option value="chatbot">Chatbot Demo - AI-powered chat interface for technical support and customer service</option>
-                        <option value="voice-agent">Voice Agent Demo - AI voice assistant for field technicians and phone support</option>
-                        <option value="daily-briefing">Daily Briefing Demo - AI-generated reports and insights for management</option>
+                        {getIndustrySpecificDemos(formData.industry).map((demo) => (
+                          <option key={demo.value} value={demo.value}>
+                            {demo.label}
+                          </option>
+                        ))}
                       </select>
+                      {formData.industry && (
+                        <p className="text-xs text-gray-400 font-mono mt-1">
+                          Demo options tailored for: {formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </p>
+                      )}
                     </div>
 
                     <div>
