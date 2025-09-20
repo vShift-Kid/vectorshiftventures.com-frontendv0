@@ -40,6 +40,16 @@ interface FormData {
   
   // Files
   uploadedFiles: File[];
+  
+  // AI Configuration Generation
+  aiGeneratedConfig: {
+    agentPersonality: string;
+    communicationStyle: string;
+    technicalLevel: string;
+    problemSolvingApproach: string;
+    reasoning: string;
+  } | null;
+  isGeneratingConfig: boolean;
 }
 
 // Industry-specific demo options
@@ -254,6 +264,80 @@ const getIndustrySpecificDemos = (industry: string) => {
     { value: 'document-management', label: 'Document Management - AI for document processing' },
     { value: 'reporting-automation', label: 'Reporting Automation - AI for automated reporting' }
   ];
+};
+
+// AI Configuration Generation using GPT-4o mini
+const generateAIConfiguration = async (formData: FormData) => {
+  try {
+    const prompt = `Analyze the following business information and generate the optimal AI agent configuration:
+
+Industry: ${formData.industry}
+Business Description: ${formData.businessDescription}
+Team Size: ${formData.teamSize}
+Current Challenges: ${formData.currentChallenges}
+Demo Type: ${formData.demoType}
+
+Based on this information, recommend the best AI agent configuration for their specific use case. Consider:
+1. Industry-specific requirements
+2. Team size and technical expertise level
+3. Current pain points and challenges
+4. Demo type and intended use case
+
+Return a JSON object with the following structure:
+{
+  "agentPersonality": "professional|friendly|technical|consultative",
+  "communicationStyle": "step-by-step|overview-first|problem-focused|solution-focused",
+  "technicalLevel": "beginner|intermediate|advanced|expert",
+  "problemSolvingApproach": "systematic|creative|data-driven|experience-based",
+  "reasoning": "Brief explanation of why these settings are optimal for their use case"
+}
+
+Focus on practical, industry-appropriate recommendations that will help solve their specific challenges.`;
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an AI consultant specializing in business automation and AI agent configuration. Analyze business requirements and provide optimal AI agent settings.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 500
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`OpenAI API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const content = data.choices[0].message.content;
+    
+    // Parse the JSON response
+    const config = JSON.parse(content);
+    
+    return {
+      agentPersonality: config.agentPersonality,
+      communicationStyle: config.communicationStyle,
+      technicalLevel: config.technicalLevel,
+      problemSolvingApproach: config.problemSolvingApproach,
+      reasoning: config.reasoning
+    };
+  } catch (error) {
+    console.error('Error generating AI configuration:', error);
+    throw new Error('Failed to generate AI configuration. Please try again or configure manually.');
+  }
 };
 
 // Dynamic document recommendations based on demo type and industry
@@ -1159,7 +1243,9 @@ const GuidedDemoForm: React.FC = () => {
     researchFocus: '',
     researchDepth: '',
     rmeSpecializations: [],
-    uploadedFiles: []
+    uploadedFiles: [],
+    aiGeneratedConfig: null,
+    isGeneratingConfig: false
   });
 
   const updateFormData = (field: string, value: any) => {
@@ -1173,6 +1259,43 @@ const GuidedDemoForm: React.FC = () => {
       
       return updatedData;
     });
+  };
+
+  // AI Configuration Generation Handler
+  const handleGenerateAIConfig = async () => {
+    if (!formData.industry || !formData.businessDescription || !formData.teamSize || !formData.currentChallenges) {
+      alert('Please complete the business information section before generating AI configuration.');
+      return;
+    }
+
+    setFormData(prev => ({ ...prev, isGeneratingConfig: true }));
+
+    try {
+      const generatedConfig = await generateAIConfiguration(formData);
+      setFormData(prev => ({ 
+        ...prev, 
+        aiGeneratedConfig: generatedConfig,
+        isGeneratingConfig: false 
+      }));
+    } catch (error) {
+      console.error('Error generating AI configuration:', error);
+      alert(error instanceof Error ? error.message : 'Failed to generate AI configuration. Please try again.');
+      setFormData(prev => ({ ...prev, isGeneratingConfig: false }));
+    }
+  };
+
+  // Apply AI Generated Configuration
+  const applyAIGeneratedConfig = () => {
+    if (formData.aiGeneratedConfig) {
+      setFormData(prev => ({
+        ...prev,
+        agentPersonality: prev.aiGeneratedConfig!.agentPersonality,
+        communicationStyle: prev.aiGeneratedConfig!.communicationStyle,
+        technicalLevel: prev.aiGeneratedConfig!.technicalLevel,
+        problemSolvingApproach: prev.aiGeneratedConfig!.problemSolvingApproach,
+        aiGeneratedConfig: null // Clear the generated config after applying
+      }));
+    }
   };
 
   // Countdown effect for auto-redirect
@@ -1646,6 +1769,105 @@ const GuidedDemoForm: React.FC = () => {
                         </div>
                       </div>
                     </div>
+
+                    {/* AI Configuration Generator */}
+                    {formData.industry && formData.businessDescription && formData.teamSize && formData.currentChallenges && (
+                      <div className="mt-8 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Brain className="w-6 h-6 text-purple-400" />
+                          <h4 className="text-lg font-mono font-semibold text-purple-300">
+                            🤖 AI Configuration Generator
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm mb-4">
+                          Let our AI analyze your business information and automatically generate the optimal AI agent configuration tailored to your specific needs and challenges.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <button
+                            onClick={handleGenerateAIConfig}
+                            disabled={formData.isGeneratingConfig}
+                            className="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-mono font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                          >
+                            {formData.isGeneratingConfig ? (
+                              <>
+                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                Analyzing Your Requirements...
+                              </>
+                            ) : (
+                              <>
+                                <Brain className="w-4 h-4" />
+                                Generate AI Configuration
+                              </>
+                            )}
+                          </button>
+                        </div>
+
+                        {/* Generated Configuration Preview */}
+                        {formData.aiGeneratedConfig && (
+                          <div className="mt-6 bg-gray-800/50 border border-green-500/30 rounded-lg p-4">
+                            <div className="flex items-center gap-2 mb-3">
+                              <CheckCircle className="w-5 h-5 text-green-400" />
+                              <h5 className="font-mono font-semibold text-green-300">
+                                AI-Generated Configuration
+                              </h5>
+                            </div>
+                            
+                            <div className="space-y-3 mb-4">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                  <span className="text-xs font-mono text-gray-400">Personality:</span>
+                                  <p className="font-mono text-sm text-white capitalize">
+                                    {formData.aiGeneratedConfig.agentPersonality}
+                                  </p>
+                                </div>
+                                <div>
+                                  <span className="text-xs font-mono text-gray-400">Communication:</span>
+                                  <p className="font-mono text-sm text-white capitalize">
+                                    {formData.aiGeneratedConfig.communicationStyle.replace('-', ' ')}
+                                  </p>
+                                </div>
+                                <div>
+                                  <span className="text-xs font-mono text-gray-400">Technical Level:</span>
+                                  <p className="font-mono text-sm text-white capitalize">
+                                    {formData.aiGeneratedConfig.technicalLevel}
+                                  </p>
+                                </div>
+                                <div>
+                                  <span className="text-xs font-mono text-gray-400">Problem Solving:</span>
+                                  <p className="font-mono text-sm text-white capitalize">
+                                    {formData.aiGeneratedConfig.problemSolvingApproach.replace('-', ' ')}
+                                  </p>
+                                </div>
+                              </div>
+                              
+                              <div className="bg-gray-700/30 rounded p-3">
+                                <span className="text-xs font-mono text-gray-400">AI Reasoning:</span>
+                                <p className="font-mono text-sm text-gray-200 mt-1">
+                                  {formData.aiGeneratedConfig.reasoning}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="flex flex-col sm:flex-row gap-3">
+                              <button
+                                onClick={applyAIGeneratedConfig}
+                                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-mono font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                              >
+                                <CheckCircle className="w-4 h-4" />
+                                Apply This Configuration
+                              </button>
+                              <button
+                                onClick={() => setFormData(prev => ({ ...prev, aiGeneratedConfig: null }))}
+                                className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-mono font-semibold py-2 px-4 rounded-lg transition-all duration-300"
+                              >
+                                Generate Different Config
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1826,6 +2048,21 @@ const GuidedDemoForm: React.FC = () => {
                           Based on your <strong>{formData.demoType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong> demo 
                           in <strong>{formData.industry.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong>, 
                           we've curated AI agent options that work best for your specific use case.
+                        </p>
+                      </div>
+                    )}
+
+                    {/* AI Generated Configuration Applied Indicator */}
+                    {formData.agentPersonality && formData.communicationStyle && formData.technicalLevel && (
+                      <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Brain className="w-5 h-5 text-purple-400" />
+                          <h4 className="font-mono font-semibold text-purple-300">
+                            ✅ AI Configuration Applied
+                          </h4>
+                        </div>
+                        <p className="text-gray-300 font-mono text-sm">
+                          Your AI agent has been configured with optimized settings. You can still adjust any settings below if needed.
                         </p>
                       </div>
                     )}
