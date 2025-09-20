@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, PhoneOff, PhoneCall, Users, Clock, CheckCircle, XCircle, RefreshCw, ExternalLink } from 'lucide-react';
+import { analytics } from '../lib/analytics';
 
 interface CallData {
   id: string;
@@ -118,6 +119,9 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
       setRecentCalls(prev => [callData, ...prev.slice(0, 9)]); // Keep last 10 calls
       onCallInitiated?.(callData);
 
+      // Track phone call initiation
+      analytics.trackPhoneCall(phoneNumber, callPurpose, 'initiated');
+
       // Make phone call using VAPI API with enhanced configuration
       const requestBody = {
         assistantId: assistantId,
@@ -158,6 +162,9 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
       });
       
       setIsCallActive(true);
+
+      // Track successful call initiation
+      analytics.trackPhoneCall(phoneNumber, callPurpose, 'queued');
       
       // Start polling for call updates
       startCallPolling(callResult.id);
@@ -174,6 +181,9 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
         }
         return updated;
       });
+
+      // Track failed call
+      analytics.trackPhoneCall(phoneNumber, callPurpose, 'failed');
     } finally {
       setIsLoading(false);
     }

@@ -1,8 +1,10 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import ErrorBoundary from './components/ErrorBoundary';
 import StickyCTA from './components/StickyCTA';
+import PerformanceMonitor from './components/PerformanceMonitor';
+import { analytics } from './lib/analytics';
 
 // Lazy load components for code splitting
 const Home = React.lazy(() => import('./pages/Home'));
@@ -26,6 +28,50 @@ const LoadingSpinner = () => (
 );
 
 function App() {
+  useEffect(() => {
+    // Track initial page view
+    analytics.trackPageView({
+      page: window.location.pathname,
+      title: document.title,
+      url: window.location.href,
+    });
+
+    // Track performance metrics
+    const trackPerformance = () => {
+      if ('performance' in window) {
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
+        
+        analytics.trackPerformance({
+          loadTime,
+          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+          firstPaint: performance.getEntriesByType('paint')[0]?.startTime || 0,
+        });
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      trackPerformance();
+    } else {
+      window.addEventListener('load', trackPerformance);
+    }
+
+    // Track route changes
+    const handleRouteChange = () => {
+      analytics.trackPageView({
+        page: window.location.pathname,
+        title: document.title,
+        url: window.location.href,
+      });
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
+
   return (
     <Router>
       <ErrorBoundary>
@@ -49,6 +95,7 @@ function App() {
             <VapiTest />
           </Suspense>
           <StickyCTA />
+          <PerformanceMonitor />
         </div>
       </ErrorBoundary>
     </Router>
