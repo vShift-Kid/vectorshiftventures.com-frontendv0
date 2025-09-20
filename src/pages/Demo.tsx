@@ -540,6 +540,49 @@ const Demo: React.FC = () => {
                   />
                 </div>
 
+                {/* Demo Type Selection - Moved to be right after problem description */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
+                    Demo Type Selection
+                  </h4>
+
+                <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                      Demo Type *
+                      <div className="relative">
+                        <button 
+                          type="button" 
+                          className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          ?
+                        </button>
+                        <div 
+                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                            showTooltips.demoType ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          Voice Agent: Field technician support, technical troubleshooting, and equipment maintenance via phone calls. Chatbot: Technical support interface for field service and engineering teams. Newsletter: Industry insights, technical documentation, and field operations updates.
+                      </div>
+                      </div>
+                        </label>
+                    <select
+                      value={formData.demoType || ''}
+                      onChange={(e) => handleInputChange('demoType', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
+                    >
+                      <option value="">Select your preferred demo type</option>
+                      <option value="voice-agent">Voice Agent Demo - Field technician support, technical troubleshooting, and equipment maintenance</option>
+                      <option value="chatbot">Chatbot Demo - Technical support interface for field service and engineering teams</option>
+                      <option value="newsletter">Technical Newsletter Demo - Industry insights, technical documentation, and field operations updates</option>
+                    </select>
+                  </div>
+                </div>
+
                 {/* AI Agent Customization Section */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
@@ -723,50 +766,6 @@ const Demo: React.FC = () => {
                       </select>
                     </div>
                 </div>
-
-                {/* Demo Type Selection */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
-                    Demo Type Selection
-                  </h4>
-
-                <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Demo Type *
-                      <div className="relative">
-                        <button 
-                          type="button" 
-                          className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
-                          onMouseEnter={() => handleTooltipShow('demoType')}
-                          onMouseLeave={() => handleTooltipHide('demoType')}
-                        >
-                          ?
-                        </button>
-                        <div 
-                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
-                            showTooltips.demoType ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          onMouseEnter={() => handleTooltipShow('demoType')}
-                          onMouseLeave={() => handleTooltipHide('demoType')}
-                        >
-                          Voice Agent: Field technician support, technical troubleshooting, and equipment maintenance via phone calls. Chatbot: Technical support interface for field service and engineering teams. Newsletter: Industry insights, technical documentation, and field operations updates.
-                      </div>
-                      </div>
-                        </label>
-                    <select
-                      value={formData.demoType || ''}
-                      onChange={(e) => handleInputChange('demoType', e.target.value)}
-                      required
-                      className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
-                    >
-                      <option value="">Select your preferred demo type</option>
-                      <option value="voice-agent">Voice Agent Demo - Field technician support, technical troubleshooting, and equipment maintenance</option>
-                      <option value="chatbot">Chatbot Demo - Technical support interface for field service and engineering teams</option>
-                      <option value="newsletter">Technical Newsletter Demo - Industry insights, technical documentation, and field operations updates</option>
-                    </select>
-                  </div>
-                </div>
-
 
                 {/* AI Agent Personality & Communication */}
                 <div className="border-t border-cyan-500/20 pt-8">
@@ -1092,6 +1091,51 @@ const Demo: React.FC = () => {
                 </div>
               </div>
             </div>
+
+                {/* Scheduling Section - Moved to end for logical flow */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
+                    Scheduling
+                  </h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Date *
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.preferredDate}
+                        onChange={(e) => handleInputChange('preferredDate', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Preferred Time *
+                      </label>
+                      <select
+                        value={formData.preferredTime}
+                        onChange={(e) => handleInputChange('preferredTime', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      >
+                        <option value="">Select preferred time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="text-center">
                   <button
