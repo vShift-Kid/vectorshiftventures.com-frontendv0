@@ -1073,67 +1073,67 @@ const Demo: React.FC = () => {
                         <option value="experience-based">Experience-Based - Past cases, lessons learned</option>
                         <option value="preventive">Preventive - Proactive, risk mitigation focus</option>
                       </select>
-                    </div>
                   </div>
                 </div>
+              </div>
 
                 {/* AI Agent Specializations - Moved to logical position */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
+            <div className="border-t border-cyan-500/20 pt-8">
+              <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
                     AI Agent Specializations
-                  </h4>
-                  
-                  <div className="mb-6">
-                    <p className="text-sm text-gray-400 font-mono mb-4">
+              </h4>
+              
+              <div className="mb-6">
+                <p className="text-sm text-gray-400 font-mono mb-4">
                       Select the areas your AI agent should specialize in. These will guide deep research and training for your demo application.
-                    </p>
-                  </div>
-                  
+                </p>
+              </div>
+              
                   <div className="mb-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="flex-1">
-                        <input
-                          type="text"
+                  <input
+                    type="text"
                           placeholder="Search specializations..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                           className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
-                        />
+                  />
                       </div>
                       <div className="text-orange-400 text-2xl">
-                        🔍
-                      </div>
-                    </div>
+                    🔍
+                  </div>
+                </div>
 
-                    {/* Selected Specializations */}
-                    {formData.rmeSpecializations.length > 0 && (
-                      <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
-                        <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
-                          Selected Specializations ({formData.rmeSpecializations.length})
-                        </h5>
-                        <div className="flex flex-wrap gap-2">
-                          {formData.rmeSpecializations.map((specialization) => (
-                            <span
-                              key={specialization}
-                              className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
-                            >
-                              {specialization}
-                              <button
-                                onClick={() => {
-                                  setFormData(prev => ({
-                                    ...prev,
-                                    rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
-                                  }));
-                                }}
-                                className="ml-2 text-orange-400 hover:text-orange-300"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                {/* Selected Specializations */}
+                {formData.rmeSpecializations.length > 0 && (
+                  <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                    <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
+                      Selected Specializations ({formData.rmeSpecializations.length})
+                    </h5>
+                    <div className="flex flex-wrap gap-2">
+                      {formData.rmeSpecializations.map((specialization) => (
+                        <span
+                          key={specialization}
+                          className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
+                        >
+                          {specialization}
+                          <button
+                            onClick={() => {
+                              setFormData(prev => ({
+                                ...prev,
+                                rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
+                              }));
+                            }}
+                            className="ml-2 text-orange-400 hover:text-orange-300"
+                          >
+                            ✕
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                     {/* Custom Specialization Input */}
                     <div className="mb-4">
@@ -1159,60 +1159,60 @@ const Demo: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
-                      <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
+                <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
+                  <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
                         Comprehensive AI Agent Specializations
-                      </h5>
-                      
-                      {Object.entries(mainSpecializations).map(([category, specializations]) => {
-                        const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
-                        
-                        if (filteredSpecializations.length === 0) return null;
-                        
-                        return (
-                          <div key={category} className="mb-6 last:mb-0">
-                            <h6 className="text-lg font-mono font-semibold text-orange-300 mb-4 border-b border-orange-500/30 pb-2">
-                              {category}
-                            </h6>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                              {filteredSpecializations.map((specialization) => (
-                                <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
-                                  <input
-                                    type="checkbox"
-                                    checked={formData.rmeSpecializations.includes(specialization)}
-                                    onChange={(e) => {
-                                      if (e.target.checked) {
-                                        setFormData(prev => ({
-                                          ...prev,
-                                          rmeSpecializations: [...prev.rmeSpecializations, specialization]
-                                        }));
-                                      } else {
-                                        setFormData(prev => ({
-                                          ...prev,
-                                          rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
-                                        }));
-                                      }
-                                    }}
-                                    className="mr-3 text-orange-500 focus:ring-orange-400"
-                                  />
-                                  <span className="text-sm font-mono text-gray-300">{specialization}</span>
-                                </label>
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })}
-                      
-                      {Object.values(mainSpecializations).every(specializations => 
-                        getFilteredSpecializations(specializations, searchQuery).length === 0
-                      ) && searchQuery && (
-                        <p className="text-sm text-gray-400 font-mono text-center py-4">
-                          No specializations found for "{searchQuery}"
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                  </h5>
+                  
+                  {Object.entries(mainSpecializations).map(([category, specializations]) => {
+                    const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
+                    
+                    if (filteredSpecializations.length === 0) return null;
+                    
+                    return (
+                      <div key={category} className="mb-6 last:mb-0">
+                        <h6 className="text-lg font-mono font-semibold text-orange-300 mb-4 border-b border-orange-500/30 pb-2">
+                          {category}
+                        </h6>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                          {filteredSpecializations.map((specialization) => (
+                            <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={formData.rmeSpecializations.includes(specialization)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      rmeSpecializations: [...prev.rmeSpecializations, specialization]
+                                    }));
+                                  } else {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
+                                    }));
+                                  }
+                                }}
+                                className="mr-3 text-orange-500 focus:ring-orange-400"
+                              />
+                              <span className="text-sm font-mono text-gray-300">{specialization}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  
+                  {Object.values(mainSpecializations).every(specializations => 
+                    getFilteredSpecializations(specializations, searchQuery).length === 0
+                  ) && searchQuery && (
+                    <p className="text-sm text-gray-400 font-mono text-center py-4">
+                      No specializations found for "{searchQuery}"
+                    </p>
+                  )}
                 </div>
+              </div>
+            </div>
 
 
             {/* Document Upload Section */}
@@ -1379,9 +1379,9 @@ const Demo: React.FC = () => {
                         <option value="4:00 PM">4:00 PM</option>
                         <option value="5:00 PM">5:00 PM</option>
                       </select>
-                    </div>
-                  </div>
                 </div>
+              </div>
+            </div>
 
                 <div className="text-center">
                   <button
@@ -1401,7 +1401,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-            </div>
+                  </div>
           </div>
         </div>
       </section>
