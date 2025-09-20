@@ -34,6 +34,7 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
   const [showDebug, setShowDebug] = useState(false);
   const [vapiLoaded, setVapiLoaded] = useState(false);
   const [vapiLoading, setVapiLoading] = useState(true);
+  const [showPermissionDialog, setShowPermissionDialog] = useState(false);
 
   // Load VAPI asynchronously
   useEffect(() => {
@@ -345,19 +346,26 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
       return;
     }
 
+    if (isCallActive) {
+      // Stop the call if it's active
+      addDebugLog('Stopping VAPI call...');
+      vapi.stop();
+      setIsCallActive(false);
+      setIsLoading(false);
+      return;
+    }
+
+    // Show permission dialog first instead of immediately requesting microphone access
+    setShowPermissionDialog(true);
+  };
+
+  const handlePermissionGranted = async () => {
+    setShowPermissionDialog(false);
+    
     try {
       setIsLoading(true);
       setError(null);
       addDebugLog('🚀 Starting voice call...');
-
-      if (isCallActive) {
-        // Stop the call if it's active
-        addDebugLog('Stopping VAPI call...');
-        vapi.stop();
-        setIsCallActive(false);
-        setIsLoading(false);
-        return;
-      }
 
       // Check if VAPI is already started (prevent double start)
       if ((vapi as any).started) {
@@ -371,29 +379,29 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
         }
       }
 
-             // Check microphone permissions and audio devices
-             try {
-               addDebugLog('Checking microphone permissions...');
-               const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-               addDebugLog('✅ Microphone permission granted');
-               
-               // Check available audio devices
-               const devices = await navigator.mediaDevices.enumerateDevices();
-               const audioInputs = devices.filter(device => device.kind === 'audioinput');
-               const audioOutputs = devices.filter(device => device.kind === 'audiooutput');
-               
-               addDebugLog(`🎤 Available microphones: ${audioInputs.length}`);
-               addDebugLog(`🔊 Available speakers: ${audioOutputs.length}`);
-               
-               if (audioOutputs.length === 0) {
-                 addDebugLog('⚠️ No audio output devices found - you may not hear anything');
-               }
-               
-               stream.getTracks().forEach(track => track.stop()); // Stop the test stream
-             } catch (micError) {
-               addDebugLog(`❌ Microphone permission error: ${micError.message}`);
-               throw new Error('Microphone permission denied. Please allow microphone access and try again.');
-             }
+      // Now check microphone permissions and audio devices
+      try {
+        addDebugLog('Checking microphone permissions...');
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        addDebugLog('✅ Microphone permission granted');
+        
+        // Check available audio devices
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const audioInputs = devices.filter(device => device.kind === 'audioinput');
+        const audioOutputs = devices.filter(device => device.kind === 'audiooutput');
+        
+        addDebugLog(`🎤 Available microphones: ${audioInputs.length}`);
+        addDebugLog(`🔊 Available speakers: ${audioOutputs.length}`);
+        
+        if (audioOutputs.length === 0) {
+          addDebugLog('⚠️ No audio output devices found - you may not hear anything');
+        }
+        
+        stream.getTracks().forEach(track => track.stop()); // Stop the test stream
+      } catch (micError) {
+        addDebugLog(`❌ Microphone permission error: ${micError.message}`);
+        throw new Error('Microphone permission denied. Please allow microphone access and try again.');
+      }
       
       addDebugLog(`Starting VAPI call with assistant ID: ${assistantId}`);
       addDebugLog(`VAPI start method available: ${typeof vapi.start}`);
@@ -553,6 +561,12 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
       
       setIsLoading(false);
     }
+  };
+
+  const handlePermissionDenied = () => {
+    setShowPermissionDialog(false);
+    addDebugLog('❌ User denied microphone permission');
+    setError('Microphone permission is required for voice calls. Please allow microphone access and try again.');
   };
 
   const handleStopCall = async () => {
@@ -781,6 +795,48 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
                   )}
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Permission Dialog */}
+      {showPermissionDialog && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 border border-cyan-500/30 rounded-xl p-6 max-w-md w-full">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mic className="w-8 h-8 text-cyan-400" />
+              </div>
+              
+              <h3 className="text-xl font-mono font-bold text-white mb-2">
+                Microphone Access Required
+              </h3>
+              
+              <p className="text-gray-400 font-mono text-sm mb-6">
+                To start a voice conversation with our AI assistant, we need access to your microphone. 
+                This allows you to speak naturally and receive voice responses.
+              </p>
+              
+              <div className="space-y-3">
+                <button
+                  onClick={handlePermissionGranted}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-mono font-semibold rounded-lg transition-all duration-300"
+                >
+                  Allow Microphone Access
+                </button>
+                
+                <button
+                  onClick={handlePermissionDenied}
+                  className="w-full py-3 px-4 bg-gray-700 hover:bg-gray-600 text-white font-mono font-semibold rounded-lg transition-all duration-300"
+                >
+                  Cancel
+                </button>
+              </div>
+              
+              <p className="text-gray-500 font-mono text-xs mt-4">
+                Your microphone will only be used during the voice call and will be stopped when the call ends.
+              </p>
             </div>
           </div>
         </div>
