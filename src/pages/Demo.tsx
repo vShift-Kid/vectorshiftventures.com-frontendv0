@@ -17,80 +17,89 @@ const getFilteredSpecializations = (specializations: string[], query: string): s
 };
 
 
-// RME & Supporting Operations - Comprehensive Specializations
+// Comprehensive AI Agent Specializations - Full Spectrum Coverage
 const mainSpecializations = {
-  'Reliability & Quality': [
-    'Failure Prediction', 'Reliability Analysis', 'Quality Control', 'Defect Analysis',
-    'Anomaly Detection', 'Root Cause Analysis', 'Statistical Process Control', 'Six Sigma Analysis',
-    'Quality Metrics', 'Reliability Prediction', 'Failure Mode Analysis', 'Risk Assessment',
-    'Compliance Monitoring', 'Audit Analysis', 'Safety Analysis', 'Performance Standards',
-    'Equipment Reliability', 'System Reliability', 'Component Analysis', 'Failure Prevention',
-    'Reliability Testing', 'Quality Assurance', 'Inspection Analysis', 'Standards Compliance',
-    'Reliability Engineering', 'Fault Tolerance', 'Redundancy Analysis', 'MTBF Analysis',
-    'Safety Procedures', 'Compliance Documentation', 'Industry Standards', 'Regulatory Guidelines',
-    'Quality Certifications', 'Environmental Regulations', 'Safety Standards', 'Audit Requirements'
-  ],
-  'Maintenance & Operations': [
-    'Preventive Maintenance', 'Maintenance Scheduling', 'Equipment Performance', 'Downtime Analysis',
-    'Maintenance Optimization', 'Spare Parts Analysis', 'Work Order Analysis', 'Maintenance Costs',
-    'Equipment Lifecycle', 'Maintenance Efficiency', 'Predictive Maintenance', 'Condition Monitoring',
-    'Maintenance Planning', 'Resource Allocation', 'Maintenance Metrics', 'Operational Excellence',
-    'Maintenance Strategies', 'Equipment Health', 'Maintenance Documentation', 'Maintenance Training',
-    'Maintenance Reporting', 'Maintenance Budgeting', 'Maintenance Forecasting', 'Maintenance Automation',
-    'Maintenance Engineering', 'Asset Management', 'Maintenance Reliability', 'Maintenance Analytics',
-    'Equipment Manuals', 'Service Bulletins', 'Troubleshooting Guides', 'Parts Catalogs',
-    'Warranty Information', 'Historical Service Records', 'Emergency Response', 'Performance Metrics'
+  'Field Service Operations': [
+    'Field Technician Support', 'Equipment Maintenance', 'Preventive Maintenance', 'Emergency Response',
+    'Service Call Optimization', 'Technical Troubleshooting', 'Field Engineering', 'Mobile Workforce Management',
+    'Route Optimization', 'Dispatch Coordination', 'Field Data Collection', 'Remote Diagnostics',
+    'Equipment Performance Monitoring', 'Maintenance Scheduling', 'Spare Parts Management', 'Work Order Management',
+    'Field Service Software', 'Mobile Apps', 'GPS Tracking', 'Field Documentation'
   ],
   'Engineering & Technical': [
-    'Technical Analysis', 'Design Optimization', 'Performance Engineering', 'System Analysis',
-    'Technical Specifications', 'Engineering Metrics', 'Design Validation', 'Technical Documentation',
-    'Engineering Efficiency', 'Technical Standards', 'Engineering Processes', 'Technical Innovation',
-    'Engineering Quality', 'Technical Risk', 'Engineering Compliance', 'Technical Training',
-    'Engineering Design', 'System Integration', 'Technical Troubleshooting', 'Engineering Support',
-    'Technical Consulting', 'Engineering Solutions', 'Technical Implementation', 'Engineering Management',
-    'Field Engineering', 'Technical Services', 'Engineering Operations', 'Technical Support',
-    'Software Documentation', 'Video Tutorials', 'Training Materials', 'Best Practices',
-    'Technical Writing', 'Process Documentation', 'Standard Operating Procedures', 'Knowledge Management'
+    'CAD Integration', 'Technical Documentation', 'Engineering Workflows', 'Design Optimization',
+    'Technical Analysis', 'System Integration', 'Engineering Management', 'Technical Training',
+    'Engineering Standards', 'Technical Specifications', 'Design Validation', 'Technical Innovation',
+    'Engineering Quality', 'Technical Risk Management', 'Engineering Compliance', 'Technical Support',
+    'Technical Writing', 'Process Documentation', 'Knowledge Management', 'Technical Consulting'
   ],
-  'Performance & Goals': [
-    'Reduce Service Time', 'Improve First-Call Resolution', 'Increase Customer Satisfaction', 'Minimize Equipment Downtime',
-    'Reduce Parts Inventory', 'Improve Technician Efficiency', 'Enhance Safety Compliance', 'Reduce Warranty Claims',
-    'Improve Documentation', 'Increase Revenue', 'Reduce Travel Time', 'Improve Scheduling',
-    'Enhance Training', 'Reduce Errors', 'Improve Communication', 'Increase Repeat Business',
-    'Performance Management', 'Operational Excellence', 'Efficiency Analysis', 'Process Optimization',
-    'Quality Improvement', 'Cost Reduction', 'Productivity Enhancement', 'Service Level Improvement',
-    'Customer Experience', 'Operational Metrics', 'Performance Tracking', 'Continuous Improvement'
+  'Logistics & Supply Chain': [
+    'Inventory Management', 'Supply Chain Optimization', 'Fleet Management', 'Warehouse Operations',
+    'Route Planning', 'Delivery Optimization', 'Vendor Management', 'Procurement',
+    'Distribution Networks', 'Supply Chain Analytics', 'Logistics Coordination', 'Transportation Management',
+    'Inventory Control', 'Order Fulfillment', 'Supply Chain Visibility', 'Logistics Automation',
+    'Fleet Tracking', 'Delivery Scheduling', 'Supply Chain Risk Management', 'Logistics Reporting'
   ],
-  'Integration & Systems': [
-    'CRM Systems', 'ERP Systems', 'Field Service Software', 'Inventory Management',
-    'Scheduling Systems', 'Mobile Apps', 'Email Systems', 'Phone Systems',
-    'Video Conferencing', 'Document Management', 'Accounting Software', 'HR Systems',
-    'Quality Management', 'Compliance Tracking', 'Reporting Dashboards', 'API Integrations',
-    'System Integration', 'Technical Implementation', 'Data Integration', 'Workflow Automation',
-    'System Optimization', 'Technology Integration', 'Digital Transformation', 'Process Automation'
+  'IT & Technology': [
+    'System Administration', 'Technical Support', 'Network Management', 'Cybersecurity',
+    'Software Development', 'System Integration', 'Data Management', 'IT Operations',
+    'Cloud Computing', 'API Development', 'Database Management', 'IT Security',
+    'System Monitoring', 'IT Automation', 'Technical Documentation', 'IT Training',
+    'Software Maintenance', 'System Optimization', 'IT Compliance', 'Technical Consulting'
   ],
-  'Compliance & Standards': [
-    'OSHA Compliance', 'FDA Regulations', 'ISO Standards', 'HIPAA Compliance',
-    'Environmental Regulations', 'Safety Standards', 'Quality Certifications', 'Industry Standards',
-    'Local Regulations', 'International Standards', 'Audit Requirements', 'Documentation Standards',
-    'Training Requirements', 'Reporting Requirements', 'Licensing Requirements', 'Insurance Requirements',
-    'Regulatory Compliance', 'Standards Compliance', 'Compliance Monitoring', 'Audit Management',
-    'Risk Management', 'Quality Assurance', 'Safety Management', 'Regulatory Reporting'
+  'Quality & Analytics': [
+    'Quality Control', 'Performance Analytics', 'Predictive Maintenance', 'Compliance Monitoring',
+    'Quality Assurance', 'KPI Tracking', 'Data Analytics', 'Business Intelligence',
+    'Quality Metrics', 'Performance Monitoring', 'Statistical Analysis', 'Trend Analysis',
+    'Quality Management', 'Analytics Reporting', 'Data Visualization', 'Performance Optimization',
+    'Quality Standards', 'Analytics Automation', 'Quality Training', 'Analytics Consulting'
   ],
-  'Reporting & Analytics': [
-    'Service Call Reports', 'Performance Metrics', 'Customer Satisfaction', 'Equipment Status',
-    'Parts Usage', 'Technician Productivity', 'Revenue Reports', 'Cost Analysis',
-    'Compliance Reports', 'Safety Incidents', 'Training Records', 'Warranty Claims',
-    'Preventive Maintenance', 'Emergency Response', 'Quality Metrics', 'ROI Analysis',
-    'Data Analytics', 'Business Intelligence', 'Performance Dashboards', 'KPI Analysis',
-    'Trend Analysis', 'Predictive Analytics', 'Reporting Automation', 'Data Visualization'
+  'Management & Executive': [
+    'Strategic Planning', 'Project Management', 'Operations Management', 'Business Analysis',
+    'Executive Decision Making', 'Resource Allocation', 'Performance Management', 'Strategic Consulting',
+    'Business Process Optimization', 'Change Management', 'Leadership Development', 'Executive Support',
+    'Strategic Analysis', 'Business Intelligence', 'Executive Reporting', 'Strategic Implementation',
+    'Management Consulting', 'Executive Training', 'Strategic Planning', 'Executive Analytics'
   ],
   'Customer & Support': [
-    'Customer Service', 'Support Ticket Management', 'Service Level Management', 'Customer Satisfaction',
-    'Customer Feedback', 'Customer Experience', 'Support Performance', 'Service Quality Metrics',
-    'Customer Journey Analysis', 'Retention Analysis', 'Complaint Analysis', 'Service Level Analysis',
-    'Customer Insights', 'Support Efficiency', 'Customer Success Metrics', 'Service Optimization',
-    'Customer Care', 'Support Operations', 'Service Delivery', 'Customer Relationship Management'
+    'Customer Service', 'Support Ticket Management', 'Customer Experience', 'Customer Satisfaction',
+    'Customer Support', 'Service Level Management', 'Customer Care', 'Support Operations',
+    'Customer Feedback', 'Support Analytics', 'Customer Success', 'Service Optimization',
+    'Customer Relationship Management', 'Support Training', 'Customer Insights', 'Service Delivery',
+    'Customer Support Automation', 'Support Reporting', 'Customer Retention', 'Support Quality'
+  ],
+  'Compliance & Standards': [
+    'Regulatory Compliance', 'Industry Standards', 'Safety Compliance', 'Quality Standards',
+    'Compliance Monitoring', 'Audit Management', 'Regulatory Reporting', 'Standards Compliance',
+    'Compliance Training', 'Risk Management', 'Compliance Documentation', 'Regulatory Analysis',
+    'Compliance Automation', 'Compliance Reporting', 'Standards Implementation', 'Compliance Consulting',
+    'Regulatory Updates', 'Compliance Analytics', 'Standards Training', 'Compliance Optimization'
+  ],
+  'Manufacturing & Production': [
+    'Production Management', 'Manufacturing Operations', 'Process Optimization', 'Production Planning',
+    'Manufacturing Analytics', 'Production Control', 'Manufacturing Quality', 'Production Efficiency',
+    'Manufacturing Automation', 'Production Scheduling', 'Manufacturing Compliance', 'Production Reporting',
+    'Manufacturing Training', 'Production Optimization', 'Manufacturing Support', 'Production Analytics',
+    'Manufacturing Standards', 'Production Documentation', 'Manufacturing Consulting', 'Production Management'
+  ],
+  'Healthcare & Medical': [
+    'Medical Equipment', 'Healthcare Operations', 'Medical Compliance', 'Healthcare Analytics',
+    'Medical Documentation', 'Healthcare Quality', 'Medical Training', 'Healthcare Support',
+    'Medical Standards', 'Healthcare Reporting', 'Medical Automation', 'Healthcare Optimization',
+    'Medical Consulting', 'Healthcare Management', 'Medical Analytics', 'Healthcare Compliance',
+    'Medical Support', 'Healthcare Training', 'Medical Quality', 'Healthcare Documentation'
+  ],
+  'Financial & Banking': [
+    'Financial Analysis', 'Banking Operations', 'Financial Compliance', 'Banking Analytics',
+    'Financial Reporting', 'Banking Quality', 'Financial Training', 'Banking Support',
+    'Financial Standards', 'Banking Management', 'Financial Automation', 'Banking Optimization',
+    'Financial Consulting', 'Banking Compliance', 'Financial Documentation', 'Banking Analytics',
+    'Financial Support', 'Banking Training', 'Financial Quality', 'Banking Reporting'
+  ],
+  'Custom Specializations': [
+    'Add Custom Specialization', 'Industry-Specific Solutions', 'Custom AI Training', 'Specialized Automation',
+    'Custom Integration', 'Specialized Analytics', 'Custom Reporting', 'Specialized Training',
+    'Custom Compliance', 'Specialized Support', 'Custom Documentation', 'Specialized Management'
   ]
 };
 
@@ -136,6 +145,7 @@ const Demo: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [customSpecialization, setCustomSpecialization] = useState('');
 
   const handleTooltipShow = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: true }));
@@ -143,6 +153,16 @@ const Demo: React.FC = () => {
 
   const handleTooltipHide = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
+  };
+
+  const handleAddCustomSpecialization = () => {
+    if (customSpecialization.trim() && !formData.rmeSpecializations.includes(customSpecialization.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        rmeSpecializations: [...prev.rmeSpecializations, customSpecialization.trim()]
+      }));
+      setCustomSpecialization('');
+    }
   };
 
   const handleDrag = (e: React.DragEvent) => {
@@ -856,118 +876,143 @@ const Demo: React.FC = () => {
                 </div>
               </div>
 
-            {/* Data Analytics Specializations */}
-            <div className="border-t border-cyan-500/20 pt-8">
-              <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
-                RME & Supporting Operations Specializations
-              </h4>
-              
-              <div className="mb-6">
-                <p className="text-sm text-gray-400 font-mono mb-4">
-                  Search and select the analytical areas your AI agent should specialize in. These will guide deep research and training for your demo application.
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                {/* Search Bar */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search specializations (e.g., 'reliability', 'maintenance', 'engineering', 'supporting')..."
-                    className="w-full p-4 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400 pr-12"
-                  />
-                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-400">
-                    🔍
-                  </div>
-                </div>
-
-                {/* Selected Specializations */}
-                {formData.rmeSpecializations.length > 0 && (
-                  <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
-                    <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
-                      Selected Specializations ({formData.rmeSpecializations.length})
-                    </h5>
-                    <div className="flex flex-wrap gap-2">
-                      {formData.rmeSpecializations.map((specialization) => (
-                        <span
-                          key={specialization}
-                          className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
-                        >
-                          {specialization}
-                          <button
-                            onClick={() => {
-                              setFormData(prev => ({
-                                ...prev,
-                                rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
-                              }));
-                            }}
-                            className="ml-2 text-orange-400 hover:text-orange-300"
-                          >
-                            ✕
-                          </button>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Main Specializations */}
-                <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
-                  <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
-                    RME & Supporting Operations Specializations
-                  </h5>
+                {/* AI Agent Specializations - Moved to logical position */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-orange-400">
+                    AI Agent Specializations
+                  </h4>
                   
-                  {Object.entries(mainSpecializations).map(([category, specializations]) => {
-                    const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
-                    
-                    if (filteredSpecializations.length === 0) return null;
-                    
-                    return (
-                      <div key={category} className="mb-6 last:mb-0">
-                        <h6 className="text-lg font-mono font-semibold text-orange-300 mb-4 border-b border-orange-500/30 pb-2">
-                          {category}
-                        </h6>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                          {filteredSpecializations.map((specialization) => (
-                            <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={formData.rmeSpecializations.includes(specialization)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      rmeSpecializations: [...prev.rmeSpecializations, specialization]
-                                    }));
-                                  } else {
-                                    setFormData(prev => ({
-                                      ...prev,
-                                      rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
-                                    }));
-                                  }
+                  <div className="mb-6">
+                    <p className="text-sm text-gray-400 font-mono mb-4">
+                      Select the areas your AI agent should specialize in. These will guide deep research and training for your demo application.
+                    </p>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          placeholder="Search specializations..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
+                        />
+                      </div>
+                      <div className="text-orange-400 text-2xl">
+                        🔍
+                      </div>
+                    </div>
+
+                    {/* Selected Specializations */}
+                    {formData.rmeSpecializations.length > 0 && (
+                      <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                        <h5 className="text-sm font-mono font-semibold text-orange-300 mb-3">
+                          Selected Specializations ({formData.rmeSpecializations.length})
+                        </h5>
+                        <div className="flex flex-wrap gap-2">
+                          {formData.rmeSpecializations.map((specialization) => (
+                            <span
+                              key={specialization}
+                              className="inline-flex items-center px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-xs font-mono text-orange-300"
+                            >
+                              {specialization}
+                              <button
+                                onClick={() => {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
+                                  }));
                                 }}
-                                className="mr-3 text-orange-500 focus:ring-orange-400"
-                              />
-                              <span className="text-sm font-mono text-gray-300">{specialization}</span>
-                            </label>
+                                className="ml-2 text-orange-400 hover:text-orange-300"
+                              >
+                                ✕
+                              </button>
+                            </span>
                           ))}
                         </div>
                       </div>
-                    );
-                  })}
-                  
-                  {Object.values(mainSpecializations).every(specializations => 
-                    getFilteredSpecializations(specializations, searchQuery).length === 0
-                  ) && searchQuery && (
-                    <p className="text-sm text-gray-400 font-mono text-center py-4">
-                      No specializations found for "{searchQuery}"
-                    </p>
-                  )}
+                    )}
+
+                    {/* Custom Specialization Input */}
+                    <div className="mb-4">
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          value={customSpecialization}
+                          onChange={(e) => setCustomSpecialization(e.target.value)}
+                          placeholder="Add custom specialization..."
+                          className="flex-1 p-3 bg-gray-800/50 border border-orange-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-orange-400"
+                          onKeyPress={(e) => e.key === 'Enter' && handleAddCustomSpecialization()}
+                        />
+                        <button
+                          type="button"
+                          onClick={handleAddCustomSpecialization}
+                          className="px-4 py-3 bg-orange-600 hover:bg-orange-700 text-white font-mono rounded-lg transition-colors"
+                        >
+                          Add
+                        </button>
+                      </div>
+                      <p className="text-xs text-gray-400 font-mono mt-1">
+                        Add your own custom specialization if it's not in the list above
+                      </p>
+                    </div>
+
+                    <div className="bg-gray-800/30 border border-gray-600/30 rounded-lg p-4 max-h-96 overflow-y-auto">
+                      <h5 className="text-sm font-mono font-semibold text-gray-300 mb-4">
+                        Comprehensive AI Agent Specializations
+                      </h5>
+                      
+                      {Object.entries(mainSpecializations).map(([category, specializations]) => {
+                        const filteredSpecializations = getFilteredSpecializations(specializations, searchQuery);
+                        
+                        if (filteredSpecializations.length === 0) return null;
+                        
+                        return (
+                          <div key={category} className="mb-6 last:mb-0">
+                            <h6 className="text-lg font-mono font-semibold text-orange-300 mb-4 border-b border-orange-500/30 pb-2">
+                              {category}
+                            </h6>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                              {filteredSpecializations.map((specialization) => (
+                                <label key={specialization} className="flex items-center p-2 hover:bg-gray-700/30 rounded cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={formData.rmeSpecializations.includes(specialization)}
+                                    onChange={(e) => {
+                                      if (e.target.checked) {
+                                        setFormData(prev => ({
+                                          ...prev,
+                                          rmeSpecializations: [...prev.rmeSpecializations, specialization]
+                                        }));
+                                      } else {
+                                        setFormData(prev => ({
+                                          ...prev,
+                                          rmeSpecializations: prev.rmeSpecializations.filter(c => c !== specialization)
+                                        }));
+                                      }
+                                    }}
+                                    className="mr-3 text-orange-500 focus:ring-orange-400"
+                                  />
+                                  <span className="text-sm font-mono text-gray-300">{specialization}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                      
+                      {Object.values(mainSpecializations).every(specializations => 
+                        getFilteredSpecializations(specializations, searchQuery).length === 0
+                      ) && searchQuery && (
+                        <p className="text-sm text-gray-400 font-mono text-center py-4">
+                          No specializations found for "{searchQuery}"
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+
 
             {/* Document Upload Section */}
             <div className="border-t border-cyan-500/20 pt-8">
