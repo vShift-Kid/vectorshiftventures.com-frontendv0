@@ -1,34 +1,41 @@
 {
-  "name": "vapi-unified-webhook-system",
-  "version": "1.0.0",
-  "description": "Unified VAPI webhook system for web voice and phone calls",
-  "main": "unified-webhook-system.js",
+  "name": "vectorshift-ventures",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node unified-webhook-system.js",
-    "dev": "nodemon unified-webhook-system.js",
-    "test": "node test-unified-system.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest"
   },
-  "keywords": [
-    "vapi",
-    "webhook",
-    "voice",
-    "phone",
-    "ai",
-    "automation"
-  ],
-  "author": "VectorShift Ventures LLC",
-  "license": "MIT",
   "dependencies": {
-    "@vapi-ai/server-sdk": "^1.0.0",
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "helmet": "^7.1.0",
-    "express-rate-limit": "^7.1.5"
+    "@supabase/supabase-js": "^2.45.4",
+    "@vapi-ai/web": "^2.3.10",
+    "lucide-react": "^0.441.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/user-event": "^14.5.2",
+    "jsdom": "^24.1.0"
   }
 }
