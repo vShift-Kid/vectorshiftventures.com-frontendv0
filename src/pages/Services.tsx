@@ -18,8 +18,7 @@ const Services: React.FC = () => {
         "Field data collection & reporting",
         "Emergency response coordination"
       ],
-      benefits: ["Reduce field service costs by 40%", "Improve first-call resolution by 70%", "24/7 technical support", "Mobile-optimized for field work"],
-      subtleNumber: "2"
+      benefits: ["Reduce field service costs by 40%", "Improve first-call resolution by 70%", "24/7 technical support", "Mobile-optimized for field work"]
     },
     {
       icon: FileText,
@@ -35,8 +34,7 @@ const Services: React.FC = () => {
         "Compliance documentation automation",
         "Interactive technical guides"
       ],
-      benefits: ["Reduce documentation time by 60%", "Improve technical accuracy by 80%", "Standardize documentation", "Real-time updates"],
-      subtleNumber: "7"
+      benefits: ["Reduce documentation time by 60%", "Improve technical accuracy by 80%", "Standardize documentation", "Real-time updates"]
     },
     {
       icon: Network,
@@ -52,8 +50,7 @@ const Services: React.FC = () => {
         "Vendor management automation",
         "Cost optimization analysis"
       ],
-      benefits: ["Reduce logistics costs by 35%", "Improve delivery efficiency by 50%", "Optimize resource utilization", "Real-time tracking"],
-      subtleNumber: "11"
+      benefits: ["Reduce logistics costs by 35%", "Improve delivery efficiency by 50%", "Optimize resource utilization", "Real-time tracking"]
     },
     {
       icon: Bot,
@@ -67,8 +64,7 @@ const Services: React.FC = () => {
         "Escalation to human experts",
         "Multi-language technical support"
       ],
-      benefits: ["Reduce technical support costs by 50%", "Improve customer satisfaction by 65%", "24/7 technical assistance"],
-      subtleNumber: "18"
+      benefits: ["Reduce technical support costs by 50%", "Improve customer satisfaction by 65%", "24/7 technical assistance"]
     },
     {
       icon: BarChart3,
@@ -82,8 +78,7 @@ const Services: React.FC = () => {
         "Technical KPI tracking",
         "Compliance monitoring"
       ],
-      benefits: ["Improve quality by 45%", "Reduce maintenance costs by 30%", "Data-driven optimization"],
-      subtleNumber: "20"
+      benefits: ["Improve quality by 45%", "Reduce maintenance costs by 30%", "Data-driven optimization"]
     },
     {
       icon: CircuitBoard,
@@ -97,8 +92,7 @@ const Services: React.FC = () => {
         "Equipment management systems",
         "Legacy technical system modernization"
       ],
-      benefits: ["Streamline technical workflows", "Reduce manual data entry by 70%", "Improve system efficiency"],
-      subtleNumber: "29"
+      benefits: ["Streamline technical workflows", "Reduce manual data entry by 70%", "Improve system efficiency"]
     }
   ];
 
@@ -124,54 +118,54 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-20">
+    <div className="min-h-screen bg-[#0A0B1E] text-white pt-20">
       {/* Hero Section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/15 via-green-500/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent" />
         <div className="container mx-auto px-6 relative">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Technical AI Solutions
               </span>
             </h1>
-            <p className="text-xl text-slate-300 mb-8 font-mono">
+            <p className="text-xl text-gray-400 mb-8 font-mono">
               Specialized AI automation for Field Service, Engineering, Logistics, IT, and Technical Operations. Streamline field projects, technical documentation, and customer care.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-8">
-              <div className="flex items-center justify-center bg-gradient-to-b from-blue-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <PhoneCall className="w-6 h-6 text-blue-400 mr-2" />
-                <span className="font-mono text-sm text-white">Field Service AI</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <PhoneCall className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Field Service AI</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-green-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <FileText className="w-6 h-6 text-green-400 mr-2" />
-                <span className="font-mono text-sm text-white">Technical Docs</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <FileText className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Technical Docs</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-blue-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <Network className="w-6 h-6 text-blue-400 mr-2" />
-                <span className="font-mono text-sm text-white">Logistics AI</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <Network className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Logistics AI</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-green-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <Bot className="w-6 h-6 text-green-400 mr-2" />
-                <span className="font-mono text-sm text-white">Tech Support</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <Bot className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Tech Support</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-blue-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <BarChart3 className="w-6 h-6 text-blue-400 mr-2" />
-                <span className="font-mono text-sm text-white">Quality Analytics</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <BarChart3 className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Quality Analytics</span>
               </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/consultation"
-                className="font-mono bg-gradient-to-r from-blue-500 to-green-500 px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all inline-block"
+                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all inline-block"
               >
                 Get Started
               </Link>
               <Link
                 to="/demo"
-                className="font-mono border border-slate-400/50 px-8 py-3 rounded-full text-lg font-semibold hover:bg-slate-400/10 transition-all inline-block"
+                className="font-mono border border-cyan-500/30 px-8 py-3 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all inline-block"
               >
                 Request Demo
               </Link>
@@ -181,34 +175,30 @@ const Services: React.FC = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+      <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent">Automation Solutions</span>
+              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Solutions</span>
             </h2>
-            <p className="text-slate-300 max-w-3xl mx-auto font-mono">
+            <p className="text-gray-400 max-w-3xl mx-auto font-mono">
               Comprehensive AI-powered services designed to streamline your business operations and drive growth.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {mainServices.map((service, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-blue-500/10 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all relative">
-                <service.icon className="w-12 h-12 text-blue-400 mb-6" />
-                <h3 className="text-xl font-mono font-semibold mb-4 text-white">{service.title}</h3>
-                <p className="text-slate-300 font-mono mb-6">{service.description}</p>
-                {/* Subtle lucky number */}
-                <div className="absolute top-3 right-3 text-slate-600 font-mono text-xs opacity-30">
-                  {service.subtleNumber}
-                </div>
+              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+                <service.icon className="w-12 h-12 text-cyan-400 mb-6" />
+                <h3 className="text-xl font-mono font-semibold mb-4">{service.title}</h3>
+                <p className="text-gray-400 font-mono mb-6">{service.description}</p>
                 
                 <div className="mb-6">
-                  <h4 className="font-mono font-semibold text-blue-400 mb-3">Features:</h4>
+                  <h4 className="font-mono font-semibold text-cyan-400 mb-3">Features:</h4>
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start text-sm text-slate-200 font-mono">
-                        <CheckCircle className="w-4 h-4 text-blue-400 mr-2 mt-0.5 flex-shrink-0" />
+                      <li key={featureIndex} className="flex items-start text-sm text-gray-300 font-mono">
+                        <CheckCircle className="w-4 h-4 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -233,30 +223,26 @@ const Services: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Success <span className="bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent">Stories</span>
+              Success <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Stories</span>
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto font-mono">
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
               See how our comprehensive automation solutions have transformed businesses across different industries.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-blue-500/10 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all relative">
+              <div key={index} className="p-8 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
                 <div className="mb-6">
-                  <h3 className="text-xl font-mono font-semibold mb-2 text-white">{testimonial.title}</h3>
-                  <p className="text-blue-400 font-mono text-sm">{testimonial.industry}</p>
+                  <h3 className="text-xl font-mono font-semibold mb-2">{testimonial.title}</h3>
+                  <p className="text-cyan-400 font-mono text-sm">{testimonial.industry}</p>
                 </div>
                 
-                <p className="text-slate-300 font-mono mb-6 text-sm">{testimonial.description}</p>
-                {/* Subtle lucky number */}
-                <div className="absolute top-3 right-3 text-slate-600 font-mono text-xs opacity-20">
-                  {[2, 7, 11][index % 3]}
-                </div>
+                <p className="text-gray-400 font-mono mb-6 text-sm">{testimonial.description}</p>
                 
                 <div>
                   <h4 className="font-mono font-semibold text-green-400 mb-3">Results:</h4>
@@ -276,13 +262,13 @@ const Services: React.FC = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent">Implementation Process</span>
+              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Implementation Process</span>
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto font-mono">
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
               A proven methodology to implement AI automation solutions that deliver results.
             </p>
           </div>
@@ -314,17 +300,13 @@ const Services: React.FC = () => {
                 icon: Network
               }
             ].map((step, index) => (
-              <div key={index} className="text-center relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-mono font-bold text-white">{step.step}</span>
                 </div>
-                <step.icon className="w-8 h-8 text-blue-400 mx-auto mb-4" />
-                <h3 className="text-lg font-mono font-semibold mb-2 text-white">{step.title}</h3>
-                {/* Subtle lucky number */}
-                <div className="absolute top-0 right-0 text-slate-600 font-mono text-xs opacity-20">
-                  {[18, 20, 29, 2][index % 4]}
-                </div>
-                <p className="text-slate-300 font-mono text-sm">{step.description}</p>
+                <step.icon className="w-8 h-8 text-cyan-400 mx-auto mb-4" />
+                <h3 className="text-lg font-mono font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-400 font-mono text-sm">{step.description}</p>
               </div>
             ))}
           </div>
@@ -332,32 +314,32 @@ const Services: React.FC = () => {
       </section>
 
       {/* Demo CTA */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+      <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-blue-500/10 via-green-500/5 to-transparent border border-slate-400/20 rounded-2xl p-12">
+          <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-12">
             <h2 className="text-3xl font-mono font-bold mb-6">Want to See Our Solutions in Action?</h2>
-            <p className="text-slate-300 mb-8 font-mono text-lg">
+            <p className="text-gray-400 mb-8 font-mono text-lg">
               Request a comprehensive demo package to see how our AI automation solutions can transform your business operations.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="flex items-center justify-center bg-gradient-to-b from-blue-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <Database className="w-6 h-6 text-blue-400 mr-2" />
-                <span className="font-mono text-sm text-white">Custom Analysis</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <Database className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Custom Analysis</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-green-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <Bot className="w-6 h-6 text-green-400 mr-2" />
-                <span className="font-mono text-sm text-white">Live Demo</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <Bot className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Live Demo</span>
               </div>
-              <div className="flex items-center justify-center bg-gradient-to-b from-blue-500/10 to-transparent border border-slate-400/20 rounded-xl p-4">
-                <PhoneCall className="w-6 h-6 text-blue-400 mr-2" />
-                <span className="font-mono text-sm text-white">Strategy Session</span>
+              <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
+                <PhoneCall className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Strategy Session</span>
               </div>
             </div>
             
             <Link
               to="/demo"
-              className="font-mono bg-gradient-to-r from-blue-500 to-green-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all inline-block"
+              className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all inline-block"
             >
               Request Demo Package
             </Link>
@@ -366,36 +348,24 @@ const Services: React.FC = () => {
       </section>
 
       {/* Industries Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-mono font-bold mb-4">
-              Industries We <span className="bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent">Serve</span>
+              Industries We <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Serve</span>
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto font-mono">
+            <p className="text-gray-400 max-w-2xl mx-auto font-mono">
               Our AI automation solutions work across all industries, customized for your specific business needs.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {[
-              { name: "SaaS & Technology", subtleNumber: "7" },
-              { name: "E-commerce & Retail", subtleNumber: "11" },
-              { name: "Healthcare", subtleNumber: "18" },
-              { name: "Financial Services", subtleNumber: "20" },
-              { name: "Real Estate", subtleNumber: "29" },
-              { name: "Professional Services", subtleNumber: "2" },
-              { name: "Education", subtleNumber: "7" },
-              { name: "Manufacturing", subtleNumber: "11" },
-              { name: "Marketing Agencies", subtleNumber: "18" },
-              { name: "Consulting", subtleNumber: "20" }
+              "SaaS & Technology", "E-commerce & Retail", "Healthcare", "Financial Services", "Real Estate", 
+              "Professional Services", "Education", "Manufacturing", "Marketing Agencies", "Consulting"
             ].map((industry, index) => (
-              <div key={index} className="text-center p-4 rounded-xl bg-gradient-to-b from-blue-500/5 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all relative">
-                <span className="font-mono text-sm text-slate-200">{industry.name}</span>
-                {/* Subtle lucky number */}
-                <div className="absolute top-1 right-1 text-slate-600 font-mono text-xs opacity-15">
-                  {industry.subtleNumber}
-                </div>
+              <div key={index} className="text-center p-4 rounded-xl bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+                <span className="font-mono text-sm text-gray-300">{industry}</span>
               </div>
             ))}
           </div>
@@ -403,30 +373,30 @@ const Services: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+      <section className="py-20 bg-gradient-to-b from-[#0A0B1E] to-[#0A0B1E]/80">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-mono font-bold mb-6">Ready to Automate Your Business?</h2>
-            <p className="text-slate-300 mb-8 font-mono">
+            <p className="text-gray-400 mb-8 font-mono">
               Let's discuss how our AI automation services can streamline your operations and drive growth.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/consultation"
-                className="font-mono bg-gradient-to-r from-blue-500 to-green-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all"
+                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
               >
                 Get Started Today
               </Link>
               <Link
                 to="/demo"
-                className="font-mono border border-slate-400/50 px-8 py-4 rounded-full text-lg font-semibold hover:bg-slate-400/10 transition-all"
+                className="font-mono border border-cyan-500/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all"
               >
                 Request Demo
               </Link>
             </div>
             
-            <p className="text-sm text-green-400 font-mono mt-6">
+            <p className="text-sm text-cyan-400 font-mono mt-6">
               ✓ Free consultation ✓ Custom solutions ✓ Expert support ✓ Proven results
             </p>
           </div>
