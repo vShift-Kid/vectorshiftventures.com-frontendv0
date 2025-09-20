@@ -177,21 +177,21 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="trust-heading" className="text-3xl font-mono font-bold mb-4">
-              Trusted by <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">500+ Technical Teams</span>
+              Ready to <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Transform Your Operations?</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Join industry leaders across field service, engineering, logistics, and IT operations who have transformed their technical workflows with our AI automation solutions.
+              Join the growing number of technical teams across field service, engineering, logistics, and IT operations who are discovering the power of AI automation solutions.
             </p>
           </div>
 
-          {/* Customer Logos */}
+          {/* Industry Focus */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
             {[
-              "Manufacturing Corp", "Energy Solutions", "Healthcare Systems", 
-              "Construction Group", "Logistics Pro", "Utilities Co"
-            ].map((company, index) => (
+              "Manufacturing", "Energy", "Healthcare", 
+              "Construction", "Logistics", "Utilities"
+            ].map((industry, index) => (
               <div key={index} className="flex items-center justify-center p-4 bg-gray-800/30 rounded-lg border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                <span className="font-mono text-sm text-gray-300">{company}</span>
+                <span className="font-mono text-sm text-gray-300">{industry}</span>
               </div>
             ))}
           </div>
@@ -245,10 +245,10 @@ const Home: React.FC = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "500+", label: "Companies Served" },
-              { number: "60%", label: "Average Cost Reduction" },
+              { number: "100%", label: "AI-Powered Solutions" },
               { number: "24/7", label: "AI Availability" },
-              { number: "99%", label: "Customer Satisfaction" }
+              { number: "Multi-Industry", label: "Expertise" },
+              { number: "Custom", label: "Solutions" }
             ].map((stat, index) => (
               <div key={index} className="p-6 bg-gradient-to-b from-cyan-500/5 to-transparent border border-cyan-500/20 rounded-xl">
                 <div className="text-3xl font-mono font-bold text-cyan-400 mb-2">{stat.number}</div>
