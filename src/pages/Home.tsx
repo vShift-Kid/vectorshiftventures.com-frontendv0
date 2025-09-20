@@ -15,12 +15,12 @@ const Home: React.FC = () => {
                 id="hero-heading"
                 className="font-mono text-5xl font-bold mb-6 leading-tight"
               >
-                AI-Powered Solutions for
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Field Operations</span>
+                AI-Powered
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Technical Solutions</span>
               </h1>
             </div>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Specialized AI automation for Field Service, Engineering, Logistics, IT, and Technical Operations. Streamline field projects, technical documentation, product support, and customer care with intelligent automation.
+              Advanced AI automation for Field Service, Engineering, Logistics, IT Operations, and Technical Teams. Streamline complex workflows, automate technical documentation, optimize operations, and enhance customer support with intelligent automation across all technical domains.
             </p>
             
             <div className="flex gap-4 flex-wrap">
@@ -48,22 +48,22 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="services-heading" className="text-3xl font-mono font-bold mb-4">
-              Industry-Specific <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Solutions</span>
+              Comprehensive <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Technical Solutions</span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto font-mono">
-              Tailored AI automation solutions for Field Service, Engineering, Logistics, IT, and Technical Operations.
+              Advanced AI automation solutions spanning Field Service, Engineering, Logistics, IT Operations, and Technical Teams across all industries.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
             {[
               { icon: CircuitBoard, title: "Field Service AI", description: "Voice assistants and automation for field technicians and service operations" },
-              { icon: Cpu, title: "Engineering Tools", description: "AI-powered technical documentation and engineering workflow automation" },
-              { icon: Network, title: "Logistics Optimization", description: "Intelligent routing, inventory management, and supply chain automation" },
+              { icon: Cpu, title: "Engineering Solutions", description: "AI-powered technical documentation, CAD integration, and engineering workflow automation" },
+              { icon: Network, title: "Logistics & Supply Chain", description: "Intelligent routing, inventory management, and supply chain optimization" },
               { icon: Database, title: "IT Operations", description: "Automated IT support, system monitoring, and technical troubleshooting" },
               { icon: FileText, title: "Technical Documentation", description: "AI-generated technical docs, manuals, and knowledge base automation" },
-              { icon: Users, title: "Product Support", description: "Intelligent customer care and technical support automation" },
-              { icon: BarChart3, title: "Quality Analytics", description: "Automated quality monitoring, reporting, and performance analytics" },
+              { icon: Users, title: "Customer Support", description: "Intelligent customer care and technical support automation" },
+              { icon: BarChart3, title: "Analytics & Reporting", description: "Automated quality monitoring, reporting, and performance analytics" },
               { icon: Calendar, title: "Project Management", description: "AI-driven project tracking, resource allocation, and timeline optimization" }
             ].map((service, index) => (
               <article 
@@ -86,31 +86,31 @@ const Home: React.FC = () => {
           <div className="text-center mb-16">
             <h2 id="features-heading" className="text-3xl font-mono font-bold mb-4">
               Built for
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Technical Teams</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Technical Excellence</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Specialized AI solutions designed for field service, engineering, logistics, and technical operations teams.
+              Advanced AI solutions designed for technical teams across all industries - from field service to engineering, logistics to IT operations.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
             {[
               { 
                 icon: Brain, 
-                title: "Industry-Specific AI", 
-                description: "AI trained on field service, engineering, and technical operations data for accurate automation",
-                features: ["Field Service Intelligence", "Technical Documentation AI", "Engineering Workflow Automation"]
+                title: "Multi-Industry AI", 
+                description: "AI trained on diverse technical data across field service, engineering, logistics, and IT operations",
+                features: ["Field Service Intelligence", "Engineering Automation", "Logistics Optimization", "IT Operations AI"]
               },
               { 
                 icon: Zap, 
-                title: "Field-Ready Solutions", 
-                description: "Mobile-optimized AI tools that work in the field, not just the office",
-                features: ["Mobile Voice Assistants", "Offline Capability", "Field Data Collection"]
+                title: "Technical-Ready Solutions", 
+                description: "Mobile-optimized AI tools that work across all technical environments and industries",
+                features: ["Mobile Voice Assistants", "Cross-Platform Support", "Real-Time Data Processing"]
               },
               { 
                 icon: Network, 
-                title: "Technical Integration", 
-                description: "Seamless integration with engineering tools, field service software, and technical systems",
-                features: ["CAD Integration", "Field Service Software", "Technical Documentation Systems"]
+                title: "Universal Integration", 
+                description: "Seamless integration with technical tools, systems, and workflows across all industries",
+                features: ["CAD Integration", "ERP Systems", "Technical Documentation", "Analytics Platforms"]
               }
             ].map((feature, index) => (
               <article 
@@ -140,10 +140,10 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-12">
             <h2 id="demo-heading" className="text-3xl font-mono font-bold mb-6">
-              Ready to Transform Your Field Operations?
+              Ready to Transform Your Technical Operations?
             </h2>
             <p className="text-gray-400 mb-8 font-mono text-lg">
-              Get a personalized demo showcasing AI solutions for your field service, engineering, or technical operations - complete with custom proposal and live testing.
+              Get a personalized demo showcasing AI solutions for your field service, engineering, logistics, IT operations, or technical teams - complete with custom proposal and live testing.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -177,10 +177,10 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="trust-heading" className="text-3xl font-mono font-bold mb-4">
-              Trusted by <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">500+ Field Service Companies</span>
+              Trusted by <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">500+ Technical Teams</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Join industry leaders who have transformed their operations with our AI automation solutions.
+              Join industry leaders across field service, engineering, logistics, and IT operations who have transformed their technical workflows with our AI automation solutions.
             </p>
           </div>
 
@@ -263,9 +263,9 @@ const Home: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-[#0A0B1E]/80 to-[#0A0B1E]" aria-labelledby="cta-heading">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 id="cta-heading" className="text-3xl font-mono font-bold mb-6">Ready to Transform Your Business?</h2>
+            <h2 id="cta-heading" className="text-3xl font-mono font-bold mb-6">Ready to Transform Your Technical Operations?</h2>
             <p className="text-gray-400 mb-8 font-mono">
-              Let's discuss how our AI automation solutions can streamline your operations and drive growth.
+              Let's discuss how our AI automation solutions can streamline your technical workflows, optimize operations, and drive growth across all industries.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
