@@ -207,7 +207,7 @@ const GuidedDemoForm: React.FC = () => {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch('https://n8n.vectorshiftventures.com/webhook/demo-request', {
+      const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
