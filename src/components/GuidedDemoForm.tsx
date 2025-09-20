@@ -159,8 +159,8 @@ const GuidedDemoForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     
     try {
       const webhookData = {
@@ -356,7 +356,7 @@ const GuidedDemoForm: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-cyan-500/20">
-              <form onSubmit={handleSubmit}>
+              <form>
                 {/* Step 1: Contact Information */}
                 {currentStep === 1 && (
                   <div className="space-y-6">
@@ -843,7 +843,8 @@ const GuidedDemoForm: React.FC = () => {
                     </button>
                   ) : (
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={handleSubmit}
                       className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-mono font-semibold hover:shadow-lg hover:shadow-green-500/20 transition-all"
                     >
                       <Brain className="w-4 h-4 inline mr-2" />
