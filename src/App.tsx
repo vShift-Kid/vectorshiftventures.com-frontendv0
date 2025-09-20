@@ -94,9 +94,9 @@ function App() {
             <VoiceAssistantFallback />
             <PhoneCaller />
             <EnhancedPhoneCaller />
-            <CallAnalytics />
+            <CallAnalytics hidden={true} />
             <VapiTest />
-            <VapiDebugger />
+            <VapiDebugger hidden={true} />
           </Suspense>
           <StickyCTA />
           <PerformanceMonitor />

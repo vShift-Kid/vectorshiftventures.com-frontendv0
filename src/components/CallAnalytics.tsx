@@ -25,7 +25,11 @@ interface AnalyticsData {
   dailyStats: Record<string, number>;
 }
 
-const CallAnalytics: React.FC = () => {
+interface CallAnalyticsProps {
+  hidden?: boolean;
+}
+
+const CallAnalytics: React.FC<CallAnalyticsProps> = ({ hidden = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [calls, setCalls] = useState<CallData[]>([]);
@@ -114,7 +118,7 @@ const CallAnalytics: React.FC = () => {
   };
 
   if (!isOpen) {
-    return (
+    return hidden ? null : (
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-20 z-50 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2"

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Bug, CheckCircle, XCircle, RefreshCw } from 'lucide-react';
 
-const VapiDebugger: React.FC = () => {
+interface VapiDebuggerProps {
+  hidden?: boolean;
+}
+
+const VapiDebugger: React.FC<VapiDebuggerProps> = ({ hidden = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [debugInfo, setDebugInfo] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -134,15 +138,17 @@ const VapiDebugger: React.FC = () => {
   return (
     <>
       {/* Debug Button */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-          title="VAPI Debugger"
-        >
-          <Bug className="w-5 h-5" />
-        </button>
-      </div>
+      {!hidden && (
+        <div className="fixed bottom-6 left-6 z-50">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+            title="VAPI Debugger"
+          >
+            <Bug className="w-5 h-5" />
+          </button>
+        </div>
+      )}
 
       {/* Debug Panel */}
       {isOpen && (
