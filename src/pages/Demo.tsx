@@ -463,67 +463,48 @@ const Demo: React.FC = () => {
                       required
                       className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                     >
-                    <option value="">Select your field service industry</option>
-                    <optgroup label="HVAC & Climate Control">
-                      <option value="hvac-residential">HVAC - Residential (Furnaces, AC units, thermostats, ductwork, SEER ratings, energy efficiency)</option>
-                      <option value="hvac-commercial">HVAC - Commercial (RTUs, VAV systems, building automation, maintenance contracts, zoning)</option>
-                      <option value="hvac-industrial">HVAC - Industrial (Chillers, boilers, process cooling, clean rooms, air handling units)</option>
-                      <option value="refrigeration">Refrigeration (Walk-in coolers, commercial freezers, ice machines, refrigerant handling, temperature control)</option>
-                      <option value="ductwork">Ductwork & Ventilation (Duct cleaning, air balancing, indoor air quality, ventilation systems, airflow testing)</option>
+                    <option value="">Select your technical operations industry</option>
+                    <optgroup label="Field Service Operations">
+                      <option value="field-service-technical">Field Service - Technical Operations (Equipment maintenance, technical support, field engineering, service optimization)</option>
+                      <option value="equipment-maintenance">Equipment Maintenance & Repair (Industrial equipment, machinery, technical systems, preventive maintenance)</option>
+                      <option value="technical-support">Technical Support & Troubleshooting (Field technician support, technical assistance, problem resolution)</option>
+                      <option value="emergency-response">Emergency Response Services (24/7 technical support, emergency repairs, critical system maintenance)</option>
+                      <option value="quality-control">Quality Control & Assurance (Technical inspections, compliance monitoring, quality standards)</option>
                     </optgroup>
-                    <optgroup label="Plumbing Services">
-                      <option value="plumbing-residential">Plumbing - Residential (Faucets, toilets, sinks, garbage disposals, pipe repairs, water pressure, leaks)</option>
-                      <option value="plumbing-commercial">Plumbing - Commercial (Restaurant plumbing, grease traps, commercial fixtures, backflow prevention, water systems)</option>
-                      <option value="plumbing-industrial">Plumbing - Industrial (Process piping, water treatment, pump systems, chemical handling, large-scale installations)</option>
-                      <option value="drain-cleaning">Drain Cleaning (Sewer lines, main line cleaning, hydro jetting, camera inspections, root removal, clog prevention)</option>
-                      <option value="water-heater">Water Heater Services (Tankless, traditional tanks, heat pumps, maintenance, temperature control, energy efficiency)</option>
+                    <optgroup label="Engineering & Manufacturing">
+                      <option value="engineering-design">Engineering Design & Development (CAD systems, technical design, engineering workflows, product development)</option>
+                      <option value="manufacturing-operations">Manufacturing Operations (Production systems, process optimization, equipment management, quality control)</option>
+                      <option value="technical-documentation">Technical Documentation (Engineering manuals, technical writing, knowledge management, standards compliance)</option>
+                      <option value="cad-integration">CAD & Design Systems (Engineering software, design automation, technical modeling, system integration)</option>
+                      <option value="project-management">Technical Project Management (Engineering projects, technical implementation, resource allocation)</option>
                     </optgroup>
-                    <optgroup label="Electrical Services">
-                      <option value="electrical-residential">Electrical - Residential (Outlets, switches, lighting, panels, GFCI, AFCI, smart home wiring, surge protection)</option>
-                      <option value="electrical-commercial">Electrical - Commercial (LED retrofits, emergency lighting, power distribution, data cabling, energy management)</option>
-                      <option value="electrical-industrial">Electrical - Industrial (Motor controls, VFDs, power quality, three-phase systems, automation, safety systems)</option>
-                      <option value="generator">Generator Services (Standby generators, transfer switches, load testing, maintenance, fuel systems, automatic start)</option>
-                      <option value="security-systems">Security Systems (Access control, cameras, alarms, intercoms, smart locks, monitoring, integration)</option>
+                    <optgroup label="Logistics & Supply Chain">
+                      <option value="logistics-optimization">Logistics & Distribution (Route optimization, supply chain management, distribution networks)</option>
+                      <option value="inventory-management">Inventory Management (Parts tracking, supply optimization, warehouse operations, asset management)</option>
+                      <option value="fleet-management">Fleet Management (Vehicle tracking, maintenance scheduling, route optimization, driver support)</option>
+                      <option value="supply-chain">Supply Chain Management (Vendor management, procurement, logistics coordination, cost optimization)</option>
+                      <option value="warehouse-operations">Warehouse Operations (Inventory control, order fulfillment, logistics automation, space optimization)</option>
                     </optgroup>
-                    <optgroup label="Home & Property Services">
-                      <option value="landscaping">Landscaping & Lawn Care (Mowing, trimming, fertilization, irrigation, pest control, seasonal cleanup, design)</option>
-                      <option value="pest-control">Pest Control (Termite treatment, rodent control, insect management, inspection, prevention, wildlife removal)</option>
-                      <option value="cleaning">Commercial Cleaning (Office cleaning, janitorial, carpet cleaning, window washing, sanitization, maintenance)</option>
-                      <option value="pool-service">Pool & Spa Services (Pool cleaning, chemical balancing, equipment repair, winterization, safety compliance, automation)</option>
-                      <option value="roofing">Roofing & Gutters (Shingle repair, gutter cleaning, leak detection, storm damage, maintenance, ventilation)</option>
-                      <option value="siding">Siding & Exterior (Vinyl siding, painting, pressure washing, weatherproofing, maintenance, repairs)</option>
+                    <optgroup label="IT & Technology">
+                      <option value="it-operations">IT Operations & Support (System administration, technical support, network management, cybersecurity)</option>
+                      <option value="software-development">Software Development (Application development, system integration, technical implementation, code maintenance)</option>
+                      <option value="system-integration">System Integration (Technical integration, API development, data management, system optimization)</option>
+                      <option value="cybersecurity">Cybersecurity & Compliance (Security monitoring, compliance management, risk assessment, technical security)</option>
+                      <option value="data-analytics">Data Analytics & BI (Data analysis, reporting, business intelligence, technical insights)</option>
                     </optgroup>
-                    <optgroup label="Automotive & Transportation">
-                      <option value="auto-repair">Auto Repair (Engine diagnostics, brake service, oil changes, transmission, electrical, emissions testing)</option>
-                      <option value="towing">Towing & Recovery (Emergency towing, roadside assistance, vehicle recovery, impound services, fleet management)</option>
-                      <option value="fleet-maintenance">Fleet Maintenance (Commercial vehicle service, preventive maintenance, compliance, fuel management, driver support)</option>
-                      <option value="mobile-mechanic">Mobile Mechanic (On-site repairs, emergency service, fleet support, diagnostic services, convenience repairs)</option>
+                    <optgroup label="Quality & Analytics">
+                      <option value="quality-assurance">Quality Assurance & Control (Quality monitoring, compliance tracking, technical standards, process improvement)</option>
+                      <option value="performance-analytics">Performance Analytics (KPI tracking, performance monitoring, technical metrics, optimization)</option>
+                      <option value="predictive-maintenance">Predictive Maintenance (Equipment monitoring, failure prediction, maintenance optimization, technical forecasting)</option>
+                      <option value="compliance-monitoring">Compliance Monitoring (Regulatory compliance, technical standards, audit management, quality control)</option>
+                      <option value="technical-reporting">Technical Reporting (Engineering reports, technical documentation, performance analysis, data visualization)</option>
                     </optgroup>
-                    <optgroup label="Technology & Security">
-                      <option value="it-support">IT Support & Services (Computer repair, network setup, cybersecurity, data recovery, software support, remote assistance)</option>
-                      <option value="security-installation">Security Installation (Alarm systems, cameras, access control, monitoring, smart home integration, maintenance)</option>
-                      <option value="av-installation">Audio/Visual Installation (Home theaters, conference rooms, sound systems, video walls, smart displays, integration)</option>
-                      <option value="network-installation">Network & Cabling (Ethernet, fiber optic, WiFi, structured cabling, data centers, telecommunications)</option>
-                    </optgroup>
-                    <optgroup label="Health & Safety Services">
-                      <option value="medical-equipment">Medical Equipment Service (Hospital equipment, diagnostic machines, maintenance, calibration, compliance, training)</option>
-                      <option value="fire-safety">Fire Safety & Protection (Fire extinguisher service, sprinkler systems, alarms, inspections, emergency planning)</option>
-                      <option value="environmental">Environmental Services (Air quality testing, mold remediation, asbestos removal, water testing, compliance)</option>
-                      <option value="safety-consulting">Safety Consulting (OSHA compliance, safety training, risk assessment, emergency planning, workplace safety)</option>
-                    </optgroup>
-                    <optgroup label="Specialized Services">
-                      <option value="locksmith">Locksmith Services (Lock installation, key cutting, security systems, safe services, emergency access, commercial locks)</option>
-                      <option value="appliance-repair">Appliance Repair (Washers, dryers, refrigerators, ovens, dishwashers, microwaves, warranty service)</option>
-                      <option value="garage-doors">Garage Door Services (Installation, repair, maintenance, opener service, spring replacement, safety systems)</option>
-                      <option value="window-treatment">Window & Door Services (Window repair, door installation, glass replacement, weatherproofing, security upgrades)</option>
-                      <option value="hvac-ductwork">HVAC Ductwork (Duct cleaning, sealing, insulation, design, installation, air quality improvement)</option>
-                    </optgroup>
-                    <optgroup label="Commercial & Industrial">
-                      <option value="facility-maintenance">Facility Maintenance (Preventive maintenance, repairs, equipment servicing, building systems, emergency response)</option>
-                      <option value="janitorial">Janitorial Services (Office cleaning, floor care, restroom maintenance, waste management, specialized cleaning)</option>
-                      <option value="waste-management">Waste Management (Trash collection, recycling, hazardous waste, dumpster service, sustainability programs)</option>
-                      <option value="grounds-keeping">Grounds Keeping (Landscape maintenance, snow removal, parking lot cleaning, seasonal services, property management)</option>
-                      <option value="other">Other Field Service (Specify your specialized service area in business description)</option>
+                    <optgroup label="Management & Executive">
+                      <option value="executive-management">Executive Management (Strategic planning, technical decision-making, resource allocation, leadership)</option>
+                      <option value="project-management">Project Management (Technical project oversight, resource planning, timeline management, delivery)</option>
+                      <option value="operations-management">Operations Management (Technical operations, process optimization, efficiency improvement, team management)</option>
+                      <option value="business-analysis">Business Analysis (Technical requirements, process analysis, improvement recommendations, strategic planning)</option>
+                      <option value="consulting">Technical Consulting (Strategic technical advice, implementation guidance, optimization recommendations)</option>
                     </optgroup>
                     </select>
                   </div>
@@ -555,7 +536,7 @@ const Demo: React.FC = () => {
                     required
                     rows={3}
                     className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                    placeholder="Describe your business, services, and target customers"
+                    placeholder="Describe your technical operations, field service capabilities, and target customers"
                   />
                 </div>
 
@@ -577,23 +558,29 @@ const Demo: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
                         <option value="">What should your AI agent primarily do?</option>
-                        <optgroup label="Customer Service & Support">
-                          <option value="customer-support">Customer Support & Help Desk</option>
-                          <option value="technical-support">Technical Support & Troubleshooting</option>
-                          <option value="complaint-handling">Complaint Handling & Resolution</option>
-                          <option value="service-requests">Service Request Management</option>
+                        <optgroup label="Field Service Operations">
+                          <option value="field-technician-support">Field Technician Support & Guidance</option>
+                          <option value="technical-troubleshooting">Technical Troubleshooting Assistance</option>
+                          <option value="equipment-maintenance">Equipment Maintenance Scheduling</option>
+                          <option value="service-call-optimization">Service Call Optimization</option>
                         </optgroup>
-                        <optgroup label="Sales & Lead Generation">
-                          <option value="lead-qualification">Lead Qualification & Nurturing</option>
-                          <option value="appointment-booking">Appointment Booking & Scheduling</option>
-                          <option value="sales-calls">Outbound Sales Calls</option>
-                          <option value="follow-up">Customer Follow-up & Retention</option>
+                        <optgroup label="Engineering & Technical">
+                          <option value="technical-documentation">Technical Documentation Generation</option>
+                          <option value="engineering-workflow">Engineering Workflow Automation</option>
+                          <option value="cad-integration">CAD System Integration</option>
+                          <option value="technical-standards">Technical Standards Compliance</option>
                         </optgroup>
-                        <optgroup label="Operations & Management">
-                          <option value="dispatch-coordination">Dispatch & Technician Coordination</option>
+                        <optgroup label="Logistics & Supply Chain">
+                          <option value="route-optimization">Route Optimization for Field Teams</option>
                           <option value="inventory-management">Inventory & Parts Management</option>
-                          <option value="billing-inquiries">Billing & Payment Inquiries</option>
-                          <option value="emergency-response">Emergency Response & Dispatch</option>
+                          <option value="supply-chain-monitoring">Supply Chain Monitoring</option>
+                          <option value="resource-allocation">Resource Allocation Planning</option>
+                        </optgroup>
+                        <optgroup label="Quality & Analytics">
+                          <option value="quality-control">Quality Control Monitoring</option>
+                          <option value="performance-analytics">Performance Analytics & Reporting</option>
+                          <option value="predictive-maintenance">Predictive Maintenance Insights</option>
+                          <option value="compliance-monitoring">Compliance Monitoring</option>
                         </optgroup>
                       </select>
                     </div>
@@ -609,22 +596,29 @@ const Demo: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
                         <option value="">Who will primarily interact with your AI agent?</option>
-                        <optgroup label="External Customers">
-                          <option value="residential-customers">Residential Customers</option>
-                          <option value="commercial-clients">Commercial Clients</option>
-                          <option value="property-managers">Property Managers</option>
-                          <option value="homeowners">Homeowners</option>
-                        </optgroup>
-                        <optgroup label="Internal Team">
-                          <option value="field-technicians">Field Technicians</option>
+                        <optgroup label="Field Service Teams">
+                          <option value="field-technicians">Field Technicians & Engineers</option>
+                          <option value="service-managers">Service Managers & Supervisors</option>
                           <option value="dispatchers">Dispatchers & Coordinators</option>
-                          <option value="office-staff">Office Staff & Administrators</option>
-                          <option value="management">Management & Supervisors</option>
+                          <option value="quality-inspectors">Quality Inspectors & Auditors</option>
                         </optgroup>
-                        <optgroup label="Business Partners">
-                          <option value="suppliers">Suppliers & Vendors</option>
-                          <option value="contractors">Subcontractors</option>
-                          <option value="partners">Business Partners</option>
+                        <optgroup label="Engineering Teams">
+                          <option value="engineers">Engineers & Technical Staff</option>
+                          <option value="project-managers">Project Managers & Leads</option>
+                          <option value="technical-writers">Technical Writers & Documentation</option>
+                          <option value="design-engineers">Design Engineers & CAD Users</option>
+                        </optgroup>
+                        <optgroup label="Operations Teams">
+                          <option value="logistics-coordinators">Logistics Coordinators</option>
+                          <option value="inventory-managers">Inventory Managers</option>
+                          <option value="supply-chain-managers">Supply Chain Managers</option>
+                          <option value="operations-managers">Operations Managers</option>
+                        </optgroup>
+                        <optgroup label="Management & Executives">
+                          <option value="executives">C-Level Executives</option>
+                          <option value="directors">Directors & VPs</option>
+                          <option value="managers">Department Managers</option>
+                          <option value="analysts">Business Analysts</option>
                         </optgroup>
                       </select>
                     </div>
@@ -687,7 +681,7 @@ const Demo: React.FC = () => {
                           onMouseEnter={() => handleTooltipShow('voiceAgentSpecialization')}
                           onMouseLeave={() => handleTooltipHide('voiceAgentSpecialization')}
                         >
-                          This helps us train your AI solutions with industry-specific terminology, processes, and knowledge. AI agents understand technical terms like "SEER rating", "short cycling", "backflow prevention", and "VFD controls". Voice agents can handle phone calls, chatbots can answer questions about equipment and scheduling, and newsletters can share industry trends and maintenance tips.
+                          This helps us train your AI solutions with technical terminology, processes, and knowledge. AI agents understand technical terms like "MTBF", "predictive maintenance", "CAD integration", and "quality control". Voice agents can handle field technician calls, chatbots can answer technical questions, and newsletters can share engineering insights and field operations updates.
                         </div>
                       </div>
                       </label>
@@ -698,33 +692,33 @@ const Demo: React.FC = () => {
                         className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
                       >
                       <option value="">How should your AI agent be specialized?</option>
-                      <optgroup label="HVAC & Climate Control">
-                        <option value="hvac-residential">HVAC - Residential Services</option>
-                        <option value="hvac-commercial">HVAC - Commercial Services</option>
-                        <option value="hvac-industrial">HVAC - Industrial Services</option>
-                        <option value="refrigeration">Refrigeration Systems</option>
-                        <option value="ductwork">Ductwork & Ventilation</option>
+                      <optgroup label="Field Service Operations">
+                        <option value="field-service-technical">Field Service - Technical Operations</option>
+                        <option value="equipment-maintenance">Equipment Maintenance & Repair</option>
+                        <option value="preventive-maintenance">Preventive Maintenance Services</option>
+                        <option value="emergency-response">Emergency Response Services</option>
+                        <option value="technical-support">Technical Support & Troubleshooting</option>
                       </optgroup>
-                      <optgroup label="Plumbing Services">
-                        <option value="plumbing-residential">Plumbing - Residential</option>
-                        <option value="plumbing-commercial">Plumbing - Commercial</option>
-                        <option value="plumbing-industrial">Plumbing - Industrial</option>
-                        <option value="drain-cleaning">Drain Cleaning Services</option>
-                        <option value="water-heater">Water Heater Services</option>
+                      <optgroup label="Engineering & Manufacturing">
+                        <option value="engineering-design">Engineering Design & Development</option>
+                        <option value="manufacturing-operations">Manufacturing Operations</option>
+                        <option value="quality-assurance">Quality Assurance & Control</option>
+                        <option value="technical-documentation">Technical Documentation</option>
+                        <option value="cad-integration">CAD & Design Systems</option>
                       </optgroup>
-                      <optgroup label="Electrical Services">
-                        <option value="electrical-residential">Electrical - Residential</option>
-                        <option value="electrical-commercial">Electrical - Commercial</option>
-                        <option value="electrical-industrial">Electrical - Industrial</option>
-                        <option value="generator">Generator Services</option>
-                        <option value="security-systems">Security Systems</option>
+                      <optgroup label="Logistics & Supply Chain">
+                        <option value="logistics-optimization">Logistics & Distribution</option>
+                        <option value="supply-chain-management">Supply Chain Management</option>
+                        <option value="inventory-management">Inventory Management</option>
+                        <option value="fleet-management">Fleet Management</option>
+                        <option value="warehouse-operations">Warehouse Operations</option>
                       </optgroup>
-                      <optgroup label="Other Field Services">
-                        <option value="landscaping">Landscaping & Lawn Care</option>
-                        <option value="pest-control">Pest Control Services</option>
-                        <option value="cleaning">Commercial Cleaning</option>
-                        <option value="maintenance">Facility Maintenance</option>
-                        <option value="other">Other Field Service</option>
+                      <optgroup label="IT & Technology">
+                        <option value="it-operations">IT Operations & Support</option>
+                        <option value="software-development">Software Development</option>
+                        <option value="system-integration">System Integration</option>
+                        <option value="cybersecurity">Cybersecurity & Compliance</option>
+                        <option value="data-analytics">Data Analytics & BI</option>
                       </optgroup>
                       </select>
                     </div>
@@ -755,7 +749,7 @@ const Demo: React.FC = () => {
                           onMouseEnter={() => handleTooltipShow('demoType')}
                           onMouseLeave={() => handleTooltipHide('demoType')}
                         >
-                          Voice Agent: Phone-based customer service, appointment booking, and technical support. Chatbot: Website chat interface for instant customer support and lead qualification. Newsletter: Industry-specific content, maintenance tips, and customer engagement.
+                          Voice Agent: Field technician support, technical troubleshooting, and equipment maintenance via phone calls. Chatbot: Technical support interface for field service and engineering teams. Newsletter: Industry insights, technical documentation, and field operations updates.
                       </div>
                       </div>
                         </label>
@@ -766,9 +760,9 @@ const Demo: React.FC = () => {
                       className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
                     >
                       <option value="">Select your preferred demo type</option>
-                      <option value="voice-agent">Voice Agent Demo - Phone-based customer service, appointment booking, and technical support</option>
-                      <option value="chatbot">Chatbot Demo - Website chat interface for instant customer support and lead qualification</option>
-                      <option value="newsletter">Customized Newsletter Demo - Industry-specific content, maintenance tips, and customer engagement</option>
+                      <option value="voice-agent">Voice Agent Demo - Field technician support, technical troubleshooting, and equipment maintenance</option>
+                      <option value="chatbot">Chatbot Demo - Technical support interface for field service and engineering teams</option>
+                      <option value="newsletter">Technical Newsletter Demo - Industry insights, technical documentation, and field operations updates</option>
                     </select>
                   </div>
                 </div>
