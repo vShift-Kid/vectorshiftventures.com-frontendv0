@@ -1012,7 +1012,6 @@ const Demo: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
 
                 {/* AI Agent Specializations - Moved to logical position */}
                 <div className="border-t border-cyan-500/20 pt-8">
@@ -1338,7 +1337,7 @@ const Demo: React.FC = () => {
                   </button>
                 </div>
               </form>
-                  </div>
+            </div>
           </div>
         </div>
       </section>
