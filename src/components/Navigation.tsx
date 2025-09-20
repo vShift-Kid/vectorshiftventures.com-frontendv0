@@ -17,28 +17,28 @@ const Navigation: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed w-full z-50 bg-[#0A0B1E]/80 backdrop-blur-lg border-b border-cyan-500/20">
+    <nav className="fixed w-full z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-400/20">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <OptimizedImage 
               src="/VsVLogo.png" 
               alt="Vector Shift Ventures LLC" 
-              className="h-12 w-12 rounded-lg border border-cyan-500/30" 
+              className="h-12 w-12 rounded-lg border border-slate-400/30" 
               lazy={false}
               priority={true}
               fallback="/VsVLogo.png"
             />
             <Link to="/" className="flex flex-col">
               <div className="flex items-center">
-                <span className="text-lg font-mono font-medium text-gray-400">
+                <span className="text-lg font-mono font-medium text-slate-300">
                   Vector Shift
                 </span>
-                <span className="text-xl italic font-serif bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent ml-1">
+                <span className="text-xl italic font-serif bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent ml-1">
                   Ventures
                 </span>
               </div>
-              <span className="text-xs font-mono text-gray-500 mt-0.5">
+              <span className="text-xs font-mono text-slate-400 mt-0.5">
                 Technical AI Solutions
               </span>
             </Link>
@@ -52,8 +52,8 @@ const Navigation: React.FC = () => {
                 to={item.path}
                 className={`font-mono text-sm transition-colors ${
                   isActive(item.path)
-                    ? 'text-cyan-400'
-                    : 'text-gray-300 hover:text-cyan-400'
+                    ? 'text-blue-400'
+                    : 'text-slate-200 hover:text-blue-400'
                 }`}
               >
                 {item.label}
@@ -61,7 +61,7 @@ const Navigation: React.FC = () => {
             ))}
             <Link
               to="/consultation"
-              className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm"
+              className="font-mono bg-gradient-to-r from-blue-500 to-green-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-blue-500/20 transition-all text-sm"
             >
               Transform Your Business
             </Link>
@@ -69,7 +69,7 @@ const Navigation: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-300 hover:text-cyan-400"
+            className="md:hidden text-slate-200 hover:text-blue-400"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
@@ -79,7 +79,7 @@ const Navigation: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-cyan-500/20">
+          <div className="md:hidden mt-4 pb-4 border-t border-slate-400/20">
             <div className="flex flex-col space-y-4 pt-4">
               {navItems.map((item) => (
                 <Link
@@ -87,8 +87,8 @@ const Navigation: React.FC = () => {
                   to={item.path}
                   className={`font-mono text-sm transition-colors ${
                     isActive(item.path)
-                      ? 'text-cyan-400'
-                      : 'text-gray-300 hover:text-cyan-400'
+                      ? 'text-blue-400'
+                      : 'text-slate-200 hover:text-blue-400'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -97,7 +97,7 @@ const Navigation: React.FC = () => {
               ))}
               <Link
                 to="/consultation"
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm text-center"
+                className="font-mono bg-gradient-to-r from-blue-500 to-green-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-blue-500/20 transition-all text-sm text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Transform Your Business
