@@ -506,60 +506,60 @@ const Demo: React.FC = () => {
                   {expandedSections.contact && (
                     <div className="mt-6 space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Full Name *
-                          </label>
-                          <input
-                            type="text"
-                            value={formData.name}
-                            onChange={(e) => handleInputChange('name', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your full name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Email Address *
-                          </label>
-                          <input
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange('email', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your email address"
-                          />
-                        </div>
-                      </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+                </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Company Name *
-                          </label>
-                          <input
-                            type="text"
-                            value={formData.company}
-                            onChange={(e) => handleInputChange('company', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your company name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Phone Number *
-                          </label>
-                          <input
-                            type="tel"
-                            value={formData.phone}
-                            onChange={(e) => handleInputChange('phone', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your phone number"
-                          />
-                        </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your company name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
                       </div>
                     </div>
                   )}
