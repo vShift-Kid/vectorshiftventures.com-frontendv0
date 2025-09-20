@@ -35,8 +35,8 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      description: "Call us during business hours"
+      value: "+1 (833) 957-2961",
+      description: "Call us anytime - AI agent answers 24/7"
     },
     {
       icon: MapPin,

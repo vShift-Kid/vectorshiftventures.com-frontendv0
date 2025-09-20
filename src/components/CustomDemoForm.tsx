@@ -360,7 +360,7 @@ const CustomDemoForm: React.FC = () => {
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                placeholder="(555) 123-4567"
+                placeholder="(833) 957-2961"
               />
             </div>
             <div>

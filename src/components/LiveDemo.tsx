@@ -353,7 +353,7 @@ const LiveDemo: React.FC = () => {
                       value={consultationData.contactPhone}
                       onChange={(e) => handleInputChange('contactPhone', e.target.value)}
                       className="flex-1 p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+1 (833) 957-2961"
                     />
                   </div>
                 </div>

@@ -65,7 +65,7 @@ const StickyCTA: React.FC = () => {
                   Chat
                 </Link>
                 <a
-                  href="tel:+1-555-0123"
+                  href="tel:+1-833-957-2961"
                   className="flex-1 bg-cyan-600 text-white font-mono font-semibold py-2 px-3 rounded-lg text-center text-sm hover:bg-cyan-700 transition-colors flex items-center justify-center"
                 >
                   <Phone className="w-4 h-4 mr-1" />
