@@ -95,7 +95,7 @@ function App() {
             <PhoneCaller />
             <EnhancedPhoneCaller />
             <CallAnalytics hidden={true} />
-            <VapiTest />
+                <VapiTest hidden={true} />
             <VapiDebugger hidden={true} />
           </Suspense>
           <StickyCTA />

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const VapiTest: React.FC = () => {
+interface VapiTestProps {
+  hidden?: boolean;
+}
+
+const VapiTest: React.FC<VapiTestProps> = ({ hidden = true }) => {
   const [envVars, setEnvVars] = useState<any>({});
   const [error, setError] = useState<string | null>(null);
   const [vapiTestStatus, setVapiTestStatus] = useState('NOT_TESTED');
@@ -64,6 +68,11 @@ const VapiTest: React.FC = () => {
       setVapiError(error.message || 'Unknown error');
     }
   };
+
+  // Don't render if hidden
+  if (hidden) {
+    return null;
+  }
 
   return (
     <div className="fixed top-4 right-4 bg-black/80 text-white p-4 rounded-lg max-w-sm z-50">
