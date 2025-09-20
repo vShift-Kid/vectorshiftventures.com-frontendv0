@@ -415,7 +415,7 @@ const EnhancedPhoneCaller: React.FC<EnhancedPhoneCallerProps> = ({
                     disabled={isLoading}
                   />
                   <div className="text-gray-500 font-mono text-xs mt-1">
-                    Examples: +18339572961, +15551234567, +44123456789
+                    Examples: +18339572961, +13134899078, +44123456789
                   </div>
                   <button
                     onClick={() => setPhoneNumber('+18339572961')}
