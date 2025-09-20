@@ -18,47 +18,56 @@ class Analytics {
 
   constructor() {
     this.isDevelopment = import.meta.env.DEV;
-    this.isEnabled = import.meta.env.VITE_ANALYTICS_ENABLED === 'true' || this.isDevelopment;
+    this.isEnabled = (import.meta.env.VITE_ANALYTICS_ENABLED === 'true') || this.isDevelopment;
   }
 
   // Initialize analytics
   init() {
-    if (!this.isEnabled) return;
+    try {
+      if (!this.isEnabled) return;
 
-    // Google Analytics 4
-    if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
-      this.initGoogleAnalytics();
+      // Google Analytics 4
+      if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
+        this.initGoogleAnalytics();
+      }
+
+      // Custom analytics endpoint
+      if (import.meta.env.VITE_ANALYTICS_ENDPOINT) {
+        this.initCustomAnalytics();
+      }
+
+      console.log('Analytics initialized');
+    } catch (error) {
+      console.warn('Analytics initialization failed:', error);
     }
-
-    // Custom analytics endpoint
-    if (import.meta.env.VITE_ANALYTICS_ENDPOINT) {
-      this.initCustomAnalytics();
-    }
-
-    console.log('Analytics initialized');
   }
 
   private initGoogleAnalytics() {
-    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-    
-    // Load Google Analytics script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(script);
+    try {
+      const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+      if (!measurementId) return;
+      
+      // Load Google Analytics script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      document.head.appendChild(script);
 
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', measurementId, {
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    } catch (error) {
+      console.warn('Google Analytics initialization failed:', error);
     }
-    window.gtag = gtag;
-
-    gtag('js', new Date());
-    gtag('config', measurementId, {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
   }
 
   private initCustomAnalytics() {
@@ -68,46 +77,54 @@ class Analytics {
 
   // Track page views
   trackPageView(pageView: PageView) {
-    if (!this.isEnabled) return;
+    try {
+      if (!this.isEnabled) return;
 
-    // Google Analytics
-    if (window.gtag) {
-      window.gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID, {
-        page_title: pageView.title,
-        page_location: pageView.url,
+      // Google Analytics
+      if (window.gtag && import.meta.env.VITE_GA_MEASUREMENT_ID) {
+        window.gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID, {
+          page_title: pageView.title,
+          page_location: pageView.url,
+        });
+      }
+
+      // Custom analytics
+      this.sendEvent('page_view', {
+        page: pageView.page,
+        title: pageView.title,
+        url: pageView.url,
       });
-    }
 
-    // Custom analytics
-    this.sendEvent('page_view', {
-      page: pageView.page,
-      title: pageView.title,
-      url: pageView.url,
-    });
-
-    if (this.isDevelopment) {
-      console.log('Page view tracked:', pageView);
+      if (this.isDevelopment) {
+        console.log('Page view tracked:', pageView);
+      }
+    } catch (error) {
+      console.warn('Page view tracking failed:', error);
     }
   }
 
   // Track custom events
   trackEvent(event: AnalyticsEvent) {
-    if (!this.isEnabled) return;
+    try {
+      if (!this.isEnabled) return;
 
-    // Google Analytics
-    if (window.gtag) {
-      window.gtag('event', event.action, {
-        event_category: event.category,
-        event_label: event.label,
-        value: event.value,
-      });
-    }
+      // Google Analytics
+      if (window.gtag) {
+        window.gtag('event', event.action, {
+          event_category: event.category,
+          event_label: event.label,
+          value: event.value,
+        });
+      }
 
-    // Custom analytics
-    this.sendEvent('custom_event', event);
+      // Custom analytics
+      this.sendEvent('custom_event', event);
 
-    if (this.isDevelopment) {
-      console.log('Event tracked:', event);
+      if (this.isDevelopment) {
+        console.log('Event tracked:', event);
+      }
+    } catch (error) {
+      console.warn('Event tracking failed:', error);
     }
   }
 
