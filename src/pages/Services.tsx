@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, CheckCircle, Zap, Users, BarChart3, Globe, Brain, Search, PhoneCall, MessageSquare as SocialIcon } from 'lucide-react';
+import { Bot, MessageSquare, Database, Calendar, CircuitBoard, Cpu, Network, CheckCircle, Zap, Users, BarChart3, Globe, Brain, Search, PhoneCall, FileText } from 'lucide-react';
 
 const Services: React.FC = () => {
   const mainServices = [
