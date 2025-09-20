@@ -188,7 +188,8 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
             {[
               "Manufacturing", "Energy", "Healthcare", 
-              "Construction", "Logistics", "Utilities"
+              "Construction", "Logistics", "Utilities",
+              "HR", "Legal", "IT", "Engineering"
             ].map((industry, index) => (
               <div key={index} className="flex items-center justify-center p-4 bg-gray-800/30 rounded-lg border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
                 <span className="font-mono text-sm text-gray-300">{industry}</span>

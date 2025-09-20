@@ -176,6 +176,72 @@ const getIndustrySpecificDemos = (industry: string) => {
       { value: 'vulnerability-assessment', label: 'Vulnerability Assessment - AI for security scanning' },
       { value: 'access-management', label: 'Access Management - AI for user access control' },
       { value: 'security-analytics', label: 'Security Analytics - AI for security metrics' }
+    ],
+    // Human Resources
+    'hr-operations': [
+      { value: 'hr-automation', label: 'HR Automation - AI for HR process automation' },
+      { value: 'employee-onboarding', label: 'Employee Onboarding - AI for new hire processes' },
+      { value: 'benefits-management', label: 'Benefits Management - AI for employee benefits' },
+      { value: 'hr-analytics', label: 'HR Analytics - AI for workforce analytics' },
+      { value: 'policy-management', label: 'Policy Management - AI for HR policy compliance' },
+      { value: 'workflow-optimization', label: 'Workflow Optimization - AI for HR process improvement' }
+    ],
+    'talent-acquisition': [
+      { value: 'resume-screening', label: 'Resume Screening - AI for candidate evaluation' },
+      { value: 'interview-scheduling', label: 'Interview Scheduling - AI for recruitment coordination' },
+      { value: 'candidate-matching', label: 'Candidate Matching - AI for job-candidate pairing' },
+      { value: 'recruitment-analytics', label: 'Recruitment Analytics - AI for hiring metrics' },
+      { value: 'onboarding-automation', label: 'Onboarding Automation - AI for new hire processes' },
+      { value: 'talent-pipeline', label: 'Talent Pipeline - AI for candidate relationship management' }
+    ],
+    'employee-relations': [
+      { value: 'employee-support', label: 'Employee Support - AI for HR assistance' },
+      { value: 'performance-management', label: 'Performance Management - AI for performance tracking' },
+      { value: 'conflict-resolution', label: 'Conflict Resolution - AI for workplace mediation' },
+      { value: 'training-coordination', label: 'Training Coordination - AI for employee development' },
+      { value: 'feedback-management', label: 'Feedback Management - AI for employee feedback' },
+      { value: 'wellness-programs', label: 'Wellness Programs - AI for employee wellness' }
+    ],
+    'hr-compliance': [
+      { value: 'compliance-monitoring', label: 'Compliance Monitoring - AI for HR compliance' },
+      { value: 'policy-enforcement', label: 'Policy Enforcement - AI for policy compliance' },
+      { value: 'audit-preparation', label: 'Audit Preparation - AI for HR audit support' },
+      { value: 'documentation-management', label: 'Documentation Management - AI for HR records' },
+      { value: 'regulatory-reporting', label: 'Regulatory Reporting - AI for compliance reporting' },
+      { value: 'risk-assessment', label: 'Risk Assessment - AI for HR risk management' }
+    ],
+    // Legal & Compliance
+    'legal-operations': [
+      { value: 'legal-automation', label: 'Legal Automation - AI for legal process automation' },
+      { value: 'case-management', label: 'Case Management - AI for legal case tracking' },
+      { value: 'document-review', label: 'Document Review - AI for legal document analysis' },
+      { value: 'legal-research', label: 'Legal Research - AI for legal research assistance' },
+      { value: 'compliance-tracking', label: 'Compliance Tracking - AI for legal compliance' },
+      { value: 'workflow-optimization', label: 'Workflow Optimization - AI for legal process improvement' }
+    ],
+    'contract-management': [
+      { value: 'contract-analysis', label: 'Contract Analysis - AI for contract review' },
+      { value: 'contract-generation', label: 'Contract Generation - AI for contract creation' },
+      { value: 'renewal-tracking', label: 'Renewal Tracking - AI for contract renewals' },
+      { value: 'risk-assessment', label: 'Risk Assessment - AI for contract risk analysis' },
+      { value: 'compliance-monitoring', label: 'Compliance Monitoring - AI for contract compliance' },
+      { value: 'negotiation-support', label: 'Negotiation Support - AI for contract negotiations' }
+    ],
+    'compliance-monitoring': [
+      { value: 'regulatory-tracking', label: 'Regulatory Tracking - AI for regulatory compliance' },
+      { value: 'audit-preparation', label: 'Audit Preparation - AI for compliance audits' },
+      { value: 'policy-management', label: 'Policy Management - AI for compliance policies' },
+      { value: 'risk-assessment', label: 'Risk Assessment - AI for compliance risk analysis' },
+      { value: 'reporting-automation', label: 'Reporting Automation - AI for compliance reporting' },
+      { value: 'training-coordination', label: 'Training Coordination - AI for compliance training' }
+    ],
+    'legal-documentation': [
+      { value: 'document-generation', label: 'Document Generation - AI for legal document creation' },
+      { value: 'document-analysis', label: 'Document Analysis - AI for legal document review' },
+      { value: 'version-control', label: 'Version Control - AI for document versioning' },
+      { value: 'search-optimization', label: 'Search Optimization - AI for legal document search' },
+      { value: 'collaboration-tools', label: 'Collaboration Tools - AI for legal team collaboration' },
+      { value: 'knowledge-management', label: 'Knowledge Management - AI for legal knowledge base' }
     ]
   };
 
@@ -248,6 +314,52 @@ const getDynamicSpecializations = (demoType: string, industry: string) => {
         { category: 'Security Operations', items: ['Threat Detection', 'Incident Response', 'Vulnerability Management', 'Security Monitoring', 'Risk Assessment', 'Compliance Management'] },
         { category: 'Access Control', items: ['Identity Management', 'Access Control', 'Authentication Systems', 'Authorization Management', 'User Provisioning', 'Security Policies'] },
         { category: 'Analytics', items: ['Security Analytics', 'Threat Intelligence', 'Risk Analysis', 'Compliance Reporting', 'Security Metrics', 'Forensic Analysis'] }
+      ]
+    },
+    // Human Resources
+    'hr-operations': {
+      'hr-automation': [
+        { category: 'HR Processes', items: ['Employee Onboarding', 'Benefits Management', 'Policy Management', 'Workflow Automation', 'Process Optimization', 'Compliance Tracking'] },
+        { category: 'Workforce Management', items: ['Employee Records', 'Performance Tracking', 'Training Coordination', 'Leave Management', 'Payroll Integration', 'HR Analytics'] },
+        { category: 'Communication', items: ['Employee Communication', 'Announcement Management', 'Feedback Collection', 'Survey Administration', 'Training Delivery', 'Support Systems'] }
+      ],
+      'talent-acquisition': [
+        { category: 'Recruitment', items: ['Resume Screening', 'Candidate Matching', 'Interview Scheduling', 'Application Tracking', 'Talent Pipeline', 'Recruitment Analytics'] },
+        { category: 'Onboarding', items: ['New Hire Processes', 'Documentation Management', 'Training Coordination', 'Orientation Programs', 'Compliance Verification', 'Progress Tracking'] },
+        { category: 'Candidate Experience', items: ['Application Management', 'Communication Automation', 'Status Updates', 'Feedback Collection', 'Relationship Management', 'Brand Experience'] }
+      ],
+      'employee-relations': [
+        { category: 'Employee Support', items: ['HR Assistance', 'Policy Guidance', 'Benefits Support', 'Leave Management', 'Performance Support', 'Wellness Programs'] },
+        { category: 'Performance Management', items: ['Goal Setting', 'Performance Tracking', 'Review Processes', 'Feedback Management', 'Development Planning', 'Career Progression'] },
+        { category: 'Workplace Relations', items: ['Conflict Resolution', 'Mediation Support', 'Communication Tools', 'Team Building', 'Culture Development', 'Employee Engagement'] }
+      ],
+      'hr-compliance': [
+        { category: 'Compliance Management', items: ['Regulatory Compliance', 'Policy Enforcement', 'Audit Preparation', 'Documentation Management', 'Risk Assessment', 'Reporting Automation'] },
+        { category: 'Legal Requirements', items: ['Labor Law Compliance', 'Safety Regulations', 'Equal Opportunity', 'Privacy Protection', 'Data Security', 'Record Keeping'] },
+        { category: 'Training & Development', items: ['Compliance Training', 'Policy Education', 'Certification Management', 'Skill Development', 'Professional Growth', 'Knowledge Management'] }
+      ]
+    },
+    // Legal & Compliance
+    'legal-operations': {
+      'legal-automation': [
+        { category: 'Legal Processes', items: ['Case Management', 'Document Automation', 'Workflow Optimization', 'Process Standardization', 'Efficiency Tracking', 'Resource Management'] },
+        { category: 'Document Management', items: ['Document Generation', 'Version Control', 'Search Optimization', 'Collaboration Tools', 'Access Management', 'Security Controls'] },
+        { category: 'Compliance', items: ['Regulatory Tracking', 'Policy Management', 'Audit Support', 'Risk Assessment', 'Reporting Automation', 'Training Coordination'] }
+      ],
+      'contract-management': [
+        { category: 'Contract Lifecycle', items: ['Contract Creation', 'Review Processes', 'Negotiation Support', 'Renewal Tracking', 'Termination Management', 'Performance Monitoring'] },
+        { category: 'Risk Management', items: ['Risk Assessment', 'Compliance Monitoring', 'Due Diligence', 'Legal Review', 'Approval Workflows', 'Escalation Management'] },
+        { category: 'Analytics', items: ['Contract Analytics', 'Performance Metrics', 'Cost Analysis', 'Trend Analysis', 'Compliance Reporting', 'Business Intelligence'] }
+      ],
+      'compliance-monitoring': [
+        { category: 'Regulatory Compliance', items: ['Regulatory Tracking', 'Policy Management', 'Audit Preparation', 'Compliance Reporting', 'Risk Assessment', 'Training Coordination'] },
+        { category: 'Monitoring Systems', items: ['Automated Monitoring', 'Alert Management', 'Exception Reporting', 'Trend Analysis', 'Performance Tracking', 'Dashboard Management'] },
+        { category: 'Documentation', items: ['Compliance Documentation', 'Record Keeping', 'Evidence Management', 'Report Generation', 'Archive Management', 'Retrieval Systems'] }
+      ],
+      'legal-documentation': [
+        { category: 'Document Creation', items: ['Document Generation', 'Template Management', 'Content Automation', 'Formatting Standards', 'Quality Control', 'Review Processes'] },
+        { category: 'Knowledge Management', items: ['Legal Research', 'Precedent Tracking', 'Case Law Management', 'Knowledge Base', 'Search Optimization', 'Information Retrieval'] },
+        { category: 'Collaboration', items: ['Team Collaboration', 'Review Workflows', 'Approval Processes', 'Version Control', 'Communication Tools', 'Project Management'] }
       ]
     }
   };
@@ -723,6 +835,18 @@ const GuidedDemoForm: React.FC = () => {
                           <option value="software-development">Software Development</option>
                           <option value="system-integration">System Integration</option>
                           <option value="cybersecurity">Cybersecurity & Compliance</option>
+                        </optgroup>
+                        <optgroup label="Human Resources">
+                          <option value="hr-operations">HR Operations & Administration</option>
+                          <option value="talent-acquisition">Talent Acquisition & Recruitment</option>
+                          <option value="employee-relations">Employee Relations & Support</option>
+                          <option value="hr-compliance">HR Compliance & Documentation</option>
+                        </optgroup>
+                        <optgroup label="Legal & Compliance">
+                          <option value="legal-operations">Legal Operations & Administration</option>
+                          <option value="contract-management">Contract Management & Review</option>
+                          <option value="compliance-monitoring">Compliance Monitoring & Reporting</option>
+                          <option value="legal-documentation">Legal Documentation & Research</option>
                         </optgroup>
                       </select>
                     </div>
