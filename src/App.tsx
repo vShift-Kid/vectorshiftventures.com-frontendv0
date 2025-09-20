@@ -89,17 +89,18 @@ function App() {
               {/* Dynamic company routes - this will match any slug */}
               <Route path="/:slug" element={<CompanyPage />} />
             </Routes>
-            <Chatbot />
+            {/* Temporarily disabled components for debugging */}
+            {/* <Chatbot />
             <VoiceAssistant hidden={true} />
             <VoiceAssistantFallback hidden={true} />
             <PhoneCaller />
             <EnhancedPhoneCaller />
             <CallAnalytics hidden={true} />
-                <VapiTest hidden={true} />
-            <VapiDebugger hidden={true} />
+            <VapiTest hidden={true} />
+            <VapiDebugger hidden={true} /> */}
           </Suspense>
           <StickyCTA />
-          <PerformanceMonitor />
+          {/* <PerformanceMonitor /> */}
         </div>
       </ErrorBoundary>
     </Router>
