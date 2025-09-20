@@ -1,22 +1,19 @@
 services:
   - type: web
-    name: vapi-unified-webhook
-    env: node
+    name: vectorshift-ventures-website
+    env: static
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
-      - key: VAPI_API_KEY
+      - key: VITE_VAPI_API_KEY
         sync: false
-      - key: VAPI_ASSISTANT_ID
+      - key: VITE_VAPI_ASSISTANT_ID
         sync: false
-      - key: VAPI_PHONE_NUMBER_ID
+      - key: VITE_VAPI_PHONE_NUMBER_ID
         sync: false
-      - key: WEBHOOK_URL
+      - key: VITE_WEBHOOK_URL
         sync: false
-    healthCheckPath: /health
     autoDeploy: true
