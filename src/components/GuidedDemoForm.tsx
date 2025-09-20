@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft, CheckCircle, Brain, User, Building, Phone, Calendar, FileText, Upload, MessageSquare, Bot, Globe, Settings, Target } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowLeft, CheckCircle, Brain, User, Building, Phone, Calendar, FileText, Upload, MessageSquare, Bot, Globe, Settings, Target, Home } from 'lucide-react';
 
 interface FormData {
   // Contact Information
@@ -244,6 +245,7 @@ const steps = [
 const GuidedDemoForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [redirectCountdown, setRedirectCountdown] = useState(30);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -286,6 +288,30 @@ const GuidedDemoForm: React.FC = () => {
     });
   };
 
+  // Countdown effect for auto-redirect
+  useEffect(() => {
+    if (isSubmitted && redirectCountdown > 0) {
+      const timer = setTimeout(() => {
+        setRedirectCountdown(redirectCountdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (isSubmitted && redirectCountdown === 0) {
+      // Redirect to home page
+      window.location.href = '/';
+    }
+  }, [isSubmitted, redirectCountdown]);
+
+  // Business email validation
+  const isBusinessEmail = (email: string): boolean => {
+    const personalDomains = [
+      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 
+      'icloud.com', 'live.com', 'msn.com', 'protonmail.com', 'yandex.com',
+      'mail.com', 'zoho.com', 'fastmail.com', 'tutanota.com'
+    ];
+    const domain = email.split('@')[1]?.toLowerCase();
+    return domain && !personalDomains.includes(domain);
+  };
+
   const nextStep = () => {
     if (currentStep < steps.length && isStepValid(currentStep)) {
       setCurrentStep(currentStep + 1);
@@ -307,7 +333,11 @@ const GuidedDemoForm: React.FC = () => {
   const isStepValid = (step: number): boolean => {
     switch (step) {
       case 1:
-        return formData.name.length > 0 && formData.email.length > 0 && formData.company.length > 0 && formData.phone.length > 0;
+        return formData.name.length > 0 && 
+               formData.email.length > 0 && 
+               formData.company.length > 0 && 
+               formData.phone.length > 0 &&
+               isBusinessEmail(formData.email);
       case 2:
         return formData.industry.length > 0 && formData.businessDescription.length > 10;
       case 3:
@@ -412,44 +442,33 @@ const GuidedDemoForm: React.FC = () => {
             <p className="text-xl text-gray-400 mb-8 font-mono">
               Thank you, {formData.name}. We've received your demo request and will contact you within 24 hours to discuss your business automation needs and create your custom AI solution.
             </p>
+            
+            <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-8 mb-8">
+              <h3 className="text-xl font-mono font-semibold mb-4 text-cyan-400">
+                What happens next?
+              </h3>
+              <ul className="text-left text-gray-300 font-mono space-y-2">
+                <li>• <strong className="text-orange-300">Check your email</strong> for a verification link</li>
+                <li>• Our team will analyze your requirements and begin building your AI solution</li>
+                <li>• You'll receive a detailed proposal and demo access within 24 hours</li>
+                <li>• We'll schedule your personalized demo session</li>
+              </ul>
+            </div>
+
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-8">
+              <p className="text-yellow-300 font-mono text-sm">
+                <strong>Note:</strong> You will be automatically redirected to the home page in {redirectCountdown} seconds.
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => {
-                  setIsSubmitted(false);
-                  setCurrentStep(1);
-                  setFormData({
-                    name: '',
-                    email: '',
-                    company: '',
-                    phone: '',
-                    industry: '',
-                    businessDescription: '',
-                    teamSize: '',
-                    currentChallenges: '',
-                    demoType: '',
-                    consultationPackage: '',
-                    preferredDate: '',
-                    preferredTime: '',
-                    useCase: '',
-                    targetUsers: '',
-                    languageStyle: '',
-                    interactionMode: '',
-                    industryContext: '',
-                    businessRole: '',
-                    agentPersonality: '',
-                    communicationStyle: '',
-                    technicalLevel: '',
-                    problemSolvingApproach: '',
-                    researchFocus: '',
-                    researchDepth: '',
-                    rmeSpecializations: [],
-                    uploadedFiles: []
-                  });
-                }}
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105"
+              <Link
+                to="/"
+                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
               >
-                Submit Another Request
-              </button>
+                <Home className="w-5 h-5" />
+                Return Home
+              </Link>
             </div>
           </div>
         </div>
@@ -552,16 +571,25 @@ const GuidedDemoForm: React.FC = () => {
 
                       <div>
                         <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                          Email Address *
+                          Business Email Address *
                         </label>
                         <input
                           type="email"
                           value={formData.email}
                           onChange={(e) => updateFormData('email', e.target.value)}
+                          onBlur={(e) => {
+                            const email = e.target.value;
+                            if (email && !isBusinessEmail(email)) {
+                              alert('Please use a business email address. Personal email addresses like Gmail, Yahoo, etc. are not accepted.');
+                            }
+                          }}
                           required
                           className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                          placeholder="Enter your email address"
+                          placeholder="your.name@company.com"
                         />
+                        <p className="text-xs text-gray-500 font-mono mt-1">
+                          Business email required (no personal emails like gmail.com, yahoo.com, etc.)
+                        </p>
                       </div>
 
                       <div>
