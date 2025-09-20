@@ -46,37 +46,37 @@ const Consultation: React.FC = () => {
 
   const consultationTypes = [
     {
-      title: "Strategy Consultation",
+      title: "Executive AI Strategy",
       duration: "60 minutes",
-      description: "Comprehensive consultation to understand your needs and plan automation strategy",
+      description: "Strategic consultation for management on AI automation for technical operations and field service",
       features: [
-        "Business needs assessment and analysis",
-        "Custom automation strategy planning",
-        "ROI projections and implementation roadmap",
-        "Technology recommendations and next steps"
+        "Technical operations assessment and analysis",
+        "AI automation strategy for field service teams",
+        "ROI analysis for technical AI implementation",
+        "Executive implementation roadmap and next steps"
       ],
       price: "Free",
       recommended: true
     },
     {
-      title: "Discovery Call",
+      title: "Technical Operations Review",
       duration: "30 minutes",
-      description: "Initial consultation to understand your automation needs",
+      description: "Initial consultation to understand your technical operations and field service needs",
       features: [
-        "Business requirements assessment",
-        "Automation opportunities review",
+        "Field service operations assessment",
+        "Technical automation opportunities review",
         "Service overview and consultation planning"
       ],
       price: "Free"
     },
     {
-      title: "Technical Planning",
+      title: "Engineering AI Planning",
       duration: "45 minutes",
-      description: "Deep dive into your processes and technical requirements",
+      description: "Deep dive into engineering processes and technical AI requirements",
       features: [
-        "Technical requirements analysis",
-        "Integration planning and assessment",
-        "Implementation strategy development"
+        "Engineering process analysis and optimization",
+        "Technical AI requirements assessment",
+        "Integration planning for engineering tools"
       ],
       price: "Free"
     }
@@ -186,12 +186,12 @@ const Consultation: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Book Your Consultation
+                Executive AI Strategy Consultation
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Schedule a consultation to discuss your field service business automation needs. 
-              Our experts will help you identify opportunities and create a customized solution for your business.
+              Strategic consultation for management and executives on AI automation for field service, engineering, and technical operations. 
+              Get ROI-focused recommendations and implementation strategies tailored to your technical teams.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -214,11 +214,11 @@ const Consultation: React.FC = () => {
           <div className="max-w-6xl mx-auto mb-12">
             <h2 className="text-2xl font-mono font-bold text-center mb-8">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Choose Your Consultation Package
+                Executive Consultation Packages
               </span>
             </h2>
             <p className="text-gray-400 text-center mb-8 font-mono">
-              All consultation packages include comprehensive business analysis and customized automation recommendations.
+              Strategic AI consultation packages designed for management and executives in technical operations, field service, and engineering teams.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

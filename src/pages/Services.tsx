@@ -6,110 +6,114 @@ const Services: React.FC = () => {
   const mainServices = [
     {
       icon: PhoneCall,
-      title: "Field Service Voice Assistant",
-      description: "B2B AI voice assistant specifically designed for field service operations and business problem-solving",
+      title: "Field Service AI Assistant",
+      description: "Specialized AI voice assistant for field service technicians, engineers, and technical operations teams",
       features: [
-        "Customer service & support",
-        "Appointment scheduling & management",
-        "Business problem-solving",
-        "Field service operations support",
-        "Technician dispatch coordination",
-        "Service area management",
-        "Equipment tracking & management",
-        "Quality assurance monitoring"
+        "Field technician support & guidance",
+        "Technical troubleshooting assistance",
+        "Equipment maintenance scheduling",
+        "Service call optimization",
+        "Real-time technical documentation access",
+        "Quality control monitoring",
+        "Field data collection & reporting",
+        "Emergency response coordination"
       ],
-      benefits: ["Reduce customer service costs by 60%", "Improve response time by 80%", "24/7 availability", "B2B focused solutions"]
+      benefits: ["Reduce field service costs by 40%", "Improve first-call resolution by 70%", "24/7 technical support", "Mobile-optimized for field work"]
     },
     {
-      icon: SocialIcon,
-      title: "Online Reputation Management",
-      description: "Comprehensive digital presence optimization and brand reputation enhancement",
+      icon: FileText,
+      title: "Technical Documentation AI",
+      description: "AI-powered technical documentation generation, management, and maintenance for engineering teams",
       features: [
-        "Website performance optimization",
-        "Social media management",
-        "Review monitoring & response",
-        "Brand sentiment analysis",
-        "Digital footprint management",
-        "Reputation crisis management"
+        "Automated technical manual generation",
+        "Engineering documentation templates",
+        "Technical knowledge base management",
+        "Version control & updates",
+        "Multi-format documentation output",
+        "Technical writing assistance",
+        "Compliance documentation automation",
+        "Interactive technical guides"
       ],
-      benefits: ["Improve online visibility by 60%", "Enhance brand trust and credibility", "Protect and strengthen reputation"]
+      benefits: ["Reduce documentation time by 60%", "Improve technical accuracy by 80%", "Standardize documentation", "Real-time updates"]
     },
     {
-      icon: Users,
-      title: "Lead Generation & CRM",
-      description: "End-to-end lead capture, qualification, and customer relationship management",
+      icon: Network,
+      title: "Logistics & Supply Chain AI",
+      description: "Intelligent logistics optimization and supply chain management for technical operations",
       features: [
-        "Lead scoring & qualification",
-        "CRM system integration",
-        "Automated follow-up sequences",
-        "Conversion funnel optimization",
-        "Customer lifecycle management",
-        "Multi-channel lead capture"
+        "Route optimization for field teams",
+        "Inventory management automation",
+        "Supply chain monitoring",
+        "Equipment tracking & location",
+        "Delivery scheduling optimization",
+        "Resource allocation planning",
+        "Vendor management automation",
+        "Cost optimization analysis"
       ],
-      benefits: ["Increase lead quality by 40%", "Reduce manual follow-up by 70%", "Improve conversion rates"]
+      benefits: ["Reduce logistics costs by 35%", "Improve delivery efficiency by 50%", "Optimize resource utilization", "Real-time tracking"]
     },
     {
       icon: Bot,
-      title: "Custom AI Chatbots",
-      description: "Intelligent conversational AI trained specifically on your business data and processes",
+      title: "Technical Support AI",
+      description: "Specialized AI chatbots for technical support, customer care, and product assistance",
       features: [
-        "Custom AI training",
-        "24/7 customer engagement",
-        "Multi-channel deployment",
-        "Business process integration",
-        "Continuous learning & improvement",
-        "Natural language processing"
+        "Technical troubleshooting guidance",
+        "Product support automation",
+        "Customer care optimization",
+        "Technical FAQ management",
+        "Escalation to human experts",
+        "Multi-language technical support"
       ],
-      benefits: ["Reduce support costs by 60%", "Improve response time by 80%", "24/7 availability"]
+      benefits: ["Reduce technical support costs by 50%", "Improve customer satisfaction by 65%", "24/7 technical assistance"]
     },
     {
       icon: BarChart3,
-      title: "Data Analysis & Insights",
-      description: "Advanced analytics and actionable business intelligence from your operational data",
+      title: "Quality & Analytics AI",
+      description: "Advanced analytics and quality monitoring for technical operations and field service",
       features: [
-        "Performance analytics",
-        "Predictive insights",
-        "Business intelligence dashboards",
-        "ROI tracking & optimization",
-        "Strategic decision support",
-        "Real-time reporting"
+        "Quality control monitoring",
+        "Performance analytics & reporting",
+        "Predictive maintenance insights",
+        "Field service optimization",
+        "Technical KPI tracking",
+        "Compliance monitoring"
       ],
-      benefits: ["Data-driven decisions", "Time-saving automation", "Performance insights"]
+      benefits: ["Improve quality by 45%", "Reduce maintenance costs by 30%", "Data-driven optimization"]
     },
     {
       icon: CircuitBoard,
-      title: "Workflow Integrations",
-      description: "Seamless automation and integration across your existing business systems and processes",
+      title: "Technical System Integration",
+      description: "Seamless integration with engineering tools, field service software, and technical systems",
       features: [
-        "System integration",
-        "Process automation",
-        "API connectivity",
-        "Workflow optimization",
-        "Scalable architecture",
-        "Legacy system modernization"
+        "CAD software integration",
+        "Field service management systems",
+        "Technical documentation platforms",
+        "Engineering workflow automation",
+        "Equipment management systems",
+        "Legacy technical system modernization"
       ],
-      benefits: ["Increase efficiency by 50%", "Reduce manual errors", "Streamline operations"]
+      benefits: ["Streamline technical workflows", "Reduce manual data entry by 70%", "Improve system efficiency"]
     }
   ];
 
   const testimonials = [
     {
-      title: "Professional Services Firm",
-      industry: "Legal Services",
-      results: ["45% increase in lead quality", "30% improvement in online reputation", "Automated 70% of client inquiries"],
-      description: "Implemented comprehensive digital presence optimization with lead generation automation and custom AI chatbots."
+      title: "Field Service Company",
+      industry: "Technical Services",
+      results: ["70% faster call resolution", "40% reduction in field service costs", "80% improvement in first-call success"],
+      description: "Deployed AI voice assistant for field technicians with technical documentation automation and quality monitoring."
     },
     {
-      title: "E-commerce Business",
-      industry: "Online Retail",
-      results: ["50% faster lead processing", "40% increase in conversion rates", "25% reduction in customer service costs"],
-      description: "Deployed end-to-end automation strategy with CRM integration, data analytics, and workflow optimization."
+      title: "Engineering Firm",
+      industry: "Manufacturing",
+      results: ["60% reduction in documentation time", "80% improvement in technical accuracy", "50% faster project delivery"],
+      description: "Implemented technical documentation AI with engineering workflow automation and CAD system integration."
     },
     {
-      title: "Healthcare Practice",
-      industry: "Medical Services",
-      results: ["35% improvement in patient engagement", "Automated 80% of appointment scheduling", "Enhanced online reputation management"],
-      description: "Integrated custom AI solutions with workflow automation and comprehensive digital presence management."
+      title: "Logistics Company",
+      industry: "Supply Chain",
+      results: ["35% reduction in logistics costs", "50% improvement in delivery efficiency", "45% better resource utilization"],
+      description: "Integrated logistics optimization AI with inventory management automation and real-time tracking systems."
     }
   ];
 
@@ -122,33 +126,33 @@ const Services: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                AI Automation Services
+                Technical AI Solutions
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Transform your business operations with our comprehensive AI automation solutions including lead generation, social media management, custom chatbots, and more.
+              Specialized AI automation for Field Service, Engineering, Logistics, IT, and Technical Operations. Streamline field projects, technical documentation, and customer care.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-8">
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <PhoneCall className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Voice Assistant</span>
+                <span className="font-mono text-sm">Field Service AI</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <MessageSquare className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Lead Generation</span>
+                <FileText className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Technical Docs</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <Globe className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Social Media</span>
+                <Network className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Logistics AI</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
                 <Bot className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Custom Chatbots</span>
+                <span className="font-mono text-sm">Tech Support</span>
               </div>
               <div className="flex items-center justify-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-xl p-4">
-                <CircuitBoard className="w-6 h-6 text-cyan-400 mr-2" />
-                <span className="font-mono text-sm">Automation</span>
+                <BarChart3 className="w-6 h-6 text-cyan-400 mr-2" />
+                <span className="font-mono text-sm">Quality Analytics</span>
               </div>
             </div>
             

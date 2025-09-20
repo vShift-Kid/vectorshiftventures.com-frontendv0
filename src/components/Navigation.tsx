@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
                 </span>
               </div>
               <span className="text-xs font-mono text-gray-500 mt-0.5">
-                Automation Agency
+                Technical AI Solutions
               </span>
             </Link>
           </div>

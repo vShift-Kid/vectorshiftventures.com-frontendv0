@@ -15,12 +15,12 @@ const Home: React.FC = () => {
                 id="hero-heading"
                 className="font-mono text-5xl font-bold mb-6 leading-tight"
               >
-                Streamline Your Business with
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> AI Automation</span>
+                AI-Powered Solutions for
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Field Operations</span>
               </h1>
             </div>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Transform your business operations with custom AI solutions including lead generation, social media management, chatbots, and comprehensive automation systems.
+              Specialized AI automation for Field Service, Engineering, Logistics, IT, and Technical Operations. Streamline field projects, technical documentation, product support, and customer care with intelligent automation.
             </p>
             
             <div className="flex gap-4 flex-wrap">
@@ -48,23 +48,23 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="services-heading" className="text-3xl font-mono font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Automation Services</span>
+              Industry-Specific <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI Solutions</span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto font-mono">
-              Comprehensive AI automation solutions to transform your business operations and drive growth.
+              Tailored AI automation solutions for Field Service, Engineering, Logistics, IT, and Technical Operations.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
             {[
-              { icon: MessageSquare, title: "Lead Generation", description: "Automated lead capture, qualification, and nurturing systems" },
-              { icon: Globe, title: "Social Media Management", description: "AI-powered content creation and social media automation" },
-              { icon: Bot, title: "Custom Chatbots", description: "Intelligent conversational AI for customer support and sales" },
-              { icon: Database, title: "CRM Automation", description: "Streamlined customer relationship management and data processing" },
-              { icon: Users, title: "Customer Support", description: "24/7 AI-powered customer service and support automation" },
-              { icon: BarChart3, title: "Analytics & Reporting", description: "Automated data analysis and business intelligence reporting" },
-              { icon: CircuitBoard, title: "Workflow Automation", description: "Custom process automation for operational efficiency" },
-              { icon: Network, title: "Integration Services", description: "Seamless integration with existing business systems" }
+              { icon: CircuitBoard, title: "Field Service AI", description: "Voice assistants and automation for field technicians and service operations" },
+              { icon: Cpu, title: "Engineering Tools", description: "AI-powered technical documentation and engineering workflow automation" },
+              { icon: Network, title: "Logistics Optimization", description: "Intelligent routing, inventory management, and supply chain automation" },
+              { icon: Database, title: "IT Operations", description: "Automated IT support, system monitoring, and technical troubleshooting" },
+              { icon: FileText, title: "Technical Documentation", description: "AI-generated technical docs, manuals, and knowledge base automation" },
+              { icon: Users, title: "Product Support", description: "Intelligent customer care and technical support automation" },
+              { icon: BarChart3, title: "Quality Analytics", description: "Automated quality monitoring, reporting, and performance analytics" },
+              { icon: Calendar, title: "Project Management", description: "AI-driven project tracking, resource allocation, and timeline optimization" }
             ].map((service, index) => (
               <article 
                 key={index} 
@@ -85,32 +85,32 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 id="features-heading" className="text-3xl font-mono font-bold mb-4">
-              Why Choose
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Our Solutions</span>
+              Built for
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Technical Teams</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-              Cutting-edge AI technology combined with business expertise to deliver exceptional results.
+              Specialized AI solutions designed for field service, engineering, logistics, and technical operations teams.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
             {[
               { 
                 icon: Brain, 
-                title: "AI-Powered Intelligence", 
-                description: "Advanced machine learning and natural language processing for smart automation",
-                features: ["Machine Learning", "Natural Language Processing", "Predictive Analytics"]
+                title: "Industry-Specific AI", 
+                description: "AI trained on field service, engineering, and technical operations data for accurate automation",
+                features: ["Field Service Intelligence", "Technical Documentation AI", "Engineering Workflow Automation"]
               },
               { 
                 icon: Zap, 
-                title: "Custom Solutions", 
-                description: "Tailored automation systems designed specifically for your business needs",
-                features: ["Custom Development", "Business-Specific Logic", "Scalable Architecture"]
+                title: "Field-Ready Solutions", 
+                description: "Mobile-optimized AI tools that work in the field, not just the office",
+                features: ["Mobile Voice Assistants", "Offline Capability", "Field Data Collection"]
               },
               { 
                 icon: Network, 
-                title: "Seamless Integration", 
-                description: "Easy integration with your existing tools and workflows",
-                features: ["API Integrations", "Third-party Connections", "Legacy System Support"]
+                title: "Technical Integration", 
+                description: "Seamless integration with engineering tools, field service software, and technical systems",
+                features: ["CAD Integration", "Field Service Software", "Technical Documentation Systems"]
               }
             ].map((feature, index) => (
               <article 
@@ -140,10 +140,10 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-12">
             <h2 id="demo-heading" className="text-3xl font-mono font-bold mb-6">
-              Want to See It in Action?
+              Ready to Transform Your Field Operations?
             </h2>
             <p className="text-gray-400 mb-8 font-mono text-lg">
-              Request a comprehensive demo package with custom proposal, research-based demo agent, and phone caller agent - all built specifically for your business to test.
+              Get a personalized demo showcasing AI solutions for your field service, engineering, or technical operations - complete with custom proposal and live testing.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">

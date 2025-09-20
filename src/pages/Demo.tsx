@@ -334,12 +334,12 @@ const Demo: React.FC = () => {
             </div>
             <h1 className="font-mono text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Request Your Custom Demo
+                Request Your Technical AI Demo
               </span>
             </h1>
             <p className="text-xl text-gray-400 mb-8 font-mono">
-              Get a personalized AI solution and website demo specifically built for your field service business. 
-              Complete the form below to schedule your consultation and receive your custom demo.
+              Get a personalized AI solution demo specifically built for your field service, engineering, logistics, or technical operations. 
+              Complete the form below to schedule your consultation and receive your custom technical AI demo.
             </p>
             
             <div className="bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 mb-8">
@@ -348,22 +348,22 @@ const Demo: React.FC = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-white" />
               </div>
-                  <h3 className="font-mono font-semibold mb-2">Custom AI Agent</h3>
-                  <p className="text-sm text-gray-400">AI-powered system trained on your business</p>
+                  <h3 className="font-mono font-semibold mb-2">Field Service AI</h3>
+                  <p className="text-sm text-gray-400">Voice assistant for technicians and field operations</p>
               </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Globe className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-mono font-semibold mb-2">Smart Website</h3>
-                  <p className="text-sm text-gray-400">Lead capture and customer engagement platform</p>
+                  <h3 className="font-mono font-semibold mb-2">Technical Documentation</h3>
+                  <p className="text-sm text-gray-400">AI-generated technical docs and knowledge base</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <MessageSquare className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-mono font-semibold mb-2">Expert Consultation</h3>
-                  <p className="text-sm text-gray-400">Personalized strategy and implementation plan</p>
+                  <h3 className="font-mono font-semibold mb-2">Technical Consultation</h3>
+                  <p className="text-sm text-gray-400">Specialized strategy for technical operations</p>
                 </div>
               </div>
             </div>
