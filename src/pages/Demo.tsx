@@ -107,8 +107,6 @@ const Demo: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [showTooltips, setShowTooltips] = useState<{[key: string]: boolean}>({});
-  const [currentStep, setCurrentStep] = useState(1);
-  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({});
 
   const [formData, setFormData] = useState({
     name: '',
@@ -155,21 +153,6 @@ const Demo: React.FC = () => {
 
   const handleTooltipHide = (tooltipId: string) => {
     setShowTooltips(prev => ({ ...prev, [tooltipId]: false }));
-  };
-
-  const toggleSection = (sectionId: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }));
-  };
-
-  const nextStep = () => {
-    setCurrentStep(prev => Math.min(prev + 1, 6));
-  };
-
-  const prevStep = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
   };
 
   const handleAddCustomSpecialization = () => {
@@ -418,7 +401,7 @@ const Demo: React.FC = () => {
       {/* Request Demo Form Section */}
       <section className="py-20 bg-[#0A0B1E]">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-cyan-500/20">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-mono font-bold mb-4">
@@ -427,153 +410,77 @@ const Demo: React.FC = () => {
                   </span>
                 </h3>
                 <p className="text-gray-400 font-mono">
-                  Complete the steps below to schedule your consultation and receive your personalized AI solution demo.
+                  Complete the form below to schedule your consultation and receive your personalized AI solution demo.
                 </p>
               </div>
 
-              {/* Progress Indicator */}
-              <div className="mb-8">
-                <div className="flex items-center justify-center space-x-4">
-                  {[1, 2, 3, 4, 5, 6].map((step) => (
-                    <div key={step} className="flex items-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-mono font-bold ${
-                        step <= currentStep 
-                          ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' 
-                          : 'bg-gray-700 text-gray-400'
-                      }`}>
-                        {step}
-                      </div>
-                      {step < 6 && (
-                        <div className={`w-8 h-0.5 mx-2 ${
-                          step < currentStep ? 'bg-gradient-to-r from-cyan-500 to-blue-500' : 'bg-gray-700'
-                        }`} />
-                      )}
-                    </div>
-                  ))}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
                 </div>
-                <div className="text-center mt-2">
-                  <p className="text-sm text-gray-400 font-mono">
-                    Step {currentStep} of 6
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your company name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+                </div>
+
+                {/* Demo Type Selection - Moved to be first after contact info */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
+                    Demo Type Selection
+                  </h4>
+                  <p className="text-sm text-gray-400 font-mono mb-6">
+                    Choose the type of AI solution demo you'd like to see. This will help us tailor the experience to your needs.
                   </p>
-                </div>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Step 1: Contact Information */}
-                <div className={`bg-gray-800/30 rounded-xl p-6 border transition-all ${
-                  currentStep >= 1 ? 'border-cyan-500/50' : 'border-gray-700'
-                }`}>
-                  <div 
-                    className="flex items-center justify-between cursor-pointer"
-                    onClick={() => toggleSection('contact')}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-mono font-bold ${
-                        currentStep >= 1 ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' : 'bg-gray-700 text-gray-400'
-                      }`}>
-                        1
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-mono font-semibold text-white">Contact Information</h4>
-                        <p className="text-sm text-gray-400 font-mono">Your basic contact details</p>
-                      </div>
-                    </div>
-                    <div className="text-cyan-400">
-                      {expandedSections.contact ? '−' : '+'}
-                    </div>
-                  </div>
-                  
-                  {expandedSections.contact && (
-                    <div className="mt-6 space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Full Name *
-                          </label>
-                          <input
-                            type="text"
-                            value={formData.name}
-                            onChange={(e) => handleInputChange('name', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your full name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Email Address *
-                          </label>
-                          <input
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange('email', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your email address"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Company Name *
-                          </label>
-                          <input
-                            type="text"
-                            value={formData.company}
-                            onChange={(e) => handleInputChange('company', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your company name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                            Phone Number *
-                          </label>
-                          <input
-                            type="tel"
-                            value={formData.phone}
-                            onChange={(e) => handleInputChange('phone', e.target.value)}
-                            required
-                            className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                            placeholder="Enter your phone number"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Step 2: Demo Type Selection */}
-                <div className={`bg-gray-800/30 rounded-xl p-6 border transition-all ${
-                  currentStep >= 2 ? 'border-cyan-500/50' : 'border-gray-700'
-                }`}>
-                  <div 
-                    className="flex items-center justify-between cursor-pointer"
-                    onClick={() => toggleSection('demoType')}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-mono font-bold ${
-                        currentStep >= 2 ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' : 'bg-gray-700 text-gray-400'
-                      }`}>
-                        2
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-mono font-semibold text-white">Demo Type Selection</h4>
-                        <p className="text-sm text-gray-400 font-mono">Choose your preferred demo type</p>
-                      </div>
-                    </div>
-                    <div className="text-cyan-400">
-                      {expandedSections.demoType ? '−' : '+'}
-                    </div>
-                  </div>
-                  
-                  {expandedSections.demoType && (
-                    <div className="mt-6">
-                      <p className="text-sm text-gray-400 font-mono mb-6">
-                        Choose the type of AI solution demo you'd like to see. This will help us tailor the experience to your needs.
-                      </p>
 
                   <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
