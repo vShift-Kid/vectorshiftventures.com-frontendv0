@@ -40,11 +40,11 @@ const Home: React.FC = () => {
               </Link>
             </div>
             
-            {/* Lucky Number 7 Badge */}
+            {/* Subtle Innovation Badge */}
             <div className="mt-8 flex items-center justify-center">
-              <div className="bg-gradient-to-r from-blue-500/20 to-green-500/20 border border-slate-400/30 rounded-full px-6 py-2">
-                <span className="text-slate-300 font-mono text-sm">
-                  <span className="text-blue-400 font-bold">7</span> Years of AI Innovation
+              <div className="bg-slate-800/30 border border-slate-400/20 rounded-full px-4 py-1">
+                <span className="text-slate-400 font-mono text-xs">
+                  Trusted by technical teams worldwide
                 </span>
               </div>
             </div>
@@ -66,23 +66,27 @@ const Home: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
             {[
-              { icon: CircuitBoard, title: "Field Service AI", description: "Voice assistants and automation for field technicians and service operations" },
-              { icon: Cpu, title: "Engineering Solutions", description: "AI-powered technical documentation, CAD integration, and engineering workflow automation" },
-              { icon: Network, title: "Logistics & Supply Chain", description: "Intelligent routing, inventory management, and supply chain optimization" },
-              { icon: Database, title: "IT Operations", description: "Automated IT support, system monitoring, and technical troubleshooting" },
-              { icon: FileText, title: "Technical Documentation", description: "AI-generated technical docs, manuals, and knowledge base automation" },
-              { icon: Users, title: "Customer Support", description: "Intelligent customer care and technical support automation" },
-              { icon: BarChart3, title: "Analytics & Reporting", description: "Automated quality monitoring, reporting, and performance analytics" },
-              { icon: Calendar, title: "Project Management", description: "AI-driven project tracking, resource allocation, and timeline optimization" }
+              { icon: CircuitBoard, title: "Field Service AI", description: "Voice assistants and automation for field technicians and service operations", subtleNumber: "2" },
+              { icon: Cpu, title: "Engineering Solutions", description: "AI-powered technical documentation, CAD integration, and engineering workflow automation", subtleNumber: "7" },
+              { icon: Network, title: "Logistics & Supply Chain", description: "Intelligent routing, inventory management, and supply chain optimization", subtleNumber: "11" },
+              { icon: Database, title: "IT Operations", description: "Automated IT support, system monitoring, and technical troubleshooting", subtleNumber: "18" },
+              { icon: FileText, title: "Technical Documentation", description: "AI-generated technical docs, manuals, and knowledge base automation", subtleNumber: "20" },
+              { icon: Users, title: "Customer Support", description: "Intelligent customer care and technical support automation", subtleNumber: "29" },
+              { icon: BarChart3, title: "Analytics & Reporting", description: "Automated quality monitoring, reporting, and performance analytics", subtleNumber: "2" },
+              { icon: Calendar, title: "Project Management", description: "AI-driven project tracking, resource allocation, and timeline optimization", subtleNumber: "7" }
             ].map((service, index) => (
               <article 
                 key={index} 
-                className="p-6 rounded-2xl bg-gradient-to-b from-blue-500/10 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all group"
+                className="p-6 rounded-2xl bg-gradient-to-b from-blue-500/10 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all group relative"
                 role="listitem"
               >
                 <service.icon className="w-12 h-12 text-blue-400 mb-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
                 <h3 className="text-lg font-mono font-semibold mb-2 text-white">{service.title}</h3>
                 <p className="text-slate-300 font-mono text-sm">{service.description}</p>
+                {/* Subtle lucky number */}
+                <div className="absolute top-2 right-2 text-slate-600 font-mono text-xs opacity-30">
+                  {service.subtleNumber}
+                </div>
               </article>
             ))}
           </div>
@@ -101,11 +105,11 @@ const Home: React.FC = () => {
               Advanced AI solutions designed for technical teams across all industries - from field service to engineering, logistics to IT operations.
             </p>
             
-            {/* Lucky Number 7 Features Badge */}
+            {/* Subtle capabilities indicator */}
             <div className="mt-6 flex items-center justify-center">
-              <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-slate-400/30 rounded-full px-6 py-2">
-                <span className="text-slate-300 font-mono text-sm">
-                  <span className="text-green-400 font-bold">7</span> Core AI Capabilities
+              <div className="bg-slate-800/20 border border-slate-400/10 rounded-full px-4 py-1">
+                <span className="text-slate-500 font-mono text-xs">
+                  Advanced AI capabilities
                 </span>
               </div>
             </div>
@@ -116,24 +120,27 @@ const Home: React.FC = () => {
                 icon: Brain, 
                 title: "Multi-Industry AI", 
                 description: "AI trained on diverse technical data across field service, engineering, logistics, and IT operations",
-                features: ["Field Service Intelligence", "Engineering Automation", "Logistics Optimization", "IT Operations AI"]
+                features: ["Field Service Intelligence", "Engineering Automation", "Logistics Optimization", "IT Operations AI"],
+                subtleNumber: "11"
               },
               { 
                 icon: Zap, 
                 title: "Technical-Ready Solutions", 
                 description: "Mobile-optimized AI tools that work across all technical environments and industries",
-                features: ["Mobile Voice Assistants", "Cross-Platform Support", "Real-Time Data Processing"]
+                features: ["Mobile Voice Assistants", "Cross-Platform Support", "Real-Time Data Processing"],
+                subtleNumber: "18"
               },
               { 
                 icon: Network, 
                 title: "Universal Integration", 
                 description: "Seamless integration with technical tools, systems, and workflows across all industries",
-                features: ["CAD Integration", "ERP Systems", "Technical Documentation", "Analytics Platforms"]
+                features: ["CAD Integration", "ERP Systems", "Technical Documentation", "Analytics Platforms"],
+                subtleNumber: "20"
               }
             ].map((feature, index) => (
               <article 
                 key={index} 
-                className="p-8 rounded-2xl bg-gradient-to-b from-blue-500/5 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all"
+                className="p-8 rounded-2xl bg-gradient-to-b from-blue-500/5 via-green-500/5 to-transparent border border-slate-400/20 hover:border-blue-400/40 transition-all relative"
                 role="listitem"
               >
                 <feature.icon className="w-12 h-12 text-blue-400 mb-4" aria-hidden="true" />
@@ -147,6 +154,10 @@ const Home: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+                {/* Subtle lucky number */}
+                <div className="absolute top-3 right-3 text-slate-600 font-mono text-xs opacity-20">
+                  {feature.subtleNumber}
+                </div>
               </article>
             ))}
           </div>
@@ -179,11 +190,11 @@ const Home: React.FC = () => {
               </div>
             </div>
             
-            {/* Lucky Number 7 Demo Badge */}
+            {/* Subtle trial indicator */}
             <div className="mb-8 flex items-center justify-center">
-              <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-slate-400/30 rounded-full px-6 py-2">
-                <span className="text-slate-300 font-mono text-sm">
-                  <span className="text-green-400 font-bold">7</span> Day Free Trial Available
+              <div className="bg-slate-800/20 border border-slate-400/10 rounded-full px-4 py-1">
+                <span className="text-slate-500 font-mono text-xs">
+                  Free trial available
                 </span>
               </div>
             </div>
@@ -210,11 +221,11 @@ const Home: React.FC = () => {
               Join the growing number of technical teams across field service, engineering, logistics, and IT operations who are discovering the power of AI automation solutions.
             </p>
             
-            {/* Lucky Number 7 Trust Badge */}
+            {/* Subtle trust indicator */}
             <div className="mt-6 flex items-center justify-center">
-              <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-slate-400/30 rounded-full px-6 py-2">
-                <span className="text-slate-300 font-mono text-sm">
-                  <span className="text-green-400 font-bold">7</span> Industries Served
+              <div className="bg-slate-800/20 border border-slate-400/10 rounded-full px-4 py-1">
+                <span className="text-slate-500 font-mono text-xs">
+                  Trusted across industries
                 </span>
               </div>
             </div>
@@ -223,12 +234,23 @@ const Home: React.FC = () => {
           {/* Industry Focus */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
             {[
-              "Manufacturing", "Energy", "Healthcare", 
-              "Construction", "Logistics", "Utilities",
-              "HR", "Legal", "IT", "Engineering"
+              { name: "Manufacturing", subtleNumber: "20" },
+              { name: "Energy", subtleNumber: "29" },
+              { name: "Healthcare", subtleNumber: "2" },
+              { name: "Construction", subtleNumber: "7" },
+              { name: "Logistics", subtleNumber: "11" },
+              { name: "Utilities", subtleNumber: "18" },
+              { name: "HR", subtleNumber: "20" },
+              { name: "Legal", subtleNumber: "29" },
+              { name: "IT", subtleNumber: "2" },
+              { name: "Engineering", subtleNumber: "7" }
             ].map((industry, index) => (
-              <div key={index} className="flex items-center justify-center p-4 bg-slate-800/30 rounded-lg border border-slate-400/20 hover:border-blue-400/40 transition-all">
-                <span className="font-mono text-sm text-slate-300">{industry}</span>
+              <div key={index} className="flex items-center justify-center p-4 bg-slate-800/30 rounded-lg border border-slate-400/20 hover:border-blue-400/40 transition-all relative">
+                <span className="font-mono text-sm text-slate-300">{industry.name}</span>
+                {/* Subtle lucky number */}
+                <div className="absolute top-1 right-1 text-slate-600 font-mono text-xs opacity-15">
+                  {industry.subtleNumber}
+                </div>
               </div>
             ))}
           </div>
@@ -282,14 +304,18 @@ const Home: React.FC = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "100%", label: "AI-Powered Solutions" },
-              { number: "24/7", label: "AI Availability" },
-              { number: "7", label: "Core Industries" },
-              { number: "Custom", label: "Solutions" }
+              { number: "100%", label: "AI-Powered Solutions", subtleNumber: "2" },
+              { number: "24/7", label: "AI Availability", subtleNumber: "7" },
+              { number: "11+", label: "Core Industries", subtleNumber: "11" },
+              { number: "Custom", label: "Solutions", subtleNumber: "18" }
             ].map((stat, index) => (
-              <div key={index} className="p-6 bg-gradient-to-b from-blue-500/5 via-green-500/5 to-transparent border border-slate-400/20 rounded-xl">
+              <div key={index} className="p-6 bg-gradient-to-b from-blue-500/5 via-green-500/5 to-transparent border border-slate-400/20 rounded-xl relative">
                 <div className="text-3xl font-mono font-bold text-blue-400 mb-2">{stat.number}</div>
                 <div className="text-sm font-mono text-slate-300">{stat.label}</div>
+                {/* Subtle lucky number */}
+                <div className="absolute top-2 right-2 text-slate-600 font-mono text-xs opacity-20">
+                  {stat.subtleNumber}
+                </div>
               </div>
             ))}
           </div>
@@ -305,11 +331,11 @@ const Home: React.FC = () => {
               Let's discuss how our AI automation solutions can streamline your technical workflows, optimize operations, and drive growth across all industries.
             </p>
             
-            {/* Lucky Number 7 CTA Badge */}
+            {/* Subtle process indicator */}
             <div className="mb-8 flex items-center justify-center">
-              <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-slate-400/30 rounded-full px-6 py-2">
-                <span className="text-slate-300 font-mono text-sm">
-                  <span className="text-green-400 font-bold">7</span> Step Implementation Process
+              <div className="bg-slate-800/20 border border-slate-400/10 rounded-full px-4 py-1">
+                <span className="text-slate-500 font-mono text-xs">
+                  Streamlined implementation process
                 </span>
               </div>
             </div>
