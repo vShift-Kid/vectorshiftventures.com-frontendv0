@@ -603,6 +603,140 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Demo Setup & Preferences - Moved to logical position */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-purple-400">
+                    Demo Setup & Preferences
+                  </h4>
+                  
+                  <div className="mb-6">
+                    <p className="text-sm text-gray-400 font-mono mb-4">
+                      Configure your demo preferences and provide context about your team and challenges.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Business Role *
+                      </label>
+                      <select
+                        value={formData.businessRole}
+                        onChange={(e) => handleInputChange('businessRole', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      >
+                        <option value="">Select your business role</option>
+                        <optgroup label="Field Service Operations">
+                          <option value="field-technician">Field Technician</option>
+                          <option value="service-manager">Service Manager</option>
+                          <option value="dispatcher">Dispatcher</option>
+                          <option value="quality-inspector">Quality Inspector</option>
+                        </optgroup>
+                        <optgroup label="Engineering & Technical">
+                          <option value="engineer">Engineer</option>
+                          <option value="project-manager">Project Manager</option>
+                          <option value="technical-writer">Technical Writer</option>
+                          <option value="design-engineer">Design Engineer</option>
+                        </optgroup>
+                        <optgroup label="Operations & Management">
+                          <option value="operations-manager">Operations Manager</option>
+                          <option value="logistics-coordinator">Logistics Coordinator</option>
+                          <option value="inventory-manager">Inventory Manager</option>
+                          <option value="supply-chain-manager">Supply Chain Manager</option>
+                        </optgroup>
+                        <optgroup label="Executive & Leadership">
+                          <option value="executive">C-Level Executive</option>
+                          <option value="director">Director/VP</option>
+                          <option value="department-manager">Department Manager</option>
+                          <option value="business-analyst">Business Analyst</option>
+                        </optgroup>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Team Size *
+                      </label>
+                      <select
+                        value={formData.teamSize}
+                        onChange={(e) => handleInputChange('teamSize', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      >
+                        <option value="">Select team size</option>
+                        <option value="1-5">1-5 people</option>
+                        <option value="6-20">6-20 people</option>
+                        <option value="21-50">21-50 people</option>
+                        <option value="51-100">51-100 people</option>
+                        <option value="101-500">101-500 people</option>
+                        <option value="500+">500+ people</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      Current Challenges *
+                    </label>
+                    <textarea
+                      value={formData.currentChallenges}
+                      onChange={(e) => handleInputChange('currentChallenges', e.target.value)}
+                      required
+                      rows={4}
+                      className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      placeholder="Describe your current challenges and pain points that AI automation could help solve..."
+                    />
+                    <p className="text-xs text-gray-400 font-mono mt-1">
+                      Minimum 10 characters. Be specific about your technical challenges, operational inefficiencies, or business problems.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Research Focus *
+                      </label>
+                      <select
+                        value={formData.researchFocus}
+                        onChange={(e) => handleInputChange('researchFocus', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      >
+                        <option value="">Select research focus</option>
+                        <option value="field-service-optimization">Field Service Optimization</option>
+                        <option value="technical-documentation">Technical Documentation</option>
+                        <option value="logistics-efficiency">Logistics & Supply Chain Efficiency</option>
+                        <option value="quality-control">Quality Control & Compliance</option>
+                        <option value="customer-support">Customer Support Enhancement</option>
+                        <option value="predictive-maintenance">Predictive Maintenance</option>
+                        <option value="workflow-automation">Workflow Automation</option>
+                        <option value="data-analytics">Data Analytics & Reporting</option>
+                        <option value="integration-systems">System Integration</option>
+                        <option value="training-development">Training & Development</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Research Depth *
+                      </label>
+                      <select
+                        value={formData.researchDepth}
+                        onChange={(e) => handleInputChange('researchDepth', e.target.value)}
+                        required
+                        className="w-full p-3 bg-gray-800/50 border border-purple-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-purple-400"
+                      >
+                        <option value="">Select research depth</option>
+                        <option value="overview">Overview - High-level analysis and recommendations</option>
+                        <option value="detailed">Detailed - In-depth analysis with specific solutions</option>
+                        <option value="comprehensive">Comprehensive - Complete analysis with implementation roadmap</option>
+                        <option value="custom">Custom - Tailored to specific requirements</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 {/* AI Agent Customization Section */}
                 <div className="border-t border-cyan-500/20 pt-8">
                   <h4 className="text-xl font-mono font-bold mb-6 text-cyan-400">
