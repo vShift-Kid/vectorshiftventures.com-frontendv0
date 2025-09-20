@@ -604,7 +604,9 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+          onTouchStart={(e) => e.preventDefault()}
+          className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 active:from-cyan-700 active:to-blue-700 text-white rounded-full shadow-lg hover:shadow-xl active:shadow-2xl transition-all duration-300 flex items-center justify-center group touch-manipulation select-none"
+          style={{ WebkitTapHighlightColor: 'transparent' }}
         >
           <MessageSquare className="w-6 h-6" />
         </button>
@@ -684,12 +686,14 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ hidden = false }) => {
               <div className="mt-6">
                 <button
                   onClick={isCallActive ? handleStopCall : handleStartCall}
+                  onTouchStart={(e) => e.preventDefault()}
                   disabled={isLoading || !vapi}
-                  className={`w-full py-3 px-6 rounded-lg font-mono font-semibold transition-all duration-300 ${
+                  className={`w-full py-4 px-6 rounded-lg font-mono font-semibold transition-all duration-300 touch-manipulation select-none ${
                     isCallActive
-                      ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white'
-                      : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                      ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 active:from-red-700 active:to-red-800 text-white'
+                      : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 active:from-cyan-700 active:to-blue-700 text-white'
+                  } disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 active:shadow-2xl`}
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center space-x-2">
