@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
 
-const VoiceAssistantFallback: React.FC = () => {
+interface VoiceAssistantFallbackProps {
+  hidden?: boolean;
+}
+
+const VoiceAssistantFallback: React.FC<VoiceAssistantFallbackProps> = ({ hidden = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -259,53 +263,55 @@ const VoiceAssistantFallback: React.FC = () => {
                 )}
               </div>
 
-              {/* Debug Panel */}
-              <div className="mt-4">
-                <button
-                  onClick={() => setShowDebug(!showDebug)}
-                  className="w-full py-2 px-3 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs font-mono"
-                >
-                  {showDebug ? 'Hide' : 'Show'} Debug Logs
-                </button>
-                
-                {showDebug && (
-                  <div className="mt-2 p-3 bg-gray-800/50 rounded text-xs text-gray-300 max-h-40 overflow-y-auto">
-                    <div className="mb-2 font-semibold text-white">Debug Information:</div>
-                    <div>Mode: Demo Fallback</div>
-                    <div>Call Active: {isCallActive ? 'Yes' : 'No'}</div>
-                    <div>Loading: {isLoading ? 'Yes' : 'No'}</div>
-                    <div>Error: {error || 'None'}</div>
-                    
-                    <div className="mt-3 font-semibold text-white">Recent Logs:</div>
-                    <div className="space-y-1 mt-1">
-                      {debugLogs.length === 0 ? (
-                        <div className="text-gray-500">No logs yet...</div>
-                      ) : (
-                        debugLogs.map((log, index) => (
-                          <div key={index} className="text-xs font-mono break-words">
-                            {log}
-                          </div>
-                        ))
-                      )}
+              {/* Debug Panel - Hidden for customers */}
+              {!hidden && (
+                <div className="mt-4">
+                  <button
+                    onClick={() => setShowDebug(!showDebug)}
+                    className="w-full py-2 px-3 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs font-mono"
+                  >
+                    {showDebug ? 'Hide' : 'Show'} Debug Logs
+                  </button>
+                  
+                  {showDebug && (
+                    <div className="mt-2 p-3 bg-gray-800/50 rounded text-xs text-gray-300 max-h-40 overflow-y-auto">
+                      <div className="mb-2 font-semibold text-white">Debug Information:</div>
+                      <div>Mode: Demo Fallback</div>
+                      <div>Call Active: {isCallActive ? 'Yes' : 'No'}</div>
+                      <div>Loading: {isLoading ? 'Yes' : 'No'}</div>
+                      <div>Error: {error || 'None'}</div>
+                      
+                      <div className="mt-3 font-semibold text-white">Recent Logs:</div>
+                      <div className="space-y-1 mt-1">
+                        {debugLogs.length === 0 ? (
+                          <div className="text-gray-500">No logs yet...</div>
+                        ) : (
+                          debugLogs.map((log, index) => (
+                            <div key={index} className="text-xs font-mono break-words">
+                              {log}
+                            </div>
+                          ))
+                        )}
+                      </div>
+                      
+                      <div className="mt-2 space-x-2">
+                        <button
+                          onClick={() => setDebugLogs([])}
+                          className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs"
+                        >
+                          Clear Logs
+                        </button>
+                        <button
+                          onClick={testAudio}
+                          className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs"
+                        >
+                          Test Audio
+                        </button>
+                      </div>
                     </div>
-                    
-                    <div className="mt-2 space-x-2">
-                      <button
-                        onClick={() => setDebugLogs([])}
-                        className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs"
-                      >
-                        Clear Logs
-                      </button>
-                      <button
-                        onClick={testAudio}
-                        className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs"
-                      >
-                        Test Audio
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

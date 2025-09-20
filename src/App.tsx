@@ -90,8 +90,8 @@ function App() {
               <Route path="/:slug" element={<CompanyPage />} />
             </Routes>
             <Chatbot />
-            <VoiceAssistant />
-            <VoiceAssistantFallback />
+            <VoiceAssistant hidden={true} />
+            <VoiceAssistantFallback hidden={true} />
             <PhoneCaller />
             <EnhancedPhoneCaller />
             <CallAnalytics hidden={true} />
