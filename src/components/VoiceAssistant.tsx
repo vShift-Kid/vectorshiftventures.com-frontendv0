@@ -3,10 +3,21 @@ import { MessageSquare, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
 
 // Safe VAPI import with error handling
 let Vapi: any = null;
+let vapiImportError: string | null = null;
+
+// Try to import VAPI Web SDK
 try {
-  Vapi = require('@vapi-ai/web').default;
-} catch (error) {
+  // Use dynamic import for better error handling
+  import('@vapi-ai/web').then((module) => {
+    Vapi = module.default;
+    console.log('VAPI Web SDK loaded successfully');
+  }).catch((error) => {
+    console.error('Failed to import VAPI Web SDK:', error);
+    vapiImportError = error.message;
+  });
+} catch (error: any) {
   console.error('Failed to import VAPI Web SDK:', error);
+  vapiImportError = error.message;
 }
 
 const VoiceAssistant: React.FC = () => {
@@ -17,9 +28,92 @@ const VoiceAssistant: React.FC = () => {
   const [vapi, setVapi] = useState<any>(null);
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
   const [showDebug, setShowDebug] = useState(false);
+  const [vapiLoaded, setVapiLoaded] = useState(false);
+  const [vapiLoading, setVapiLoading] = useState(true);
+
+  // Load VAPI asynchronously
+  useEffect(() => {
+    const loadVapi = async () => {
+      try {
+        setVapiLoading(true);
+        addDebugLog('Loading VAPI Web SDK...');
+        
+        const vapiModule = await import('@vapi-ai/web');
+        Vapi = vapiModule.default;
+        setVapiLoaded(true);
+        addDebugLog('✅ VAPI Web SDK loaded successfully');
+      } catch (error: any) {
+        addDebugLog(`❌ Failed to load VAPI Web SDK: ${error.message}`);
+        setError(`Failed to load voice assistant: ${error.message}`);
+        vapiImportError = error.message;
+      } finally {
+        setVapiLoading(false);
+      }
+    };
+
+    loadVapi();
+  }, []);
 
   // Check if VAPI is available
-  if (!Vapi) {
+  if (vapiLoading) {
+    return (
+      <>
+        {/* Floating Action Button */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+          >
+            <MessageSquare className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Loading Panel */}
+        {isOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
+              <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                      <MessageSquare className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-mono font-semibold">Talk Now</h3>
+                      <p className="text-cyan-100 text-sm">Voice Assistant</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-mono font-semibold mb-2">Loading Voice Assistant</h4>
+                    <p className="text-gray-400 font-mono text-sm">
+                      Please wait while we load the voice assistant...
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  if (!vapiLoaded || !Vapi) {
     return (
       <>
         {/* Floating Action Button */}
@@ -65,14 +159,27 @@ const VoiceAssistant: React.FC = () => {
                   <div>
                     <h4 className="text-white font-mono font-semibold mb-2">Voice Assistant Unavailable</h4>
                     <p className="text-gray-400 font-mono text-sm mb-4">
-                      VAPI Web SDK failed to load. Please refresh the page and try again.
+                      VAPI Web SDK failed to load. This could be due to network issues or browser compatibility.
                     </p>
-                    <button
-                      onClick={() => window.location.reload()}
-                      className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg font-mono text-sm"
-                    >
-                      Refresh Page
-                    </button>
+                    <div className="space-y-2">
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg font-mono text-sm"
+                      >
+                        Refresh Page
+                      </button>
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        className="w-full bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-mono text-sm"
+                      >
+                        Close
+                      </button>
+                    </div>
+                    {vapiImportError && (
+                      <div className="mt-3 p-2 bg-red-500/10 border border-red-500/30 rounded text-xs">
+                        <p className="text-red-300 font-mono">Error: {vapiImportError}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

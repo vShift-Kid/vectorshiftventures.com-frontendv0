@@ -15,10 +15,12 @@ const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));
 const VoiceAssistant = React.lazy(() => import('./components/VoiceAssistant'));
+const VoiceAssistantFallback = React.lazy(() => import('./components/VoiceAssistantFallback'));
 const PhoneCaller = React.lazy(() => import('./components/PhoneCaller'));
 const EnhancedPhoneCaller = React.lazy(() => import('./components/EnhancedPhoneCaller'));
 const CallAnalytics = React.lazy(() => import('./components/CallAnalytics'));
 const VapiTest = React.lazy(() => import('./components/VapiTest'));
+const VapiDebugger = React.lazy(() => import('./components/VapiDebugger'));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -89,10 +91,12 @@ function App() {
             </Routes>
             <Chatbot />
             <VoiceAssistant />
+            <VoiceAssistantFallback />
             <PhoneCaller />
             <EnhancedPhoneCaller />
             <CallAnalytics />
             <VapiTest />
+            <VapiDebugger />
           </Suspense>
           <StickyCTA />
           <PerformanceMonitor />
