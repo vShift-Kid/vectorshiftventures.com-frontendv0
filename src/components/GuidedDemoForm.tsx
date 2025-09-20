@@ -1408,11 +1408,27 @@ const GuidedDemoForm: React.FC = () => {
           researchDepth: formData.researchDepth,
           rmeSpecializations: formData.rmeSpecializations
         },
+        aiGeneratedConfig: formData.aiGeneratedConfig ? {
+          agentPersonality: formData.aiGeneratedConfig.agentPersonality,
+          communicationStyle: formData.aiGeneratedConfig.communicationStyle,
+          technicalLevel: formData.aiGeneratedConfig.technicalLevel,
+          problemSolvingApproach: formData.aiGeneratedConfig.problemSolvingApproach,
+          reasoning: formData.aiGeneratedConfig.reasoning,
+          wasApplied: formData.agentPersonality === formData.aiGeneratedConfig.agentPersonality
+        } : null,
         uploadedFiles: formData.uploadedFiles.map(file => ({
           name: file.name,
           size: file.size,
           type: file.type
         })),
+        metadata: {
+          formVersion: "2.0",
+          hasAIGeneratedConfig: !!formData.aiGeneratedConfig,
+          hasUploadedFiles: formData.uploadedFiles.length > 0,
+          isSchedulingRequired: formData.consultationPackage !== 'Demo Request Only - Evaluation Phase' && formData.consultationPackage !== 'custom-package',
+          totalSteps: 7,
+          completedSteps: currentStep
+        },
         timestamp: new Date().toISOString()
       };
 
