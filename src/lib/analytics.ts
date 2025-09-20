@@ -204,8 +204,12 @@ class Analytics {
 // Create singleton instance
 export const analytics = new Analytics();
 
-// Initialize on module load
-analytics.init();
+// Initialize on module load (safely)
+try {
+  analytics.init();
+} catch (initError) {
+  console.warn('Analytics initialization failed:', initError);
+}
 
 // Export types
 export type { AnalyticsEvent, PageView };

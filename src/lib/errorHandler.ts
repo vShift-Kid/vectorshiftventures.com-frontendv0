@@ -223,8 +223,12 @@ class ErrorHandler {
 // Create singleton instance
 export const errorHandler = new ErrorHandler();
 
-// Initialize error handlers
-errorHandler.init();
+// Initialize error handlers (safely)
+try {
+  errorHandler.init();
+} catch (initError) {
+  console.warn('Error handler initialization failed:', initError);
+}
 
 // Export error handler
 export default errorHandler;

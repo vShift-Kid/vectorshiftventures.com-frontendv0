@@ -22,15 +22,15 @@ class ErrorBoundary extends Component<Props, State> {
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
     
-    // Use error handler for better error tracking
-    errorHandler.handleError(error, {
-      component: 'ErrorBoundary',
-      action: 'component_did_catch',
-      additionalData: {
-        componentStack: errorInfo.componentStack,
-        errorBoundary: true,
-      },
-    });
+    // Temporarily disable error handler to prevent circular errors
+    // errorHandler.handleError(error, {
+    //   component: 'ErrorBoundary',
+    //   action: 'component_did_catch',
+    //   additionalData: {
+    //     componentStack: errorInfo.componentStack,
+    //     errorBoundary: true,
+    //   },
+    // });
   }
 
   public render() {
