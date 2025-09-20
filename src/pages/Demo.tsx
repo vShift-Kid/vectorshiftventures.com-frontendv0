@@ -473,6 +473,52 @@ const Demo: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Demo Type Selection - Moved to be first after contact info */}
+                <div className="border-t border-cyan-500/20 pt-8">
+                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
+                    Demo Type Selection
+                  </h4>
+                  <p className="text-sm text-gray-400 font-mono mb-6">
+                    Choose the type of AI solution demo you'd like to see. This will help us tailor the experience to your needs.
+                  </p>
+
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
+                      Demo Type *
+                      <div className="relative">
+                        <button 
+                          type="button" 
+                          className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          ?
+                        </button>
+                        <div 
+                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
+                            showTooltips.demoType ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onMouseEnter={() => handleTooltipShow('demoType')}
+                          onMouseLeave={() => handleTooltipHide('demoType')}
+                        >
+                          Chatbot: AI-powered chat interface for technical support and customer service. Voice Agent: AI voice assistant for field technicians and phone support. Daily Briefing: AI-generated reports and insights for management.
+                        </div>
+                      </div>
+                    </label>
+                    <select
+                      value={formData.demoType || ''}
+                      onChange={(e) => handleInputChange('demoType', e.target.value)}
+                      required
+                      className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
+                    >
+                      <option value="">Select your preferred demo type</option>
+                      <option value="chatbot">Chatbot Demo - AI-powered chat interface for technical support and customer service</option>
+                      <option value="voice-agent">Voice Agent Demo - AI voice assistant for field technicians and phone support</option>
+                      <option value="daily-briefing">Daily Briefing Demo - AI-generated reports and insights for management</option>
+                    </select>
+                  </div>
+                </div>
+
                   <div>
                     <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
                       Industry *
@@ -560,48 +606,6 @@ const Demo: React.FC = () => {
                   />
                 </div>
 
-                {/* Demo Type Selection - Moved to be right after problem description */}
-                <div className="border-t border-cyan-500/20 pt-8">
-                  <h4 className="text-xl font-mono font-bold mb-6 text-indigo-400">
-                    Demo Type Selection
-                  </h4>
-
-                <div>
-                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2 flex items-center gap-2">
-                      Demo Type *
-                      <div className="relative">
-                        <button 
-                          type="button" 
-                          className="w-5 h-5 bg-indigo-500/20 hover:bg-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 text-xs font-bold transition-colors p-1"
-                          onMouseEnter={() => handleTooltipShow('demoType')}
-                          onMouseLeave={() => handleTooltipHide('demoType')}
-                        >
-                          ?
-                        </button>
-                        <div 
-                          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-indigo-500/30 rounded-lg text-xs font-mono text-gray-300 transition-opacity duration-300 pointer-events-auto z-20 shadow-lg ${
-                            showTooltips.demoType ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          onMouseEnter={() => handleTooltipShow('demoType')}
-                          onMouseLeave={() => handleTooltipHide('demoType')}
-                        >
-                          Voice Agent: Field technician support, technical troubleshooting, and equipment maintenance via phone calls. Chatbot: Technical support interface for field service and engineering teams. Newsletter: Industry insights, technical documentation, and field operations updates.
-                      </div>
-                      </div>
-                        </label>
-                    <select
-                      value={formData.demoType || ''}
-                      onChange={(e) => handleInputChange('demoType', e.target.value)}
-                      required
-                      className="w-full p-3 bg-gray-800/50 border border-indigo-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-indigo-400"
-                    >
-                      <option value="">Select your preferred demo type</option>
-                      <option value="voice-agent">Voice Agent Demo - Field technician support, technical troubleshooting, and equipment maintenance</option>
-                      <option value="chatbot">Chatbot Demo - Technical support interface for field service and engineering teams</option>
-                      <option value="newsletter">Technical Newsletter Demo - Industry insights, technical documentation, and field operations updates</option>
-                    </select>
-                  </div>
-                </div>
 
                 {/* Demo Setup & Preferences - Moved to logical position */}
                 <div className="border-t border-cyan-500/20 pt-8">
