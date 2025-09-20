@@ -402,8 +402,7 @@ const GuidedDemoForm: React.FC = () => {
         return formData.name.length > 0 && 
                formData.email.length > 0 && 
                formData.company.length > 0 && 
-               formData.phone.length > 0 &&
-               isBusinessEmail(formData.email);
+               formData.phone.length > 0;
       case 2:
         return formData.industry.length > 0 && formData.businessDescription.length > 10;
       case 3:
@@ -643,18 +642,12 @@ const GuidedDemoForm: React.FC = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => updateFormData('email', e.target.value)}
-                          onBlur={(e) => {
-                            const email = e.target.value;
-                            if (email && !isBusinessEmail(email)) {
-                              alert('Please use a business email address. Personal email addresses like Gmail, Yahoo, etc. are not accepted.');
-                            }
-                          }}
                           required
                           className="w-full p-3 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
-                          placeholder="your.name@company.com"
+                          placeholder="your.email@company.com"
                         />
                         <p className="text-xs text-gray-500 font-mono mt-1">
-                          Business email required (no personal emails like gmail.com, yahoo.com, etc.)
+                          Enter your business email address
                         </p>
                       </div>
 
