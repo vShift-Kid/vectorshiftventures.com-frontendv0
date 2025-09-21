@@ -10,7 +10,7 @@ import { analytics } from './lib/analytics';
 const Home = React.lazy(() => import('./pages/Home'));
 const Demo = React.lazy(() => import('./pages/Demo'));
 const Services = React.lazy(() => import('./pages/Services'));
-// const Consultation = React.lazy(() => import('./pages/Consultation'));
+// Consultation page removed - functionality integrated into Contact page
 const Contact = React.lazy(() => import('./pages/Contact'));
 const CompanyPage = React.lazy(() => import('./pages/CompanyPage'));
 const Chatbot = React.lazy(() => import('./components/Chatbot'));

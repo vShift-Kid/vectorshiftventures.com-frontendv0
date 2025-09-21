@@ -59,12 +59,12 @@ const Navigation: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/consultation"
-              className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm"
-            >
-              Transform Your Business
-            </Link>
+                  <Link
+                    to="/contact"
+                    className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm"
+                  >
+                    Get in Touch
+                  </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,13 +95,13 @@ const Navigation: React.FC = () => {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                to="/consultation"
-                className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm text-center"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Transform Your Business
-              </Link>
+                    <Link
+                      to="/contact"
+                      className="font-mono bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm text-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Get in Touch
+                    </Link>
             </div>
           </div>
         )}
