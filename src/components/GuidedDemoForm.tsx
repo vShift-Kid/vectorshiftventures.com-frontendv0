@@ -13,6 +13,7 @@ interface FormData {
   // Business Information
   industry: string;
   businessDescription: string;
+  businessWebsite: string;
   teamSize: string;
   currentChallenges: string;
   
@@ -996,11 +997,13 @@ const getDynamicConsultationPackages = (demoType: string, industry: string) => {
   const packageOptions = {
     'field-service-technical': {
       'field-technician-support': [
+        { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
         { value: 'field-technician-demo', label: 'Field Technician AI Demo - Live technical support simulation' },
         { value: 'field-operations-consultation', label: 'Field Operations Consultation - 60 min strategy session' },
         { value: 'technical-implementation', label: 'Technical Implementation Plan - Custom deployment strategy' }
       ],
       'equipment-troubleshooting': [
+        { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
         { value: 'diagnostic-demo', label: 'Diagnostic AI Demo - Equipment troubleshooting simulation' },
         { value: 'maintenance-consultation', label: 'Maintenance Strategy Consultation - 45 min planning session' },
         { value: 'predictive-maintenance', label: 'Predictive Maintenance Setup - Implementation roadmap' }
@@ -1008,11 +1011,13 @@ const getDynamicConsultationPackages = (demoType: string, industry: string) => {
     },
     'engineering-design': {
       'cad-integration': [
+        { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
         { value: 'cad-ai-demo', label: 'CAD Integration Demo - Live design assistance simulation' },
         { value: 'engineering-consultation', label: 'Engineering Process Consultation - 60 min strategy session' },
         { value: 'design-automation', label: 'Design Automation Setup - Custom workflow implementation' }
       ],
       'technical-documentation': [
+        { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
         { value: 'documentation-demo', label: 'Documentation AI Demo - Live document generation simulation' },
         { value: 'documentation-consultation', label: 'Documentation Strategy Consultation - 45 min planning session' },
         { value: 'knowledge-management', label: 'Knowledge Management Setup - Implementation roadmap' }
@@ -1020,6 +1025,7 @@ const getDynamicConsultationPackages = (demoType: string, industry: string) => {
     },
     'logistics-optimization': {
       'route-optimization': [
+        { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
         { value: 'routing-demo', label: 'Route Optimization Demo - Live logistics simulation' },
         { value: 'logistics-consultation', label: 'Logistics Strategy Consultation - 60 min planning session' },
         { value: 'supply-chain-optimization', label: 'Supply Chain Optimization - Implementation roadmap' }
@@ -1034,6 +1040,7 @@ const getDynamicConsultationPackages = (demoType: string, industry: string) => {
 
   // Default packages
   return [
+    { value: 'just-looking-demo', label: 'Just Looking - Demo Only - Explore AI capabilities' },
     { value: 'general-demo', label: 'General AI Demo - Live automation simulation' },
     { value: 'strategy-consultation', label: 'Strategy Consultation - 60 min planning session' },
     { value: 'implementation-plan', label: 'Implementation Plan - Custom deployment strategy' }
@@ -1217,7 +1224,8 @@ const steps = [
 const GuidedDemoForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [redirectCountdown, setRedirectCountdown] = useState(30);
+  const [redirectCountdown, setRedirectCountdown] = useState(10);
+  const [lastActivity, setLastActivity] = useState(Date.now());
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -1225,6 +1233,7 @@ const GuidedDemoForm: React.FC = () => {
     phone: '',
     industry: '',
     businessDescription: '',
+    businessWebsite: '',
     teamSize: '',
     currentChallenges: '',
     demoType: '',
@@ -1299,18 +1308,52 @@ const GuidedDemoForm: React.FC = () => {
     }
   };
 
-  // Countdown effect for auto-redirect
+  // Activity tracking effect
   useEffect(() => {
-    if (isSubmitted && redirectCountdown > 0) {
-      const timer = setTimeout(() => {
-        setRedirectCountdown(redirectCountdown - 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else if (isSubmitted && redirectCountdown === 0) {
-      // Redirect to home page
-      window.location.href = '/';
+    const handleActivity = () => {
+      setLastActivity(Date.now());
+    };
+
+    if (isSubmitted) {
+      window.addEventListener('mousemove', handleActivity);
+      window.addEventListener('keypress', handleActivity);
+      window.addEventListener('scroll', handleActivity);
+      window.addEventListener('click', handleActivity);
+
+      return () => {
+        window.removeEventListener('mousemove', handleActivity);
+        window.removeEventListener('keypress', handleActivity);
+        window.removeEventListener('scroll', handleActivity);
+        window.removeEventListener('click', handleActivity);
+      };
     }
-  }, [isSubmitted, redirectCountdown]);
+  }, [isSubmitted]);
+
+  // Countdown effect for auto-redirect (only after 10 seconds of no activity)
+  useEffect(() => {
+    if (isSubmitted) {
+      const checkActivity = () => {
+        const timeSinceActivity = Date.now() - lastActivity;
+        const tenSeconds = 10 * 1000;
+        
+        if (timeSinceActivity >= tenSeconds) {
+          // Start countdown after 10 seconds of no activity
+          if (redirectCountdown > 0) {
+            const timer = setTimeout(() => {
+              setRedirectCountdown(redirectCountdown - 1);
+            }, 1000);
+            return () => clearTimeout(timer);
+          } else if (redirectCountdown === 0) {
+            // Redirect to home page
+            window.location.href = '/';
+          }
+        }
+      };
+
+      const interval = setInterval(checkActivity, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isSubmitted, lastActivity, redirectCountdown]);
 
 
   const nextStep = () => {
@@ -1383,6 +1426,7 @@ const GuidedDemoForm: React.FC = () => {
           companyName: formData.company,
           industry: formData.industry,
           businessDescription: formData.businessDescription,
+          businessWebsite: formData.businessWebsite,
           teamSize: formData.teamSize,
           currentChallenges: formData.currentChallenges
         },
@@ -1474,7 +1518,8 @@ const GuidedDemoForm: React.FC = () => {
               </h3>
               <ul className="text-left text-gray-300 font-mono space-y-2">
                 <li>• <strong className="text-orange-300">Check your email</strong> for a verification link</li>
-                <li>• Our team will analyze your requirements and begin building your AI solution</li>
+                <li>• After email validation, we'll begin building your personalized AI demo</li>
+                <li>• Our team will analyze your requirements and create your custom solution</li>
                 <li>• You'll receive a detailed proposal and demo access within 24 hours</li>
                 <li>• We'll schedule your personalized demo session</li>
               </ul>
@@ -1482,7 +1527,7 @@ const GuidedDemoForm: React.FC = () => {
 
             <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-8">
               <p className="text-yellow-300 font-mono text-sm">
-                <strong>Note:</strong> You will be automatically redirected to the home page in {redirectCountdown} seconds.
+                <strong>Note:</strong> You will be automatically redirected to the home page after 10 seconds of inactivity, then {redirectCountdown} seconds countdown.
               </p>
             </div>
             
@@ -1710,6 +1755,19 @@ const GuidedDemoForm: React.FC = () => {
                         rows={4}
                         className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400"
                         placeholder="Describe your business operations, main activities, and core services"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                        Business Website
+                      </label>
+                      <input
+                        type="url"
+                        value={formData.businessWebsite}
+                        onChange={(e) => updateFormData('businessWebsite', e.target.value)}
+                        className="w-full p-3 bg-gray-800/50 border border-blue-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-blue-400"
+                        placeholder="https://yourcompany.com"
                       />
                     </div>
 

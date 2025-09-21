@@ -12,6 +12,7 @@ interface FormData {
   
   // Business Details
   businessDescription: string;
+  businessWebsite: string;
   currentChallenges: string;
   teamSize: string;
   
@@ -57,6 +58,7 @@ const ProgressiveDemoForm: React.FC = () => {
     phone: '',
     industry: '',
     businessDescription: '',
+    businessWebsite: '',
     currentChallenges: '',
     teamSize: '',
     consultationPackage: '',

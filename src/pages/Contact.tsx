@@ -13,6 +13,7 @@ const Contact: React.FC = () => {
     industry: '',
     consultationType: '',
     businessDescription: '',
+    businessWebsite: '',
     preferredDate: '',
     preferredTime: ''
   });
@@ -47,6 +48,7 @@ const Contact: React.FC = () => {
           industry: formData.industry,
           consultationType: formData.consultationType,
           businessDescription: formData.businessDescription,
+          businessWebsite: formData.businessWebsite,
           preferredDate: formData.preferredDate,
           preferredTime: formData.preferredTime
         } : null,
@@ -352,21 +354,38 @@ const Contact: React.FC = () => {
               </div>
 
               {isConsultationMode && (
-                <div>
-                  <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
-                    <MessageSquare className="w-4 h-4 inline mr-2" />
-                    Business Description *
-                  </label>
-                  <textarea
-                    name="businessDescription"
-                    value={formData.businessDescription}
-                    onChange={handleInputChange}
-                    required
-                    rows={4}
-                    className="w-full p-4 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400 resize-none"
-                    placeholder="Describe your business and technical operations..."
-                  />
-                </div>
+                <>
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      <MessageSquare className="w-4 h-4 inline mr-2" />
+                      Business Description *
+                    </label>
+                    <textarea
+                      name="businessDescription"
+                      value={formData.businessDescription}
+                      onChange={handleInputChange}
+                      required
+                      rows={4}
+                      className="w-full p-4 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400 resize-none"
+                      placeholder="Describe your business and technical operations..."
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-mono font-medium text-gray-300 mb-2">
+                      <Globe className="w-4 h-4 inline mr-2" />
+                      Business Website
+                    </label>
+                    <input
+                      type="url"
+                      name="businessWebsite"
+                      value={formData.businessWebsite}
+                      onChange={handleInputChange}
+                      className="w-full p-4 bg-gray-800/50 border border-cyan-500/30 rounded-lg text-white font-mono focus:outline-none focus:border-cyan-400"
+                      placeholder="https://yourcompany.com"
+                    />
+                  </div>
+                </>
               )}
 
               <div>
