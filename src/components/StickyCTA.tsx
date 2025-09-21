@@ -49,7 +49,7 @@ const StickyCTA: React.FC = () => {
           
           <div className="pr-6">
             <h3 className="font-mono font-bold text-white text-lg mb-2">
-              Ready to Transform Your Field Service?
+              Ready to Transform Your Operations?
             </h3>
             <p className="text-cyan-100 font-mono text-sm mb-4">
               Get your custom AI automation demo in 24 hours
@@ -65,11 +65,11 @@ const StickyCTA: React.FC = () => {
               
               <div className="flex space-x-2">
                 <Link
-                  to="/consultation"
+                  to="/contact"
                   className="flex-1 bg-cyan-600 text-white font-mono font-semibold py-2 px-3 rounded-lg text-center text-sm hover:bg-cyan-700 transition-colors flex items-center justify-center"
                 >
                   <MessageSquare className="w-4 h-4 mr-1" />
-                  Chat
+                  Contact
                 </Link>
                 <a
                   href="tel:+1-833-957-2961"
