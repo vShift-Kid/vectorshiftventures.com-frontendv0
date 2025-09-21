@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
         "ROI analysis for technical AI implementation",
         "Implementation roadmap and next steps"
       ],
-      price: "Free",
+      price: "$200.00",
       recommended: true
     },
     {
