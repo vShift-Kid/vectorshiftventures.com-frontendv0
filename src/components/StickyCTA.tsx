@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { X, MessageSquare, Phone } from 'lucide-react';
 
 const StickyCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const location = useLocation();
+
+  // Pages where CTA should not show (users are already in contact mode)
+  const hiddenPages = ['/demo', '/contact'];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,9 @@ const StickyCTA: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Don't show CTA on pages where users are already contacting
+  if (hiddenPages.includes(location.pathname)) return null;
 
   if (!isVisible) return null;
 
