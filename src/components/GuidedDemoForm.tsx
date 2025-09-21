@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, CheckCircle, Brain, User, Building, Phone, Calendar, FileText, Upload, MessageSquare, Bot, Globe, Settings, Target, Home } from 'lucide-react';
+import { getWebhookUrl } from '../config/api';
 
 interface FormData {
   // Contact Information
@@ -1432,7 +1433,7 @@ const GuidedDemoForm: React.FC = () => {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch('https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed', {
+      const response = await fetch(getWebhookUrl(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

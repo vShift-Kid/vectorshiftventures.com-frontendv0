@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, MessageSquare, User, Building, CheckCircle, Calendar, Clock, Bot, FileText, PhoneCall, Search, Brain, Globe, Target, DollarSign, ArrowRight, Gift, ChevronDown, ChevronUp } from 'lucide-react';
+import { getWebhookUrl } from '../config/api';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +28,54 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    setIsSubmitted(true);
+    
+    try {
+      const webhookData = {
+        formType: isConsultationMode ? 'consultation' : 'contact',
+        contactInfo: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company
+        },
+        messageInfo: {
+          subject: formData.subject,
+          message: formData.message
+        },
+        consultationInfo: isConsultationMode ? {
+          industry: formData.industry,
+          consultationType: formData.consultationType,
+          businessDescription: formData.businessDescription,
+          preferredDate: formData.preferredDate,
+          preferredTime: formData.preferredTime
+        } : null,
+        metadata: {
+          formVersion: "2.0",
+          isConsultationMode: isConsultationMode,
+          timestamp: new Date().toISOString()
+        }
+      };
+
+      const response = await fetch(getWebhookUrl(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData)
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        console.log('Contact form submitted successfully');
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      // Still show success to user even if webhook fails
+      setIsSubmitted(true);
+    }
   };
 
   const toggleConsultationMode = () => {

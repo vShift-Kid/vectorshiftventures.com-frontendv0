@@ -1,10 +1,7 @@
 // API Configuration
 export const API_CONFIG = {
-  // n8n Webhook URLs
-  N8N_WEBHOOKS: {
-    DEMO_SUBMISSION: process.env.REACT_APP_N8N_DEMO_WEBHOOK_URL || 'YOUR_N8N_DEMO_WEBHOOK_URL_HERE',
-    CONSULTATION_REQUEST: process.env.REACT_APP_N8N_CONSULTATION_WEBHOOK_URL || 'YOUR_N8N_CONSULTATION_WEBHOOK_URL_HERE',
-  },
+  // Unified Webhook URL for all forms
+  WEBHOOK_URL: process.env.REACT_APP_N8N_WEBHOOK_URL || 'https://vectorshift-n8n-ventures.onrender.com/webhook/vectorshift-consultation-enhanced-fixed',
   
   // API Base URLs
   BASE_URL: process.env.REACT_APP_API_BASE_URL || 'https://your-api-domain.com',
@@ -14,13 +11,6 @@ export const API_CONFIG = {
 };
 
 // Helper function to get webhook URL
-export const getWebhookUrl = (type: 'demo' | 'consultation') => {
-  switch (type) {
-    case 'demo':
-      return API_CONFIG.N8N_WEBHOOKS.DEMO_SUBMISSION;
-    case 'consultation':
-      return API_CONFIG.N8N_WEBHOOKS.CONSULTATION_REQUEST;
-    default:
-      throw new Error(`Unknown webhook type: ${type}`);
-  }
+export const getWebhookUrl = () => {
+  return API_CONFIG.WEBHOOK_URL;
 }; 

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Bot, Loader2, CheckCircle, XCircle, Play, Zap, Construction, Upload, Building, Globe, User, Mail, Phone, FileText, Briefcase } from 'lucide-react';
+import { getWebhookUrl } from '../config/api';
 
 interface DemoState {
   loading: boolean;
@@ -64,7 +65,6 @@ const LiveDemo: React.FC = () => {
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const API_BASE_URL = 'https://vectorshift-n8n-ventures.onrender.com';
 
   const handleInputChange = (field: keyof ConsultationData, value: string) => {
     setConsultationData(prev => ({
@@ -98,7 +98,7 @@ const LiveDemo: React.FC = () => {
         formType: 'consultation-capture'
       };
 
-      const response = await fetch(`${API_BASE_URL}/webhook/consultation-capture`, {
+      const response = await fetch(getWebhookUrl(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

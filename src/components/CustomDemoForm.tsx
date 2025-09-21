@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Building, User, Mail, Phone, FileText, Upload, CheckCircle, ArrowRight, Brain, Globe, MessageSquare, Calendar } from 'lucide-react';
+import { getWebhookUrl } from '../config/api';
 
 interface CustomDemoData {
   // Contact Information
@@ -132,10 +133,47 @@ const CustomDemoForm: React.FC = () => {
       submitData.append('formType', 'custom-demo-request');
       submitData.append('source', 'vectorshiftventures-demo-page');
       
-      // Send to n8n webhook (you'll need to create this endpoint)
-      const response = await fetch('/api/custom-demo-submission', {
+      // Send to unified webhook
+      const response = await fetch(getWebhookUrl(), {
         method: 'POST',
-        body: submitData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'custom-demo',
+          contactInfo: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company
+          },
+          businessInfo: {
+            industry: formData.industry,
+            businessSize: formData.businessSize,
+            website: formData.website
+          },
+          demoRequirements: {
+            demoType: formData.demoType,
+            voiceAssistantFeatures: formData.voiceAssistantFeatures,
+            websiteFeatures: formData.websiteFeatures,
+            targetAudience: formData.targetAudience,
+            specificUseCases: formData.specificUseCases,
+            integrationRequirements: formData.integrationRequirements,
+            timeline: formData.timeline,
+            budget: formData.budget,
+            additionalNotes: formData.additionalNotes
+          },
+          uploadedFiles: formData.uploadedFiles.map(file => ({
+            name: file.name,
+            size: file.size,
+            type: file.type
+          })),
+          metadata: {
+            formVersion: "2.0",
+            submissionTimestamp: new Date().toISOString(),
+            source: 'vectorshiftventures-demo-page'
+          }
+        }),
       });
       
       if (!response.ok) {
