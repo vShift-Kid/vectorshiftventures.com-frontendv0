@@ -1,13 +1,16 @@
-# 🎤 VAPI Unified Webhook System
-<!-- Deployment trigger: Home page title fix -->
+# 🚀 VectorShift Ventures Frontend v0
+<!-- Production-ready AI automation website -->
 
-A production-ready webhook system for handling both web voice calls and phone calls using VAPI's comprehensive SDK ecosystem.
+A production-ready React frontend for VectorShift Ventures AI automation solutions, featuring VAPI integration, guided demo forms, and comprehensive contact management.
 
 ## 🚀 Features
 
-- **Web Voice Calls**: Handle browser-based voice conversations
-- **Phone Calls**: Manage outbound and inbound phone calls
-- **Real-time Analytics**: Track call statistics and events
+- **Modern React Frontend**: Built with React 18, TypeScript, and Vite
+- **VAPI Integration**: Voice calls and phone calls with AI agents
+- **Guided Demo Forms**: Step-by-step demo request process
+- **Enhanced Contact System**: Dual-mode contact/consultation scheduling
+- **Responsive Design**: Mobile-optimized with Tailwind CSS
+- **Real-time Analytics**: Track user interactions and conversions
 - **Function Calls**: Support for VAPI assistant functions
 - **Production Ready**: Security, rate limiting, and monitoring
 - **Scalable**: Built for high-traffic applications
